@@ -17,22 +17,28 @@ As a part of UCSD computer, science and enginnering society, our priotry is to h
 
 # Members
 
-### Yangchen Zhao
+## Team Leads
+
+### Elise Bushnell
 
 - Overview
-- Contact: yaz048@ucsd.edu
+- Contact: ebushnel@ucsd.edu
 - [Person WebSite]()
+
+
+### Sashwat Nayak
+
+- Overview: I'm Sash. I am a third-year Math-CS Student from Los Angeles
+- Contact: s2nayak@ucsd.edu
+- [Person WebSite](https://sashwatnayak.github.io/CSE-110-Lab-0/)
+
+
+## Designer
 
 ### Clarissa Gutierrez
 
 - Overview
 - Contact: cgutierrezgodoy@ucsd.edu
-- [Person WebSite]()
-
-### Zihang He
-
-- Overview
-- Contact: z6he@ucsd.edu
 - [Person WebSite]()
 
 ### Shasta Subramanian
@@ -41,10 +47,21 @@ As a part of UCSD computer, science and enginnering society, our priotry is to h
 - Contact: s1subram@ucsd.edu
 - [Person WebSite]()
 
-### Elise Bushnell
+
+## Dev
+
+### Yangchen Zhao
 
 - Overview
-- Contact: ebushnel@ucsd.edu
+- Contact: yaz048@ucsd.edu
+- [Person WebSite]()
+
+
+
+### Zihang He
+
+- Overview
+- Contact: z6he@ucsd.edu
 - [Person WebSite]()
 
 ### Sky Li
@@ -57,12 +74,6 @@ As a part of UCSD computer, science and enginnering society, our priotry is to h
 
 - Overview
 - Contact: bchester@ucsd.edu
-- [Person WebSite]()
-
-### Sashwat Nayak
-
-- Overview
-- Contact: s2nayak@ucsd.edu
 - [Person WebSite]()
 
 ### Yan Ji
