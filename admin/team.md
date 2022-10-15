@@ -36,12 +36,6 @@ As a part of UCSD computer, science and enginnering society, our priotry is to h
 
 ## Designer
 
-### Clarissa Gutierrez
-
-- Overview: I'm Clarissa, this is my last year at UCSD and my major is Math-CS.
-- Contact: cgutierrezgodoy@ucsd.edu
-- [Clarissa Website](https://clarissagtz.github.io/Lab1CS/)
-
 ### Shasta Subramanian
 
 - Overview: I'm Shasta and I'm a third year Computer Engineer (ECE) from the Bay Area. 
@@ -49,7 +43,16 @@ As a part of UCSD computer, science and enginnering society, our priotry is to h
 - [Shasta Website](https://shastasubramanian.github.io/CSE110/)
 
 
-## Dev
+## Planner
+
+### Clarissa Gutierrez
+
+- Overview: I'm Clarissa, this is my last year at UCSD and my major is Math-CS.
+- Contact: cgutierrezgodoy@ucsd.edu
+- [Clarissa Website](https://clarissagtz.github.io/Lab1CS/)
+
+
+## Developers
 
 ### Yangchen Zhao
 
