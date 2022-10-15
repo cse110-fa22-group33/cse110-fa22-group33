@@ -2,16 +2,16 @@
 ## October 15, 2022
 
 ### List of Attendees
-- Sash
-- Elise
-- Shasta
-- Clarissa
-- Zihang
-- Steven
-- Sky
-- Avery
-- Yangchen
-- Bradley
+- Sashwat (Lead)
+- Elise (Lead)
+- Shasta (Designer)
+- Clarissa (Planner)
+- Zihang (Dev)
+- Steven (Dev)
+- Sky (Dev)
+- Avery (Dev)
+- Yangchen (Dev)
+- Bradley (Dev)
 
 ### Completed Items Since Last Meeting
 - Group 33 Page w/Connected Accounts
