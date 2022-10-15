@@ -1,7 +1,7 @@
 # Kickoff Meeting Notes
 ## October 15, 2022
 
-** List of Attendees**
+### List of Attendees
 - Sash
 - Elise
 - Shasta
