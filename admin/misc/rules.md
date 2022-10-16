@@ -5,7 +5,7 @@
 - Instructor: Thomas A.Powell
 - Team Name: Code Monkeyz
 - Team Leader: Sashwat Nayak, elise
-- TA for the team-:Ananya Dey
+- TA for the team: Ananya Dey
   
 ## Team member info
 - Yangchen Zhao: Developer
