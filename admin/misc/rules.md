@@ -25,6 +25,7 @@ Most Communication for our project group will be done on Zoom, with in-person me
 ### Scheduling Meetings
 - **Tuesdays at 8pm**: Initial Weekly Meeting on Zoom (Prescribe Roles, Brainstorm Ideas, Present Expectations)
 - **Sundays at 4pm**: Weekly Checkoff Meeting with TA on Zoom w TA (Discuss Progress, Share Results, Prepare for Next Week) \
+
 We could also hold tentative meetings in between this schedule if circumstances requiring attention arise.
 
 ### General Responsibilities for All Team Members
