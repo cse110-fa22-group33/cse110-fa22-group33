@@ -32,7 +32,7 @@ We could also hold tentative meetings in between this schedule if circumstances 
 It is about **WE**. Show up when you’re called, do your part, and meet deadlines timely. Support each other to accomplish the same goals and take on different challenges. Be open to discussing ideas and transparent to share issues. Most of all, hold each other accountable for the team, it is our biggest asset.
 
 ### Individual Expectations
-As an individual, we need to follow certain guidelines to achieve the best outcomes for the team. Please attend all meetings and have your cameras on for online meetings. Please also be open to communicating and respect the discussion that is occurring. When assigned a task, be vigilant for requirements and proactive in completion. Don’t feel shy to speak on ideas, results, and suggestions. Let the team know in advance and respond to teammate requests *within 48 hours* .
+As an individual, we need to follow certain guidelines to achieve the best outcomes for the team. Please attend all meetings and have your cameras on for online meetings. Please also be willing to communicating and respect the discussion that is occurring. When assigned a task, be vigilant for requirements and proactive in completion. Don’t feel shy to speak on ideas, results, and suggestions. Let the team know in advance and respond to teammate requests *within 48 hours* .
 
 ### Conflict Resolution
 In case you are struggling to understand the project requirements or in meeting deadlines, please reach out to the team to assist you through the resolution process. You can always take time to set up a meeting with the Team Leads to find possible paths out of such issues. Collaborate and communicate thoroughly to help find a solution that works best for you.
