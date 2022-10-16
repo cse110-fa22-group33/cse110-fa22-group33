@@ -3,10 +3,9 @@
 ## Created 10/16/2022
 
 ### Group Identification
-- Number: 33
-- Team Name: Code Monkeyz
-- Instructor: Thomas A.Powell
-- TA: Ananya Dey
+- Number: **33**
+- Team Name: **Code Monkeyz**
+- Instructor: **Thomas A.Powell**
 
 ### Team Member Info
 - Ananya Dey: TA (andey@ucsd.edu)
