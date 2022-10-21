@@ -18,7 +18,7 @@
 3. Appeal to user
 4. App theme/mood/purpose
 
-### Idea Discussion - Refer to Miro Whiteboard
+### Idea Discussion - Refer to [Miro Whiteboard](https://miro.com/app/board/uXjVPMM_SJ8=/)
 - Automatic Task Management App (Sky)
 - River Pathing Prediction Model (Shasta)
 - Multi Platform Scrapbook (Elise)
