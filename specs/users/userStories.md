@@ -5,8 +5,8 @@
 
 - As an athlete, I want to schedule all my season games, so I know beforehand when they are and be ready for those dates. 
 
-- As a Mother, I want to write down the different tasks I have to do for my kids during the week (pick them up of school, take them to practice, etc), so I know exactly when I am free, and try and get a drink with my friends. 
+- As a middle school Teacher, I want to organize my week in adcance, so I know exactly when I am free and plan things with my friends  
 
-- As an engineer, I want to plan my meetings ahead of time, so I know where I need to be and have my presentations ready for those dates. 
+- As an engineer, I want to plan and schedule meetings ahead of time, so I know where I need to be and have my presentations ready for those dates. 
 
 - As a parent, I want to plan my week in advance, so I know when and where I need to be for my kids.
