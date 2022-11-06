@@ -1,1 +1,1 @@
-console.log('ffxiv is a good game :)'
+console.log('ffxiv is a good game :)');
