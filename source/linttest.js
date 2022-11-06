@@ -1,0 +1,1 @@
+console.lo('ffxiv is a good game :)');
