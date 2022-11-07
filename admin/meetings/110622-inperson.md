@@ -71,9 +71,10 @@ Weekly Calendar - \
 Add Tasks - \
 CI Pipeline/DevOps - **Bradley, Steven** 
 
-### Deadlines
+### Deadlines/Dates
 
-***FIRST SPRINT DUE NOV 13th!*** \
-***FIRST PHASE OF CI PIPELINE DUE NOV 14th!***
+***First Sprint Due: NOV 13th!*** \
+***First Phase of CI Pipeline Due: NOV 14th!*** \
+***Checkoff Meeting with Ananya: NOV 9th!***
 
 
