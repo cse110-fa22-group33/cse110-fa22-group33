@@ -11,7 +11,7 @@
 - River
 
 ### Links
-[Project Timeline](https://docs.google.com/document/d/1ftAjzyDihtLy-gTYkSZkHnD_dQ9gX-8rzK29jKTpQqk/edit)
+[Project Timeline](https://docs.google.com/document/d/1ftAjzyDihtLy-gTYkSZkHnD_dQ9gX-8rzK29jKTpQqk/edit)\
 [Project Resources](https://docs.google.com/document/d/1-Qo3ew7RwPbIojRI7X5BBmDDgsFqV2_TwE7MoBs_7Fw/edit)
 
 ## Meeting Notes
