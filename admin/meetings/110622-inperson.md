@@ -73,7 +73,7 @@ CI Pipeline/DevOps - **Bradley, Steven**
 
 ### Deadlines
 
-***FIRST SPRINT DUE NOV 13th!** \
+***FIRST SPRINT DUE NOV 13th!*** \
 ***FIRST PHASE OF CI PIPELINE DUE NOV 14th!***
 
 
