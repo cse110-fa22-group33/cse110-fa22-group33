@@ -11,12 +11,12 @@
 - River
 
 ### Links
-[Project Timeline] (https://docs.google.com/document/d/1ftAjzyDihtLy-gTYkSZkHnD_dQ9gX-8rzK29jKTpQqk/edit)
-[Project Resources] (https://docs.google.com/document/d/1-Qo3ew7RwPbIojRI7X5BBmDDgsFqV2_TwE7MoBs_7Fw/edit)
+[Project Timeline](https://docs.google.com/document/d/1ftAjzyDihtLy-gTYkSZkHnD_dQ9gX-8rzK29jKTpQqk/edit)
+[Project Resources](https://docs.google.com/document/d/1-Qo3ew7RwPbIojRI7X5BBmDDgsFqV2_TwE7MoBs_7Fw/edit)
 
-### Meeting Notes
+## Meeting Notes
 
-#### CI 
+### CI 
 
 (As per Bradley and Steven's Implementation)
 1. All work is to be done in the **DEV** branch!
@@ -28,7 +28,7 @@
 
 *Note: the CI pipeline right now only lints code to ensure that the process runs. More will be added to the CI pipeline. If you encounter issues, please consult Bradley or Steven!*
 
-#### Sprint 1 Requirements
+### Sprint 1 Requirements
 
 - We will have 4 pages we will work on for our first phase. Current Tasks Page (HOME), Monthly Calendar, Weekly Calendar and Add Task. Implement Modify Tasks if have time.
 - Current Tasks Page (HOME)
@@ -63,7 +63,7 @@
 
 **We are also supposed to have some basic styling done for our first sprint for ALL OUR PAGES!**
 
-#### Assignments
+### Assignments
 
 Current Tasks - **River, Shasta**
 Monthly Calendar - 
@@ -71,7 +71,7 @@ Weekly Calendar -
 Add Tasks - 
 CI Pipeline/DevOps - **Bradley, Steven**
 
-#### Deadlines
+### Deadlines
 
 ***FIRST SPRINT DUE NOV 13th!**
 ***FIRST PHASE OF CI PIPELINE DUE NOV 14th!***
