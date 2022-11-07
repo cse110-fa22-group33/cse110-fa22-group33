@@ -65,11 +65,11 @@
 
 ### Assignments
 
-Current Tasks - **River, Shasta**
-Monthly Calendar - 
-Weekly Calendar -
-Add Tasks - 
-CI Pipeline/DevOps - **Bradley, Steven**
+Current Tasks - **River, Shasta** \
+Monthly Calendar - \
+Weekly Calendar - \
+Add Tasks - \
+CI Pipeline/DevOps - **Bradley, Steven** \
 
 ### Deadlines
 
