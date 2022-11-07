@@ -58,6 +58,7 @@
 - Modify Tasks (*if we have time*)
   - Similar to Add Tasks, except we are made to modify the already defined attributes for the task.
   - Click Done to modify object, Click Back to Cancel.
+
 **The Initial Sprint will focus on being able to display the tasks list, display our calendars and adding tasks into the schedule**
 **We are also supposed to have some basic styling done for our first sprint for ALL OUR PAGES!**
 
