@@ -66,14 +66,15 @@
 ### Assignments
 
 Current Tasks - **River, Shasta** \
-Monthly Calendar - \
-Weekly Calendar - \
-Add Tasks - \
+Monthly Calendar - **Sky, Dean, Sash** \
+Weekly Calendar - **Elise, Clarissa** \
+Add Tasks - **River, Shasta** \
 CI Pipeline/DevOps - **Bradley, Steven** 
 
 ### Deadlines/Dates
 
 ***First Sprint Due: NOV 13th!*** \
+***First AGILE Retro Due: NOV 14th!*** \
 ***First Phase of CI Pipeline Due: NOV 14th!*** \
 ***Checkoff Meeting with Ananya: NOV 9th!***
 
