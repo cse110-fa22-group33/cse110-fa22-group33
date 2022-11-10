@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task Page</title>
+
+    <script src="./scripts/task.js"></script>
+</head>
+<body>
+    <main class="todo">
+        <section class="hello">
+            Hello <input type="text" id="user-name" placeholder="User Name">
+        </section>
+        <section class="create-new-task">
+            <h2>ADD NEW TASK</h2>
+            <form id="new-task">
+
+                <div id="task-content">
+                
+                    <h3>Task Content</h3>
+                    <input 
+                    type="text" 
+                    name="content" 
+                    id="content" 
+                    placeholder="e.g. finish lab6"/>
+
+                    <h3>Task Duration</h3>
+                    <input type="text" name="duration" id="duration" placeholder="e.g. 10 hr">
+
+                    <h3>Task DDL</h3>
+                    <input type="datetime-local" name="datetime" id="datetime">
+
+                </div>
+
+                <input type="submit" value="Add task">
+                <button type="button" class="danger">Clear Local Storage</button>
+            </form>
+        </section>
+
+        <section class="task-list">
+            <h2>TASK LIST</h2>
+            <div id="list">
+
+            </div>
+        </section>
+    </main>
+</body>
+</html>
