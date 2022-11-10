@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task Page</title>
 
-    <script src="./scripts/task.js"></script>
+    <!-- Task Custom Element -->
+  <script src="Task.js" type="module"></script>
+
+  <!-- Main Stylesheets & Scripts -->
+  <script src="main.js"></script>
 </head>
 <body>
     <main class="todo">
@@ -16,21 +20,23 @@
         <section class="create-new-task">
             <h2>ADD NEW TASK</h2>
             <form id="new-task">
-
                 <div id="task-content">
-                
                     <h3>Task Content</h3>
+                    <h4>Title</h4>
                     <input 
                     type="text" 
                     name="content" 
                     id="content" 
                     placeholder="e.g. finish lab6"/>
 
-                    <h3>Task Duration</h3>
+                    <h4>Task Duration</h4>
                     <input type="text" name="duration" id="duration" placeholder="e.g. 10 hr">
 
-                    <h3>Task DDL</h3>
+                    <h4>Task DDL</h4>
                     <input type="datetime-local" name="datetime" id="datetime">
+
+                    <h4>Description</h4>
+                    <input type="text" id="task-description" placeholder="insert description">
 
                 </div>
 
@@ -42,7 +48,7 @@
         <section class="task-list">
             <h2>TASK LIST</h2>
             <div id="list">
-
+                
             </div>
         </section>
     </main>
