@@ -18,10 +18,10 @@
 
 ![](./screenshots/pullrequest2.png)
 
+4. To get your code merged, it should pass all the status checks, as well as get approved by two people outside of whoever is working on the branch
+
 ![](./screenshots/pullrequest3.png)
 
 ![](./screenshots/pullrequest4.png)
 
 ![](./screenshots/pullrequest5.png)
-
-4. To get your code merged, it should pass all the status checks, as well as get approved by two people outside of whoever is working on the branch
