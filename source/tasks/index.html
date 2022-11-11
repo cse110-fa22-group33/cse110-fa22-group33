@@ -56,7 +56,16 @@
                     <input type="datetime-local" name="datetime" id="datetime" required>
 
                     <h4>Description</h4>
-                    <input type="text" id="task-description" placeholder="e.g. bananas, onions, garlic, cheese">
+                    <textarea type="text" id="task-description" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                    <br>
+                    <button type="button" class="advance">advance settings</button>
+                    <div class="collapsible">
+                        <p>minimum time</p>
+                        <input type="number" name="min-work-time" id="min-work-time" min="0" max="10" step = 0.5>
+                        <input type="number" name="min-work-time" id="min-work-time" min="0" max="10" step = 0.5>
+                        <br>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </div>
                 </div>
 
                 <input type="submit" value="Add task">
