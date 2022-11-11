@@ -1,0 +1,76 @@
+/* Color Customization */
+:root {
+	--primary: #3a82ee;
+	--school: #5bab52;
+	--personal: var(--primary);
+	--light: rgb(219, 211, 211);
+	--grey: #888;
+	--dark: #3a3a6f;
+	--danger: #ff5b57;
+
+	--shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+	--school-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
+	--personal-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
+}
+
+body {
+	background: var(--light);
+	color: var(--dark);
+}
+
+.hello {
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align:center;
+}
+
+.create-new-task {
+    float: left;
+	padding-left: 25rem;
+
+}
+
+.task-list {
+    float: right;
+    padding-right: 25rem;
+}
+
+.bubble {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 999px;
+	border: 2px solid var(--school);
+	box-shadow: var(--school-glow);
+}
+
+.bubble.personal {
+	border-color: var(--personal);
+	box-shadow: var(--personal-glow);
+}
+
+.bubble::after {
+	content: '';
+	display: block;
+	opacity: 0;
+	width: 0px;
+	height: 0px;
+	background-color: var(--school);
+	box-shadow: var(--school-glow);
+	border-radius: 999px;
+	transition: 0.2s ease-in-out;
+}
+
+.bubble.personal::after {
+	background-color: var(--personal);
+	box-shadow: var(--personal-glow);
+}
+
+input:checked ~ .bubble::after {
+	width: 10px;
+	height: 10px;
+	opacity: 1;
+}
