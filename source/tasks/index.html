@@ -25,23 +25,38 @@
             <h2>ADD NEW TASK</h2>
             <form id="new-task">
                 <div id="task-content">
-                    <h3>Task Content</h3>
+                    <h3>Task Details</h3>
                     <h4>Title</h4>
-                    <input 
-                    type="text" 
-                    name="content" 
-                    id="content" 
-                    placeholder="e.g. finish lab6"
-                    required/>
+                    <input type="text" name="content" id="content" placeholder="e.g. Get groceries" required/>
 
-                    <h4>Task Duration (in hours)</h4>
-                    <input type="number" name="duration" id="duration" min="0" max="20" step = 0.5 required>
+                    <h4>Category</h4>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="category" id="category1" value="school" /> 
+                            <span class="bubble school"></span>
+                            <div>Business</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="category" id="category2" value="personal" />
+                            <span class="bubble personal"></span>
+                            <div>Personal</div>
+                        </label>
+                    </div>
 
-                    <h4>Task DDL</h4>
+                    <h4>Duration (in hours)</h4>
+                    <input type="number" name="duration" id="duration" min="0" max="20" step = 0.5 placeholder = "e.g. 0.5" required>
+
+                    <h3>Select to specify time</h3>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+
+                    <h4>Deadline</h4>
                     <input type="datetime-local" name="datetime" id="datetime" required>
 
                     <h4>Description</h4>
-                    <input type="text" id="task-description" placeholder="insert description">
+                    <input type="text" id="task-description" placeholder="e.g. bananas, onions, garlic, cheese">
                 </div>
 
                 <input type="submit" value="Add task">
