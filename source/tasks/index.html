@@ -31,17 +31,17 @@
                     type="text" 
                     name="content" 
                     id="content" 
-                    placeholder="e.g. finish lab6"/>
+                    placeholder="e.g. finish lab6"
+                    required/>
 
                     <h4>Task Duration (in hours)</h4>
-                    <input type="number" name="duration" id="duration" min="0" max="20" step = 0.5 value="0">
+                    <input type="number" name="duration" id="duration" min="0" max="20" step = 0.5 required>
 
                     <h4>Task DDL</h4>
-                    <input type="datetime-local" name="datetime" id="datetime">
+                    <input type="datetime-local" name="datetime" id="datetime" required>
 
                     <h4>Description</h4>
                     <input type="text" id="task-description" placeholder="insert description">
-
                 </div>
 
                 <input type="submit" value="Add task">
