@@ -29,5 +29,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Test Message
-        run: echo "Test :)"
+      - name: Super-Linter
+        uses: github/super-linter/slim@v4.9.7
+        env:
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
