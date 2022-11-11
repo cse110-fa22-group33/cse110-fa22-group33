@@ -8,3 +8,4 @@
 
 ## Pipeline so far:
 1. Added super-linter which scans html, css and javascript files
+2. Set up multiple workflows for stage and main branches
