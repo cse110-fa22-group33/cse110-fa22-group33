@@ -3,6 +3,16 @@ window.addEventListener('load',(event)=>{
   const nameInput = document.querySelector('#user-name');
   const taskInput = document.querySelector('#new-task');
   const username = localStorage.getItem('user-name') || '';
+  const collapse = document.querySelector('.advance');
+  collapse.addEventListener('click',function(){
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+  });
 
   nameInput.value = username;
 

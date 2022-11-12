@@ -74,3 +74,28 @@ input:checked ~ .bubble::after {
 	height: 10px;
 	opacity: 1;
 }
+
+
+button,.submit{
+	background-color: #777;
+	color: white;
+	cursor: pointer;
+	padding: 18px;
+	margin-bottom: 18px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+  }
+  
+  .active, button, .submit:hover {
+	background-color: #555;
+  }
+  
+  .collapsible {
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: #e9e5e5;
+  }
