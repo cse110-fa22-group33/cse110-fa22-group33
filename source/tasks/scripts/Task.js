@@ -19,7 +19,7 @@ class Task extends HTMLElement{
         article.innerHTML = `
         <h3 class='title'>${data.content}</h3>
         <p>${data.duration}</p>
-        <p>${data.datetime}</p>
+        <p>${data.date}</p>
         `
     }
 }
