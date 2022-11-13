@@ -19,25 +19,6 @@ window.addEventListener('load',(event)=>{
   nameInput.addEventListener('change',(event)=>{
       localStorage.setItem('user-name', event.target.value);
   });
-
-  taskInput.addEventListener('submit',(event)=>{
-      event.preventDefault();
-
-      const task = {
-    content: event.target.elements.content.value,
-    category: event.target.elements.category.value,
-    done: false,
-    createdAt: new Date().getTime(),
-  }
-
-  tasks.push(task);
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-
-  // Reset the form
-  e.target.reset();
-      
-  })
 })
 
 // main.js

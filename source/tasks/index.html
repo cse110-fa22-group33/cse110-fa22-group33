@@ -58,16 +58,16 @@
                     </h4>
                     
 
-                    <h4>Deadline: <input type="date" name="task-ddl" id="task-ddl" required></h4>
+                    <h4>Deadline: <input type="date" name="taskddl" id="taskddl" required></h4>
                     
 
                     <h4>Description:</h4>
-                    <textarea type="text" id="task-description" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                    <textarea type="text" name = "taskdescription" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                     <br>
                     <button type="button" class="advance">Optional Settings</button>
                     <div class="collapsible">
                         <p>Specify Deadline Time: </p>
-                        <input type="time" name="task-ddl-time" id="task-ddl-time">
+                        <input type="time" name="taskddltime" id="task-ddl-time">
                         <br>
 
                         <p>Schedule Particular Slot in Calendar:</p>
@@ -75,8 +75,8 @@
                         <br>
 
                         <p>Input min/max hours for each time block:</p>
-                        <input type="number" name="min-work-time" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
-                        <input type="number" name="min-work-time" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "max">
+                        <input type="number" name="minworktime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
+                        <input type="number" name="maxworktime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
                         <br>
 
                         <p>Extra Notes: </p>

@@ -78,8 +78,13 @@ class Task extends HTMLElement{
         let article = this.shadowRoot.querySelector('article');
         article.innerHTML = `
         <h3 class='title'>${data.content}</h3>
-        <p>${data.duration}</p>
+        <p>${data.category}</p>
+        <p>${data.duration} hours</p>
+        <p>${data.taskddl}</p>
+        <p>${data.taskdescription}</p>
+        <p>${data.taskddltime}</p>
         <p>${data.datetime}</p>
+        <p>${data.minworktime}</p>
         `
     }
 }
