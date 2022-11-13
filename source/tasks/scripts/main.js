@@ -27,7 +27,7 @@ window.addEventListener('load',(event)=>{
     content: event.target.elements.content.value,
     category: event.target.elements.category.value,
     done: false,
-    createdAt: new Date().getTime()
+    createdAt: new Date().getTime(),
   }
 
   tasks.push(task);
@@ -127,20 +127,19 @@ form.addEventListener('submit',(event)=>{
   event.preventDefault();
   // B4. TODO - Create a new FormData object from the <form> element reference above
   let fd = new FormData(form);
-  // B5. TODO - Create an empty object (I'll refer to this object as recipeObject to
+  // B5. TODO - Create an empty object (I'll refer to this object as taskObject to
   //            make this easier to read), and then extract the keys and corresponding
-  //            values from the FormData object and insert them into recipeObject
+  //            values from the FormData object and insert them into taskObject
   let taskObject = {};
   for(const [key,val] of fd){
     taskObject[key] = val;
   }
   console.log(taskObject);
-  // B6. TODO - Create a new <recipe-card> element
+  // B6. TODO - Create a new <my-task> element
   let new_task = document.createElement('my-task');
-  // B7. TODO - Add the recipeObject data to <recipe-card> using element.data
+  // B7. TODO - Add the taskObject data to <my-task> using element.data
   new_task.data = taskObject;
-  // B8. TODO - Append this new <recipe-card> to <main>
-  
+  // B8. TODO - Append this new <my-task> to <new_task>
   list.appendChild(new_task);
   // B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
   //            then save the recipes array back to localStorage
