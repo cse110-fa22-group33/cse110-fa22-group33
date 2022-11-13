@@ -22,7 +22,7 @@ What should the body of the calendar look like?
 * Set interval displayed which does not include all 24 hrs
 
 ### Relationship between Components (Buttons):
-* User able to naviagte back to monthly calendar from weekly
+* User able to navigate back to monthly calendar from weekly
 * User able to add/edit tasks from those that currently exist within week
 * User able to navigate to home page (current tasks)
 
