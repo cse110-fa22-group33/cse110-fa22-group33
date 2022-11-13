@@ -19,7 +19,7 @@ window.addEventListener('load',(event)=>{
   nameInput.addEventListener('change',(event)=>{
       localStorage.setItem('user-name', event.target.value);
   });
-})
+})  
 
 // main.js
 
