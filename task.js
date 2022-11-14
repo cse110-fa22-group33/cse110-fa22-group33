@@ -1,6 +1,6 @@
 function Task(name='New Task', category=[], duration=1, softddl=null,
               ddl=null, decription=null, mintime=1, maxtime=3, notes=null,
-              recurrent=false, busy=false, difficulty=3) {
+              recurrent=false, busy=false, difficulty=3, start_date=null) {
   this.name = name;
   this.category = category;
   this.duration = duration;
@@ -13,4 +13,5 @@ function Task(name='New Task', category=[], duration=1, softddl=null,
   this.busy=busy;
   this.decription=decription;
   this.difficulty=difficulty;
+  this.start_date=start_date;
 }
