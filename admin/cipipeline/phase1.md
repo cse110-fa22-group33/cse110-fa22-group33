@@ -16,6 +16,7 @@ We looked into the subsequent suggested features for our pipeline, and here is w
 2. The github super linter is run on our code to check for any mistakes
 3. The repo is connected to the Codeclimate quality checker which checks for the code's maintainability and test coverage
 4. After these automatic phase are run, the pipeline requires two human reviews and approvals for the code to be pushed to main, ideally by people who did not work on the feature that is being reviewed
+5. If code is approved, merge the branch with main, else if changes are needed continue to commit code to the same branch under the same pull request
 
 The above pipeline is run when the devs make a pull request to merge their code to `main`. The pipeline is run again when pushes are made just in case they need to update their feature.
 
