@@ -15,8 +15,8 @@ function Task(name='New Task', uid=null, task_uid=null, category=[], duration=1,
   this.duration = duration; // a integer, the estimated duration of task (in hour), not required
   this.softddl = softddl; // a date object, soft deadline, not required
   this.ddl = ddl; // a date object, hard deadline, requried (expect padding)
-  this.mintime = mintime; // a integer, in hour, not required
-  this.maxtime = maxtime; // a integer, in hour, not required
+  this.mintime = mintime; // an integer, min time to work on a task consecutively, in hour, not required
+  this.maxtime = maxtime; // an integer, max time to work on a task consecutively, in hour, not required
   this.notes = notes; // a string, not required
   this.recurrent=recurrent; // a boolean, true means recurrent tasks, not required
   this.padding=padding; // a boolean, indicate if the task is a padding (user-defined busy period), not required
