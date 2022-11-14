@@ -1,6 +1,6 @@
 /**
  * inside local storage:
- *      a tasks object the holds an map {key=uid, value=Task object}
+ *      a tasks object {key=uid, value=Task object}
  *      a current_task object that holds integer: uid
  *      a current_week object that holds array of uid in current week
  */
