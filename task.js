@@ -2,7 +2,7 @@
  * inside local storage:
  *      a tasks object {key=uid, value=Task object}
  *      a current_task object that holds integer: uid
- *      a current_week object that holds array of uid in current week
+ *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
  */
 function Task(name='New Task', uid=null, task_uid=null, category=[], duration=1, softddl=null,
               ddl=null, decription=null, mintime=1, maxtime=3, notes=null,
