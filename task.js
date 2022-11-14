@@ -1,7 +1,9 @@
-function Task(name='New Task', category=[], duration=1, softddl=null,
+function Task(name='New Task', uid=null, category=[], duration=1, softddl=null,
               ddl=null, decription=null, mintime=1, maxtime=3, notes=null,
-              recurrent=false, busy=false, difficulty=3, start_date=null) {
+              recurrent=false, busy=false, difficulty=3, start_date=null,
+              same_task=[]) {
   this.name = name;
+  this.uid = uid;
   this.category = category;
   this.duration = duration;
   this.softddl = softddl;
@@ -14,4 +16,5 @@ function Task(name='New Task', category=[], duration=1, softddl=null,
   this.decription=decription;
   this.difficulty=difficulty;
   this.start_date=start_date;
+  this.same_task=same_task;
 }
