@@ -2,8 +2,8 @@ function Task(name='New Task', uid=null, task_uid=null, category=[], duration=1,
               ddl=null, decription=null, mintime=1, maxtime=3, notes=null,
               recurrent=false, padding=false, difficulty=3, start_date=null) {
   this.name = name; //a string, the name of the task, not required
-  this.uid = uid; // a integer, the unique identifier of the splitted task, required (expect when task is padding)
-  this.task_uid = task_uid; // a integer, the unique identifier of the same task, all splitted task have the same task_uid, required (expect when task is padding)
+  this.uid = uid; // an integer, the unique identifier of the splitted task, required (expect when task is padding)
+  this.task_uid = task_uid; // an integer, the unique identifier of the same task, all splitted task have the same task_uid, required (expect when task is padding)
   this.category = category; // an array of string, include all categories, not required
   this.decription=decription; // a string, destription of the task, not required
   this.duration = duration; // a integer, the estimated duration of task, not required
