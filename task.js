@@ -1,7 +1,8 @@
 /**
  * inside local storage:
  *      a tasks object {key=uid, value=Task object}
- *      a current_task object that holds integer: uid
+ *      a large_tasks object {key=task_uid, value=array of uid}
+ *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
  *
  * sample usage:
@@ -10,9 +11,9 @@
  *      let task1 = Task.fromJson(localStorage.getItem('task1')); // retrive a task from local strage
  */
 export class Task {
-  constructor(task_name = 'New Task', uid = null, task_uid = null, category = [], duration = 1, softddl = null,
+  constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = null, category = [], duration = 1, softddl = null,
     ddl = null, decription = null, mintime = 1, maxtime = 3, notes = null,
-    recurrent = false, padding = false, difficulty = 3, start_date = null) {
+    recurrent = false, padding = false, difficulty = 3) {
     this.data = {
       task_name: task_name, //a string, the name of the task, not required
       uid: uid, // an integer, the unique identifier of the splitted task, required (expect when task is padding)
