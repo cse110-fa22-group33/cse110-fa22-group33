@@ -1,3 +1,12 @@
+import { Task } from './../../task.js';
+
+let task = new Task('sdasd');
+task.data.decription='asdasdasda';
+localStorage.setItem('task1', task.toJson());
+let task1 = Task.fromJson(localStorage.getItem('task1'));
+console.log(task1);
+console.log(task);
+
 let currentMonth = 0;
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -35,7 +44,8 @@ function render(){
     month: 'numeric',
     day: 'numeric',
   });
-  Month_string =dt.toLocaleDateString('en-us', {month: 'long'});
+  let Month_string =dt.toLocaleDateString('en-us', {month: 'long'});
+  let paddings;
   switch(FirstdayString.split(',')[0]){
     case 'Sunday':
       paddings = 0;
