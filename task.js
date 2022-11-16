@@ -62,12 +62,12 @@ export class Task {
 
   // get all tasks in local strage of the same task_uid
   static getTasksFromTaskUID(task_uid) {
-    // to be filled
+    return JSON.parse(localStorage.getItem('large_tasks'))[task_uid] || null;
   }
 
   // get single task in local strage from uid
   static getTaskFromUID(uid) {
-    return Task.fromJson(localStorage.getItem(uid));
+    return Task.fromJson(localStorage.getItem(uid)) || null;
   }
 
   // get all tasks of a given day
@@ -76,7 +76,9 @@ export class Task {
     let month = date.getUTCMonth() + 1; //months from 1-12
     let day = date.getUTCDate();
     let year = date.getUTCFullYear();
+    try {
     let tasks_uid = all_tasks_uid[year][month][day];
+    } catch {return};
     let tasks=[];
     for (let uid of tasks_uid) {
       tasks.push(Task.getTaskFromUID(uid));
@@ -110,7 +112,17 @@ export class Task {
     all_tasks_uid[year][month][day] = day_tasks_uid;
     localStorage.setItem('task_date', JSON.stringify(all_tasks_uid));
 
-    // to-do: add current task to large_tasks object index
+    all_tasks_uid = JSON.parse(localStorage.getItem('large_tasks'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let large_tasks_uid = all_tasks_uid[this.data.task_uid] = all_tasks_uid[this.data.task_uid] || [];
+    dup = false;
+    for (let uid of large_tasks_uid) {
+      if (uid === this.data.uid) {dup = true};
+    };
+    if (!dup) {large_tasks_uid.push(this.data.uid)};
+    all_tasks_uid[this.data.task_uid] = large_tasks_uid;
+    localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
+
     Task.schedule();
   }
 }

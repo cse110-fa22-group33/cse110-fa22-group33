@@ -1,9 +1,10 @@
 import { Task } from './../../task.js';
 
-let mytask = new Task('task name', 1000, 1000, new Date());
+let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.addToLocalStorage();
 let retrived_task = Task.getTasksFromDate(new Date());
 console.log(retrived_task);
+console.log(Task.getTasksFromTaskUID(1000));
 
 let currentMonth = 0;
 
