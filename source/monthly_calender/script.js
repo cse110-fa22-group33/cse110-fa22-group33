@@ -2,6 +2,14 @@ import { Task } from './../../task.js';
 
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.addToLocalStorage();
+new Task('task name', 999, 2000, new Date()).addToLocalStorage();;
+new Task('task name', 123999, 2000, new Date()).addToLocalStorage();;
+new Task('task name', 22, 2000, new Date()).addToLocalStorage();;
+new Task('task name', 1111, 3000, new Date()).addToLocalStorage();;
+new Task('task name', 123, 3000, new Date()).addToLocalStorage();;
+new Task('task name', 11, 2000, new Date()).addToLocalStorage();;
+new Task('task name', 1, 2000, new Date()).addToLocalStorage();;
+
 let retrived_task = Task.getTasksFromDate(new Date());
 console.log(retrived_task);
 console.log(Task.getTasksFromTaskUID(2000));
