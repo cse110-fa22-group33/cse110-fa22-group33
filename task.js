@@ -76,9 +76,10 @@ export class Task {
     let month = date.getUTCMonth() + 1; //months from 1-12
     let day = date.getUTCDate();
     let year = date.getUTCFullYear();
+    let tasks_uid;
     try {
-    let tasks_uid = all_tasks_uid[year][month][day];
-    } catch {return};
+    tasks_uid = all_tasks_uid[year][month][day];
+    } catch(e) {return []};
     let tasks=[];
     for (let uid of tasks_uid) {
       tasks.push(Task.getTaskFromUID(uid));
