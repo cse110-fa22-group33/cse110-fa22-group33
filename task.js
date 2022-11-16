@@ -4,7 +4,7 @@
  *      a large_tasks object {key=task_uid, value=array of uid}
  *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
- *      a all_tasks array that holds a array of UIDs
+ *      a all_tasks array that holds a array of all UIDs
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
