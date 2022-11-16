@@ -39,6 +39,7 @@ export class Task {
   static fromJson(json) {
     let task = new Task();
     task.data = JSON.parse(json);
+    task.data.start_date = new Date(task.data.start_date);
     return task;
   }
 
@@ -71,14 +72,14 @@ export class Task {
 
   // get all tasks of a given day
   static getTasksFromDate(date) {
-    let all_tasks_uid = localStorage.getItem('task_date');
+    let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
     let month = date.getUTCMonth() + 1; //months from 1-12
-    let day = dateObj.getUTCDate();
-    let year = dateObj.getUTCFullYear();
+    let day = date.getUTCDate();
+    let year = date.getUTCFullYear();
     let tasks_uid = all_tasks_uid[year][month][day];
     let tasks=[];
     for (let uid of tasks_uid) {
-      tasks.apend(Task.getTaskFromUID(uid));
+      tasks.push(Task.getTaskFromUID(uid));
     };
     return tasks;
   }
@@ -91,8 +92,25 @@ export class Task {
   // add current task to local strage
   addToLocalStorage() {
     localStorage.setItem(this.data.uid, this.toJson());
+
+    let date = this.data.start_date;
+    let month = date.getUTCMonth() + 1; //months from 1-12
+    let day = date.getUTCDate();
+    let year = date.getUTCFullYear();
+    let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let year_tasks_uid = all_tasks_uid[year] = all_tasks_uid[year] || {};
+    let month_tasks_uid = year_tasks_uid[month] = year_tasks_uid[month] || {};
+    let day_tasks_uid = month_tasks_uid[day] = month_tasks_uid[day] || [];
+    let dup = false;
+    for (let uid of day_tasks_uid) {
+      if (uid === this.data.uid) {dup = true};
+    };
+    if (!dup) {day_tasks_uid.push(this.data.uid)};
+    all_tasks_uid[year][month][day] = day_tasks_uid;
+    localStorage.setItem('task_date', JSON.stringify(all_tasks_uid));
+
     // to-do: add current task to large_tasks object index
-    // to-do: add current task to task_date object index
     Task.schedule();
   }
 }
