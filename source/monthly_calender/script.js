@@ -1,11 +1,9 @@
 import { Task } from './../../task.js';
 
-let task = new Task('sdasd');
-task.data.decription='asdasdasda';
-localStorage.setItem('task1', task.toJson());
-let task1 = Task.fromJson(localStorage.getItem('task1'));
+let task = new Task('task name', 1000);
+task.addToLocalStorage();
+let task1 = Task.getTaskFromUID(100);
 console.log(task1);
-console.log(task);
 
 let currentMonth = 0;
 

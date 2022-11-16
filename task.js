@@ -1,12 +1,12 @@
 /**
  * inside local storage:
- *      a tasks object {key=uid, value=Task object}
+ *      a bunch of classes stored in first level {key=uid, value=Task object}
  *      a large_tasks object {key=task_uid, value=array of uid}
  *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
  *
  * sample usage:
- *      import { Task } from './path/to/task.js'; // put this under script.js to impor this function
+ *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
  *      localStorage.setItem('task1', task1.toJson()); // put a task to local strage
  *      let task1 = Task.fromJson(localStorage.getItem('task1')); // retrive a task from local strage
  */
@@ -33,18 +33,65 @@ export class Task {
     };
     if (padding) { this.data.recurrent = true; };
   }
+
+  // return task from a json data file
   static fromJson(json) {
     let task = new Task();
     task.data = JSON.parse(json);
     return task;
   }
+
+  // return json data file from current task
   toJson() {
     return JSON.stringify(this.data);
   }
 
+  //split one tasks into two, and first tasks have a certain duration
   static splitTask(task, firstTaskHour=1) {
     // to be filled
     // create two tasks, first one have firstTaskHour duration, second one have the rest o duration
     // delete the original task from local strage
+  }
+
+  // delete all tasks in local strage of the same task_uid
+  static deleteTask(task_uid) {
+    // to be filled
+  }
+
+  // get all tasks in local strage of the same task_uid
+  static getTasksFromTaskUID(task_uid) {
+    // to be filled
+  }
+
+  // get single task in local strage from uid
+  static getTaskFromUID(uid) {
+    return Task.fromJson(localStorage.getItem(uid));
+  }
+
+  // get all tasks of a given day
+  static getTasksFromDate(date) {
+    let all_tasks_index = localStorage.getItem('task_date');
+    let month = date.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    let tasks_index = all_tasks_index[year][month][day];
+    let tasks=[];
+    for (let index of tasks_index) {
+      tasks.apend(Task.fromJson(localStorage.getItem('index')));
+    };
+    return tasks;
+  }
+
+  // reschedule all tasks based on all tasks in the local storage
+  static schedule() {
+    // to be filled
+  }
+
+  // add current task to local strage
+  addToLocalStorage() {
+    localStorage.setItem(this.data.uid, this.toJson());
+    // to-do: add current task to large_tasks object index
+    // to-do: add current task to task_date object index
+    Task.schedule();
   }
 }
