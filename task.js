@@ -71,14 +71,14 @@ export class Task {
 
   // get all tasks of a given day
   static getTasksFromDate(date) {
-    let all_tasks_index = localStorage.getItem('task_date');
+    let all_tasks_uid = localStorage.getItem('task_date');
     let month = date.getUTCMonth() + 1; //months from 1-12
     let day = dateObj.getUTCDate();
     let year = dateObj.getUTCFullYear();
-    let tasks_index = all_tasks_index[year][month][day];
+    let tasks_uid = all_tasks_uid[year][month][day];
     let tasks=[];
-    for (let index of tasks_index) {
-      tasks.apend(Task.fromJson(localStorage.getItem('index')));
+    for (let uid of tasks_uid) {
+      tasks.apend(Task.getTaskFromUID(uid));
     };
     return tasks;
   }

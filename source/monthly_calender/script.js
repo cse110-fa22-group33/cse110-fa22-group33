@@ -3,7 +3,7 @@ import { Task } from './../../task.js';
 let mytask = new Task('task name', 1000);
 mytask.addToLocalStorage();
 let retrived_task = Task.getTaskFromUID(1000);
-console.log(task1);
+console.log(retrived_task);
 
 let currentMonth = 0;
 
