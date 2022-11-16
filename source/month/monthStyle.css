@@ -1,0 +1,112 @@
+body {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    background-color: #FFFCFF;
+    font-family: 'Quicksand', sans-serif;
+
+  }
+
+  button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color:#92a1d1;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  #monthStyle {
+    padding: 10px;
+    color: #d36c6c;
+    font-size: 26px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  header {
+    width: 770px;
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: #247BA0;
+  }
+  #weekdays div {
+    width: 100px;
+    padding: 10px;
+  }
+  #calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .day {
+    width: 100px;
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 5px;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .day:hover {
+    background-color: #e8faed;
+  }
+
+  .day + #today {
+    background-color:#e8f4fa;
+  }
+
+  .padding {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+  }
+  .sun{
+    background-color:rgba(228, 117, 13, 0.788);
+    text-align: center;
+    color: white;
+    background: linear-gradient(90deg, #FFC0CB 50%, #00FFFF 50%);
+  }
+  .mon{
+    background-color:rgba(125, 190, 21, 0.788);
+    text-align: center;
+    color: white;
+  }
+  .tue{
+    background-color:rgba(12, 131, 125, 0.788);
+    text-align: center;
+    color: white;
+  }
+  .wed{
+    background-color:rgba(22, 4, 184, 0.788);
+    text-align: center;
+    color: white;
+  }
+  .thu{
+    background-color:rgba(153, 19, 146, 0.788);
+    text-align: center;
+    color: white;
+  }
+  .fri{
+    background-color:rgba(167, 164, 7, 0.788);
+    text-align: center;
+    color: white;
+  }
+  .sat{
+    background-color: rgb(40, 73, 143); 
+    text-align: center;
+    color: white;
+  }
+  

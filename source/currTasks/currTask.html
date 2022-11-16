@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task Page</title>
+
+    <!-- Task Custom Element -->
+    <script src="Task.js" type="module"></script>
+
+    <!-- Importing CSS -->
+	<link rel="stylesheet" href="currStyle.css" />
+
+    <!-- Main Stylesheets & Scripts -->
+    <script src="currJS.js"></script>
+</head>
+<body>
+    <main class="todo">
+        <div class="hello">
+            Hello <input type="text" id="user-name" placeholder="User Name">
+            
+        </div>
+        <div class="create-new-task">
+            <h2>ADD NEW TASK</h2>
+            <form id="new-task">
+                <div id="task-content">
+                    <h3>Input Task Details</h3>
+                    <h4>Name:
+                        <input type="text" name="content" id="content" 
+                            placeholder="e.g. Get groceries" required/>
+                    </h4>
+                    
+
+                    <h4>Category:</h4>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="category" id="category1" value="school" /> 
+                            <span class="bubble school"></span>
+                            <div>School</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="category" id="category2" value="personal" />
+                            <span class="bubble personal"></span>
+                            <div>Personal</div>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="category" id="category3" value="other" />
+                            <span class="bubble other"></span>
+                            <div>Other</div>
+                        </label>
+                    </div>
+
+                    <h4>Duration: <input type="number" name="duration" id="duration" min="0" max="20" step = "0.5" 
+                        placeholder = "e.g. 0.5" required>
+                         hours
+                    </h4>
+                    
+
+                    <h4>Deadline: <input type="date" name="taskddl" id="taskddl" required></h4>
+                    
+
+                    <h4>Description:</h4>
+                    <textarea type="text" name = "taskdescription" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                    <br>
+                    <button type="button" class="advance">Optional Settings</button>
+                    <div class="collapsible">
+                        <p>Specify Deadline Time: </p>
+                        <input type="time" name="taskddltime" id="task-ddl-time">
+                        <br>
+
+                        <p>Schedule Particular Slot in Calendar:</p>
+                        <input type="datetime-local" name="datetime" id="datetime">
+                        <br>
+
+                        <p>Input min/max hours for each time block:</p>
+                        <input type="number" name="minworktime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
+                        <input type="number" name="maxworktime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
+                        <br>
+
+                        <p>Extra Notes: </p>
+                        <textarea name="extranotes" id="extranotes" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+                <input type="submit" class="submit" value="ADD TASK">
+                <br>
+                <button type="button" class="danger">Clear Local Storage</button>
+                <button type="button" class="nav"><a href="../month/month.html">Calendar</a></button>
+            </form>
+        </div>
+
+        <div class="task-list">
+            <h2>TASK LIST</h2>
+            <div id="list">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
