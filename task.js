@@ -4,6 +4,7 @@
  *      a large_tasks object {key=task_uid, value=array of uid}
  *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
+ *      a all_tasks array that holds a array of UIDs
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
@@ -12,7 +13,7 @@
  *      let retrived_task = Task.getTaskFromUID(1000); retrive a task from local strage
  */
 export class Task {
-  constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = null, category = [], duration = 1, softddl = null,
+  constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = null,
     ddl = null, decription = null, mintime = 1, maxtime = 3, notes = null,
     recurrent = false, padding = false, difficulty = 3) {
     this.data = {
@@ -123,6 +124,15 @@ export class Task {
     if (!dup) {large_tasks_uid.push(this.data.uid)};
     all_tasks_uid[this.data.task_uid] = large_tasks_uid;
     localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
+    dup = false;
+    for (let uid of all_tasks_uid) {
+      if (uid === this.data.uid) {dup = true};
+    };
+    if (!dup) {all_tasks_uid.push(this.data.uid)};
+    localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
 
     Task.schedule();
   }
