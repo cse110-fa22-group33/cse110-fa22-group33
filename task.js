@@ -41,4 +41,10 @@ export class Task {
   toJson() {
     return JSON.stringify(this.data);
   }
+
+  static splitTask(task, firstTaskHour=1) {
+    // to be filled
+    // create two tasks, first one have firstTaskHour duration, second one have the rest o duration
+    // delete the original task from local strage
+  }
 }
