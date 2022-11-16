@@ -7,8 +7,9 @@
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
- *      localStorage.setItem('task1', task1.toJson()); // put a task to local strage
- *      let task1 = Task.fromJson(localStorage.getItem('task1')); // retrive a task from local strage
+ *      let mytask = new Task('task name', 1000);
+ *      mytask.addToLocalStorage(); // put a task to local strage
+ *      let retrived_task = Task.getTaskFromUID(1000); retrive a task from local strage
  */
 export class Task {
   constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = null, category = [], duration = 1, softddl = null,
