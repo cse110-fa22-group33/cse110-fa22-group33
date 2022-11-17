@@ -1,5 +1,8 @@
+import { Task } from './skyTask.js'; // put this under script.js to import this class
+
 window.addEventListener('load',(event)=>{
-  tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  console.log("load");
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const nameInput = document.querySelector('#user-name');
   const taskInput = document.querySelector('#new-task');
   const username = localStorage.getItem('user-name') || '';
@@ -17,6 +20,7 @@ window.addEventListener('load',(event)=>{
   nameInput.value = username;
 
   nameInput.addEventListener('change',(event)=>{
+      console.log("change");
       localStorage.setItem('user-name', event.target.value);
   });
 })  
@@ -44,6 +48,7 @@ initFormHandler();
 * @returns {Array<Object>} An array of recipes found in localStorage
 */
 function getTasksFromStorage() {
+  console.log("getTasksFromStorage");
 // A9. TODO - Complete the functionality as described in this function
 //           header. It is possible in only a single line, but should
 //           be no more than a few lines.
@@ -63,11 +68,13 @@ return JSON.parse(r);
 * @param {Array<Object>} tasks An array of recipes
 */
 function addTasksToDocument(tasks) {
+  console.log("addTasksToDocument");
 // A10. TODO - Get a reference to the <main> element
 // A11. TODO - Loop through each of the recipes in the passed in array,
 //            create a <recipe-card> element for each one, and populate
 //            each <recipe-card> with that recipe data using element.data = ...
 //            Append each element to <main>
+console.log("before create task element");
 let list = document.querySelector('#list');
 for(let t = 0; t < tasks.length; t++){
   let task = document.createElement('my-task');
@@ -83,6 +90,7 @@ for(let t = 0; t < tasks.length; t++){
 * @param {Array<Object>} tasks An array of recipes
 */
 function saveTasksToStorage(tasks) {
+  console.log("saveTasksToStorage");
 // EXPLORE - START (All explore numbers start with B)
 // B1. TODO - Complete the functionality as described in this function
 //            header. It is possible in only a single line, but should
@@ -101,10 +109,9 @@ let list = document.querySelector('#list');
 let form = document.querySelector('form');
 // B3. TODO - Add an event listener for the 'submit' event, which fires when the
 //            submit button is clicked
-console.log('before submit');
 form.addEventListener('submit',(event)=>{
   // Steps B4-B9 will occur inside the event listener from step B3
-  console.log('try');
+  console.log('try2');
   event.preventDefault();
   // B4. TODO - Create a new FormData object from the <form> element reference above
   let fd = new FormData(form);
@@ -124,6 +131,7 @@ form.addEventListener('submit',(event)=>{
   list.appendChild(new_task);
   // B9. TODO - Get the recipes array from localStorage, add this new recipe to it, and
   //            then save the recipes array back to localStorage
+  console.log("last");
   let tasks = getTasksFromStorage();
   tasks.push(taskObject);
   saveTasksToStorage(tasks);

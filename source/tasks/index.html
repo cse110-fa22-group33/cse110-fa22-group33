@@ -7,13 +7,14 @@
     <title>Add Task Page</title>
 
     <!-- Task Custom Element -->
-    <script src="scripts/Task.js" type="module"></script>
+    <script src="scripts/ogTask.js" type="module"></script>
+    <!-- <script src="scripts/skyTask.js" type="module"></script> -->
 
     <!-- Importing CSS -->
 	<link rel="stylesheet" href="scripts/main.css" />
 
     <!-- Main Stylesheets & Scripts -->
-    <script src="scripts/main.js"></script>
+    <script src="scripts/main.js" type="module"></script>
 </head>
 <body>
     <main class="todo">
@@ -57,6 +58,9 @@
                          hours
                     </h4>
                     
+                    <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
+                        placeholder = "e.g. 3" required>
+                    </h4>
 
                     <h4>Deadline: <input type="date" name="taskddl" id="taskddl" required></h4>
                     

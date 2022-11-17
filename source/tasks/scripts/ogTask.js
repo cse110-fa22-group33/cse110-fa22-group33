@@ -1,7 +1,6 @@
 class Task extends HTMLElement{
     constructor(){
         super();
-
         let shadowEle = this.attachShadow({mode:'open'});
         let articleEle = document.createElement('article');
         let styleEle = document.createElement('style');
@@ -80,6 +79,7 @@ class Task extends HTMLElement{
         <h3 class='title'>Name: ${data.content}</h3>
         <p>Category: ${data.category}</p>
         <p>Duration: ${data.duration} hours</p>
+        <p>Difficulty: ${data.difficulty}/5</p>
         <p>Deadline: ${data.taskddl}</p>
         <p>Description: ${data.taskdescription}</p>
         <details>
