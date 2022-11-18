@@ -72,21 +72,55 @@
 
   // get all tasks in local strage of the same task_uid
   static getTasksFromTaskUID(task_uid) {
-    return JSON.parse(localStorage.getItem('large_tasks'))[task_uid] || null;
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('large_tasks'))[task_uid]
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }
   }
 
   static getTasksFromDifficulty(difficulty) {
-    return JSON.parse(localStorage.getItem('task_difficulty'))[difficulty] || null;
-  }
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'))[difficulty]
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }}
 
   static getTasksFromPriorty(priorty) {
-    return JSON.parse(localStorage.getItem('task_priorty'))[priorty] || null;
-  }
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('task_priorty'))[priorty]
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }}
 
   static getTasksFromCategory(category) {
-    return JSON.parse(localStorage.getItem('task_category'))[category] || null;
-  }
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('task_category'))[category]
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }}
 
+    
   // get single task in local strage from uid
   static getTaskFromUID(uid) {
     return Task.fromJson(localStorage.getItem(uid)) || null;
