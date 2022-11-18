@@ -47,6 +47,8 @@
     let task = new Task();
     task.data = JSON.parse(json);
     task.data.start_date = new Date(task.data.start_date);
+    task.data.softddl = new Date(task.data.softddl);
+    task.data.ddl = new Date(task.data.ddl);
     return task;
   }
 
