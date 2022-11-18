@@ -70,6 +70,9 @@ function render(){
     oneday.classList.add('day');
 
     if (i > paddings) {
+      oneday.onclick=function(){
+        location.href="../week/week.html";
+      }
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';
       }
@@ -78,6 +81,7 @@ function render(){
      else {
       oneday.classList.add('padding');
     }
+    console.log(oneday);
     calendar.appendChild(oneday);
   }
 
