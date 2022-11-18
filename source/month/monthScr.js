@@ -10,7 +10,8 @@ new Task('task name', 123, 3000, new Date('11/16/2022')).addToLocalStorage();;
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();;
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();;
 
-console.log(Task.getAllTasks());
+console.log(Task.getAllUIDs());
+console.log(Task.getAllTaskUIDs());
 
 
 

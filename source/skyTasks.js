@@ -91,6 +91,20 @@
     return all_tasks;
   }
 
+  // return a array of all task UIDs
+  static getAllTaskUIDs() {
+    let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
+    if (large_tasks===undefined) {return []};
+    return Object.keys(large_tasks);
+  }
+
+  // return a array of all UIDs
+  static getAllUIDs() {
+    let large_tasks = JSON.parse(localStorage.getItem('all_tasks'));
+    if (large_tasks===undefined) {return []};
+    return large_tasks;
+  }
+
   // return a 1-d array of all tasks
   static getAllTasksFlat() {
     try {
