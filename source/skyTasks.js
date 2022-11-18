@@ -5,8 +5,9 @@
  *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
  *      a all_tasks array that holds a array of all UIDs
- *      category
- *      difficulty
+ *      a task_difficulty array that holds a array of all UIDs
+ *      a task_category array that holds a array of all UIDs
+ *      a task_priorty array that holds a array of all UIDs
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
@@ -74,6 +75,18 @@
     return JSON.parse(localStorage.getItem('large_tasks'))[task_uid] || null;
   }
 
+  static getTasksFromDifficulty(difficulty) {
+    return JSON.parse(localStorage.getItem('task_difficulty'))[difficulty] || null;
+  }
+
+  static getTasksFromPriorty(priorty) {
+    return JSON.parse(localStorage.getItem('task_priorty'))[priorty] || null;
+  }
+
+  static getTasksFromCategory(category) {
+    return JSON.parse(localStorage.getItem('task_category'))[category] || null;
+  }
+
   // get single task in local strage from uid
   static getTaskFromUID(uid) {
     return Task.fromJson(localStorage.getItem(uid)) || null;
@@ -85,10 +98,10 @@
     let month = date.getUTCMonth() + 1; //months from 1-12
     let day = date.getUTCDate();
     let year = date.getUTCFullYear();
-    let tasks_uid;
-    try {
-    tasks_uid = all_tasks_uid[year][month][day];
-    } catch(e) {return []};
+    let tasks_uid = all_tasks_uid[year][month][day];
+    if (tasks_uid===undefined){
+      return [];
+    }
     let tasks=[];
     for (let uid of tasks_uid) {
       tasks.push(Task.getTaskFromUID(uid));
@@ -142,8 +155,32 @@
       if (uid === this.data.uid) {dup = true};
     };
     if (!dup) {task_difficulty.push(this.data.uid)};
-    all_tasks_uid[this.data.task_uid] = task_difficulty;
+    all_tasks_uid[this.data.difficulty] = task_difficulty;
     localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_priorty'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let task_priorty = all_tasks_uid[this.data.priorty] = all_tasks_uid[this.data.priorty] || [];
+    dup = false;
+    for (let uid of task_priorty) {
+      if (uid === this.data.uid) {dup = true};
+    };
+    if (!dup) {task_priorty.push(this.data.uid)};
+    all_tasks_uid[this.data.priorty] = task_priorty;
+    localStorage.setItem('task_priorty', JSON.stringify(all_tasks_uid));
+
+    for (let category of this.data.category){
+      all_tasks_uid = JSON.parse(localStorage.getItem('task_category'));
+      all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+      let task_category = all_tasks_uid[category] = all_tasks_uid[category] || [];
+      dup = false;
+      for (let uid of task_category) {
+        if (uid === this.data.uid) {dup = true};
+      };
+      if (!dup) {task_category.push(this.data.uid)};
+      all_tasks_uid[category] = task_category;
+      localStorage.setItem('task_category', JSON.stringify(all_tasks_uid));
+    };
 
     all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
@@ -153,8 +190,6 @@
     };
     if (!dup) {all_tasks_uid.push(this.data.uid)};
     localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
-
-    Task.schedule();
   }
 }
 
