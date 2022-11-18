@@ -17,7 +17,7 @@
  export class Task {
   constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = null,
     ddl = null, decription = null, mintime = 1, maxtime = 3, notes = null,
-    recurrent = false, padding = false, difficulty = 3) {
+    recurrent = false, padding = false, difficulty = 3, priorty=3) {
     this.data = {
       task_name: task_name, //a string, the name of the task, not required
       uid: uid, // an integer, the unique identifier of the splitted task, required (expect when task is padding)
@@ -34,8 +34,12 @@
       padding: padding, // a boolean, indicate if the task is a padding (user-defined busy period), not required
       difficulty: difficulty, // a integer from 1-5, 1 is lowest difficulty and 5 is hardest, not required
       start_date: start_date, // a date object, not required
+      priorty: priorty, // a integer from 1-5, 1 is lowest priorty and 5 is hardest, not required
     };
-    if (padding) { this.data.recurrent = true; };
+    if (padding) {
+      this.data.recurrent = true;
+      this.data.priorty = 6;
+    };
   }
 
   // return task from a json data file
@@ -91,6 +95,7 @@
   }
 
   // reschedule all tasks based on all tasks in the local storage
+  // (break up to smaller tasks using mintime maxtime during) -> priorty -> (softddl -> ddl) -> difficulty
   static schedule() {
     // to be filled
   }
