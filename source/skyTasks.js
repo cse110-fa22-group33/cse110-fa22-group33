@@ -5,6 +5,8 @@
  *      a current_task object that holds a integer: uid
  *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
  *      a all_tasks array that holds a array of all UIDs
+ *      category
+ *      difficulty
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
@@ -125,6 +127,17 @@
     all_tasks_uid[this.data.task_uid] = large_tasks_uid;
     localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
 
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let task_difficulty = all_tasks_uid[this.data.difficulty] = all_tasks_uid[this.data.difficulty] || [];
+    dup = false;
+    for (let uid of task_difficulty) {
+      if (uid === this.data.uid) {dup = true};
+    };
+    if (!dup) {task_difficulty.push(this.data.uid)};
+    all_tasks_uid[this.data.task_uid] = task_difficulty;
+    localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
+
     all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
     dup = false;
@@ -137,3 +150,4 @@
     Task.schedule();
   }
 }
+
