@@ -98,15 +98,18 @@
     let month = date.getUTCMonth() + 1; //months from 1-12
     let day = date.getUTCDate();
     let year = date.getUTCFullYear();
-    let tasks_uid = all_tasks_uid[year][month][day];
-    if (tasks_uid===undefined){
+    let tasks_uid;
+    try {
+      tasks_uid = all_tasks_uid[year][month][day]
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
       return [];
     }
-    let tasks=[];
-    for (let uid of tasks_uid) {
-      tasks.push(Task.getTaskFromUID(uid));
-    };
-    return tasks;
+
   }
 
   // reschedule all tasks based on all tasks in the local storage
