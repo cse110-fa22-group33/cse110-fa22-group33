@@ -2,7 +2,7 @@ import { Task } from './../skyTasks.js';
 
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.addToLocalStorage();
-new Task('task name', 999, 2000, new Date()).addToLocalStorage();;
+new Task('task name', 999, 2000, new Date(),['eating','studying','working']).addToLocalStorage();;
 new Task('task name', 123999, 2000, new Date()).addToLocalStorage();;
 new Task('task name', 22, 2000, new Date()).addToLocalStorage();;
 new Task('task name', 1111, 3000, new Date()).addToLocalStorage();;
@@ -97,11 +97,24 @@ function render(){
         oneday.id = 'today';
       }
       oneday.innerText = i - paddings;
+      
+      let curr_day = new Date(year, month, i-paddings);
+      let task_list = Task.getTasksFromDate(curr_day);
+      if (task_list.length!=0) {
+        let task_num=0;
+        for (let task of task_list){
+          task_num+=1;
+          if (task_num>3) {break;};
+          let curr_event = document.createElement('div');
+          curr_event.classList.add('event');
+          curr_event.innerText = task.data.task_name;
+          oneday.appendChild(curr_event);
+        }
+      }
     }
      else {
       oneday.classList.add('padding');
     }
-    console.log(oneday);
     calendar.appendChild(oneday);
   }
 
