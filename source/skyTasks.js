@@ -70,7 +70,42 @@
     // to be filled
   }
 
-  // get all tasks in local strage of the same task_uid
+  // return 2d array of tasks, where a single array of tasks represent a large task
+  static getAllTasks() {
+    let all_tasks = [];
+    let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
+    if (large_tasks===undefined) {return all_tasks};
+    for (let [key, value] of Object.entries(large_tasks)){
+      try {
+        let tasks=[];
+          for (let uid of value) {
+            tasks.push(Task.getTaskFromUID(uid));
+          };
+          all_tasks.push(tasks);
+        }
+        catch (e){
+          console.log(e);
+          all_tasks.push([]);  
+        }
+    }
+    return all_tasks;
+  }
+
+  // return a 1-d array of all tasks
+  static getAllTasksFlat() {
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('all_tasks'))
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }
+  }
+
+  // get all tasks in local strage of the given task_uid
   static getTasksFromTaskUID(task_uid) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('large_tasks'))[task_uid]
@@ -84,6 +119,7 @@
     }
   }
 
+  // get all tasks in local strage of the given difficulty
   static getTasksFromDifficulty(difficulty) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'))[difficulty]
@@ -96,6 +132,7 @@
       return [];
     }}
 
+  // get all tasks in local strage of the given priorty
   static getTasksFromPriorty(priorty) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_priorty'))[priorty]
@@ -108,6 +145,7 @@
       return [];
     }}
 
+  // get all tasks in local strage of the given category
   static getTasksFromCategory(category) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_category'))[category]
@@ -143,7 +181,6 @@
     }catch (e){
       return [];
     }
-
   }
 
   // reschedule all tasks based on all tasks in the local storage
