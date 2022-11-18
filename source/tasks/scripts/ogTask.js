@@ -4,7 +4,15 @@ class Task extends HTMLElement{
         let shadowEle = this.attachShadow({mode:'open'});
         let articleEle = document.createElement('article');
         let styleEle = document.createElement('style');
-        /*styleElement.textContent = `
+        styleEle.textContent = `
+            * {
+                padding: 0.2rem;
+            }
+            taskName {
+                font-weight:bold;
+            }`;
+        shadowEle.appendChild(styleEle);
+        /*styleEle.textContent = `
             * {
             margin: 0;
             padding: 0;
@@ -77,7 +85,10 @@ class Task extends HTMLElement{
         let article = this.shadowRoot.querySelector('article');
         article.innerHTML = `
         <details>
-        <h3 class='title'>Name: ${data.content}</h3> <p>Deadline: ${data.taskddl}</p> 
+        <summary>
+            <taskName>${data.content} </taskName>
+            (${data.taskddl})
+        </summary>
         <p>Category: ${data.category}</p>
         <p>Priority: ${data.taskPriority}</p>
         <p>Duration: ${data.duration} hours</p>

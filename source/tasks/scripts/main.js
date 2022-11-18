@@ -121,6 +121,7 @@ form.addEventListener('submit',(event)=>{
   let tasks = getTasksFromStorage();
   tasks.push(taskObject);
   saveTasksToStorage(tasks);
+  
 })
 
 // Get a reference to the "Clear Local Storage" button
