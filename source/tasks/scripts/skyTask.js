@@ -15,10 +15,10 @@
  export class Task {
     constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = null,
       ddl = null, decription = null, mintime = 1, maxtime = 3, notes = null,
-      recurrent = false, padding = false, difficulty = 3) {
+      recurrent = false, padding = false, difficulty = 3, assignedDate = null, assignedTime = null) {
       this.data = {
         task_name: task_name, //a string, the name of the task, not required
-        uid: uid, // an integer, the unique identifier of the splitted task, required (expect when task is padding)
+        uid: uid, // a string storing unique tracking id of task in format "taskName_Date_Time"
         task_uid: task_uid, // an integer, the unique identifier of the same task, all splitted task have the same task_uid, required (expect when task is padding)
         category: category, // an array of string, include all categories, not required
         decription: decription, // a string, destription of the task, not required
@@ -32,6 +32,8 @@
         padding: padding, // a boolean, indicate if the task is a padding (user-defined busy period), not required
         difficulty: difficulty, // a integer from 1-5, 1 is lowest difficulty and 5 is hardest, not required
         start_date: start_date, // a date object, not required
+        assignedDate: assignedDate, // the date which this task is assigned to in format XX-XX-XXXX
+        assignedTime: assignedTime, // the time which this task is assigned to in 24 hr format
       };
       if (padding) { this.data.recurrent = true; };
     }
