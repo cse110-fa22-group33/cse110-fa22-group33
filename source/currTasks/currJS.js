@@ -1,4 +1,4 @@
-import { Task } from './skyTask.js'; // put this under script.js to import this class
+import { Task } from './skyTasks.js'; // put this under script.js to import this class
 
 window.addEventListener('load',(event)=>{
   console.log("load");        // LOG
