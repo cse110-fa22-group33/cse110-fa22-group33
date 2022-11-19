@@ -130,11 +130,13 @@ form.addEventListener('submit',(event)=>{
   // Create an empty taskObject, and extract the keys and corresponding
   // values from the FormData object and insert them into taskObject
   let taskObject = {};
+  let new_task_obj = new Task();
   for(const [key,val] of fd){
     // if(!val){
     //   continue;
     // }
     taskObject[key] = val;
+    new_task_obj.data[key] = val;
   }
 
   // Create a new <my-task> element
@@ -150,10 +152,10 @@ form.addEventListener('submit',(event)=>{
   saveTasksToStorage(tasks);
 
   //create task object
-  let new_task_obj = new Task();
-  new_task_obj.data = taskObject;
-  console.log(new_task_obj);
   
+
+  console.log(new_task_obj);
+  new_task_obj.addToLocalStorage();
 })
 
 // Get a reference to the "Clear Local Storage" button

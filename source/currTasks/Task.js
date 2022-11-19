@@ -93,7 +93,7 @@ class Task extends HTMLElement{
         <p>Difficulty: ${data.difficulty}/5</p>
         <p>Description: ${data.description}</p>
         <p>DDL Time: ${data.taskddltime}</p>
-        <p>Specified DateTime: ${data.startdate}</p>
+        <p>Specified DateTime: ${data.datetime}</p>
         <p>Min Work Time: ${data.mintime}</p>
         <p>Max Work Time: ${data.maxtime}</p>
         <p>Extra Notes: ${data.notes}</p>
