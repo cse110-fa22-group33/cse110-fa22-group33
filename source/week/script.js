@@ -1,5 +1,5 @@
 // weekly-calendar.js
-import { Task } from './task.js';
+import { Task } from './../skyTasks.js';
 
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.addToLocalStorage();
