@@ -12,21 +12,19 @@ new_task.data.ddl=new Date('11/26/2022');
 new_task.data.priority = 1;
 new_task.addToLocalStorage();
 
-let new_task2 = new Task('busy time', 999, 2000, new Date(),['eating','studying','working']);
+let new_task2 = new Task('busy time', 998, 2000, new Date(),['eating','studying','working']);
 new_task2.data.ddl=new Date('11/25/2022');
-new_task2.data.padding = true;
+new_task2.setToPadding();
 new_task2.addToLocalStorage();
 
 new Task('task name', 123999, 2000, new Date(),['important']).addToLocalStorage();
 new Task('task name', 22, 2000, new Date('11/17/2022')).addToLocalStorage();
 new Task('different task name', 1111, 3000, new Date('11/16/2022')).addToLocalStorage();
-new Task('task name', 123, 3000, new Date('11/16/2022')).addToLocalStorage();
 new Task('task name', 123, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
 
-//console.log(Task.getAllUIDs());
-console.log(Task.getTasksAfterDate(new Date()));
+Task.schedule();
 
 
 
@@ -36,7 +34,6 @@ let currentMonth = 0;
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
-    console.log('pressed');
     currentMonth--;
     render();
   });
