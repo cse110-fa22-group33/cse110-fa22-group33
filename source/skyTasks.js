@@ -74,7 +74,7 @@
   // get a unique UID
   static getUniqueUID() {
     let uid = Task.getAllUIDs();
-    if (uid.length===0) {return 0};
+    if (uid==null || uid.length===0) {return 0};
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
     }
@@ -247,9 +247,9 @@
   static schedule() {
     // to be filled
     let task_need_schedule = Task.getTasksAfterDate(new Date());
-    task_need_schedule.sort(Task.comparePriority);
+    task_need_schedule.sort(Task.comparePriority());
     for (let task of task_need_schedule) {
-      
+
     }
   }
 
