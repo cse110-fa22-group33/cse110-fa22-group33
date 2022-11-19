@@ -15,10 +15,11 @@ window.addEventListener('DOMContentLoaded', init);
 // Starts the program, all function calls trace back here
 function init() {
     
-    // Get tasks from local storage and populates weekly calendar
+    // Get tasks from local storage and populate weekly calendar
     getHeaderAndTasksFromStorage();
     
     // Add event listeners to form elements
+    // dean already completed
     // initFormHandler();
 }
 
