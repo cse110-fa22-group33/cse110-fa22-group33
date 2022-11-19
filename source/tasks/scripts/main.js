@@ -89,6 +89,30 @@ function saveTasksToStorage(tasks) {
   localStorage.setItem('tasks',str_tasks);
 }
 
+function assignDateAndTime(){
+  // Check if anything in storage
+    // if nothing in storage (first task inputted)
+    // set date to "tomorrow" and time to midnight
+    const today = new Date()
+    let assignedDate =  new Date()
+    assignedDate.setDate(today.getDate() + 1)
+
+    // else if something in storage (at least one task already exists)
+    // if possible to fit new task duration directly after previous task
+    // then do so
+    // else set assignedDate to the next day and time to midnight
+}
+
+// new Task('task name', 999, 2000, new Date(),['eating','studying','working']).addToLocalStorage();
+
+// let mytask = new Task('task name', 1000, 2000, new Date());
+// mytask.addToLocalStorage();
+
+
+function generateUID(){
+  const task_uid = taskName +"_"+assignedDate+"_"+assignedTime;
+}
+
 /**
 * Adds the necesarry event handlers to <form> and the clear storage
 * <button>.

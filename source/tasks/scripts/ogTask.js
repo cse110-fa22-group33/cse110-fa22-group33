@@ -7,6 +7,8 @@ class Task extends HTMLElement{
         styleEle.textContent = `
             * {
                 padding: 0.2rem;
+                padding-left: 1rem;
+                position: relative;
             }
             taskName {
                 font-weight:bold;
@@ -53,9 +55,6 @@ class Task extends HTMLElement{
             padding-top: 4px;
             overflow: hidden;
             }
-            p.organization {
-            color: black !important;
-            }
             p.title {
             display: -webkit-box;
             font-size: 16px;
@@ -86,8 +85,7 @@ class Task extends HTMLElement{
         article.innerHTML = `
         <details>
         <summary>
-            <taskName>${data.content} </taskName>
-            (${data.taskddl})
+            <taskName>${data.content}</taskName> (${data.taskddl})
         </summary>
         <p>Category: ${data.category}</p>
         <p>Priority: ${data.taskPriority}</p>
