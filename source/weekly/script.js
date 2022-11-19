@@ -15,29 +15,12 @@ window.addEventListener('DOMContentLoaded', init);
 // Starts the program, all function calls trace back here
 function init() {
     
-    // Get tasks from local storage and call populateWeeklyHeaderData
+    // Get tasks from local storage and populates weekly calendar
     getHeaderAndTasksFromStorage();
     
     // Add event listeners to form elements
     // initFormHandler();
 }
-
-/**
- * Takes in weekDayOne, weekDayTwo, month, year and scheduleName
- * from monthly calendar and populates this data in weeklyCalendar.
- */
-/*function populateWeeklyHeaderData(weekDayOne, weekDayTwo, month, year, scheduleName) {
-    
-    // comes from task -> local storage
-    // let weekDayOneHeader = weekDayOne.getDate();
-    // let weekDayTwoHeader = weekDayTwo.getDate();
-
-    document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
-    document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
-    document.getElementById('month').innerHTML = month;
-    document.getElementById('year').innerHTML = year;
-    document.getElementById('scheduleName').innerHTML = scheduleName;
-}*/
 
 /**
  * Reads tasks from local storage and returns an array of 
@@ -56,11 +39,15 @@ function getHeaderAndTasksFromStorage() {
     let day = date.getDay();
 
     // set up header variables
-    let passWeekDayOne = new Date();
-    let passWeekDayTwo = new Date();
+    let weekDayOne = new Date();
+    let weekDayTwo = new Date();
     let month = date.getMonth();
     let year = date.getFullYear();
     let scheduleName; // where to pull this variable from??
+
+    // document.getElementById('month').innerHTML = month;
+    // document.getElementById('year').innerHTML = year;
+    // document.getElementById('scheduleName').innerHTML = scheduleName;
 
     // configure start/end days and tasks based on day of week
     let startTasks;
@@ -69,11 +56,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is sunday
     if(day == 0) {
-        // populateWeeklyHeaderData(passWeekDayOne, passWeekDayTwo.setDate(today + 6), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate());
+        weekDayTwo.setDate(today.getDate() + 6);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -102,11 +91,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is monday
     if(day == 1) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 1), passWeekDayTwo.setDate(today + 5), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 1);
+        weekDayTwo.setDate(today.getDate() + 5);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today - 1);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -135,11 +126,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is tuesday
     if(day == 2) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 2), passWeekDayTwo.setDate(today + 4), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 2);
+        weekDayTwo.setDate(today.getDate() + 4);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
  
         // set beginning of week
-        passWeekDayOne.setDate(today - 2);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -168,11 +161,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is wednesday
     if(day == 3) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 3), passWeekDayTwo.setDate(today + 3), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 3);
+        weekDayTwo.setDate(today.getDate() + 3);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today - 3);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -201,11 +196,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is thursday
     if(day == 4) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 4), passWeekDayTwo.setDate(today + 2), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 4);
+        weekDayTwo.setDate(today.getDate() + 2);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today - 4);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -234,11 +231,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is friday
     if(day == 5) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 5), passWeekDayTwo.setDate(today + 2), month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 5);
+        weekDayTwo.setDate(today.getDate() + 2);
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today - 5);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
@@ -267,11 +266,13 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is saturday
     if(day == 6) {
-        // populateWeeklyHeaderData(passWeekDayOne.setDate(today - 6), passWeekDayTwo, month, year, scheduleName);
+        weekDayOne.setDate(today.getDate() - 6);
+        weekDayTwo.setDate(today.getDate());
+        // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
+        // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
         // set beginning of week
-        passWeekDayOne.setDate(today - 6);
-        startTasks = passWeekDayOne;
+        startTasks = weekDayOne;
         
         for (let i = 0; i < 7; i++) {
             tasks = Task.getTasksFromDate(startTasks);
