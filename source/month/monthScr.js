@@ -2,10 +2,43 @@ import { Task } from './../skyTasks.js';
 
 
 
-let mytask = new Task('task name', 1000, 2000, new Date());
+let mytask = new Task('task name', 1000, 2000, new Date(),['important']);
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
 mytask.addToLocalStorage();
+
+
+let rest = new Task('rest', 123, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+rest = new Task('rest', 1234, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+rest = new Task('rest', 12345, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+rest = new Task('rest', 12346, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+rest = new Task('rest', 12312313, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+rest = new Task('rest', 111333, 2000, new Date());
+rest.data.start_date = new Date(2022,11,20,6);
+rest.data.duration = 8;
+rest.setToPadding();
+rest.addToLocalStorage();
+
 
 let new_task = new Task('task name', 999, 2000, new Date(),['eating','studying','working']);
 new_task.data.ddl=new Date('11/26/2022');
@@ -20,7 +53,7 @@ new_task2.addToLocalStorage();
 new Task('task name', 123999, 2000, new Date(),['important']).addToLocalStorage();
 new Task('task name', 22, 2000, new Date('11/17/2022')).addToLocalStorage();
 new Task('different task name', 1111, 3000, new Date('11/16/2022')).addToLocalStorage();
-new Task('task name', 123, 3000, new Date('11/26/2022')).addToLocalStorage();
+new Task('task name', 12443, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
 

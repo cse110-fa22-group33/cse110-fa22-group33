@@ -62,6 +62,7 @@
   setToPadding() {
     this.data.recurrent = true;
     this.data.priority = 6;
+    return this;
   }
 
   //split one tasks into two, and first tasks have a certain duration
@@ -254,7 +255,7 @@
     let task_need_schedule = Task.getTasksAfterDate(new Date());
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
-      console.log(task);
+      //let 
     }
   }
 
