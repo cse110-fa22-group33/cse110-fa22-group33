@@ -29,7 +29,7 @@
                 <div id="task-content">
                     <h3>Input Task Details</h3>
                     <h4>Name:
-                        <input type="text" name="content" id="content" 
+                        <input type="text" name="task_name" id="content" 
                             placeholder="e.g. Get groceries" required/>
                     </h4>
                     
@@ -54,7 +54,7 @@
                         </label>
                     </div>
 
-                    <h4>Priority: <input type="number" name="taskPriority" id="taskPriority" min="1" max="5" step = "1" 
+                    <h4>Priority: <input type="number" name="priority" id="taskPriority" min="1" max="5" step = "1" 
                         placeholder = "e.g. 3" required>
                     </h4>
 
@@ -67,11 +67,11 @@
                         placeholder = "e.g. 3" required>
                     </h4>
 
-                    <h4>Deadline: <input type="date" name="taskddl" id="taskddl" required></h4>
+                    <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
                     
 
                     <h4>Description:</h4>
-                    <textarea type="text" name = "taskdescription" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                    <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                     <br>
 
                     <!-- Dropdown Optional Settings -->
@@ -82,16 +82,16 @@
                         <br>
 
                         <p>Schedule Particular Slot in Calendar:</p>
-                        <input type="datetime-local" name="datetime" id="datetime">
+                        <input type="datetime-local" name="start_date" id="datetime">
                         <br>
 
                         <p>Input min/max hours for each time block:</p>
-                        <input type="number" name="minworktime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
-                        <input type="number" name="maxworktime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
+                        <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
+                        <input type="number" name="maxtime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
                         <br>
 
                         <p>Extra Notes: </p>
-                        <textarea name="extranotes" id="extranotes" cols="30" rows="10"></textarea>
+                        <textarea name="notes" id="extranotes" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 

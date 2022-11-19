@@ -131,9 +131,12 @@ form.addEventListener('submit',(event)=>{
   // values from the FormData object and insert them into taskObject
   let taskObject = {};
   for(const [key,val] of fd){
+    // if(!val){
+    //   continue;
+    // }
     taskObject[key] = val;
   }
-  console.log(taskObject);
+
   // Create a new <my-task> element
   let new_task = document.createElement('my-task');
   // Add the taskObject data to <my-task> using element.data
@@ -145,6 +148,11 @@ form.addEventListener('submit',(event)=>{
   let tasks = getTasksFromStorage();
   tasks.push(taskObject);
   saveTasksToStorage(tasks);
+
+  //create task object
+  let new_task_obj = new Task();
+  new_task_obj.data = taskObject;
+  console.log(new_task_obj);
   
 })
 

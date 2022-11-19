@@ -85,18 +85,18 @@ class Task extends HTMLElement{
         article.innerHTML = `
         <details>
         <summary>
-            <taskName>${data.content}</taskName> (${data.taskddl})
+            <taskName>${data.task_name}</taskName> (${data.ddl})
         </summary>
         <p>Category: ${data.category}</p>
-        <p>Priority: ${data.taskPriority}</p>
+        <p>Priority: ${data.priority}</p>
         <p>Duration: ${data.duration} hours</p>
         <p>Difficulty: ${data.difficulty}/5</p>
-        <p>Description: ${data.taskdescription}</p>
+        <p>Description: ${data.description}</p>
         <p>DDL Time: ${data.taskddltime}</p>
-        <p>Specified DateTime: ${data.datetime}</p>
-        <p>Min Work Time: ${data.minworktime}</p>
-        <p>Max Work Time: ${data.maxworktime}</p>
-        <p>Extra Notes: ${data.extranotes}</p>
+        <p>Specified DateTime: ${data.startdate}</p>
+        <p>Min Work Time: ${data.mintime}</p>
+        <p>Max Work Time: ${data.maxtime}</p>
+        <p>Extra Notes: ${data.notes}</p>
         </details>
         `
     }
