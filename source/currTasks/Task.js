@@ -1,11 +1,20 @@
 class Task extends HTMLElement{
     constructor(){
         super();
-
         let shadowEle = this.attachShadow({mode:'open'});
         let articleEle = document.createElement('article');
         let styleEle = document.createElement('style');
-        /*styleElement.textContent = `
+        styleEle.textContent = `
+            * {
+                padding: 0.2rem;
+                padding-left: 1rem;
+                position: relative;
+            }
+            taskName {
+                font-weight:bold;
+            }`;
+        shadowEle.appendChild(styleEle);
+        /*styleEle.textContent = `
             * {
             margin: 0;
             padding: 0;
@@ -46,9 +55,6 @@ class Task extends HTMLElement{
             padding-top: 4px;
             overflow: hidden;
             }
-            p.organization {
-            color: black !important;
-            }
             p.title {
             display: -webkit-box;
             font-size: 16px;
@@ -77,17 +83,21 @@ class Task extends HTMLElement{
 
         let article = this.shadowRoot.querySelector('article');
         article.innerHTML = `
-        <h3 class='title'>Name: ${data.content}</h3>
+        <details>
+        <summary>
+            <taskName>${data.task_name}</taskName> (${data.ddl})
+        </summary>
         <p>Category: ${data.category}</p>
+        <p>Priority: ${data.priority}</p>
         <p>Duration: ${data.duration} hours</p>
-        <p>Deadline: ${data.taskddl}</p>
-        <p>Description: ${data.taskdescription}</p>
-        <p>------------ Optional ------------</p>
+        <p>Difficulty: ${data.difficulty}/5</p>
+        <p>Description: ${data.description}</p>
         <p>DDL Time: ${data.taskddltime}</p>
         <p>Specified DateTime: ${data.datetime}</p>
-        <p>Min Work Time: ${data.minworktime}</p>
-        <p>Max Work Time: ${data.maxworktime}</p>
-        <p>Extra Notes: ${data.extranotes}</p>
+        <p>Min Work Time: ${data.mintime}</p>
+        <p>Max Work Time: ${data.maxtime}</p>
+        <p>Extra Notes: ${data.notes}</p>
+        </details>
         `
     }
 }
