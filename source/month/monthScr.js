@@ -45,9 +45,9 @@ new_task.data.ddl=new Date('11/26/2022');
 new_task.data.priority = 1;
 new_task.addToLocalStorage();
 
-let new_task2 = new Task('busy time', 998, 2000, new Date(),['eating','studying','working']);
+let new_task2 = new Task('busy time', 999, 2000, new Date(),['eating','studying','working']);
 new_task2.data.ddl=new Date('11/25/2022');
-new_task2.setToPadding();
+new_task2.data.padding = true;
 new_task2.addToLocalStorage();
 
 new Task('task name', 123999, 2000, new Date(),['important']).addToLocalStorage();
@@ -57,7 +57,8 @@ new Task('task name', 12443, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
 
-Task.schedule();
+//console.log(Task.getAllUIDs());
+console.log(Task.getTasksAfterDate(new Date()));
 
 
 
@@ -67,6 +68,7 @@ let currentMonth = 0;
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
+    console.log('pressed');
     currentMonth--;
     render();
   });
@@ -135,7 +137,7 @@ function render(){
 
     if (i > paddings) {
       oneday.onclick=function(){
-        location.href="../week/week.html";
+        location.href="../week/index.html";
       }
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';

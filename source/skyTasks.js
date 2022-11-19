@@ -38,7 +38,7 @@
       start_date: start_date, // a date object, not required
       priority: priority, // a integer from 1-5, 1 is lowest priority and 5 is hardest, not required
     };
-    if (padding==true) {
+    if (padding) {
       this.data.recurrent = true;
       this.data.priority = 6;
     };
@@ -253,7 +253,7 @@
   static schedule() {
     // to be filled
     let task_need_schedule = Task.getTasksAfterDate(new Date());
-    task_need_schedule.sort(Task.comparePriority).reverse();
+    task_need_schedule.sort(Task.comparePriority());
     for (let task of task_need_schedule) {
       //let 
     }

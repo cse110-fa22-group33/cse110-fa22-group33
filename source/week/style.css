@@ -44,7 +44,7 @@
 
 .grid-item {
     background-color: rgba(214, 219, 228, 0.37);
-    border: 1px solid rgba(0, 0, 0, 0.144);
+    border: 0.5px groove rgba(0, 0, 0, 0.281);
     /* padding: 10px; */
     text-align: center;
     padding-top: 20px;
@@ -56,7 +56,7 @@
     background-color: rgba(66, 77, 138, 0.158);    
 }
 .head{
-    background-color: rgb(40, 73, 143); 
+    background-color: rgb(40, 73, 143)  ; 
     color: white;
     font-family: 'Quicksand', sans-serif; /* fantasy is other font,,, 'Merriweather' comp type: 'Courier New' */
     font-size: 16px;
@@ -78,10 +78,8 @@
         padding-bottom: 20px;
         font-size: 40px;
     }    
-
 }
 footer{
-
         bottom: 40px;
         padding-top: 20px ;
         text-align: center;

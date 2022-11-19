@@ -153,7 +153,9 @@ form.addEventListener('submit',(event)=>{
 
   //create task object
   
-
+  let uid = Task.getUniqueUID();
+  new_task_obj.data['uid'] = uid;
+  new_task_obj.data['category'] = [taskObject['category']];
   console.log(new_task_obj);
   new_task_obj.addToLocalStorage();
 })
