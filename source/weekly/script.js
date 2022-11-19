@@ -56,8 +56,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is sunday
     if(day == 0) {
-        weekDayOne.setDate(today.getDate());
-        weekDayTwo.setDate(today.getDate() + 6);
+        weekDayOne.setDate(today);
+        weekDayTwo.setDate(today + 6);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
@@ -91,8 +91,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is monday
     if(day == 1) {
-        weekDayOne.setDate(today.getDate() - 1);
-        weekDayTwo.setDate(today.getDate() + 5);
+        weekDayOne.setDate(today - 1);
+        weekDayTwo.setDate(today + 5);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
@@ -126,8 +126,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is tuesday
     if(day == 2) {
-        weekDayOne.setDate(today.getDate() - 2);
-        weekDayTwo.setDate(today.getDate() + 4);
+        weekDayOne.setDate(today - 2);
+        weekDayTwo.setDate(today + 4);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
  
@@ -161,8 +161,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is wednesday
     if(day == 3) {
-        weekDayOne.setDate(today.getDate() - 3);
-        weekDayTwo.setDate(today.getDate() + 3);
+        weekDayOne.setDate(today - 3);
+        weekDayTwo.setDate(today + 3);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
@@ -196,8 +196,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is thursday
     if(day == 4) {
-        weekDayOne.setDate(today.getDate() - 4);
-        weekDayTwo.setDate(today.getDate() + 2);
+        weekDayOne.setDate(today - 4);
+        weekDayTwo.setDate(today + 2);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
@@ -231,8 +231,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is friday
     if(day == 5) {
-        weekDayOne.setDate(today.getDate() - 5);
-        weekDayTwo.setDate(today.getDate() + 2);
+        weekDayOne.setDate(today - 5);
+        weekDayTwo.setDate(today + 1);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
@@ -266,8 +266,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is saturday
     if(day == 6) {
-        weekDayOne.setDate(today.getDate() - 6);
-        weekDayTwo.setDate(today.getDate());
+        weekDayOne.setDate(today - 6);
+        weekDayTwo.setDate(today);
         // document.getElementById('weekDayOne').innerHTML = weekDayOneHeader;
         // document.getElementById('weekDayTwo').innerHTML = weekDayTwoHeader;
 
