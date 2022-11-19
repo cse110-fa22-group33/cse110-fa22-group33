@@ -1,7 +1,7 @@
 import { Task } from './../skyTasks.js';
 
 
-
+/*
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
@@ -24,6 +24,7 @@ new Task('task name', 123, 3000, new Date('11/16/2022')).addToLocalStorage();
 new Task('task name', 123, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
+*/
 
 //console.log(Task.getAllUIDs());
 console.log(Task.getTasksAfterDate(new Date()));
@@ -105,7 +106,7 @@ function render(){
 
     if (i > paddings) {
       oneday.onclick=function(){
-        location.href="../week/week.html";
+        location.href="../week/index.html";
       }
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';

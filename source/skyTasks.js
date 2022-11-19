@@ -249,7 +249,7 @@
     let task_need_schedule = Task.getTasksAfterDate(new Date());
     task_need_schedule.sort(Task.comparePriority());
     for (let task of task_need_schedule) {
-
+      
     }
   }
 
