@@ -1,9 +1,6 @@
 import { Task } from './../skyTasks.js';
 
 
-console.log(uid);
-console.log(new_uid);
-
 
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.data.decription = 'asdasdad';
