@@ -70,6 +70,16 @@
     // to be filled
   }
 
+  // get a unique UID
+  static getUniqueUID() {
+    let uid = Task.getAllUIDs();
+    if (uid.length===0) {return 0};
+    function getMaxOfArray(numArray) {
+      return Math.max.apply(null, numArray);
+    }
+    return getMaxOfArray(uid)+1;
+  }
+
   // return 2d array of tasks, where a single array of tasks represent a large task
   static getAllTasks() {
     let all_tasks = [];
@@ -201,6 +211,7 @@
   // (break up to smaller tasks using mintime maxtime during) -> priorty -> (softddl -> ddl) -> difficulty
   static schedule() {
     // to be filled
+    
   }
 
   // add current task to local strage
