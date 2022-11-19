@@ -7,7 +7,8 @@
  *      a all_tasks array that holds a array of all UIDs
  *      a task_difficulty array that holds a array of all UIDs
  *      a task_category array that holds a array of all UIDs
- *      a task_priorty array that holds a array of all UIDs
+ *      a task_priority array that holds a array of all UIDs
+ *      a last_ddl that stores the latest date of any tasks
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
@@ -16,9 +17,9 @@
  *      let retrived_task = Task.getTaskFromUID(1000); retrive a task from local strage
  */
  export class Task {
-  constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = null,
-    ddl = null, decription = null, mintime = 1, maxtime = 3, notes = null,
-    recurrent = false, padding = false, difficulty = 3, priorty=3) {
+  constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = new Date(),
+    ddl = new Date(), decription = null, mintime = 1, maxtime = 3, notes = null,
+    recurrent = false, padding = false, difficulty = 3, priority=3) {
     this.data = {
       task_name: task_name, //a string, the name of the task, not required
       uid: uid, // an integer, the unique identifier of the splitted task, required (expect when task is padding)
@@ -35,11 +36,11 @@
       padding: padding, // a boolean, indicate if the task is a padding (user-defined busy period), not required
       difficulty: difficulty, // a integer from 1-5, 1 is lowest difficulty and 5 is hardest, not required
       start_date: start_date, // a date object, not required
-      priorty: priorty, // a integer from 1-5, 1 is lowest priorty and 5 is hardest, not required
+      priority: priority, // a integer from 1-5, 1 is lowest priority and 5 is hardest, not required
     };
     if (padding) {
       this.data.recurrent = true;
-      this.data.priorty = 6;
+      this.data.priority = 6;
     };
   }
 
@@ -156,10 +157,10 @@
       return [];
     }}
 
-  // get all tasks in local strage of the given priorty
-  static getTasksFromPriorty(priorty) {
+  // get all tasks in local strage of the given priority
+  static getTasksFromPriority(priority) {
     try {
-      let tasks_uid = JSON.parse(localStorage.getItem('task_priorty'))[priorty]
+      let tasks_uid = JSON.parse(localStorage.getItem('task_priority'))[priority]
       let tasks=[];
       for (let uid of tasks_uid) {
         tasks.push(Task.getTaskFromUID(uid));
@@ -191,9 +192,9 @@
   // get all tasks of a given day
   static getTasksFromDate(date) {
     let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
-    let month = date.getUTCMonth() + 1; //months from 1-12
-    let day = date.getUTCDate();
-    let year = date.getUTCFullYear();
+    let month = date.getMonth() + 1; //months from 1-12
+    let day = date.getDate();
+    let year = date.getFullYear();
     let tasks_uid;
     try {
       tasks_uid = all_tasks_uid[year][month][day]
@@ -207,11 +208,49 @@
     }
   }
 
+  // get all tasks between two dates, return a array of tasks
+  static getTaskBetweenDate(date1, date2) {
+    let out = [];
+    for (let d = new Date(date1); d <= date2; d.setDate(d.getDate() + 1)) {
+      out = out.concat(this.getTasksFromDate(d));
+    }
+    return out;
+  }
+
+  // get all tasks after of a given day, return a array of tasks
+  static getTasksAfterDate(date) {
+    return (this.getTaskBetweenDate(date,new Date(JSON.parse(localStorage.getItem('last_ddl')))));
+  }
+
+  // custom compare based on difficulty
+  static compareDifficulty(a,b){
+    return (a.data.difficulty - b.data.difficulty);
+  }
+
+  // custom compare based on difficulty
+  static comparePriority(a,b){
+    return (a.data.priority - b.data.priority);
+  }
+
+  // custom compare based on deadline
+  static compareDDL(a,b){
+    return (a.data.ddl > b.data.ddl);
+  }
+
+  // custom compare based on start date
+  static compareStartDate(a,b){
+    return (a.data.start_date > b.data.start_date);
+  }
+
   // reschedule all tasks based on all tasks in the local storage
-  // (break up to smaller tasks using mintime maxtime during) -> priorty -> (softddl -> ddl) -> difficulty
+  // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
   static schedule() {
     // to be filled
-    
+    let task_need_schedule = Task.getTasksAfterDate(new Date());
+    task_need_schedule.sort(Task.comparePriority);
+    for (let task of task_need_schedule) {
+      
+    }
   }
 
   // add current task to local strage
@@ -257,16 +296,16 @@
     all_tasks_uid[this.data.difficulty] = task_difficulty;
     localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
 
-    all_tasks_uid = JSON.parse(localStorage.getItem('task_priorty'));
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_priority'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
-    let task_priorty = all_tasks_uid[this.data.priorty] = all_tasks_uid[this.data.priorty] || [];
+    let task_priority = all_tasks_uid[this.data.priority] = all_tasks_uid[this.data.priority] || [];
     dup = false;
-    for (let uid of task_priorty) {
+    for (let uid of task_priority) {
       if (uid === this.data.uid) {dup = true};
     };
-    if (!dup) {task_priorty.push(this.data.uid)};
-    all_tasks_uid[this.data.priorty] = task_priorty;
-    localStorage.setItem('task_priorty', JSON.stringify(all_tasks_uid));
+    if (!dup) {task_priority.push(this.data.uid)};
+    all_tasks_uid[this.data.priority] = task_priority;
+    localStorage.setItem('task_priority', JSON.stringify(all_tasks_uid));
 
     for (let category of this.data.category){
       all_tasks_uid = JSON.parse(localStorage.getItem('task_category'));
@@ -289,6 +328,14 @@
     };
     if (!dup) {all_tasks_uid.push(this.data.uid)};
     localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
+
+    let last_ddl = JSON.parse(localStorage.getItem('last_ddl'));
+    last_ddl = last_ddl = last_ddl || new Date(-8640000000000000);;
+    last_ddl = new Date(last_ddl);
+    if (this.data.ddl>last_ddl) {
+      localStorage.setItem('last_ddl', JSON.stringify(this.data.ddl));
+    };
+
   }
 }
 

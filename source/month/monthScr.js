@@ -7,18 +7,19 @@ mytask.data.decription = 'asdasdad';
 mytask.addToLocalStorage();
 
 mytask.addToLocalStorage();
-new Task('task name', 999, 2000, new Date(),['eating','studying','working']).addToLocalStorage();
+let new_task = new Task('task name', 999, 2000, new Date(),['eating','studying','working']);
+new_task.data.ddl=new Date('11/26/2022');
+new_task.addToLocalStorage();
 new Task('task name', 123999, 2000, new Date(),['important']).addToLocalStorage();
 new Task('task name', 22, 2000, new Date('11/17/2022')).addToLocalStorage();
 new Task('different task name', 1111, 3000, new Date('11/16/2022')).addToLocalStorage();
 new Task('task name', 123, 3000, new Date('11/16/2022')).addToLocalStorage();
+new Task('task name', 123, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
 
 //console.log(Task.getAllUIDs());
-//console.log(Task.getAllTaskUIDs());
-
-
+console.log(Task.getTasksAfterDate(new Date('11/18/2022')));
 
 
 
