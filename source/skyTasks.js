@@ -402,16 +402,18 @@
     let delIndex = 0;
     let earliest = occupied[delIndex];
     let storage = occupied.length;
-    // Begin first loop
+    // Outer loop to ensure all elements are visited
     for(let i = 0; i < storage; i++){
       earliest = occupied[0];
-      // Inner loop
+      // Inner loop to iterate through updated occupied list
       for(let j = 0; j < occupied.length; j++){
-        // Find earliest date object
+        // Find earliest date object --> Earliest interval has to have 
+        // negative difference from all other intervals (hence < 0)
         if (occupied[j][0] - earliest[0] < 0){
           earliest = occupied[j];
-          delIndex = j;
-          }
+          // Store index of earliest occupied interval
+          delIndex = j;   
+        }
       }
       // Push earliest object to new array
       sorted.push(earliest);
