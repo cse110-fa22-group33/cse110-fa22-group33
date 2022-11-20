@@ -248,14 +248,27 @@
     return (a.data.start_date > b.data.start_date);
   }
 
+  static isAvailible(date) {
+
+  }
+
   // reschedule all tasks based on all tasks in the local storage
   // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
   static schedule() {
     // to be filled
     let task_need_schedule = Task.getTasksAfterDate(new Date());
+    let occupied = [];
+    for (let task of task_need_schedule) {
+      if (task.data.padding){
+        occupied.push([new Date(task.data.ddl), task.data.duration]);
+        task.data.start_date = task.data.ddl;
+      }
+    }
+
     task_need_schedule.sort(Task.comparePriority());
     for (let task of task_need_schedule) {
-      //let 
+      if (task.data.padding) {continue};
+      
     }
   }
 
