@@ -252,10 +252,9 @@
   static firstAvailible(occupied_in, task) {
     let occupied = Task.sortOccupied(occupied_in);
     let result = new Date();
+    // round the result date to the closest hour
     result.setHours(result.getHours() + Math.round(result.getMinutes()/60));
     result.setMinutes(0, 0, 0);
-    //console.log(result);
-    console.log(occupied);
     let isOccupied = function(opid,time,duration) {
       for (let time_block of opid) {
         if (Task.dateRangeOverlaps(time_block[0],
@@ -303,7 +302,7 @@
   // reschedule all tasks based on all tasks in the local storage
   // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
   static schedule() {
-    // to be filled
+    // adding padding
     let task_need_schedule = Task.getTasksAfterDate(new Date());
     let occupied = [];
     for (let task of task_need_schedule) {
@@ -315,10 +314,14 @@
       }
     }
 
+    //processin tasks that needs scheduling
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
       if (task.data.padding) {continue};
+      //get the first availible date that can fit the task
       task.data.start_date=Task.firstAvailible(occupied,task);
+      //check the deadline
+
       occupied.push([new Date(task.data.start_date), task.data.duration]);
       task.addToLocalStorage();
     }
