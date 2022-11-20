@@ -59,6 +59,7 @@
     return JSON.stringify(this.data);
   }
 
+  // Toggle 'padding' of this task object
   setToPadding() {
     this.data.recurrent = true;
     this.data.padding = true;
@@ -78,7 +79,7 @@
     // to be filled
   }
 
-  // get a unique UID
+  // Generate a unique UID
   static getUniqueUID() {
     let uid = Task.getAllUIDs();
     if (uid==null || uid.length===0) {return 0};
@@ -109,21 +110,36 @@
     return all_tasks;
   }
 
-  // return a array of all task UIDs
+  /**
+   * getAllTaskUIDs Method
+   * 
+   * Get all task_uid's in local storage
+   * @returns array of all task_uid's
+   */
   static getAllTaskUIDs() {
     let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
     if (large_tasks===undefined) {return []};
     return Object.keys(large_tasks);
   }
 
-  // return a array of all UIDs
+  /**
+   * getAllUIDs Method
+   * 
+   * Get all UIDs in local storage
+   * @returns array of all UIDs
+   */
   static getAllUIDs() {
     let large_tasks = JSON.parse(localStorage.getItem('all_tasks'));
     if (large_tasks===undefined) {return []};
     return large_tasks;
   }
 
-  // return a 1-d array of all tasks
+  /**
+   * getAllTasksFlat Method
+   * 
+   * Get all tasks in local storage
+   * @returns array of all tasks
+   */
   static getAllTasksFlat() {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('all_tasks'))
@@ -137,7 +153,13 @@
     }
   }
 
-  // get all tasks in local strage of the given task_uid
+  /**
+   * getTaskFromTaskUID Method
+   * 
+   * Get all tasks in local storage from given task_uid
+   * @param task_uid - Task_uid input
+   * @returns array of tasks
+   */
   static getTasksFromTaskUID(task_uid) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('large_tasks'))[task_uid]
@@ -151,7 +173,13 @@
     }
   }
 
-  // get all tasks in local strage of the given difficulty
+  /**
+   * getTasksFromDifficulty Method
+   * 
+   * Get all tasks in local storage of the given difficulty
+   * @param difficulty - Task difficulty input
+   * @returns array of tasks
+   */
   static getTasksFromDifficulty(difficulty) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'))[difficulty]
@@ -164,7 +192,13 @@
       return [];
     }}
 
-  // get all tasks in local strage of the given priority
+  /**
+   * getTasksFromPriority Method
+   * 
+   * Get all tasks in local storage of the given priority
+   * @param priority - Task priority input
+   * @returns array of tasks
+   */
   static getTasksFromPriority(priority) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_priority'))[priority]
@@ -177,7 +211,13 @@
       return [];
     }}
 
-  // get all tasks in local strage of the given category
+  /**
+   * getTasksFromCategory Method
+   * 
+   * Get all tasks in local storage of the given category
+   * @param category - Task category input
+   * @returns array of tasks
+   */
   static getTasksFromCategory(category) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_category'))[category]
@@ -188,15 +228,27 @@
       return tasks;
     }catch (e){
       return [];
-    }}
-
-    
-  // get single task in local strage from uid
+    }
+  }
+ 
+  /**
+   * getTaskFromUID Method
+   * 
+   * Get single task in local storage from given uid
+   * @param uid - Task uid input
+   * @returns single task object
+   */
   static getTaskFromUID(uid) {
     return Task.fromJson(localStorage.getItem(uid)) || null;
   }
 
-  // get all tasks of a given day
+  /**
+   * getTasksFromDate Method
+   * 
+   * Get all tasks of a given day
+   * @param date - Date object 
+   * @returns array of tasks
+   */
   static getTasksFromDate(date) {
     let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
     let month = date.getMonth() + 1; //months from 1-12
@@ -215,7 +267,14 @@
     }
   }
 
-  // get all tasks between two dates, return a array of tasks
+  /**
+   * getTasksBetweenDate Method
+   * 
+   * Get all tasks between two dates
+   * @param date1 - Date1 object 
+   * @param date2 - Date2 object
+   * @returns array of tasks
+   */
   static getTaskBetweenDate(date1, date2) {
     let out = [];
     for (let d = new Date(date1); d <= date2; d.setDate(d.getDate() + 1)) {
@@ -224,37 +283,84 @@
     return out;
   }
 
-  // get all tasks after of a given day, return a array of tasks
+  /**
+   * getTasksAfterDate Method
+   * 
+   * Get all tasks after of a given day
+   * @param date - Date object 
+   * @returns array of tasks
+   */
   static getTasksAfterDate(date) {
     return (this.getTaskBetweenDate(date,new Date(JSON.parse(localStorage.getItem('last_ddl')))));
   }
 
-  // custom compare based on difficulty
+  /**
+   * compareDifficulty Method
+   * 
+   * Checks if difficulty of a is easier than b
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns Difference in difficulty between a and b
+   */
   static compareDifficulty(a,b){
     return (a.data.difficulty - b.data.difficulty);
   }
 
-  // custom compare based on difficulty
+  /**
+   * comparePriority Method
+   * 
+   * Checks if priorty of a is earlier than b
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns Difference in priority between a and b
+   */
   static comparePriority(a,b){
     return (a.data.priority - b.data.priority);
   }
 
-  // custom compare based on deadline
+  /**
+   * compareDDL Method
+   * 
+   * Checks if ddl of a is earlier than b
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns true if ddl of a comes before b
+   */
   static compareDDL(a,b){
     return (a.data.ddl > b.data.ddl);
   }
 
-  // custom compare based on start date
+  /**
+   * compareStartDate Method
+   * 
+   * Checks if start_date of a is earlier than b
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns true if start_date of a comes before b
+   */
   static compareStartDate(a,b){
     return (a.data.start_date > b.data.start_date);
   }
 
+  /**
+   * firstAvailable Method
+   * 
+   * Takes occupied array and task object and finds earliest time slot
+   * to allocate the task
+   * @param occupied_in - array with unsorted intervals  
+   * @param task - task object to be assigned
+   * @returns date object for first available time to assign the task
+   */
   static firstAvailible(occupied_in, task) {
+    // Sort the list of occupied intervals
     let occupied = Task.sortOccupied(occupied_in);
     let result = new Date();
-    // round the result date to the closest hour
+
+    // Round the result date to the closest hour
     result.setHours(result.getHours() + Math.round(result.getMinutes()/60));
     result.setMinutes(0, 0, 0);
+
+    // Inner function checks if current time slot will fit the task
     let isOccupied = function(opid,time,duration) {
       for (let time_block of opid) {
         if (Task.dateRangeOverlaps(time_block[0],
@@ -267,6 +373,8 @@
       }
       return false;
     }
+
+    // Increment until a valid time slot is found
     while (isOccupied(occupied,result,task.data.duration)) {
       result.setHours(result.getHours()+1);
     }
@@ -280,24 +388,38 @@
     return false;
   }
 
+  /**
+   * sortOccupied Method
+   * 
+   * Takes occupied array in form of (Date, duration) and orders it from
+   * earliest to latest
+   * @param occupied - array with unsorted intervals  
+   * @returns array with sorted occupied intervals
+   */
   static sortOccupied(occupied){
+    // Initialize Variables
     let sorted = [];
     let delIndex = 0;
     let earliest = occupied[delIndex];
     let storage = occupied.length;
+    // Begin first loop
     for(let i = 0; i < storage; i++){
       earliest = occupied[0];
+      // Inner loop
       for(let j = 0; j < occupied.length; j++){
+        // Find earliest date object
         if (occupied[j][0] - earliest[0] < 0){
           earliest = occupied[j];
           delIndex = j;
           }
-        }
-        sorted.push(earliest);
-        occupied.splice(delIndex, 1);
-        }
-    return sorted;
+      }
+      // Push earliest object to new array
+      sorted.push(earliest);
+      // Remove earliest object from occupied
+      occupied.splice(delIndex, 1);
     }
+    return sorted;
+  }
 
   // reschedule all tasks based on all tasks in the local storage
   // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
@@ -314,7 +436,7 @@
       }
     }
 
-    //processin tasks that needs scheduling
+    // processing tasks that needs scheduling
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
       if (task.data.padding) {continue};
