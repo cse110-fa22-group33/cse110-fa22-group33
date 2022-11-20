@@ -61,6 +61,7 @@
 
   setToPadding() {
     this.data.recurrent = true;
+    this.data.padding = true;
     this.data.priority = 6;
     return this;
   }
@@ -248,9 +249,56 @@
     return (a.data.start_date > b.data.start_date);
   }
 
-  static isAvailible(date) {
-
+  static firstAvailible(occupied_in, task) {
+    let occupied = Task.sortOccupied(occupied_in);
+    let result = new Date();
+    result.setHours(result.getHours() + Math.round(result.getMinutes()/60));
+    result.setMinutes(0, 0, 0);
+    //console.log(result);
+    console.log(occupied);
+    let isOccupied = function(opid,time,duration) {
+      for (let time_block of opid) {
+        if (Task.dateRangeOverlaps(time_block[0],
+          new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]),
+          time,
+          new Date(time).setHours(time.getHours()+duration)
+          )){
+          return true;
+        }
+      }
+      return false;
+    }
+    while (isOccupied(occupied,result,task.data.duration)) {
+      result.setHours(result.getHours()+1);
+    }
+    return result;
   }
+
+  static dateRangeOverlaps (a_start, a_end, b_start, b_end) {
+    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
+    if (a_start <= b_end   && b_end   <= a_end) return true; // b ends in a
+    if (b_start <  a_start && a_end   <  b_end) return true; // a in b
+    return false;
+  }
+
+  static sortOccupied(occupied){
+    let sorted = [];
+    let delIndex = 0;
+    let earliest = occupied[delIndex];
+    let storage = occupied.length;
+    for(let i = 0; i < storage; i++){
+      earliest = occupied[0];
+      for(let j = 0; j < occupied.length; j++){
+        if (occupied[j][0] - earliest[0] < 0){
+          earliest = occupied[j];
+          delIndex = j;
+          }
+        }
+        sorted.push(earliest);
+        occupied.splice(delIndex, 1);
+        }
+    return sorted;
+    }
 
   // reschedule all tasks based on all tasks in the local storage
   // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
@@ -261,14 +309,18 @@
     for (let task of task_need_schedule) {
       if (task.data.padding){
         occupied.push([new Date(task.data.ddl), task.data.duration]);
+        console.log(task.data.start_date);
         task.data.start_date = task.data.ddl;
+        task.addToLocalStorage();
       }
     }
 
-    task_need_schedule.sort(Task.comparePriority());
+    task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
       if (task.data.padding) {continue};
-      
+      task.data.start_date=Task.firstAvailible(occupied,task);
+      occupied.push([new Date(task.data.start_date), task.data.duration]);
+      task.addToLocalStorage();
     }
   }
 

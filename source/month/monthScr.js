@@ -1,7 +1,7 @@
 import { Task } from './../skyTasks.js';
 
 
-
+/*
 let mytask = new Task('task name', 1000, 2000, new Date(),['important']);
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
@@ -9,33 +9,8 @@ mytask.addToLocalStorage();
 
 
 let rest = new Task('rest', 123, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
-rest.setToPadding();
-rest.addToLocalStorage();
-rest = new Task('rest', 1234, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
-rest.setToPadding();
-rest.addToLocalStorage();
-rest = new Task('rest', 12345, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
-rest.setToPadding();
-rest.addToLocalStorage();
-rest = new Task('rest', 12346, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
-rest.setToPadding();
-rest.addToLocalStorage();
-rest = new Task('rest', 12312313, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
-rest.setToPadding();
-rest.addToLocalStorage();
-rest = new Task('rest', 111333, 2000, new Date());
-rest.data.ddl = new Date(2022,11,20,6);
-rest.data.duration = 2;
+rest.data.ddl = new Date(2022,11,18,11);
+rest.data.duration = 200;
 rest.setToPadding();
 rest.addToLocalStorage();
 
@@ -56,6 +31,24 @@ new Task('different task name', 1111, 3000, new Date('11/16/2022')).addToLocalSt
 new Task('task name', 12443, 3000, new Date('11/26/2022')).addToLocalStorage();
 new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
+
+*/
+
+let rest = new Task('rest', 123, 2000, new Date());
+rest.data.ddl = new Date(2022,11,17,11);
+rest.data.duration = 200;
+rest.setToPadding();
+rest.addToLocalStorage();
+
+
+let new_task = new Task('task name', 999, 2000, new Date(),['eating','studying','working']);
+new_task.data.ddl=new Date(2022,11,22,11);
+new_task.data.priority = 1;
+new_task.addToLocalStorage();
+
+
+Task.schedule();
+
 
 
 
