@@ -1,4 +1,4 @@
-# Project Discussion Notes
+# Sprint 1 Review
 ## November 13, 2022
 
 ### List of Attendees
