@@ -357,7 +357,7 @@
     let result = new Date();
 
     // Round the result date to the closest hour
-    result.setHours(result.getHours() + Math.round(result.getMinutes()/60));
+    result.setHours(result.getHours() + Math.round(result.getMinutes()/60)+1);
     result.setMinutes(0, 0, 0);
 
     // Inner function checks if current time slot will fit the task
