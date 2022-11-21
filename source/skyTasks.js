@@ -351,7 +351,7 @@
    * @param task - task object to be assigned
    * @returns date object for first available time to assign the task
    */
-  static firstAvailible(occupied_in, task) {
+  static firstAvailable(occupied_in, task) {
     // Sort the list of occupied intervals
     let occupied = Task.sortOccupied(occupied_in);
     let result = new Date();
@@ -442,8 +442,8 @@
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
       if (task.data.padding) {continue};
-      //get the first availible date that can fit the task
-      task.data.start_date=Task.firstAvailible(occupied,task);
+      //get the first available date that can fit the task
+      task.data.start_date=Task.firstAvailable(occupied,task);
       //check the deadline
 
       occupied.push([new Date(task.data.start_date), task.data.duration]);

@@ -45,7 +45,7 @@ let padding_data = new Date(2022,11,19,18);
 let padding_data2 = new Date(2022,11,19,19);
 let occ = [([padding_data,8])];
 
-let firsta = Task.firstAvailible(occ,new_task);
+let firsta = Task.firstAvailable(occ,new_task);
 console.log(firsta);
 
 let date_3 = new Date(2022,11,19,20);
