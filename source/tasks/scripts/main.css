@@ -1,0 +1,160 @@
+/* Color Customization */
+:root {
+	--school: #40793a;
+	--personal: #1662d4;
+	--other: #9c109a;
+	--light: rgb(219, 211, 211);
+	--grey: rgb(95, 95, 95);
+	--dark: #3a3a6f;
+	--danger: #c40502;
+	--school-glow: 0px 0px 4px rgba(78, 237, 20, 0.75);
+	--personal-glow: 0px 0px 4px rgba(8, 168, 248, 0.931);
+	--other-glow: 0px 0px 4px rgba(248, 8, 232, 0.931);
+	--danger-glow: 0px 0px 4px rgba(237, 66, 66, 0.931);
+}
+
+body {
+	background: var(--light);
+	color: var(--dark);
+}
+
+.hello {
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align:center;
+}
+
+h3 {
+    color: var(--dark);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    color: var(--grey);
+}
+
+.create-new-task {
+    float: left;
+	padding-left: 25rem;
+	position: absolute;
+}
+
+.create-new-task .options {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.create-new-task .options label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	display: none;
+}
+
+.task-list {
+    float: right;
+    padding-right: 25rem;
+	position: relative;
+}
+
+.bubble {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 15px;
+	height: 15px;
+	border-radius: 100px;
+	border: 2px solid var(--school);
+	box-shadow: var(--school-glow);
+}
+
+.bubble.personal {
+	border-color: var(--personal);
+	box-shadow: var(--personal-glow);
+}
+
+.bubble.other {
+	border-color: var(--other);
+	box-shadow: var(--other-glow);
+}
+
+.bubble::after {
+	content: '';
+	opacity: 0;
+	background-color: var(--school);
+	box-shadow: var(--school-glow);
+	border-radius: 100px;
+	transition: 0.3s ease-in-out;
+}
+
+.bubble.personal::after {
+	background-color: var(--personal);
+	box-shadow: var(--personal-glow);
+}
+
+.bubble.other::after {
+	background-color: var(--other);
+	box-shadow: var(--other-glow);
+}
+
+input:checked ~ .bubble::after {
+	width: 10px;
+	height: 10px;
+	opacity: 1;
+}
+
+button,.submit{
+	background-color: #777;
+	color: white;
+	cursor: pointer;
+	padding: 10px;
+	margin-top: 10px;
+	width: 100%;
+	border: none;
+	text-align: center;
+	font-size: 1rem;
+}
+  
+.active, button, .submit:hover {
+	background-color: #555;
+}
+  
+.collapsible {
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: #e9e5e5;
+}
+
+.create-new-task input[type="submit"] {
+	text-align: center;
+	display: block;
+	font-size: 1rem;
+	color: #FFF;
+	font-weight: 500;
+	background-color: var(--dark);
+	box-shadow: var(--personal-glow);
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+.create-new-task button[class="danger"] {
+	text-align: center;
+	display: block;
+	font-size: 1rem;
+	color: #FFF;
+	font-weight: 500;
+	background-color: var(--danger);
+	box-shadow: var(--danger-glow);
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
