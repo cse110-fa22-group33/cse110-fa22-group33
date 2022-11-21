@@ -357,7 +357,7 @@
     let result = new Date();
 
     // Round the result date to the closest hour
-    result.setHours(result.getHours() + Math.round(result.getMinutes()/60)+1);
+    result.setHours(result.getHours() + Math.ceil(result.getMinutes()/60));
     result.setMinutes(0, 0, 0);
 
     // Inner function checks if current time slot will fit the task
@@ -376,16 +376,15 @@
 
     // Increment until a valid time slot is found
     while (isOccupied(occupied,result,task.data.duration)) {
+      console.log("increment: " + result);
       result.setHours(result.getHours()+1);
     }
-    // Correcting extra hour error (NEED TO CHANGE)
-    result.setHours(result.getHours()-1);
     return result;
   }
 
   static dateRangeOverlaps (a_start, a_end, b_start, b_end) {
-    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
-    if (a_start <= b_end   && b_end   <= a_end) return true; // b ends in a
+    if (a_start <= b_start && b_start < a_end) return true; // b starts in a
+    if (a_start < b_end   && b_end   <= a_end) return true; // b ends in a
     if (b_start <  a_start && a_end   <  b_end) return true; // a in b
     return false;
   }
@@ -434,8 +433,8 @@
     for (let task of task_need_schedule) {
       if (task.data.padding){
         occupied.push([new Date(task.data.ddl), task.data.duration]);
-        console.log(task.data.start_date);
         task.data.start_date = task.data.ddl;
+        console.log(task.data.start_date);
         task.addToLocalStorage();
       }
     }
@@ -449,6 +448,7 @@
       //check the deadline
 
       occupied.push([new Date(task.data.start_date), task.data.duration]);
+      console.log(task.data.start_date);
       task.addToLocalStorage();
     }
   }

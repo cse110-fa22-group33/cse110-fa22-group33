@@ -13,24 +13,57 @@ let isOccupied = function(opid,time,duration) {
     return false;
 }
 
-let sleeping = new Task('sleeping', 100, 200, new Date());
-sleeping.data.ddl = new Date(2022,10,20,19); // October 20th, 7pm-9pm
+let sleeping = new Task('sleeping', Task.getUniqueUID(), 1, new Date());
+sleeping.data.ddl = new Date('November 20, 2022 21:00:00'); // November 20th, 9pm-11pm
 sleeping.data.duration = 2;
 sleeping.setToPadding();
+sleeping.addToLocalStorage();
 
-let sleeping2 = new Task('sleeping2', 1001, 2001, new Date());
-sleeping2.data.ddl = new Date(2022,10,20,22); // October 20th, 10pm-12pm
-sleeping2.data.duration = 2;
-sleeping2.setToPadding();
-
-const first = new Task('lab8', 100, 200, new Date());
-first.data.ddl = new Date(2022,10,22,14);  // October 22nd, 2pm
+const first = new Task('lab8', Task.getUniqueUID(), 2, new Date());
+first.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
 first.data.duration = 1;
+first.data.priority = 2;
+first.addToLocalStorage();
+
+let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
+sleeping2.data.ddl = new Date('November 21, 2022 00:00:00'); // November 21th, 12am-1am
+sleeping2.data.duration = 1;
+sleeping2.setToPadding();
+sleeping2.addToLocalStorage();
+
+const second = new Task('lab9', Task.getUniqueUID(), 4, new Date());
+second.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
+second.data.duration = 1;
+second.data.priortiy = 3;
+second.addToLocalStorage();
+
+const third = new Task('lab10', Task.getUniqueUID(), 5, new Date());
+third.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
+third.data.duration = 1;
+third.data.priority = 4;
+third.addToLocalStorage();
+
+Task.schedule();
+
+//Output should be
+// Sleeping 11/20 9-11pm
+// third 11/20 11pm-11/21 12am
+// sleeping2 11/21 12am-1am
+// second 11/21 1am-2am
+// first 11/21 2am-3am
+
+
 
 //let occupied = [[sleeping.data.ddl, 2]];
-let occupied = [[sleeping.data.ddl, 2], [sleeping2.data.ddl, 2]];
+/*
+let occupied = [[sleeping.data.ddl, 2], [sleeping2.data.ddl, 1]];
 let storage = Task.firstAvailable(occupied, first);
-console.log("first Available: " + storage);
+console.log("first Available for first task: " + storage);
+let storage2 = Task.firstAvailable(occupied, second);
+console.log("first Available for second task: " + storage2);
+let storage3 = Task.firstAvailable(occupied, third);
+console.log("first Available for third task: " + storage3);*/
+
 
 /*
 let new_task = new Task('cse110 lab 8', 1000, 2000, new Date());
