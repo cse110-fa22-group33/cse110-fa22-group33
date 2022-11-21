@@ -1,13 +1,14 @@
 // weekly-calendar.js
 import { Task } from './../skyTasks.js';
 
+/*
 let mytask = new Task('task name', 1000, 2000, new Date());
 mytask.addToLocalStorage();
 new Task('task name', 999, 2000, new Date('11/14/2022')).addToLocalStorage();
 new Task('task name', 123999, 2000, new Date('11/13/2022')).addToLocalStorage();
 new Task('task name', 22, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1111, 3000, new Date('11/17/2022')).addToLocalStorage();
-new Task('task name', 123, 3000, new Date('11/19/2022')).addToLocalStorage();
+new Task('task name', 123, 3000, new Date('11/19/2022')).addToLocalStorage();*/
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);

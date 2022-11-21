@@ -34,7 +34,7 @@ sleeping2.addToLocalStorage();
 const second = new Task('lab9', Task.getUniqueUID(), 4, new Date());
 second.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
 second.data.duration = 1;
-second.data.priortiy = 3;
+second.data.priority = 3;
 second.addToLocalStorage();
 
 const third = new Task('lab10', Task.getUniqueUID(), 5, new Date());

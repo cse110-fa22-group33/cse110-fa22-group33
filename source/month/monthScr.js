@@ -33,7 +33,7 @@ new Task('task name', 11, 2000, new Date()).addToLocalStorage();
 new Task('task name', 1, 2000, new Date()).addToLocalStorage();
 
 */
-
+/*
 let rest = new Task('rest', 123, 2000, new Date());
 rest.data.ddl = new Date(2022,11,17,11);
 rest.data.duration = 200;
@@ -49,7 +49,7 @@ new_task.addToLocalStorage();
 
 Task.schedule();
 
-
+*/
 
 
 
