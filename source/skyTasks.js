@@ -363,11 +363,17 @@
     // Inner function checks if current time slot will fit the task
     let isOccupied = function(opid,time,duration) {
       for (let time_block of opid) {
-        if (Task.dateRangeOverlaps(time_block[0],
-          new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]),
-          time,
-          new Date(time).setHours(time.getHours()+duration)
-          )){
+        let storage = new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]);
+        let storage2 = new Date(time).setHours(time.getHours()+duration);
+        let special = time_block[0].getHours() + time_block[1];
+        console.log ("time_block[0] " + time_block[0].getHours()); 
+        console.log ("time_block[1] " + time_block[1]); 
+        console.log(special);
+        //console.log("Comparing " + time_block[0] + " to " + Date(storage));
+        //console.log("Comparing " + time + " to " + Date(storage2));
+        //console.log("---------------------------------------------");
+        
+        if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)){
           return true;
         }
       }
@@ -376,12 +382,12 @@
 
     // Increment until a valid time slot is found
     while (isOccupied(occupied,result,task.data.duration)) {
-      console.log("increment: " + result);
       result.setHours(result.getHours()+1);
     }
+    console.log(task.data.task_name + ": " + result);
     return result;
   }
-
+  
   static dateRangeOverlaps (a_start, a_end, b_start, b_end) {
     if (a_start <= b_start && b_start < a_end) return true; // b starts in a
     if (a_start < b_end   && b_end   <= a_end) return true; // b ends in a
@@ -397,8 +403,10 @@
    * @param occupied - array with unsorted intervals  
    * @returns array with sorted occupied intervals
    */
-  static sortOccupied(occupied){
+  static sortOccupied(occupied_in){
     // Initialize Variables
+    // Create deep copy to not impact occupied array
+    let occupied = structuredClone(occupied_in);    
     let sorted = [];
     let delIndex = 0;
     let earliest = occupied[delIndex];
@@ -433,22 +441,22 @@
     for (let task of task_need_schedule) {
       if (task.data.padding){
         occupied.push([new Date(task.data.ddl), task.data.duration]);
+        
         task.data.start_date = task.data.ddl;
-        console.log(task.data.start_date);
         task.addToLocalStorage();
       }
     }
 
     // processing tasks that needs scheduling
+    console.log("Padding: " + occupied);
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
       if (task.data.padding) {continue};
       //get the first available date that can fit the task
       task.data.start_date=Task.firstAvailable(occupied,task);
       //check the deadline
-
       occupied.push([new Date(task.data.start_date), task.data.duration]);
-      console.log(task.data.start_date);
+      console.log(occupied);
       task.addToLocalStorage();
     }
   }
