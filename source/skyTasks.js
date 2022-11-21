@@ -378,6 +378,8 @@
     while (isOccupied(occupied,result,task.data.duration)) {
       result.setHours(result.getHours()+1);
     }
+    // Correcting extra hour error (NEED TO CHANGE)
+    result.setHours(result.getHours()-1);
     return result;
   }
 

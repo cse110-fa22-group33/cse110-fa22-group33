@@ -14,19 +14,20 @@ let isOccupied = function(opid,time,duration) {
 }
 
 let sleeping = new Task('sleeping', 100, 200, new Date());
-sleeping.data.ddl = new Date(2022,10,20,12); // October 20th, noon
+sleeping.data.ddl = new Date(2022,10,20,19); // October 20th, 7pm-9pm
 sleeping.data.duration = 2;
 sleeping.setToPadding();
 
 let sleeping2 = new Task('sleeping2', 1001, 2001, new Date());
-sleeping2.data.ddl = new Date(2022,10,20,17); // October 20th, noon
+sleeping2.data.ddl = new Date(2022,10,20,22); // October 20th, 10pm-12pm
 sleeping2.data.duration = 2;
 sleeping2.setToPadding();
 
 const first = new Task('lab8', 100, 200, new Date());
 first.data.ddl = new Date(2022,10,22,14);  // October 22nd, 2pm
-first.data.duration = 2;
+first.data.duration = 1;
 
+//let occupied = [[sleeping.data.ddl, 2]];
 let occupied = [[sleeping.data.ddl, 2], [sleeping2.data.ddl, 2]];
 let storage = Task.firstAvailable(occupied, first);
 console.log("first Available: " + storage);
