@@ -19,7 +19,23 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains the jobs "test" and "lint"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install modules
+        run: npm install
+        working-directory: ./source
+      - name: Run tests
+        run: npm test
+        working-directory: ./source
+        
   lint:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -29,5 +45,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Test Message
-        run: echo "Test :)"
+      - name: Super-Linter
+        uses: github/super-linter/slim@v4.9.7
+        env:
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
