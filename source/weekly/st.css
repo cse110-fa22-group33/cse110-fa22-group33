@@ -1,4 +1,7 @@
 /* CSS FOR INDEXT.HTML */
+body{
+    font-family: 'Quicksand', sans-serif;
+}
 .grid-container {
     display: grid;
     grid-template-columns: minmax(80px, auto) repeat(7, minmax(100px, 500px));
@@ -8,7 +11,6 @@
 .sch:hover{
     background-color:rgba(32, 57, 167, 0.39);
 }
-​
 .sch-sun:hover{
     background-color:rgba(211, 148, 90, 0.411);
     cursor: pointer;
@@ -34,8 +36,6 @@
     background-color:rgba(116, 196, 192, 0.466);
     cursor: pointer;
 }
-​
-​
 .sch-wed:hover{
     background-color:rgba(176, 170, 230, 0.514);
     cursor: pointer;
@@ -44,8 +44,6 @@
     background-color:rgba(176, 170, 230, 0.514);
     cursor: pointer;
 }
-​
-​
 .sch-thu:hover{
     background-color:rgba(211, 160, 207, 0.452);
     cursor: pointer;
@@ -54,8 +52,6 @@
     background-color:rgba(211, 160, 207, 0.452);
     cursor: pointer;
 }
-​
-​
 .sch-fri:hover{
     background-color:rgba(231, 230, 164, 0.603);
     cursor: pointer;
@@ -64,8 +60,6 @@
     background-color:rgba(231, 230, 164, 0.603);
     cursor: pointer;
 }
-​
-​
 .sch-sat:hover{
     background-color:rgba(141, 167, 223, 0.534) ;
     cursor: pointer;
@@ -74,8 +68,6 @@
     background-color:rgba(141, 167, 223, 0.534) ;
     cursor: pointer;
 }
-​
-​
 .grid-item {
     background-color: rgba(214, 219, 228, 0.37);
     border: 0.01px solid rgba(0, 0, 0, 0.144);
@@ -83,7 +75,6 @@
     padding-top: 20px;
     height: 40px;
 }
-​
 .pos{
     font-family: 'Quicksand', sans-serif;
     background-color: rgba(66, 77, 138, 0.158);    
@@ -96,11 +87,10 @@
     /*Just for the days */
     /* border: hidden; */
 }
-​
 #title{
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 10px;
     /* padding-bottom: 20px; */
     font-size: 40px;
 }
@@ -151,9 +141,7 @@ h4{
     margin-bottom: 6px;
     padding: 0; 
 }
-​
-/* WORKING ON THIS ONE FOR THE DAYS OF THE WEEK */
- .x{
+.x{
      font-size: 19px;
     padding: 0; margin: 0;
     text-align: center;
