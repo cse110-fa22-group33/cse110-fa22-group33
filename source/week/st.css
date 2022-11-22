@@ -1,22 +1,31 @@
 /* CSS FOR INDEXT.HTML */
-
+body{
+    font-family: 'Quicksand', sans-serif;
+    background-color: #FFFCFF;
+}
 .grid-container {
     display: grid;
     grid-template-columns: minmax(80px, auto) repeat(7, minmax(100px, 500px));
     padding-left: 30px;
     padding-right: 30px;
   }
-
 .sch:hover{
     background-color:rgba(32, 57, 167, 0.39);
 }
-
-  /* START//add for the second option */
 .sch-sun:hover{
     background-color:rgba(211, 148, 90, 0.411);
     cursor: pointer;
 }
+.sch-0:hover{
+    background-color:rgba(211, 148, 90, 0.411);
+    cursor: pointer;
+}
+​
 .sch-mon:hover{
+    background-color:rgba(191, 221, 144, 0.678);
+    cursor: pointer;
+}
+.sch-1:hover{
     background-color:rgba(191, 221, 144, 0.678);
     cursor: pointer;
 }
@@ -24,7 +33,15 @@
     background-color:rgba(116, 196, 192, 0.466);
     cursor: pointer;
 }
+.sch-2:hover{
+    background-color:rgba(116, 196, 192, 0.466);
+    cursor: pointer;
+}
 .sch-wed:hover{
+    background-color:rgba(176, 170, 230, 0.514);
+    cursor: pointer;
+}
+.sch-3:hover{
     background-color:rgba(176, 170, 230, 0.514);
     cursor: pointer;
 }
@@ -32,7 +49,15 @@
     background-color:rgba(211, 160, 207, 0.452);
     cursor: pointer;
 }
+.sch-4:hover{
+    background-color:rgba(211, 160, 207, 0.452);
+    cursor: pointer;
+}
 .sch-fri:hover{
+    background-color:rgba(231, 230, 164, 0.603);
+    cursor: pointer;
+}
+.sch-5:hover{
     background-color:rgba(231, 230, 164, 0.603);
     cursor: pointer;
 }
@@ -40,17 +65,17 @@
     background-color:rgba(141, 167, 223, 0.534) ;
     cursor: pointer;
 }
-/* END//delete if not stay with second option^^^^^ */
-
+.sch-6:hover{
+    background-color:rgba(141, 167, 223, 0.534) ;
+    cursor: pointer;
+}
 .grid-item {
     background-color: rgba(214, 219, 228, 0.37);
-    border: 0.5px groove rgba(0, 0, 0, 0.281);
-    /* padding: 10px; */
+    border: 0.01px solid rgba(0, 0, 0, 0.144);
     text-align: center;
     padding-top: 20px;
     height: 40px;
 }
-
 .pos{
     font-family: 'Quicksand', sans-serif;
     background-color: rgba(66, 77, 138, 0.158);    
@@ -61,21 +86,20 @@
     font-family: 'Quicksand', sans-serif; /* fantasy is other font,,, 'Merriweather' comp type: 'Courier New' */
     font-size: 16px;
     /*Just for the days */
-    border: hidden;
+    /* border: hidden; */
 }
-
 #title{
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    padding-top: 40px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    /* padding-bottom: 20px; */
     font-size: 40px;
 }
 @media (max-width: 700px) {
     #title{
         font-family: 'Quicksand', sans-serif;
         padding-top: 40px;
-        padding-bottom: 20px;
+        /* padding-bottom: 20px; */
         font-size: 40px;
     }    
 }
@@ -93,8 +117,39 @@ h4{
     color: gray;
     padding-left: 70px;
 }
-.month{
+.time{
     background-color: rgba(77, 109, 179, 0.705)  ; 
     font-family: 'Quicksand', sans-serif; 
     font-size: 16px;
 }
+.monthy{
+    /* background-color: rgba(77, 109, 179, 0.507)  ;  */
+    font-family: 'Quicksand', sans-serif; 
+    margin-left: 30px;
+    margin-bottom: 15px;
+    height: 80px;
+    width: 240px;
+    border-radius: 16px;
+    align-items: center;
+    /* border: black solid; */
+}
+.y{
+    font-family: 'Quicksand', sans-serif; 
+    color: rgba(77, 109, 179, 0.705)   ; 
+    text-align: center;
+    /* color:white; */
+    font-size: 28px;
+    margin-bottom: 6px;
+    padding: 0; 
+}
+.x{
+     font-size: 19px;
+    padding: 0; margin: 0;
+    text-align: center;
+    color:white;
+    background-color: rgba(77, 109, 179, 0.705) ;
+    border-radius: 20px;
+    width: 150px;
+    margin-left: 40px; 
+    
+} 

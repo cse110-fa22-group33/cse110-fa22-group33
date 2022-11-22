@@ -16,8 +16,18 @@
 body {
 	background: var(--light);
 	color: var(--dark);
+	background-color: #FFFCFF;
+    font-family: 'Quicksand', sans-serif;
 }
-
+.title{
+	background-color: rgba(228, 117, 13, 0.788);;
+	width: 220px;
+	height: 40px;
+	padding-top: 5px;
+	text-align: center;
+	border-radius: 18px;
+	color: white;
+}
 .hello {
     margin: 1rem;
     padding: 2rem 2rem;
@@ -31,7 +41,38 @@ h3 {
 }
 
 h4 {
-    color: var(--grey);
+	/* color: var(--grey); */
+	color:rgba(20, 9, 119, 0.788);
+}
+#taskPriority, #duration, #difficulty{
+	font-size: 12px;
+	font-family: 'Quicksand', sans-serif;
+	width: 42px;
+}
+#taskddl, #task-ddl-time, #datetime,#min-work-time, 
+#max-work-time, #extranotes, #content{
+	font-size: 13px;
+	font-family: 'Quicksand', sans-serif;
+}
+#taskdescription,#user-name, 
+.advance, .danger{
+	font-family: 'Quicksand', sans-serif;
+}
+.advance{
+	background-color:rgba(12, 131, 125, 0.788);
+	border-radius: 10px;
+}
+.advance:hover{
+	background-color: rgba(12, 131, 125, 0.555);
+}
+.nav{
+	background-color: rgba(153, 19, 146, 0.788);
+	border-radius: 10px;
+	font-family: 'Quicksand', sans-serif;
+	
+}
+.nav:hover{
+	background-color:rgba(138, 15, 132, 0.507);
 }
 
 .create-new-task {
@@ -112,6 +153,7 @@ input:checked ~ .bubble::after {
 }
 
 button,.submit{
+	font-family: 'Quicksand', sans-serif;
 	background-color: #777;
 	color: white;
 	cursor: pointer;
@@ -123,7 +165,7 @@ button,.submit{
 	font-size: 1rem;
 }
   
-.active, button, .submit:hover {
+.active, .submit:hover {
 	background-color: #555;
 }
   
@@ -145,7 +187,9 @@ button,.submit{
 	border-radius: 0.5rem;
 	cursor: pointer;
 }
-
+input[type="submit"]:hover{
+	background-color: rgba(0, 45, 128, 0.767);
+}
 .create-new-task button[class="danger"] {
 	text-align: center;
 	display: block;
