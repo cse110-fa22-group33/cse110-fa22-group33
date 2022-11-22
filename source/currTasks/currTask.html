@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet"> 
     <title>Add Task Page</title>
 
     <!-- Task Custom Element -->
@@ -27,7 +30,7 @@
         </div>
         <!-- Create New Task -->
         <div class="create-new-task">
-            <h2>ADD NEW TASK</h2>
+            <h2 class="title" >ADD NEW TASK</h2>
             <form id="new-task">
                 <div id="task-content">
                     <h3>Input Task Details</h3>
@@ -101,7 +104,7 @@
                 <input type="submit" class="submit" value="ADD TASK">
                 <br>
                 <button type="button" class="danger">Clear Local Storage</button>
-                <button type="button" class="nav"><a href="../month/month.html">Calendar</a></button>
+                <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a>
             </form>
         </div>
 

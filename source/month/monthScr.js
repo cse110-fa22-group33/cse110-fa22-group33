@@ -1,21 +1,26 @@
 import { Task } from './../skyTasks.js';
 
-
-
-let mytask = new Task('task name', 1000, 2000, new Date('11/27/2022'),['important']);
+Task.removeAllTasks();
+let mytask = new Task('task name', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
-mytask.setToPadding();
 mytask.addToLocalStorage();
 
-let mytask1 = new Task('task name', 1002, 2000, new Date('11/23/2022'),['important']);
+let resursivePadding = new Task('resursivePadding', 1001, 2000, new Date('11/27/2022'),['important']);
+resursivePadding.data.ddl = new Date('December 17, 1995 00:00:00');
+resursivePadding.data.priority = 3;
+resursivePadding.data.duration = 23;
+resursivePadding.setToRecursivePadding();
+resursivePadding.addToLocalStorage();
+
+let mytask1 = new Task('mytask1', 1002, 2000, new Date('11/23/2022'),['important']);
 mytask1.data.ddl = new Date('11/27/2022');
 mytask1.data.priority = 3;
 mytask1.setToPadding();
 mytask1.addToLocalStorage();
 
-console.log(Task.getAllPaddings());
-
+Task.schedule();
+//console.log(Task.getAllPaddings());
 
 
 let currentMonth = 0;
