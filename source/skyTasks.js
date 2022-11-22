@@ -111,7 +111,7 @@
   static getAllTasks() {
     let all_tasks = [];
     let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
-    if (large_tasks===undefined) {return all_tasks};
+    if (large_tasks===undefined || large_tasks===null) {return all_tasks};
     for (let [key, value] of Object.entries(large_tasks)){
       try {
         let tasks=[];
@@ -136,7 +136,7 @@
    */
   static getAllTaskUIDs() {
     let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
-    if (large_tasks===undefined) {return []};
+    if (large_tasks===undefined || large_tasks===null) {return []};
     return Object.keys(large_tasks);
   }
 
@@ -148,7 +148,7 @@
    */
   static getAllUIDs() {
     let large_tasks = JSON.parse(localStorage.getItem('all_tasks'));
-    if (large_tasks===undefined) {return []};
+    if (large_tasks===undefined || large_tasks===null) {return []};
     return large_tasks;
   }
 
