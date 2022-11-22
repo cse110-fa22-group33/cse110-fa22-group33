@@ -9,6 +9,7 @@
  *      a task_category array that holds a array of all UIDs
  *      a task_priority array that holds a array of all UIDs
  *      a last_ddl that stores the latest date of any tasks
+ *      a padding_tasks that stores all the paddings
  *
  * sample usage:
  *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
@@ -39,7 +40,6 @@
       priority: priority, // a integer from 1-5, 1 is lowest priority and 5 is hardest, not required
     };
     if (padding) {
-      this.data.recurrent = true;
       this.data.priority = 6;
     };
   }
@@ -61,11 +61,19 @@
 
   // Toggle 'padding' of this task object
   setToPadding() {
+    this.data.padding = true;
+    this.data.priority = 6;
+    return this;
+  }
+
+  // Toggle recursive padding of this task object
+  setToRecursivePadding() {
     this.data.recurrent = true;
     this.data.padding = true;
     this.data.priority = 6;
     return this;
   }
+
 
   //split one tasks into two, and first tasks have a certain duration
   static splitTask(task, firstTaskHour=1) {
@@ -306,7 +314,9 @@
    */
   static getTaskBetweenDate(date1, date2) {
     let out = [];
-    for (let d = new Date(date1); d <= date2; d.setDate(d.getDate() + 1)) {
+    let end_day = new Date(date2);
+    end_day.setDate(end_day.getDate() + 1);
+    for (let d = new Date(date1); d <= end_day; d.setDate(d.getDate() + 1)) {
       out = out.concat(this.getTasksFromDate(d));
     }
     return out;
@@ -395,12 +405,6 @@
         let storage = new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]);
         let storage2 = new Date(time).setHours(time.getHours()+duration);
         let special = time_block[0].getHours() + time_block[1];
-        console.log ("time_block[0] " + time_block[0].getHours()); 
-        console.log ("time_block[1] " + time_block[1]); 
-        console.log(special);
-        //console.log("Comparing " + time_block[0] + " to " + Date(storage));
-        //console.log("Comparing " + time + " to " + Date(storage2));
-        //console.log("---------------------------------------------");
         
         if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)){
           return true;
@@ -413,7 +417,6 @@
     while (isOccupied(occupied,result,task.data.duration)) {
       result.setHours(result.getHours()+1);
     }
-    console.log(task.data.task_name + ": " + result);
     return result;
   }
   
@@ -465,27 +468,41 @@
   // (break up to smaller tasks using mintime maxtime during) -> priority -> (softddl -> ddl) -> difficulty
   static schedule() {
     // adding padding
-    let task_need_schedule = Task.getTasksAfterDate(new Date());
     let occupied = [];
-    for (let task of task_need_schedule) {
-      if (task.data.padding){
+    for (let task of Task.getAllPaddings()) {
+      // if the padding is recursive, add it to each day from yesterday to the last deadline date.
+      if (task.data.recurrent) {
+        let start_loop = new Date();
+        start_loop.setDate(start_loop.getDate() - 1);
+        let end_loop = new Date(JSON.parse(localStorage.getItem('last_ddl')));
+        end_loop.setDate(end_loop.getDate() + 1);
+        for (let d = start_loop; d <= end_loop; d.setDate(d.getDate() + 1)) {
+          let new_date = new Date(d);
+          new_date.setHours(task.data.ddl.getHours());
+          new_date.setMinutes(task.data.ddl.getMinutes());
+          new_date.setSeconds(task.data.ddl.getSeconds());
+          occupied.push([new_date, task.data.duration]);
+        }
+      } else {
         occupied.push([new Date(task.data.ddl), task.data.duration]);
-        
-        task.data.start_date = task.data.ddl;
-        task.addToLocalStorage();
       }
     }
+    console.log(Task.getTasksAfterDate(new Date()));
 
     // processing tasks that needs scheduling
-    console.log("Padding: " + occupied);
+    let task_need_schedule = Task.getTasksAfterDate(new Date());
     task_need_schedule.sort(Task.comparePriority).reverse();
     for (let task of task_need_schedule) {
-      if (task.data.padding) {continue};
+      if (task.data.padding) {
+        task.data.start_date = task.data.ddl;
+        Task.removeFromLocalStorage(task.data.uid);
+        task.addToLocalStorage();
+      };
       //get the first available date that can fit the task
       task.data.start_date=Task.firstAvailable(occupied,task);
       //check the deadline
       occupied.push([new Date(task.data.start_date), task.data.duration]);
-      console.log(occupied);
+      Task.removeFromLocalStorage(task.data.uid);
       task.addToLocalStorage();
     }
   }
@@ -495,9 +512,9 @@
     localStorage.setItem(this.data.uid, this.toJson());
 
     let date = this.data.start_date;
-    let month = date.getUTCMonth() + 1; //months from 1-12
-    let day = date.getUTCDate();
-    let year = date.getUTCFullYear();
+    let month = date.getMonth() + 1; //months from 1-12
+    let day = date.getDate();
+    let year = date.getFullYear();
     let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let year_tasks_uid = all_tasks_uid[year] = all_tasks_uid[year] || {};
@@ -583,6 +600,140 @@
       if (!dup) {padding_uid.push(this.data.uid)};
       localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
     };
+  }
+
+  /**
+   * removeFromLocalStorage Method
+   * 
+   * Takes a uid and remove that task from local storage
+   * @param uid - uid of the removed task
+   */
+  static removeFromLocalStorage(uid) {
+
+    let removeFromArray = function (arr, value) {
+      let index = arr.indexOf(value);
+      if (index > -1) {
+        arr.splice(index, 1);
+      }
+      return arr;
+    }
+
+    let task = Task.getTaskFromUID(uid);
+    localStorage.removeItem(uid);
+
+    let date = task.data.start_date;
+    let month = date.getMonth() + 1; //months from 1-12
+    let day = date.getDate();
+    let year = date.getFullYear();
+    let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let year_tasks_uid = all_tasks_uid[year] = all_tasks_uid[year] || {};
+    let month_tasks_uid = year_tasks_uid[month] = year_tasks_uid[month] || {};
+    let day_tasks_uid = month_tasks_uid[day] = month_tasks_uid[day] || [];
+    let dup = false;
+    for (let uid of day_tasks_uid) {
+      if (uid === task.data.uid) {dup = true};
+    };
+    if (dup) {
+      day_tasks_uid = removeFromArray(day_tasks_uid,task.data.uid)
+    };
+    all_tasks_uid[year][month][day] = day_tasks_uid;
+    localStorage.setItem('task_date', JSON.stringify(all_tasks_uid));
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('large_tasks'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let large_tasks_uid = all_tasks_uid[task.data.task_uid] = all_tasks_uid[task.data.task_uid] || [];
+    dup = false;
+    for (let uid of large_tasks_uid) {
+      if (uid === task.data.uid) {dup = true};
+    };
+    if (dup) {
+      large_tasks_uid = removeFromArray(large_tasks_uid,task.data.uid)
+    };
+    if (large_tasks_uid.length===0) {
+      delete all_tasks_uid[task.data.task_uid];
+    } else {
+      all_tasks_uid[task.data.task_uid] = large_tasks_uid;
+    }
+    localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let task_difficulty = all_tasks_uid[task.data.difficulty] = all_tasks_uid[task.data.difficulty] || [];
+    dup = false;
+    for (let uid of task_difficulty) {
+      if (uid === task.data.uid) {dup = true};
+    };
+    if (dup) {
+      task_difficulty = removeFromArray(task_difficulty,task.data.uid)
+    };
+    if (task_difficulty.length===0) {
+      delete all_tasks_uid[task.data.difficulty];
+    } else {
+      all_tasks_uid[task.data.difficulty] = task_difficulty;
+    }
+    localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_priority'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let task_priority = all_tasks_uid[task.data.priority] = all_tasks_uid[task.data.priority] || [];
+    dup = false;
+    for (let uid of task_priority) {
+      if (uid === task.data.uid) {dup = true};
+    };
+    if (dup) {
+      task_priority = removeFromArray(task_priority,task.data.uid)
+    };
+    if (task_priority.length===0) {
+      delete all_tasks_uid[task.data.priority];
+    } else {
+      all_tasks_uid[task.data.priority] = task_priority;
+    }
+    localStorage.setItem('task_priority', JSON.stringify(all_tasks_uid));
+
+    for (let category of task.data.category){
+      all_tasks_uid = JSON.parse(localStorage.getItem('task_category'));
+      all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+      let task_category = all_tasks_uid[category] = all_tasks_uid[category] || [];
+      dup = false;
+      for (let uid of task_category) {
+        if (uid === task.data.uid) {dup = true};
+      };
+      if (dup) {
+        task_category = removeFromArray(task_category,task.data.uid)
+      };
+      if (task_category.length===0) {
+        delete all_tasks_uid[category];
+      } else {
+        all_tasks_uid[category] = task_category;
+      }
+      localStorage.setItem('task_category', JSON.stringify(all_tasks_uid));
+    };
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
+    dup = false;
+    for (let uid of all_tasks_uid) {
+      if (uid === task.data.uid) {dup = true};
+    };
+    if (dup) {
+      all_tasks_uid = removeFromArray(all_tasks_uid,task.data.uid)
+    };
+    localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
+
+    let padding_uid = JSON.parse(localStorage.getItem('padding_tasks'));
+    padding_uid = padding_uid = padding_uid || [];
+    if (task.data.padding) {
+      dup = false;
+      for (let uid of padding_uid) {
+        if (uid === task.data.uid) {dup = true};
+      };
+      if (dup) {
+        padding_uid = removeFromArray(padding_uid,task.data.uid)
+      };
+      localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
+    };
+
   }
 }
 
