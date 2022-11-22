@@ -733,7 +733,29 @@
       };
       localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
     };
+  }
 
+  /**
+   * removeAllTasks Method
+   * 
+   * remove all tasks and clear local storage
+   */
+  static removeAllTasks() {
+    for (let uid of Task.getAllUIDs()){
+      Task.removeFromLocalStorage(uid);
+    }
+  }
+
+  /**
+   * removeLargeTask Method
+   * 
+   * Takes a task_uid and remove that large task from local storage
+   * @param task_uid - task_uid of the removed large task
+   */
+  static removeLargeTask(task_uid) {
+    for (let task of Task.getTasksFromTaskUID(task_uid)) {
+      Task.removeFromLocalStorage(task.data.uid);
+    }
   }
 }
 
