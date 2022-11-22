@@ -487,7 +487,6 @@
         occupied.push([new Date(task.data.ddl), task.data.duration]);
       }
     }
-    console.log(Task.getTasksAfterDate(new Date()));
 
     // processing tasks that needs scheduling
     let task_need_schedule = Task.getTasksAfterDate(new Date());

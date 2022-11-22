@@ -1,7 +1,7 @@
 import { Task } from './../skyTasks.js';
 
-
-let mytask = new Task('task name', 1000, 2000, new Date('11/27/2022'),['important']);
+Task.removeAllTasks();
+let mytask = new Task('task name', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
 mytask.addToLocalStorage();
