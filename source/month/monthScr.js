@@ -97,6 +97,8 @@ function render(){
 
     if (i > paddings) {
       oneday.onclick=function(){
+        let setToday = new Date(year, month, i-paddings);
+        localStorage.setItem('newToday', setToday);
         location.href="../week/weekly.html";
       }
       if (i - paddings === today && currentMonth === 0) {

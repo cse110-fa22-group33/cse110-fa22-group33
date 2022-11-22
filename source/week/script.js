@@ -66,9 +66,12 @@ function render() {
 function getHeaderAndTasksFromStorage() {
     
     // set today's date
-    const date = new Date();
+    let date = new Date();
     // get today's date, grab from monthly
     // if today exists in local storage, reset today 
+    if (localStorage.getItem('newToday') !== null) {
+        date = new Date(localStorage.getItem('newToday'));
+    }
     let today = date.getDate();
     // get day of week
     let day = date.getDay();
