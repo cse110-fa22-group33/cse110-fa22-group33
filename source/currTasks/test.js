@@ -14,7 +14,7 @@ let isOccupied = function(opid,time,duration) {
 }
 
 let sleeping = new Task('sleeping', Task.getUniqueUID(), 1, new Date());
-sleeping.data.ddl = new Date('November 20, 2022 21:00:00'); // November 20th, 9pm-11pm
+sleeping.data.ddl = new Date('November 21, 2022 11:00:00'); // November 21th, 11am-1pm
 sleeping.data.duration = 2;
 sleeping.setToPadding();
 sleeping.addToLocalStorage();
@@ -25,11 +25,11 @@ first.data.duration = 1;
 first.data.priority = 5;
 first.addToLocalStorage();
 
-let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
+/*let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
 sleeping2.data.ddl = new Date('November 21, 2022 00:00:00'); // November 21th, 12am-1am
 sleeping2.data.duration = 1;
 sleeping2.setToPadding();
-sleeping2.addToLocalStorage();
+sleeping2.addToLocalStorage();*/
 
 const second = new Task('second', Task.getUniqueUID(), 4, new Date());
 second.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
@@ -46,11 +46,10 @@ third.addToLocalStorage();
 Task.schedule();
 
 //Output should be
-// Sleeping 11/20 9-11pm
-// first 11/20 11pm-11/21 12am
-// sleeping2 11/21 12am-1am
-// second 11/21 1am-2am
-// third 11/21 2am-3am        --> For some reason is setting start time to 1am again
+// Sleeping 11/21 11am-1pm
+// first 11/21 1pm-2pm
+// second 11/21 2pm-3pm
+// third 11/21 3pm-4pm        --> For some reason is setting start time to 1am again
 
 
 
