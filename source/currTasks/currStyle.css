@@ -23,7 +23,7 @@ body {
 	background-color: rgba(228, 117, 13, 0.788);;
 	width: 220px;
 	height: 40px;
-	padding-top: 5px;
+	padding-top: 6px;
 	text-align: center;
 	border-radius: 18px;
 	color: white;
@@ -37,12 +37,14 @@ body {
 h3 {
     color: var(--dark);
     font-size: 1rem;
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	padding: 4px;
 }
 
 h4 {
 	/* color: var(--grey); */
 	color:rgba(20, 9, 119, 0.788);
+	padding:8px;
 }
 #taskPriority, #duration, #difficulty{
 	font-size: 12px;

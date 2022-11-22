@@ -1,0 +1,84 @@
+/* // this is the thig that gets rid of the space ont he top  */
+*{
+    padding:0;
+    margin:0;
+}
+.navbar{
+    background-color: rgba(211, 211, 211, 0.466);
+    /* background-color: #92a1d169; */
+    color:white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+}
+.navbar a{
+    color:rgba(94, 93, 93, 0.589);
+    text-decoration: none;
+    padding: 45px;
+    font-weight: bold;  
+}
+/* .navbar a:hover{
+    color: rgb(20, 20, 131);
+    border-radius: 20px;
+} */
+.first:hover{
+    color:rgba(12, 131, 125, 0.788);
+}
+.second:hover{
+    color:rgba(153, 19, 146, 0.788);
+}
+.third:hover{
+    color:rgba(167, 164, 7, 0.788) ;
+}
+.forth:hover{
+    color: rgba(228, 117, 13, 0.788);
+}
+.nav-list{
+    list-style-type: none;
+}
+.nav-list .list-item{
+    display:inline-block ;
+    padding: 20px 10px;
+}
+.list-item:hover{
+    background-color: rgba(107, 109, 110, 0.116);
+    border-radius: 20px;
+}
+
+img {  
+    width: 70px;  
+    height: 55px;  
+}
+.menu{
+    display:none;
+}
+.menu-line{
+    width: 20px;
+    height: 3px;
+    background-color: black;
+    margin-bottom: 3px;
+    border-radius: 10px;
+}
+@media all and (max-width: 900px){
+    /* .menu{
+        display:block;
+        position:absolute;
+        right: 15px;
+        top: 15px;
+    } */
+    .navbar{
+        flex-direction: column;
+    }
+    .navbar a{
+        padding:8px;
+    }
+    /* .navbar a:hover{
+        background-color: rgba(50, 54, 50, 0.192);
+        color: rgb(20, 20, 131);
+        border-radius: 20px;
+    } */
+
+
+}
