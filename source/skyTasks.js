@@ -89,6 +89,16 @@
     return getMaxOfArray(uid)+1;
   }
 
+  // Generate a unique Task UID
+  static getUniqueTaskUID() {
+    let uid = Task.getAllTaskUIDs();
+    if (uid==null || uid.length===0) {return 0};
+    function getMaxOfArray(numArray) {
+      return Math.max.apply(null, numArray);
+    }
+    return getMaxOfArray(uid)+1;
+  }
+
   // return 2d array of tasks, where a single array of tasks represent a large task
   static getAllTasks() {
     let all_tasks = [];
@@ -143,6 +153,25 @@
   static getAllTasksFlat() {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('all_tasks'))
+      let tasks=[];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    }catch (e){
+      return [];
+    }
+  }
+
+  /**
+   * getAllPaddings Method
+   * 
+   * Get all paddings in local storage
+   * @returns array of all tasks
+   */
+  static getAllPaddings() {
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('padding_tasks'))
       let tasks=[];
       for (let uid of tasks_uid) {
         tasks.push(Task.getTaskFromUID(uid));
@@ -538,12 +567,22 @@
     localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
 
     let last_ddl = JSON.parse(localStorage.getItem('last_ddl'));
-    last_ddl = last_ddl = last_ddl || new Date(-8640000000000000);;
+    last_ddl = last_ddl = last_ddl || new Date(-8640000000000000);
     last_ddl = new Date(last_ddl);
     if (this.data.ddl>last_ddl) {
       localStorage.setItem('last_ddl', JSON.stringify(this.data.ddl));
     };
 
+    let padding_uid = JSON.parse(localStorage.getItem('padding_tasks'));
+    padding_uid = padding_uid = padding_uid || [];
+    if (this.data.padding) {
+      dup = false;
+      for (let uid of padding_uid) {
+        if (uid === this.data.uid) {dup = true};
+      };
+      if (!dup) {padding_uid.push(this.data.uid)};
+      localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
+    };
   }
 }
 

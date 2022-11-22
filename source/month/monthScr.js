@@ -1,56 +1,20 @@
 import { Task } from './../skyTasks.js';
 
 
-/*
-let mytask = new Task('task name', 1000, 2000, new Date(),['important']);
+
+let mytask = new Task('task name', 1000, 2000, new Date('11/27/2022'),['important']);
 mytask.data.ddl = new Date('11/27/2022');
 mytask.data.priority = 3;
+mytask.setToPadding();
 mytask.addToLocalStorage();
 
+let mytask1 = new Task('task name', 1002, 2000, new Date('11/23/2022'),['important']);
+mytask1.data.ddl = new Date('11/27/2022');
+mytask1.data.priority = 3;
+mytask1.setToPadding();
+mytask1.addToLocalStorage();
 
-let rest = new Task('rest', 123, 2000, new Date());
-rest.data.ddl = new Date(2022,11,18,11);
-rest.data.duration = 200;
-rest.setToPadding();
-rest.addToLocalStorage();
-
-
-let new_task = new Task('task name', 999, 2000, new Date(),['eating','studying','working']);
-new_task.data.ddl=new Date('11/26/2022');
-new_task.data.priority = 1;
-new_task.addToLocalStorage();
-
-let new_task2 = new Task('busy time', 999, 2000, new Date(),['eating','studying','working']);
-new_task2.data.ddl=new Date('11/25/2022');
-new_task2.data.padding = true;
-new_task2.addToLocalStorage();
-
-new Task('task name', 123999, 2000, new Date(),['important']).addToLocalStorage();
-new Task('task name', 22, 2000, new Date('11/17/2022')).addToLocalStorage();
-new Task('different task name', 1111, 3000, new Date('11/16/2022')).addToLocalStorage();
-new Task('task name', 12443, 3000, new Date('11/26/2022')).addToLocalStorage();
-new Task('task name', 11, 2000, new Date()).addToLocalStorage();
-new Task('task name', 1, 2000, new Date()).addToLocalStorage();
-
-*/
-/*
-let rest = new Task('rest', 123, 2000, new Date());
-rest.data.ddl = new Date(2022,11,17,11);
-rest.data.duration = 200;
-rest.setToPadding();
-rest.addToLocalStorage();
-
-
-let new_task = new Task('task name', 999, 2000, new Date(),['eating','studying','working']);
-new_task.data.ddl=new Date(2022,11,22,11);
-new_task.data.priority = 1;
-new_task.addToLocalStorage();
-
-
-Task.schedule();
-
-*/
-
+console.log(Task.getAllPaddings());
 
 
 
