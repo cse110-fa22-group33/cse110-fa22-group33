@@ -381,6 +381,15 @@
     return (a.data.start_date > b.data.start_date);
   }
 
+  static compareTimeInterval(a,b){
+    if (a[0] == b[0]){
+      return (a[1] > b[1]);
+    }
+    else{
+      return (a[0] > b[0]);
+    }
+  }
+
   /**
    * firstAvailable Method
    * 
@@ -437,29 +446,33 @@
     // Initialize Variables
     // Create deep copy to not impact occupied array
     let occupied = structuredClone(occupied_in);    
-    let sorted = [];
-    let delIndex = 0;
-    let earliest = occupied[delIndex];
-    let storage = occupied.length;
-    // Outer loop to ensure all elements are visited
-    for(let i = 0; i < storage; i++){
-      earliest = occupied[0];
-      // Inner loop to iterate through updated occupied list
-      for(let j = 0; j < occupied.length; j++){
-        // Find earliest date object --> Earliest interval has to have 
-        // negative difference from all other intervals (hence < 0)
-        if (occupied[j][0] - earliest[0] < 0){
-          earliest = occupied[j];
-          // Store index of earliest occupied interval
-          delIndex = j;   
-        }
-      }
-      // Push earliest object to new array
-      sorted.push(earliest);
-      // Remove earliest object from occupied
-      occupied.splice(delIndex, 1);
-    }
-    return sorted;
+    // let sorted = [];
+    // let delIndex = 0;
+    // let earliest = occupied[delIndex];
+    // let storage = occupied.length;
+    // // Outer loop to ensure all elements are visited
+    // for(let i = 0; i < storage; i++){
+    //   earliest = occupied[0];
+    //   // Inner loop to iterate through updated occupied list
+    //   for(let j = 0; j < occupied.length; j++){
+    //     // Find earliest date object --> Earliest interval has to have 
+    //     // negative difference from all other intervals (hence < 0)
+    //     if (occupied[j][0] - earliest[0] < 0){
+    //       earliest = occupied[j];
+    //       // Store index of earliest occupied interval
+    //       delIndex = j;   
+    //     }
+    //   }
+    //   // Push earliest object to new array
+    //   sorted.push(earliest);
+    //   // Remove earliest object from occupied
+    //   occupied.splice(delIndex, 1);
+    // }
+
+    occupied.sort(Task.compareTimeInterval);
+    
+    console.log(occupied);
+    return occupied;
   }
 
   // reschedule all tasks based on all tasks in the local storage
