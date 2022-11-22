@@ -14,13 +14,56 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
+
+    render();
     
     // Get tasks from local storage and populate weekly calendar
     getHeaderAndTasksFromStorage();
-    
-    // Add event listeners to form elements
-    // dean already completed
-    // initFormHandler();
+}
+
+
+function render() {
+    /* array that represents the day of the weeks in index number 
+   0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
+   const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
+   for (let i = 0; i < 24; i++) {
+       if(i === 0){ // 12 am is 0 in the 24 hours scale
+           let str = `<div id="`+(i)+ `" class="grid-container">
+           <div class="grid-item pos">`+ 12 +`am</div>` 
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j] + i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+       else if (i === 12){ //this one gets 12pm  
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ i +`pm</div>`
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+       else if (i >= 12) { //this one makes 1pm to 11pm
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ (i - 12) +`pm</div>`
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       } 
+       else {
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ i +`am</div>` 
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+   }
 }
 
 /**
@@ -302,49 +345,4 @@ function getHeaderAndTasksFromStorage() {
 
     return tasks;
 
-}
-
-/**
- * Takes in a task and opens the edit/add/create window for that task. If task
- * is null, window is opened without any data passed in.
- * @param Object A current task object
- */
-function openEditTask() {
-    window.location.href = "editTask.html"
-}
-
-/**
- * Returns to monthly calendar that matches current weekly calendar.
- */
-function openMonthlyCalendar() {
-    window.location.href = "monthlyCalendar.html"
-}
-
-/**
- * Returns to home page which displays current tasks.
- */
- function openHomePage() {
-    window.location.href = "currentTasks.html"
-}
-
-/**
- * Adds the necessary event handlers to the back <button> and current tasks.
- */
-function initFormHandler() {
-    let editTask = document.getElementById('currentTaskPage');
-    let monthlyCalendar = document.getElementById('monthlyCalendar');
-    let homePage = document.getElementById('currentTasks');
-
-    editTask.addEventListener('click', () => {
-        openEditTask();
-    })
-
-
-    monthlyCalendar.addEventListener('click', () => {
-        openMonthlyCalendar();
-    })
-
-    homePage.addEventListener('click', () => {
-        openHomePage();
-    })
 }

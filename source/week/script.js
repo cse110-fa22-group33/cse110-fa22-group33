@@ -1,15 +1,6 @@
 // weekly-calendar.js
 import { Task } from './../skyTasks.js';
 
-/*
-let mytask = new Task('task name', 1000, 2000, new Date());
-mytask.addToLocalStorage();
-new Task('task name', 999, 2000, new Date('11/14/2022')).addToLocalStorage();
-new Task('task name', 123999, 2000, new Date('11/13/2022')).addToLocalStorage();
-new Task('task name', 22, 2000, new Date()).addToLocalStorage();
-new Task('task name', 1111, 3000, new Date('11/17/2022')).addToLocalStorage();
-new Task('task name', 123, 3000, new Date('11/19/2022')).addToLocalStorage();*/
-
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
 
@@ -18,10 +9,7 @@ function init() {
     
     // Get tasks from local storage and populate weekly calendar
     getHeaderAndTasksFromStorage();
-    
-    // Add event listeners to form elements
-    // dean already completed
-    // initFormHandler();
+
 }
 
 /**
@@ -35,7 +23,8 @@ function getHeaderAndTasksFromStorage() {
     
     // set today's date
     const date = new Date();
-    // get today's date
+    // get today's date, grab from monthly
+    // if today exists in local storage, reset today 
     let today = date.getDate();
     // get day of week
     let day = date.getDay();
@@ -72,16 +61,34 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
@@ -107,8 +114,13 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
@@ -117,10 +129,21 @@ function getHeaderAndTasksFromStorage() {
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
             startTasks.setDate(startTasks.getDate() + 1);
+            
         }
 
         return tasks;
@@ -142,16 +165,34 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
@@ -177,16 +218,34 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
@@ -212,16 +271,34 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
@@ -247,16 +324,34 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
 
@@ -282,19 +377,36 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = startTasks.getDay();
-                    let currTime = startTasks.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
+
+                    if(currTime == 0) {
+                        currTime = 24;
+                    }
+
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
+                    console.log("currday:" + currDay);
+                    console.log("currtime:" + currTime);
+                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
                     currCell.style.backgroundColor="pink";
+
+                    let curDuration = task.data.duration;
+                    if (curDuration > 1) {
+                        for (let i = 0; i < curDuration - 1; i++) {
+                            currDayTime++;
+                            currCell = document.getElementById(currDayTime);
+                            currCell.innerHTML = task.data.task_name;
+                            currCell.style.backgroundColor="pink";
+                        }
+                    }  
                 }
             }
-
             startTasks.setDate(startTasks.getDate() + 1);
         }
 
@@ -303,49 +415,4 @@ function getHeaderAndTasksFromStorage() {
 
     return tasks;
 
-}
-
-/**
- * Takes in a task and opens the edit/add/create window for that task. If task
- * is null, window is opened without any data passed in.
- * @param Object A current task object
- */
-function openEditTask() {
-    window.location.href = "editTask.html"
-}
-
-/**
- * Returns to monthly calendar that matches current weekly calendar.
- */
-function openMonthlyCalendar() {
-    window.location.href = "monthlyCalendar.html"
-}
-
-/**
- * Returns to home page which displays current tasks.
- */
- function openHomePage() {
-    window.location.href = "currentTasks.html"
-}
-
-/**
- * Adds the necessary event handlers to the back <button> and current tasks.
- */
-function initFormHandler() {
-    let editTask = document.getElementById('currentTaskPage');
-    let monthlyCalendar = document.getElementById('monthlyCalendar');
-    let homePage = document.getElementById('currentTasks');
-
-    editTask.addEventListener('click', () => {
-        openEditTask();
-    })
-
-
-    monthlyCalendar.addEventListener('click', () => {
-        openMonthlyCalendar();
-    })
-
-    homePage.addEventListener('click', () => {
-        openHomePage();
-    })
 }
