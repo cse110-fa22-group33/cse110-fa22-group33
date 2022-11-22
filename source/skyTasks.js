@@ -403,9 +403,7 @@
     let isOccupied = function(opid,time,duration) {
       for (let time_block of opid) {
         let storage = new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]);
-        let storage2 = new Date(time).setHours(time.getHours()+duration);
-        let special = time_block[0].getHours() + time_block[1];
-        
+        let storage2 = new Date(time).setHours(time.getHours()+duration);        
         if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)){
           return true;
         }
@@ -487,7 +485,6 @@
         occupied.push([new Date(task.data.ddl), task.data.duration]);
       }
     }
-
     // processing tasks that needs scheduling
     let task_need_schedule = Task.getTasksAfterDate(new Date());
     task_need_schedule.sort(Task.comparePriority).reverse();
@@ -496,13 +493,14 @@
         task.data.start_date = task.data.ddl;
         Task.removeFromLocalStorage(task.data.uid);
         task.addToLocalStorage();
-      };
+      } else {
       //get the first available date that can fit the task
       task.data.start_date=Task.firstAvailable(occupied,task);
       //check the deadline
       occupied.push([new Date(task.data.start_date), task.data.duration]);
       Task.removeFromLocalStorage(task.data.uid);
       task.addToLocalStorage();
+      }
     }
   }
 

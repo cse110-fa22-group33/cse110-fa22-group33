@@ -7,8 +7,9 @@ mytask.data.priority = 3;
 mytask.addToLocalStorage();
 
 let resursivePadding = new Task('resursivePadding', 1001, 2000, new Date('11/27/2022'),['important']);
-resursivePadding.data.ddl = new Date('December 17, 1995 03:24:00');
+resursivePadding.data.ddl = new Date('December 17, 1995 00:00:00');
 resursivePadding.data.priority = 3;
+resursivePadding.data.duration = 23;
 resursivePadding.setToRecursivePadding();
 resursivePadding.addToLocalStorage();
 
