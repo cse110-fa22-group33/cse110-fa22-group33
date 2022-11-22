@@ -23,7 +23,7 @@ body {
   #monthStyle {
     padding: 10px;
     color: #d36c6c;
-    font-size: 26px;
+    font-size: 35px;
     display: flex;
     justify-content: space-between;
     font-family: 'Quicksand', sans-serif;
@@ -77,7 +77,7 @@ body {
     background-color:rgba(228, 117, 13, 0.788);
     text-align: center;
     color: white;
-    background: linear-gradient(90deg, #FFC0CB 50%, #00FFFF 50%);
+    /* background: linear-gradient(90deg, #FFC0CB 50%, #00FFFF 50%); */
   }
   .mon{
     background-color:rgba(125, 190, 21, 0.788);

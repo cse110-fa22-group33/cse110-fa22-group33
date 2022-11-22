@@ -1,6 +1,7 @@
 /* CSS FOR INDEXT.HTML */
 body{
     font-family: 'Quicksand', sans-serif;
+    background-color: #FFFCFF;
 }
 .grid-container {
     display: grid;
