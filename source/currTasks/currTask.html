@@ -13,7 +13,8 @@
     <script src="Task.js" type="module"></script>
 
     <!-- Importing CSS -->
-	<link rel="stylesheet" href="currStyle.css" />
+    <link rel="stylesheet" href="currStyle.css" />
+    <link rel="stylesheet" href="../week/h4.css" />
 
     <!-- Main Stylesheets & Scripts -->
     <script src="currJS.js" type="module"></script>
@@ -22,6 +23,27 @@
     <script src="test.js" type="module"></script>
 </head>
 <body>
+    <header>
+        <nav class="navbar"> 
+    
+            <img src="../week/monk.png" alt="CodeMonkeyz">
+                <ul class="nav-list">
+                    <li class="list-item">
+                        <a class="first" href="currTask.html">ADD TASKS</a>
+                    </li>
+                    <li class="list-item">
+                        <a class="second" href="currTask.html">MY TASKS</a>
+                    </li>
+                    <li class="list-item">
+                        <a class="third" href="../month/month.html">MONTHLY</a>
+                    </li>
+                    <li class="list-item">
+                        <a class="forth" href="../week/weekly.html">WEEKLY</a>
+                    </li>
+                </ul>
+        </nav>
+    </header>
+
     <main class="todo">
         <!-- User Name -->
         <div class="hello">
@@ -60,17 +82,29 @@
                         </label>
                     </div>
 
+                    <!--
                     <h4>Priority: <input type="number" name="priority" id="taskPriority" min="1" max="5" step = "1" 
                         placeholder = "e.g. 3" required>
                     </h4>
+                    -->
 
+                    <h4>Priority:
+                        <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                    </h4>
+                                        
                     <h4>Duration: <input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
                         placeholder = "e.g. 1" required>
                          hours
                     </h4>
                     
+                    <!--
                     <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
                         placeholder = "e.g. 3" required>
+                    </h4>
+                    -->
+
+                    <h4>Difficulty: 
+                        <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
                     </h4>
 
                     <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
