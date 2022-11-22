@@ -96,7 +96,7 @@ function render(){
 
     if (i > paddings) {
       oneday.onclick=function(){
-        location.href="../week/index.html";
+        location.href="../week/weekly.html";
       }
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';

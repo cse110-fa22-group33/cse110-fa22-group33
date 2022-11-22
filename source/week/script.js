@@ -11,10 +11,57 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
+
+    render();
     
     // Get tasks from local storage and populate weekly calendar
     getHeaderAndTasksFromStorage();
 
+
+}
+
+function render() {
+    /* array that represents the day of the weeks in index number 
+   0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
+   const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
+   for (let i = 0; i < 24; i++) {
+       if(i === 0){ // 12 am is 0 in the 24 hours scale
+           let str = `<div id="`+(i)+ `" class="grid-container">
+           <div class="grid-item pos">`+ 12 +`am</div>` 
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j] + i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+       else if (i === 12){ //this one gets 12pm  
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ i +`pm</div>`
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+       else if (i >= 12) { //this one makes 1pm to 11pm
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ (i - 12) +`pm</div>`
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       } 
+       else {
+           let str = `<div class="grid-container">
+           <div class="grid-item pos">`+ i +`am</div>` 
+           for (let j=0; j < dayWeeks.length; j++){
+               str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
+           }
+           str += `</div>`; 
+           document.getElementById("repetition").innerHTML += str;
+       }
+   }
 }
 
 /**
@@ -69,17 +116,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -88,7 +128,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -122,15 +168,7 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
-                    console.log("currDay" + currDay);
-                    console.log("currTime" + currTime);
-                    console.log(currDayTime);
-
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
 
@@ -141,7 +179,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -176,17 +220,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -195,7 +232,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -229,17 +272,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -248,7 +284,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -282,17 +324,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -301,7 +336,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -335,17 +376,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -354,7 +388,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
@@ -388,17 +428,10 @@ function getHeaderAndTasksFromStorage() {
                     let currDay = task.data.start_date.getDay();
                     let currTime = task.data.start_date.getHours();
 
-                    if(currTime == 0) {
-                        currTime = 24;
-                    }
-
                     let currDayTime = "" + currDay  + currTime;
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
-                    console.log("currday:" + currDay);
-                    console.log("currtime:" + currTime);
-                    console.log(currDayTime);
 
                     // set innerHTML to reflect correct task data
                     currCell.innerHTML = task.data.task_name;
@@ -407,7 +440,13 @@ function getHeaderAndTasksFromStorage() {
                     let curDuration = task.data.duration;
                     if (curDuration > 1) {
                         for (let i = 0; i < curDuration - 1; i++) {
+                            currTime++;
                             currDayTime++;
+                            if (currTime == 24) {
+                                currTime = 0;
+                                currDay++;
+                                currDayTime = "" + currDay + currTime;
+                            }
                             currCell = document.getElementById(currDayTime);
                             currCell.innerHTML = task.data.task_name;
                             currCell.style.backgroundColor="pink";
