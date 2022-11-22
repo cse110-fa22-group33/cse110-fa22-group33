@@ -1,6 +1,11 @@
 // weekly-calendar.js
 import { Task } from './../skyTasks.js';
 
+let new_task = new Task('task name', 999, 2000, new Date(), ['eating','studying','working']);
+new_task.data.ddl = new Date(2022,11,22,11);
+new_task.data.priority = 1;
+new_task.addToLocalStorage;
+
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
 
@@ -122,6 +127,9 @@ function getHeaderAndTasksFromStorage() {
                     }
 
                     let currDayTime = "" + currDay  + currTime;
+                    console.log("currDay" + currDay);
+                    console.log("currTime" + currTime);
+                    console.log(currDayTime);
 
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
