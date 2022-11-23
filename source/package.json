@@ -23,7 +23,8 @@
     "resetMocks": false,
     "setupFiles": [
       "jest-localstorage-mock"
-    ]
+    ],
+    "verbose": true
   },
   "babel": {
     "presets": ["@babel/preset-env"]
