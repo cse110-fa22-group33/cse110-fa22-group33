@@ -95,22 +95,6 @@
                         placeholder = "e.g. 3" required>
                     </h4>
                     -->
-
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Priority:</h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
-                            </td>
-                        </tr>
-                    </table>
                     
                     <table>
                         <tr>
@@ -137,38 +121,55 @@
                         placeholder = "e.g. 3" required>
                     </h4>
                     -->
-
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Difficulty: </h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
-                            </td>
-                            
-                        </tr>
-                    </table>
-
-
-                    <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
                     
 
                     <h4>Description:</h4>
                     <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                     <br>
 
+                    <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
+
                     <!-- Dropdown Optional Settings -->
                     <button type="button" class="advance">Optional Settings</button>
                     <div class="collapsible">
+                        <!--
                         <p>Specify Deadline Time: </p>
                         <input type="time" name="taskddltime" id="task-ddl-time">
                         <br>
+                        -->
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Priority:</h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Difficulty: </h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
+                                </td>
+                                
+                            </tr>
+                        </table>
+
 
                         <p>Schedule Particular Slot in Calendar:</p>
                         <input type="datetime-local" name="datetime" id="datetime">
@@ -179,8 +180,10 @@
                         <input type="number" name="maxtime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
                         <br>
 
+                        <!--
                         <p>Extra Notes: </p>
                         <textarea name="notes" id="extranotes" cols="30" rows="10"></textarea>
+                        -->
                     </div>
                 </div>
 
