@@ -18,6 +18,13 @@
  *      let retrived_task = Task.getTaskFromUID(1000); retrive a task from local strage
  */
  export class Task {
+  /**
+   * Task Constructor Method
+   * 
+   * Creates task object to be used across Current Tasks, Weekly, and Monthly Schedule display pages
+   * Refer below for detailed description on parameter information
+   * @returns task object
+   */
   constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = new Date(),
     ddl = new Date(), decription = null, mintime = 1, maxtime = 3, notes = null,
     recurrent = false, padding = false, difficulty = 3, priority=3) {
@@ -45,31 +52,59 @@
   }
 
   // return task from a json data file
+  /**
+   * fromJson Method
+   * 
+   * Get current task from the json data file
+   * @returns task object
+   */
   static fromJson(json) {
+    // create task object
     let task = new Task();
+    // parse json
     task.data = JSON.parse(json);
+    // store data
     task.data.start_date = new Date(task.data.start_date);
     task.data.softddl = new Date(task.data.softddl);
     task.data.ddl = new Date(task.data.ddl);
-    return task;
+    return task;  // return
   }
 
-  // return json data file from current task
+  /**
+   * toJson Method
+   * 
+   * Get the json data file from current task
+   * @returns json data file
+   */
   toJson() {
     return JSON.stringify(this.data);
   }
 
-  // Toggle 'padding' of this task object
+  /**
+   * setToPadding Method
+   * 
+   * Toggle the padding of this task object
+   * @returns this task object
+   */
   setToPadding() {
+    // toggle on
     this.data.padding = true;
-    this.data.priority = 6;
+    // increment priority to max
+    this.data.priority = 6;   
     return this;
   }
 
-  // Toggle recursive padding of this task object
+  /**
+   * setToRecursivePadding Method
+   * 
+   * Toggle the recursive padding of this task object
+   * @returns this task object
+   */
   setToRecursivePadding() {
+    // toggle recurrent and padding
     this.data.recurrent = true;
     this.data.padding = true;
+    // increment priority to max
     this.data.priority = 6;
     return this;
   }
@@ -87,45 +122,67 @@
     // to be filled
   }
 
-  // Generate a unique UID
+  /**
+   * getUniqueUID Method
+   * 
+   * Generates a UID which is unique to all UIDs
+   * @returns Integer identifier referring to UID
+   */
   static getUniqueUID() {
+    // store all uids
     let uid = Task.getAllUIDs();
     if (uid==null || uid.length===0) {return 0};
+    // find largest uid currently stored
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
     }
+    // increment for new unique uid
     return getMaxOfArray(uid)+1;
   }
 
-  // Generate a unique Task UID
+  /**
+   * getUniqueTaskUID Method
+   * 
+   * Generates a Task UID which is unique to all Task UIDs
+   * @returns Integer identifier referring to Task UID
+   */
   static getUniqueTaskUID() {
+    // store all task uids
     let uid = Task.getAllTaskUIDs();
     if (uid==null || uid.length===0) {return 0};
+    // find largest task uid currently stored
     function getMaxOfArray(numArray) {
       return Math.max.apply(null, numArray);
     }
+    // increment for new unique task uid
     return getMaxOfArray(uid)+1;
   }
 
-  // return 2d array of tasks, where a single array of tasks represent a large task
+  /**
+   * getAllTasks Method
+   * 
+   * Get all tasks with single array of tasks representing larger task
+   * @returns 2d array of all tasks
+   */
   static getAllTasks() {
     let all_tasks = [];
+    // larger tasks are outer array
     let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
     if (large_tasks===undefined || large_tasks===null) {return all_tasks};
     for (let [key, value] of Object.entries(large_tasks)){
       try {
         let tasks=[];
           for (let uid of value) {
-            tasks.push(Task.getTaskFromUID(uid));
+            tasks.push(Task.getTaskFromUID(uid));   // store tasks by using uid
           };
           all_tasks.push(tasks);
         }
         catch (e){
-          console.log(e);
+          console.log(e);       // error log
           all_tasks.push([]);  
         }
     }
-    return all_tasks;
+    return all_tasks;   // returning all task objects as 2d array
   }
 
   /**
@@ -135,6 +192,7 @@
    * @returns array of all task_uid's
    */
   static getAllTaskUIDs() {
+    // parse for large task uid
     let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
     if (large_tasks===undefined || large_tasks===null) {return []};
     return Object.keys(large_tasks);
@@ -147,6 +205,7 @@
    * @returns array of all UIDs
    */
   static getAllUIDs() {
+    // parse for all task uid
     let large_tasks = JSON.parse(localStorage.getItem('all_tasks'));
     if (large_tasks===undefined || large_tasks===null) {return []};
     return large_tasks;
@@ -381,6 +440,14 @@
     return (a.data.start_date > b.data.start_date);
   }
 
+  /**
+   * compareTimeInterval Method
+   * 
+   * Compares two date objects
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns true if Date object a comes before b
+   */
   static compareTimeInterval(a,b){
     if (a[0] == b[0]){
       return (a[1] > b[1]);
@@ -427,6 +494,16 @@
     return result;
   }
   
+  /**
+   * dateRangeOverlaps Method
+   * 
+   * Compares start and end values of two date objects to see if they conflict
+   * @param a_start - Date object containing 'a' start time
+   * @param a_end - Date object containing 'a' end time
+   * @param b_start - Date object containing 'b' start time
+   * @param b_end - Date object containing 'b' end time
+   * @returns True if the two dates overlap/conflict
+   */
   static dateRangeOverlaps (a_start, a_end, b_start, b_end) {
     if (a_start <= b_start && b_start < a_end) return true; // b starts in a
     if (a_start < b_end   && b_end   <= a_end) return true; // b ends in a
@@ -443,35 +520,11 @@
    * @returns array with sorted occupied intervals
    */
   static sortOccupied(occupied_in){
-    // Initialize Variables
     // Create deep copy to not impact occupied array
     let occupied = structuredClone(occupied_in);    
-    // let sorted = [];
-    // let delIndex = 0;
-    // let earliest = occupied[delIndex];
-    // let storage = occupied.length;
-    // // Outer loop to ensure all elements are visited
-    // for(let i = 0; i < storage; i++){
-    //   earliest = occupied[0];
-    //   // Inner loop to iterate through updated occupied list
-    //   for(let j = 0; j < occupied.length; j++){
-    //     // Find earliest date object --> Earliest interval has to have 
-    //     // negative difference from all other intervals (hence < 0)
-    //     if (occupied[j][0] - earliest[0] < 0){
-    //       earliest = occupied[j];
-    //       // Store index of earliest occupied interval
-    //       delIndex = j;   
-    //     }
-    //   }
-    //   // Push earliest object to new array
-    //   sorted.push(earliest);
-    //   // Remove earliest object from occupied
-    //   occupied.splice(delIndex, 1);
-    // }
-
+    // Sort list based on starting
     occupied.sort(Task.compareTimeInterval);
-    
-    console.log(occupied);
+    console.log(occupied);      // LOG
     return occupied;
   }
 
