@@ -19,10 +19,14 @@
     "make": "electron-forge make"
   },
   "jest": {
+    "testPathIgnorePatterns": ["/out/"],
     "resetMocks": false,
     "setupFiles": [
       "jest-localstorage-mock"
     ]
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
   },
   "main": "main.js",
   "dependencies": {
