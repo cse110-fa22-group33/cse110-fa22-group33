@@ -572,7 +572,6 @@
 
   // add current task to local strage
   addToLocalStorage() {
-    this.data.start_date = this.data.ddl;
     localStorage.setItem(this.data.uid, this.toJson());
 
     let date = this.data.start_date;
