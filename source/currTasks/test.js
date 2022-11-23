@@ -1,56 +1,52 @@
 import { Task } from './../skyTasks.js';
 
-let isOccupied = function(opid,time,duration) {
-    for (let time_block of opid) {
-      if (Task.dateRangeOverlaps(time_block[0],
-        new Date(time_block[0]).setHours(time_block[0].getHours()+time_block[1]),
-        time,
-        new Date(time).setHours(time.getHours()+duration)
-        )){
-        return true;
-      }
-    }
-    return false;
-}
+// Shasta's Test Case
+Task.removeAllTasks();
 
 let sleeping = new Task('sleeping', Task.getUniqueUID(), 1, new Date());
-sleeping.data.ddl = new Date('November 21, 2022 11:00:00'); // November 21th, 11am-1pm
+sleeping.data.ddl = new Date('November 22, 2022 16:00:00'); // November 22th, 4pm-6pm
 sleeping.data.duration = 2;
 sleeping.setToPadding();
 sleeping.addToLocalStorage();
 
 const first = new Task('first', Task.getUniqueUID(), 2, new Date());
-first.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
+first.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
 first.data.duration = 1;
 first.data.priority = 5;
 first.addToLocalStorage();
 
-/*let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
-sleeping2.data.ddl = new Date('November 21, 2022 00:00:00'); // November 21th, 12am-1am
+let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
+sleeping2.data.ddl = new Date('November 22, 2022 19:00:00'); // November 22th, 7pm-8pm
 sleeping2.data.duration = 1;
 sleeping2.setToPadding();
-sleeping2.addToLocalStorage();*/
+sleeping2.addToLocalStorage();
 
 const second = new Task('second', Task.getUniqueUID(), 4, new Date());
-second.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
+second.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
 second.data.duration = 1;
 second.data.priority = 4;
 second.addToLocalStorage();
 
 const third = new Task('third', Task.getUniqueUID(), 5, new Date());
-third.data.ddl = new Date('November 21, 2022 23:59:00');  // Deadline: November 21nd, 2pm 
+third.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
 third.data.duration = 1;
 third.data.priority = 3;
 third.addToLocalStorage();
 
 Task.schedule();
 
-//Output should be
-// Sleeping 11/21 11am-1pm
-// first 11/21 1pm-2pm
-// second 11/21 2pm-3pm
-// third 11/21 3pm-4pm        --> For some reason is setting start time to 1am again
+/*const fourth = new Task('fourth', Task.getUniqueUID(), 6, new Date());
+fourth.data.ddl = new Date('November 22, 2022 23:59:00');  // Deadline: November 22nd, 11:59pm 
+fourth.data.duration = 1;
+fourth.data.priority = 2;
+fourth.addToLocalStorage();*/
 
+// Output should be
+// sleeping 11/22, 4pm-6pm
+// first 11/22 6pm-7pm
+// sleeping2 11/22 7pm-8pm
+// second 11/22 8pm-9pm
+// third 11/22 9pm-10pm      --> gets scheduled with 'second' even though there is conflict
 
 
 //let occupied = [[sleeping.data.ddl, 2]];
