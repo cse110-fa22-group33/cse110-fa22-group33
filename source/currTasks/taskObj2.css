@@ -3,6 +3,10 @@
          padding-left: 1rem;
          position: relative;
     }
+
+.modal-container{
+  display: none;
+}
 .taskName {
          font-weight:bold;
   }
