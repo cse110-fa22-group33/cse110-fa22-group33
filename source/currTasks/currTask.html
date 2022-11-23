@@ -55,8 +55,7 @@
             <h2 class="title" >ADD NEW TASK</h2>
             <form id="new-task">
                 <div id="task-content">
-                    <h3>Input Task Details</h3>
-                    <h4>Name:
+                    <h4>Task Name:
                         <input type="text" name="task_name" id="content" 
                             placeholder="e.g. Get groceries" required/>
                     </h4>
@@ -66,7 +65,7 @@
                         <tr>
                             <td><h4>Category:</h4></td>
                             <td><div class="help-tip">
-                                <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+                                <p>Organize your tasks by selecting the best category.</p>
                             </div></td>
                         </tr>
                     </table>
@@ -103,30 +102,31 @@
                                 <h4>Priority:</h4>
                             </td>
                             <td>
-                                <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                                <div class="help-tip">
+                                    <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
+                                </div>
                             </td>
                             <td>
-                                <div class="help-tip">
-                                    <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
-                                </div>
+                                <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
                             </td>
                         </tr>
                     </table>
                     
-                        
-                    
                     <table>
                         <tr>
                             <td>
-                                <h4>Duration: <input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
-                                    placeholder = "e.g. 1" required>
-                                     hours
+                                <h4>Duration: 
+                                    
                                 </h4>
                             </td>
                             <td>
                                 <div class="help-tip">
-                                    <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+                                    <p>Estimate how long the task will take you to complete.</p>
                                 </div>
+                            </td>
+                            <td>
+                                <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
+                                    placeholder = "e.g. 1" required> hours</h4>
                             </td>
                         </tr>
                     </table>                    
@@ -141,15 +141,17 @@
                     <table>
                         <tr>
                             <td>
-                                <h4>Difficulty: 
-                                    <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
-                                </h4>
+                                <h4>Difficulty: </h4>
                             </td>
                             <td>
                                 <div class="help-tip">
-                                    <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+                                    <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
                                 </div>
                             </td>
+                            <td>
+                                <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
+                            </td>
+                            
                         </tr>
                     </table>
 

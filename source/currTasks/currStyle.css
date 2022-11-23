@@ -104,7 +104,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .task-list {
     float: right;
-    padding-right: 25rem;
+    padding-left: 2rem;
 	position: relative;
 }
 
@@ -215,10 +215,10 @@ This is the css of help tip (hover/click for more)
     text-align: center;
     background-color: #BCDBEA;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-    line-height: 26px;
+    width: 12px;
+    height: 12px;
+    font-size: 6px;
+    line-height: 13px;
     cursor: default;
 }
 
