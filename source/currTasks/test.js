@@ -1,5 +1,6 @@
 import { Task } from './../skyTasks.js';
 
+/*
 // Shasta's Test Case
 Task.removeAllTasks();
 
@@ -34,6 +35,8 @@ third.data.priority = 3;
 third.addToLocalStorage();
 
 Task.schedule();
+*/
+
 
 /*const fourth = new Task('fourth', Task.getUniqueUID(), 6, new Date());
 fourth.data.ddl = new Date('November 22, 2022 23:59:00');  // Deadline: November 22nd, 11:59pm 
