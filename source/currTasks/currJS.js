@@ -10,6 +10,235 @@ window.addEventListener('load',(event)=>{
   const taskInput = document.querySelector('#new-task');
   const username = localStorage.getItem('user-name') || '';
   const collapse = document.querySelector('.advance');
+
+  // Toggle with displaying form
+  const formbtn = document.querySelector('.toggle-form');
+  formbtn.addEventListener('click',function(){
+    this.classList.toggle("active");
+    let newform = document.querySelector('#new-task');
+    if (formbtn.innerText === "Add new task"){
+      formbtn.innerText = "schedule slot";
+      newform.innerHTML = `<form id="new-task">
+      <div id="task-content">
+          <h4>Task Name:
+              <input type="text" name="task_name" id="content" 
+                  placeholder="e.g. Get groceries" required/>
+          </h4>
+          
+          <!-- Category Bubbles -->
+          <table>
+              <tr>
+                  <td><h4>Category:</h4></td>
+                  <td><div class="help-tip">
+                      <p>Organize your tasks by selecting the best category.</p>
+                  </div></td>
+              </tr>
+          </table>
+          <div class="options">
+              <label>
+                  <input type="radio" name="category" id="category1" value="school" /> 
+                  <span class="bubble school"></span>
+                  <div>School</div>
+              </label>
+              <label>
+                  <input type="radio" name="category" id="category2" value="personal" />
+                  <span class="bubble personal"></span>
+                  <div>Personal</div>
+              </label>
+
+              <label>
+                  <input type="radio" name="category" id="category3" value="other" />
+                  <span class="bubble other"></span>
+                  <div>Other</div>
+              </label>
+              
+          </div>
+      
+          
+          <table>
+              <tr>
+                  <td>
+                      <h4>Duration: 
+                          
+                      </h4>
+                  </td>
+                  <td>
+                      <div class="help-tip">
+                          <p>Estimate how long the task will take you to complete.</p>
+                      </div>
+                  </td>
+                  <td>
+                      <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
+                          placeholder = "e.g. 1" required> hours</h4>
+                  </td>
+              </tr>
+          </table>                    
+          
+          
+          <!--
+          <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
+              placeholder = "e.g. 3" required>
+          </h4>
+          -->
+          
+
+          <h4>Description:</h4>
+          <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+          <br>
+
+
+
+          <p>Schedule Particular Slot in Calendar:</p>
+          <input type="datetime-local" name="datetime" id="datetime">
+          <br>
+
+          </div>
+      </div>
+
+      <input type="submit" class="submit" value="ADD TASK">
+  </form>`;
+    }
+    else{
+      formbtn.innerText = "Add new task";
+      newform.innerHTML = `<form id="new-task">
+      <div id="task-content">
+          <h4>Task Name:
+              <input type="text" name="task_name" id="content" 
+                  placeholder="e.g. Get groceries" required/>
+          </h4>
+          
+          <!-- Category Bubbles -->
+          <table>
+              <tr>
+                  <td><h4>Category:</h4></td>
+                  <td><div class="help-tip">
+                      <p>Organize your tasks by selecting the best category.</p>
+                  </div></td>
+              </tr>
+          </table>
+          <div class="options">
+              <label>
+                  <input type="radio" name="category" id="category1" value="school" /> 
+                  <span class="bubble school"></span>
+                  <div>School</div>
+              </label>
+              <label>
+                  <input type="radio" name="category" id="category2" value="personal" />
+                  <span class="bubble personal"></span>
+                  <div>Personal</div>
+              </label>
+
+              <label>
+                  <input type="radio" name="category" id="category3" value="other" />
+                  <span class="bubble other"></span>
+                  <div>Other</div>
+              </label>
+              
+          </div>
+          
+
+          <!--
+          <h4>Priority: <input type="number" name="priority" id="taskPriority" min="1" max="5" step = "1" 
+              placeholder = "e.g. 3" required>
+          </h4>
+          -->
+          
+          <table>
+              <tr>
+                  <td>
+                      <h4>Duration: 
+                          
+                      </h4>
+                  </td>
+                  <td>
+                      <div class="help-tip">
+                          <p>Estimate how long the task will take you to complete.</p>
+                      </div>
+                  </td>
+                  <td>
+                      <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
+                          placeholder = "e.g. 1" required> hours</h4>
+                  </td>
+              </tr>
+          </table>                    
+          
+          
+          <!--
+          <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
+              placeholder = "e.g. 3" required>
+          </h4>
+          -->
+          
+
+          <h4>Description:</h4>
+          <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+          <br>
+
+          <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
+
+          <!-- Dropdown Optional Settings -->
+          <button type="button" class="advance">Optional Settings</button>
+          <div class="collapsible">
+              <!--
+              <p>Specify Deadline Time: </p>
+              <input type="time" name="taskddltime" id="task-ddl-time">
+              <br>
+              -->
+              <table>
+                  <tr>
+                      <td>
+                          <h4>Priority:</h4>
+                      </td>
+                      <td>
+                          <div class="help-tip">
+                              <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
+                          </div>
+                      </td>
+                      <td>
+                          <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                      </td>
+                  </tr>
+              </table>
+
+              <table>
+                  <tr>
+                      <td>
+                          <h4>Difficulty: </h4>
+                      </td>
+                      <td>
+                          <div class="help-tip">
+                              <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
+                          </div>
+                      </td>
+                      <td>
+                          <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
+                      </td>
+                      
+                  </tr>
+              </table>
+
+
+              <p>Schedule Particular Slot in Calendar:</p>
+              <input type="datetime-local" name="datetime" id="datetime">
+              <br>
+
+              <p>Input min/max hours for each time block:</p>
+              <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
+              <input type="number" name="maxtime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
+              <br>
+
+              <!--
+              <p>Extra Notes: </p>
+              <textarea name="notes" id="extranotes" cols="30" rows="10"></textarea>
+              -->
+          </div>
+      </div>
+
+      <input type="submit" class="submit" value="ADD TASK">
+  </form>`;
+      
+    }
+  });
   // Collapsible
   collapse.addEventListener('click',function(){
       this.classList.toggle("active");
@@ -119,6 +348,8 @@ function generateUID(){
 */
 function initFormHandler() {
 let list = document.querySelector('#list');
+// get reference
+
 // Get a reference to the <form> element
 let form = document.querySelector('form');
 // Add an event listener for the 'submit' event, which fires when the
