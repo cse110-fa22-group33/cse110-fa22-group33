@@ -4,17 +4,17 @@ class Task extends HTMLElement{
         let shadowEle = this.attachShadow({mode:'open'});
         let articleEle = document.createElement('article');
         let styleEle = document.createElement('style');
-        // styleEle.textContent = `
-        //     * {
-        //         padding: 0.2rem;
-        //         padding-left: 1rem;
-        //         position: relative;
-        //     }
-        //     taskName {
-        //         font-weight:bold;
-        //     }`;
+        styleEle.textContent = `
+             * {
+                 padding: 0.2rem;
+                 padding-left: 1rem;
+                 position: relative;
+             }
+             taskName {
+                 font-weight:bold;
+             }`;
         
-        //shadowEle.appendChild(styleEle);
+        shadowEle.appendChild(styleEle);
 
         // css with popup
 
@@ -25,10 +25,10 @@ class Task extends HTMLElement{
 
         // css without popup, just block
 
-        const blockElem = document.createElement("link");
-        blockElem.setAttribute("rel", "stylesheet");
-        blockElem.setAttribute("href", "./taskObj2.css");
-        shadowEle.appendChild(blockElem);
+        //const blockElem = document.createElement("link");
+        //blockElem.setAttribute("rel", "stylesheet");
+        //blockElem.setAttribute("href", "./taskObj2.css");
+        //shadowEle.appendChild(blockElem);
 
         shadowEle.appendChild(articleEle);
     }
@@ -41,23 +41,24 @@ class Task extends HTMLElement{
         }
 
         let article = this.shadowRoot.querySelector('article');
-        // article.innerHTML = `
-        // <details>
-        // <summary>
-        //     <taskName>${data.task_name}</taskName> (${data.ddl})
-        // </summary>
-        // <p>Category: ${data.category}</p>
-        // <p>Priority: ${data.priority}</p>
-        // <p>Duration: ${data.duration} hours</p>
-        // <p>Difficulty: ${data.difficulty}/5</p>
-        // <p>Description: ${data.description}</p>
-        // <p>DDL Time: ${data.taskddltime}</p>
-        // <p>Specified DateTime: ${data.datetime}</p>
-        // <p>Min Work Time: ${data.mintime}</p>
-        // <p>Max Work Time: ${data.maxtime}</p>
-        // <p>Extra Notes: ${data.notes}</p>
-        // </details>
-        // `
+         article.innerHTML = `
+         <details>
+         <summary>
+             <taskName>${data.task_name}</taskName> (${data.ddl})
+         </summary>
+         <p>Category: ${data.category}</p>
+         <p>Priority: ${data.priority}</p>
+         <p>Duration: ${data.duration} hours</p>
+         <p>Difficulty: ${data.difficulty}/5</p>
+         <p>Description: ${data.description}</p>
+         <p>DDL Time: ${data.taskddltime}</p>
+         <p>Specified DateTime: ${data.datetime}</p>
+         <p>Min Work Time: ${data.mintime}</p>
+         <p>Max Work Time: ${data.maxtime}</p>
+         <p>Extra Notes: ${data.notes}</p>
+         </details>
+         `;
+        
         // article.innerHTML = 
         // `<div class="task-card">
         // <p class="card__exit"><i class="fas fa-times"></i></p>
@@ -67,6 +68,7 @@ class Task extends HTMLElement{
         // </p>
         // </div>`
 
+        /*
         article.innerHTML = 
 
         `
@@ -86,7 +88,7 @@ class Task extends HTMLElement{
             </div>
         </div>
         `;
-        // `<div class="box">
+        // `<div class="box">*/
         //     <a href="#m1-o" class="link-1" id="m1-c">
         //         <div class="task-card">
         //         <p class="card__exit"><i class="fas fa-times"></i></p>
