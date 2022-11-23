@@ -1,5 +1,5 @@
 import { Task } from './../skyTasks.js';
-
+/*
 Task.removeAllTasks();
 let mytask = new Task('task name', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
 mytask.data.ddl = new Date('11/27/2022');
@@ -19,7 +19,7 @@ mytask1.data.priority = 3;
 mytask1.setToPadding();
 mytask1.addToLocalStorage();
 
-Task.schedule();
+Task.schedule();*/
 //console.log(Task.getAllPaddings());
 
 
