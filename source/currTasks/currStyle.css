@@ -6,7 +6,7 @@
 	--light: rgb(219, 211, 211);
 	--grey: rgb(95, 95, 95);
 	--dark: #3a3a6f;
-	--danger: #c40502;
+	--danger: #e45957;
 	--school-glow: 0px 0px 4px rgba(78, 237, 20, 0.75);
 	--personal-glow: 0px 0px 4px rgba(8, 168, 248, 0.931);
 	--other-glow: 0px 0px 4px rgba(248, 8, 232, 0.931);
@@ -20,7 +20,7 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 .title{
-	background-color: rgba(228, 117, 13, 0.788);;
+	background-color: rgba(153, 193, 226, 0.788);;
 	width: 220px;
 	height: 40px;
 	padding-top: 6px;
@@ -104,8 +104,9 @@ input[type="radio"], input[type="checkbox"] {
 
 .task-list {
     float: right;
-    padding-left: 2rem;
-	position: relative;
+    padding-right: 20rem;
+	position: absolute;
+	right: 0rem;
 }
 
 .bubble {
