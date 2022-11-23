@@ -257,10 +257,13 @@ function getHeaderAndTasksFromStorage() {
         
         // loop over entire current week
         for (let i = 0; i < 7; i++) {
+            console.log(startTasks);
             // pull all tasks for current day
             tasks = Task.getTasksFromDate(startTasks);
+            console.log(tasks);
 
             if(tasks.length != 0) {
+                console.log("made it");
                 for (let task of tasks) {
                     // pull correct date and time from task element
                     let currDay = task.data.start_date.getDay();
