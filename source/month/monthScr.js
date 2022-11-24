@@ -5,8 +5,9 @@ import { Task } from './../skyTasks.js';
 Task.removeAllTasks();
 let mytask = new Task('task name', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
 mytask.data.ddl = new Date('November 25, 2022 09:00:00');
-mytask.data.priority = 3;
+mytask.data.duration = 10;
 mytask.addToLocalStorage();
+Task.splitTask(mytask,3);
 
 let resursivePadding = new Task('resursivePadding', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
 resursivePadding.data.ddl = new Date('December 17, 1995 00:00:00');

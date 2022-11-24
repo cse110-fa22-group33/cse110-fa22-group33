@@ -110,17 +110,29 @@ export class Task {
     return this;
   }
 
-
-  //split one tasks into two, and first tasks have a certain duration
+  /**
+   * splitTask Method
+   * 
+   * split one tasks into two, and first tasks have a certain duration.
+   * Save both new tasks to local storage, and remove the old tasks
+   * @param task - task object input
+   * @param firstTaskHour - the hours that split the first task by
+   */
   static splitTask(task, firstTaskHour = 1) {
-    // to be filled
-    // create two tasks, first one have firstTaskHour duration, second one have the rest o duration
-    // delete the original task from local strage
-  }
-
-  // delete all tasks in local strage of the same task_uid
-  static deleteTask(task_uid) {
-    // to be filled
+    let second_task = new Task();
+    let first_task = new Task();
+    if (firstTaskHour >= task.data.duration) {return};
+    let second_duration = task.data.duration - firstTaskHour;
+    if (second_duration <=0) {return};
+    first_task.data = {...task.data};
+    first_task.data.duration = firstTaskHour;
+    second_task.data = {...task.data};
+    second_task.data.duration = second_duration;
+    Task.removeFromLocalStorage(task.data.uid);
+    first_task.data.uid = Task.getUniqueUID();
+    first_task.addToLocalStorage();
+    second_task.data.uid = Task.getUniqueUID();
+    second_task.addToLocalStorage();
   }
 
   /**
