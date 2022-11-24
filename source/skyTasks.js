@@ -494,7 +494,20 @@ export class Task {
    * @returns true if ddl of a comes before b
    */
   static compareDDL(a, b) {
-    return (a.data.ddl > b.data.ddl);
+    return a.data.ddl - b.data.ddl;
+  }
+
+
+  /**
+   * compareSoftDDL Method
+   * 
+   * Checks if ddl of a is earlier than b
+   * @param a - Date object a 
+   * @param b - Date object b
+   * @returns true if soft ddl of a comes before b
+   */
+   static compareSoftDDL(a, b) {
+    return (a.data.softddl - b.data.softddl);
   }
 
   /**
@@ -506,7 +519,7 @@ export class Task {
    * @returns true if start_date of a comes before b
    */
   static compareStartDate(a, b) {
-    return (a.data.start_date > b.data.start_date);
+    return (a.data.start_date - b.data.start_date);
   }
 
   /**
@@ -622,7 +635,17 @@ export class Task {
     }
     // processing tasks that needs scheduling
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
-    task_need_schedule.sort(Task.comparePriority).reverse();
+    task_need_schedule.sort(function(a,b) {
+      let one_day = 86400000;
+      if ((a.data.ddl-new Date())<(one_day*3) && (b.data.ddl-new Date())<(one_day*3)){
+        return Task.compareDDL(a,b);
+      }
+      if ((a.data.softddl-new Date())<(one_day*3) || (b.data.softddl-new Date())<(one_day*3)){
+        return Task.compareSoftDDL(a,b);
+      }
+      return Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
+    });
+    //console.log(task_need_schedule);
     for (let task of task_need_schedule) {
       if (task.data.padding) {
         task.data.start_date = task.data.ddl;
@@ -632,6 +655,7 @@ export class Task {
         //get the first available date that can fit the task
         task.data.start_date = Task.firstAvailable(occupied, task);
         //check the deadline
+        if (task.data.start_date > task.data.ddl) {console.log('Schedule CanNOT be generated!')};
         occupied.push([new Date(task.data.start_date), task.data.duration]);
         Task.removeFromLocalStorage(task.data.uid);
         task.addToLocalStorage();
