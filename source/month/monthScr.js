@@ -1,6 +1,6 @@
 import { Task } from './../skyTasks.js';
 
-
+/*
 Task.removeAllTasks();
 
 let compare = function(a,b) {
@@ -93,7 +93,7 @@ resursivePadding.data.duration = 9;
 resursivePadding.setToRecursivePadding();
 resursivePadding.addToLocalStorage();
 Task.schedule();
-
+*/
 
 /*
 
