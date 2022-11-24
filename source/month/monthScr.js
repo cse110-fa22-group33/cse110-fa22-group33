@@ -114,6 +114,7 @@ function render(){
       if (task_list.length!=0) {
         let task_num=0;
         for (let task of task_list){
+          if (task.data.padding) {continue};
           task_num+=1;
           if (task_num>3) {break;};
           let curr_event = document.createElement('div');
