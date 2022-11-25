@@ -71,10 +71,12 @@ function getHeaderAndTasksFromStorage() {
     // if today exists in local storage, reset today 
     if (localStorage.getItem('newToday') !== null) {
         date = new Date(localStorage.getItem('newToday'));
+        console.log(date);
     }
     let today = date.getDate();
     // get day of week
     let day = date.getDay();
+    console.log(day);
 
     // set up header variables
     let weekDayOne = new Date();
@@ -139,8 +141,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is sunday
     if(day == 0) {
         // set week start and end dates in header
-        weekDayOne.setDate(today);
-        weekDayTwo.setDate(today + 6);
+        weekDayOne.setDate(subtractTimeFromDate(date, 0).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 6).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -194,8 +196,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is monday
     if(day == 1) {
         // set week start and end dates in header
-        weekDayOne.setDate(today - 1);
-        weekDayTwo.setDate(today + 5);
+        weekDayOne.setDate(subtractTimeFromDate(date, 1).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 5).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -248,8 +250,8 @@ function getHeaderAndTasksFromStorage() {
 
     // if today is tuesday
     if(day == 2) {
-        weekDayOne.setDate(today - 2);
-        weekDayTwo.setDate(today + 4);
+        weekDayOne.setDate(subtractTimeFromDate(date, 2).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 4).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
  
         // set beginning of week
@@ -257,13 +259,10 @@ function getHeaderAndTasksFromStorage() {
         
         // loop over entire current week
         for (let i = 0; i < 7; i++) {
-            console.log(startTasks);
             // pull all tasks for current day
             tasks = Task.getTasksFromDate(startTasks);
-            console.log(tasks);
 
             if(tasks.length != 0) {
-                console.log("made it");
                 for (let task of tasks) {
                     // pull correct date and time from task element
                     let currDay = task.data.ddl.getDay();
@@ -306,8 +305,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is wednesday
     if(day == 3) {
         // set week start and end dates in header
-        weekDayOne.setDate(today - 3);
-        weekDayTwo.setDate(today + 3);
+        weekDayOne.setDate(subtractTimeFromDate(date, 3).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 3).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -361,8 +360,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is thursday
     if(day == 4) {
         // set week start and end dates in header
-        weekDayOne.setDate(today - 4);
-        weekDayTwo.setDate(today + 2);
+        weekDayOne.setDate(subtractTimeFromDate(date, 4).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 2).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -416,8 +415,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is friday
     if(day == 5) {
         // set week start and end dates in header
-        weekDayOne.setDate(today - 5);
-        weekDayTwo.setDate(today + 1);
+        weekDayOne.setDate(subtractTimeFromDate(date, 5).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 1).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -471,8 +470,8 @@ function getHeaderAndTasksFromStorage() {
     // if today is saturday
     if(day == 6) {
         // set week start and end dates in header
-        weekDayOne.setDate(today - 6);
-        weekDayTwo.setDate(today);
+        weekDayOne.setDate(subtractTimeFromDate(date, 6).getDate());
+        weekDayTwo.setDate(addTimeToDate(date, 0).getDate());
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
         // set beginning of week
@@ -524,4 +523,34 @@ function getHeaderAndTasksFromStorage() {
 
     return tasks;
 
+}
+
+/**
+ * Helper function for weekly header, returns correct day after 
+ * substracting input number of days
+ * @parameter objDate Date object
+ * @parameter intDays number of days to be subtracted
+ * @returns Date object
+ */
+function subtractTimeFromDate(objDate, intDays) {
+    var numberOfMlSeconds = objDate.getTime();
+    var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
+    var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
+ 
+    return newDateObj;
+}
+
+/**
+ * Helper function for weekly header, returns correct day after 
+ * addding input number of days
+ * @parameter objDate Date object
+ * @parameter intDays number of days to be added
+ * @returns Date object
+ */
+function addTimeToDate(objDate, intDays) {
+    var numberOfMlSeconds = objDate.getTime();
+    var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
+    var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
+ 
+    return newDateObj;
 }
