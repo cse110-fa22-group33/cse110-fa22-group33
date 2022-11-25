@@ -154,8 +154,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
@@ -209,8 +209,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
                     // grab corresponding html cell
@@ -266,8 +266,8 @@ function getHeaderAndTasksFromStorage() {
                 console.log("made it");
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
@@ -321,8 +321,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
@@ -376,8 +376,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
@@ -431,8 +431,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
@@ -486,8 +486,8 @@ function getHeaderAndTasksFromStorage() {
             if(tasks.length != 0) {
                 for (let task of tasks) {
                     // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
+                    let currDay = task.data.ddl.getDay();
+                    let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
 
