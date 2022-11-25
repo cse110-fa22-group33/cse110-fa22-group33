@@ -71,12 +71,9 @@ function getHeaderAndTasksFromStorage() {
     // if today exists in local storage, reset today 
     if (localStorage.getItem('newToday') !== null) {
         date = new Date(localStorage.getItem('newToday'));
-        console.log(date);
     }
-    let today = date.getDate();
     // get day of week
     let day = date.getDay();
-    console.log(day);
 
     // set up header variables
     let weekDayOne = new Date();
