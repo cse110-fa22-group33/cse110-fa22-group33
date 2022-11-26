@@ -116,23 +116,29 @@ export class Task {
    * split one tasks into two, and first tasks have a certain duration.
    * Save both new tasks to local storage, and remove the old tasks
    * @param task - task object input
-   * @param firstTaskHour - the hours that split the first task by
+   * @param preferHour - the prefered hours that split the first task by
    */
-  static splitTask(task, firstTaskHour = 1) {
-    let second_task = new Task();
-    let first_task = new Task();
-    if (firstTaskHour >= task.data.duration) {return};
-    let second_duration = task.data.duration - firstTaskHour;
-    if (second_duration <=0) {return};
-    first_task.data = {...task.data};
-    first_task.data.duration = firstTaskHour;
-    second_task.data = {...task.data};
-    second_task.data.duration = second_duration;
+  static splitTask(task, preferHour = 1) {
+    let hour_left = task.data.duration;
+    if (preferHour >= hour_left) {return};
+    let new_tasks = [];
+    while (preferHour < hour_left) {
+      let new_task = new Task();
+      new_task.data = {...task.data};
+      new_task.data.duration = preferHour;
+      new_tasks.push(new_task);
+      preferHour = hour_left-preferHour;
+    }
+    let new_task = new Task();
+    new_task.data = {...task.data};
+    new_task.data.duration = hour_left;
+    new_tasks.push(new_task);
+
     Task.removeFromLocalStorage(task.data.uid);
-    first_task.data.uid = Task.getUniqueUID();
-    first_task.addToLocalStorage();
-    second_task.data.uid = Task.getUniqueUID();
-    second_task.addToLocalStorage();
+    for (let task of new_tasks) {
+      task.data.uid = Task.getUniqueUID();
+      task.addToLocalStorage();
+    }
   }
 
   /**
@@ -635,6 +641,14 @@ export class Task {
     }
     // processing tasks that needs scheduling
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
+    for (let task of task_need_schedule) {
+      if (task.data.padding){
+        Task.splitTask(task,task.data.mintime);
+      }
+    }
+    task_need_schedule = Task.getTasksAfterDDL(new Date());
+
+    // where scheduling happens
     task_need_schedule.sort(function(a,b) {
       let one_day = 86400000;
       if ((a.data.ddl-new Date())<(one_day*3) && (b.data.ddl-new Date())<(one_day*3)){
