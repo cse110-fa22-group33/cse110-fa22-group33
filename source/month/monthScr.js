@@ -109,6 +109,11 @@ mytask1.addToLocalStorage();
 
 let currentMonth = 0;
 
+ /**
+   * Change the current month Method
+   * 
+   * Go to the next month or go back by 1 month
+  */
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
