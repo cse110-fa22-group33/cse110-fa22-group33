@@ -109,6 +109,11 @@ mytask1.addToLocalStorage();
 
 let currentMonth = 0;
 
+  /**
+   * Change the current month Method
+   * 
+   * Go to the next month or back to the last month
+   */
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
@@ -123,6 +128,11 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+ /**
+   * Task Constructor Method
+   * 
+   * Creates Monthly Calendar to be used across CMonthly Schedule 
+   */
 function render(){
 
   const dt = new Date();
