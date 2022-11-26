@@ -5,10 +5,10 @@ window.addEventListener('load',(event)=>{
   // Get tasks from local storage
   let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   // Query user name
-  const nameInput = document.querySelector('#user-name');
+  //const nameInput = document.querySelector('#user-name');
   // Query new task
   const taskInput = document.querySelector('#new-task');
-  const username = localStorage.getItem('user-name') || '';
+  //const username = localStorage.getItem('user-name') || '';
   const collapse = document.querySelector('.advance');
 
   // Toggle with displaying form
@@ -17,7 +17,7 @@ window.addEventListener('load',(event)=>{
     this.classList.toggle("active");
     let newform = document.querySelector('#new-task');
     if (formbtn.innerText === "Add new task"){
-      formbtn.innerText = "schedule slot";
+      formbtn.innerText = "Schedule Time Slot";
       newform.innerHTML = `<form id="new-task">
       <div id="task-content">
           <h4>Task Name:
@@ -53,8 +53,7 @@ window.addEventListener('load',(event)=>{
               </label>
               
           </div>
-      
-          
+
           <table>
               <tr>
                   <td>
@@ -73,22 +72,12 @@ window.addEventListener('load',(event)=>{
                   </td>
               </tr>
           </table>                    
-          
-          
-          <!--
-          <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
-              placeholder = "e.g. 3" required>
-          </h4>
-          -->
-          
 
           <h4>Description:</h4>
           <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
           <br>
 
-
-
-          <p>Schedule Particular Slot in Calendar:</p>
+          <h4>Schedule Slot in Calendar:</h4>
           <input type="datetime-local" name="datetime" id="datetime">
           <br>
 
@@ -102,12 +91,13 @@ window.addEventListener('load',(event)=>{
       formbtn.innerText = "Add new task";
       newform.innerHTML = `<form id="new-task">
       <div id="task-content">
+          <!-- Title Input -->
           <h4>Task Name:
               <input type="text" name="task_name" id="content" 
                   placeholder="e.g. Get groceries" required/>
           </h4>
           
-          <!-- Category Bubbles -->
+          <!-- Category Input -->
           <table>
               <tr>
                   <td><h4>Category:</h4></td>
@@ -135,14 +125,8 @@ window.addEventListener('load',(event)=>{
               </label>
               
           </div>
-          
 
-          <!--
-          <h4>Priority: <input type="number" name="priority" id="taskPriority" min="1" max="5" step = "1" 
-              placeholder = "e.g. 3" required>
-          </h4>
-          -->
-          
+          <!-- Duration Input -->
           <table>
               <tr>
                   <td>
@@ -160,78 +144,68 @@ window.addEventListener('load',(event)=>{
                           placeholder = "e.g. 1" required> hours</h4>
                   </td>
               </tr>
-          </table>                    
-          
-          
-          <!--
-          <h4>Difficulty: <input type="number" name="difficulty" id="difficulty" min="1" max="5" step = "1" 
-              placeholder = "e.g. 3" required>
-          </h4>
-          -->
-          
+          </table>                            
 
+          <!-- Description Input -->
           <h4>Description:</h4>
           <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
           <br>
 
+          <!-- Priority Input -->
+          <table>
+              <tr>
+                  <td>
+                      <h4>Priority:</h4>
+                  </td>
+                  <td>
+                      <div class="help-tip">
+                          <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
+                      </div>
+                  </td>
+                  <td>
+                      <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                  </td>
+              </tr>
+          </table>
+
+          <!-- Difficulty Input -->
+          <table>
+              <tr>
+                  <td>
+                      <h4>Difficulty: </h4>
+                  </td>
+                  <td>
+                      <div class="help-tip">
+                          <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
+                      </div>
+                  </td>
+                  <td>
+                      <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
+                  </td>
+                  
+              </tr>
+          </table>
+
+          <!-- Preferred Work Length Input -->
+          <table>
+              <tr>
+                  <td>
+                      <h4>Preferred Work Length: 
+                      </h4>
+                  </td>
+                  <td>
+                      <div class="help-tip">
+                          <p>Input how long you would like to work on this task in one sitting.</p>
+                      </div>
+                  </td>
+                  <td>
+                      <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "1" placeholder = "1">
+                  </td>
+              </tr>
+          </table>    
+
+          <!-- Deadline Input -->
           <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
-
-          <!-- Dropdown Optional Settings -->
-          <button type="button" class="advance">Optional Settings</button>
-          <div class="collapsible">
-              <!--
-              <p>Specify Deadline Time: </p>
-              <input type="time" name="taskddltime" id="task-ddl-time">
-              <br>
-              -->
-              <table>
-                  <tr>
-                      <td>
-                          <h4>Priority:</h4>
-                      </td>
-                      <td>
-                          <div class="help-tip">
-                              <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
-                          </div>
-                      </td>
-                      <td>
-                          <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
-                      </td>
-                  </tr>
-              </table>
-
-              <table>
-                  <tr>
-                      <td>
-                          <h4>Difficulty: </h4>
-                      </td>
-                      <td>
-                          <div class="help-tip">
-                              <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
-                          </div>
-                      </td>
-                      <td>
-                          <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
-                      </td>
-                      
-                  </tr>
-              </table>
-
-
-              <p>Schedule Particular Slot in Calendar:</p>
-              <input type="datetime-local" name="datetime" id="datetime">
-              <br>
-
-              <p>Input min/max hours for each time block:</p>
-              <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "0.5" placeholder = "min">
-              <input type="number" name="maxtime" id="max-work-time" min="0" max="10" step = "0.5" placeholder = "max">
-              <br>
-
-              <!--
-              <p>Extra Notes: </p>
-              <textarea name="notes" id="extranotes" cols="30" rows="10"></textarea>
-              -->
-          </div>
       </div>
 
       <input type="submit" class="submit" value="ADD TASK">
