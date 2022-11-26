@@ -3,6 +3,8 @@ import { Task } from './../skyTasks.js';
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
+let increMon = 0;
+let backMon = 0;
 
 // Starts the program, all function calls trace back here
 function init() {
@@ -79,50 +81,15 @@ function getHeaderAndTasksFromStorage() {
     let weekDayOne = new Date();
     let weekDayTwo = new Date();
     let month = date.getMonth();
+    let month1 = date.getMonth();
+    let month2 = date.getMonth();
     let year = date.getFullYear();
     // let scheduleName; where to pull this variable from??
 
 
-    // set current month
-    if (month == 0) {
-        month = "January";
-    }
-    else if (month == 1) {
-        month = "February";
-    }
-    else if (month == 2) {
-        month = "March";
-    }
-    else if (month == 3) {
-        month = "April";
-    }
-    else if (month == 4) {
-        month = "May";
-    }
-    else if (month == 5) {
-        month = "June";
-    }
-    else if (month == 6) {
-        month = "July";
-    }
-    else if (month == 7) {
-        month = "August";
-    }
-    else if (month == 8) {
-        month = "September";
-    }
-    else if (month == 9) {
-        month = "October";
-    }
-    else if (month == 10) {
-        month = "November";
-    }
-    else if (month == 11) {
-        month = "December";
-    }
-
+    
     // set header to correct month and year
-    document.getElementById('monthYear').innerHTML = month + " " + year;
+    document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
 
     // set schedule name
     // document.getElementById('scheduleName').innerHTML = scheduleName;
@@ -140,7 +107,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 0).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 6).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML =month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -195,8 +180,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 1).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 5).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
-
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
         // set beginning of week
         startTasks = weekDayOne;
         
@@ -249,8 +251,25 @@ function getHeaderAndTasksFromStorage() {
     if(day == 2) {
         weekDayOne.setDate(subtractTimeFromDate(date, 2).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 4).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
- 
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
         // set beginning of week
         startTasks = weekDayOne;
         
@@ -304,7 +323,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 3).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 3).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -359,7 +396,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 4).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 2).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -414,7 +469,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 5).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 1).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -469,7 +542,25 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 6).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 0).getDate());
-        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+        month1 = currentMonth(month);
+        month2 = currentMonth(month);
+        if(backMon == 1){
+            if(month == 0){
+                month1 = currentMonth(11);
+            }
+            else{
+                month1 = currentMonth(month-1);
+            }
+        }
+        if(increMon == 1){
+            if(month == 11){
+                month2 = currentMonth(0);
+            }
+            else{
+                month2 = currentMonth(month+1);
+            }
+        }
+        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -533,6 +624,9 @@ function subtractTimeFromDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
+    if(newDateObj.getDate() > objDate.getDate()){
+        backMon = 1;
+    }
  
     return newDateObj;
 }
@@ -548,6 +642,51 @@ function addTimeToDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
+    if(newDateObj.getDate() < objDate.getDate()){
+        increMon = 1;
+    }
  
     return newDateObj;
+}
+
+function currentMonth(month) {
+    // set current month
+    if (month == 0) {
+        month = "January";
+    }
+    else if (month == 1) {
+        month = "February";
+    }
+    else if (month == 2) {
+        month = "March";
+    }
+    else if (month == 3) {
+        month = "April";
+    }
+    else if (month == 4) {
+        month = "May";
+    }
+    else if (month == 5) {
+        month = "June";
+    }
+    else if (month == 6) {
+        month = "July";
+    }
+    else if (month == 7) {
+        month = "August";
+    }
+    else if (month == 8) {
+        month = "September";
+    }
+    else if (month == 9) {
+        month = "October";
+    }
+    else if (month == 10) {
+        month = "November";
+    }
+    else if (month == 11) {
+        month = "December";
+    }
+
+    return month;
 }
