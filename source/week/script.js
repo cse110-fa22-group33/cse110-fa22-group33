@@ -94,6 +94,12 @@ function getHeaderAndTasksFromStorage() {
     startTasks = new Date();
     let tasks = [];
 
+    // set padding
+    /*if(task.data.padding) {
+        pull day/time
+        set corresponding cells to dark grey
+    }*/
+
     // DESIGN DECISION: Hardcode start and end of week using current date and getTasksFromDate.
     // That way, week start and end are always correct, start on Sunday and end on Saturday.
 
