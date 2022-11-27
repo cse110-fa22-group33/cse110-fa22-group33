@@ -33,9 +33,11 @@ third.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 
 third.data.duration = 1;
 third.data.priority = 3;
 third.addToLocalStorage();
+/*
 
 Task.schedule();
-*/
+
+
 
 
 /*const fourth = new Task('fourth', Task.getUniqueUID(), 6, new Date());
@@ -84,3 +86,39 @@ let date_3 = new Date(2022,11,19,20);
 let date_4 = new Date(2022,11,19,23);
 let overlap = Task.dateRangeOverlaps(padding_data,padding_data2,date_3,date_4);
 console.log(overlap);*/
+
+
+
+/*
+//Dean's test (Weird bug, when set the ddl after current time, the web page will crash)
+
+console.log('good');
+Task.removeAllTasks();
+
+let recurPadding = new Task('recurPadding', Task.getUniqueUID(), 1, new Date());
+recurPadding.data.ddl = new Date('November 27 2022 16:00:00'); // November 27th, 4pm-6pm
+recurPadding.data.duration = 2;
+recurPadding.setToPadding();
+recurPadding.addToLocalStorage();
+console.log('hppd');
+
+const first = new Task('first', Task.getUniqueUID(), 2, new Date());
+first.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+first.data.duration = 1;
+first.data.priority = 5;
+first.addToLocalStorage();
+
+let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
+sleeping2.data.ddl = new Date('November 22, 2022 19:00:00'); // November 22th, 7pm-8pm
+sleeping2.data.duration = 1;
+sleeping2.setToPadding();
+sleeping2.addToLocalStorage();
+
+const second = new Task('second', Task.getUniqueUID(), 4, new Date());
+second.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+second.data.duration = 1;
+second.data.priority = 4;
+second.addToLocalStorage();
+
+Task.schedule();
+*/
