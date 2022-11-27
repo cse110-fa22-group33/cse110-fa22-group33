@@ -642,7 +642,7 @@ export class Task {
     // processing tasks that needs scheduling
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
     for (let task of task_need_schedule) {
-      if (task.data.padding){
+      if (!task.data.padding){
         Task.splitTask(task,task.data.mintime);
       }
     }
