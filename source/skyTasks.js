@@ -651,11 +651,8 @@ export class Task {
     // where scheduling happens
     task_need_schedule.sort(function(a,b) {
       let one_day = 86400000;
-      if ((a.data.ddl-new Date())<(one_day*3) && (b.data.ddl-new Date())<(one_day*3)){
+      if ((a.data.ddl-new Date())<(one_day*3) || (b.data.ddl-new Date())<(one_day*3)){
         return Task.compareDDL(a,b);
-      }
-      if ((a.data.softddl-new Date())<(one_day*3) || (b.data.softddl-new Date())<(one_day*3)){
-        return Task.compareSoftDDL(a,b);
       }
       return Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
     });
