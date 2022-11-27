@@ -128,15 +128,15 @@ h4{
     margin-left: 30px;
     margin-bottom: 15px;
     height: 80px;
-    width: 240px;
+    width: 400px;
     border-radius: 16px;
-    align-items: center;
+    align-items: left;
     /* border: black solid; */
 }
 .y{
     font-family: 'Quicksand', sans-serif; 
     color: rgba(77, 109, 179, 0.705)   ; 
-    text-align: center;
+    text-align: left;
     /* color:white; */
     font-size: 28px;
     margin-bottom: 6px;

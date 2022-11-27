@@ -3,8 +3,6 @@ import { Task } from './../skyTasks.js';
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
-let increMon = 0;
-let backMon = 0;
 
 // Starts the program, all function calls trace back here
 function init() {
@@ -84,12 +82,9 @@ function getHeaderAndTasksFromStorage() {
     let month1 = date.getMonth();
     let month2 = date.getMonth();
     let year = date.getFullYear();
+    let increMon = 0;
+    let backMon = 0;
     // let scheduleName; where to pull this variable from??
-
-
-    
-    // set header to correct month and year
-    document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
 
     // set schedule name
     // document.getElementById('scheduleName').innerHTML = scheduleName;
@@ -105,27 +100,20 @@ function getHeaderAndTasksFromStorage() {
     // if today is sunday
     if(day == 0) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 0).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 6).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+        weekDayOne = new Date(subtractTimeFromDate(date, 0));
+        weekDayTwo = new Date(addTimeToDate(date, 6));
+
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML =month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -180,25 +168,19 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 1).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 5).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
+
         // set beginning of week
         startTasks = weekDayOne;
         
@@ -214,6 +196,7 @@ function getHeaderAndTasksFromStorage() {
                     let currTime = task.data.ddl.getHours();
 
                     let currDayTime = "" + currDay  + currTime;
+
                     // grab corresponding html cell
                     let currCell = document.getElementById(currDayTime);
 
@@ -241,7 +224,6 @@ function getHeaderAndTasksFromStorage() {
             }
 
             startTasks.setDate(startTasks.getDate() + 1);
-            
         }
 
         return tasks;
@@ -251,25 +233,19 @@ function getHeaderAndTasksFromStorage() {
     if(day == 2) {
         weekDayOne.setDate(subtractTimeFromDate(date, 2).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 4).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
+
         // set beginning of week
         startTasks = weekDayOne;
         
@@ -323,25 +299,18 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 3).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 3).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+        
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -396,25 +365,18 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 4).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 2).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+       
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -469,25 +431,18 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 5).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 1).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+        
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -542,25 +497,18 @@ function getHeaderAndTasksFromStorage() {
         // set week start and end dates in header
         weekDayOne.setDate(subtractTimeFromDate(date, 6).getDate());
         weekDayTwo.setDate(addTimeToDate(date, 0).getDate());
-        month1 = currentMonth(month);
-        month2 = currentMonth(month);
-        if(backMon == 1){
-            if(month == 0){
-                month1 = currentMonth(11);
-            }
-            else{
-                month1 = currentMonth(month-1);
-            }
+        
+        // set header to correct month and year
+        document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
+
+        if(weekDayOne.getMonth() != weekDayTwo.getMonth()) {
+            document.getElementById('monthYear').innerHTML = currentMonth(weekDayOne.getMonth()) + " " + " - " + currentMonth(weekDayTwo.getMonth()) + " " + year;
         }
-        if(increMon == 1){
-            if(month == 11){
-                month2 = currentMonth(0);
-            }
-            else{
-                month2 = currentMonth(month+1);
-            }
-        }
-        document.getElementById('weekDays').innerHTML = month1 + " " + weekDayOne.getDate() + " - " + month2 + " " + weekDayTwo.getDate();
+
+        // set header to correct week days
+        document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
+
+
 
         // set beginning of week
         startTasks = weekDayOne;
@@ -603,6 +551,7 @@ function getHeaderAndTasksFromStorage() {
                     }  
                 }
             }
+
             startTasks.setDate(startTasks.getDate() + 1);
         }
 
@@ -624,10 +573,7 @@ function subtractTimeFromDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
-    if(newDateObj.getDate() > objDate.getDate()){
-        backMon = 1;
-    }
- 
+    
     return newDateObj;
 }
 
@@ -642,13 +588,16 @@ function addTimeToDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
-    if(newDateObj.getDate() < objDate.getDate()){
-        increMon = 1;
-    }
- 
+    
     return newDateObj;
 }
 
+/**
+ * Helper function for weekly header, returns correct month name after 
+ * recieving corresponding number
+ * @parameter month current month number
+ * @returns month current month name
+ */
 function currentMonth(month) {
     // set current month
     if (month == 0) {
