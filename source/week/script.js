@@ -63,7 +63,7 @@ function render() {
  * is found in localStorage for tasks, an empty array is returned.
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
-function getHeaderAndTasksFromStorage() {
+export function getHeaderAndTasksFromStorage() {
     
     // set today's date
     let date = new Date();

@@ -1,6 +1,6 @@
+import JSDOMEnvironment from "jest-environment-jsdom";
 import { Task } from "./../skyTasks";
 
-const functions = require('./script.js');
 
 describe('Weekly Calendar Functionality Tests', () => {
   let testTask;
@@ -10,15 +10,17 @@ describe('Weekly Calendar Functionality Tests', () => {
   });
 
   test('getHeaderAndTasksFromStorage()', () =>{
+    const f = require('./script');
+    // jest.spyOn(f, 'getHeaderAndTasksFromStorage');
     // Check if date is today
-    functions.getHeaderAndTasksFromStorage();
+    // f.getHeaderAndTasksFromStorage();
 
-    let currDay = testTask.data.ddl.getDay();
+    /*let currDay = testTask.data.ddl.getDay();
     let currTime = testTask.data.ddl.getHours();
     let currDayTime = "" + currDay  + currTime;
-    let currCell = document.getElementById(currDayTime);
+    let currCell = document.getElementById(currDayTime);*/
 
-   // expect(currCell.innerHTML).toEqual(testTask.data.task_name);
+   expect(f.getHeaderAndTasksFromStorage()).toEqual([testTask]);
   });
 
 })
