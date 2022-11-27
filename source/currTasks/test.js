@@ -109,8 +109,9 @@ first.data.priority = 5;
 first.addToLocalStorage();
 
 let sleeping2 = new Task('sleeping2', Task.getUniqueUID(), 3, new Date());
-sleeping2.data.ddl = new Date('November 22, 2022 19:00:00'); // November 22th, 7pm-8pm
+sleeping2.data.ddl = new Date('December 22, 2022 19:00:00'); // November 22th, 7pm-8pm
 sleeping2.data.duration = 1;
+sleeping2.data.recurrent = true;
 sleeping2.setToPadding();
 sleeping2.addToLocalStorage();
 
@@ -119,6 +120,4 @@ second.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November
 second.data.duration = 1;
 second.data.priority = 4;
 second.addToLocalStorage();
-
-Task.schedule();
 */
