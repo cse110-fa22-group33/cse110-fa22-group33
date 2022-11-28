@@ -310,7 +310,7 @@ function setTasksForDay(startTasks) {
                 }
 
                 if(task.data.category == "") {
-                    currCell.style.backgroundColor="#872657";
+                    currCell.style.backgroundColor="#D462FF";
                 }
 
 
@@ -319,6 +319,7 @@ function setTasksForDay(startTasks) {
                 }
 
                 if(task.data.recurrent) {
+                    currCell.innerHTML = "";
                     currCell.style.backgroundColor="#A9A9A9";
                 }
 
