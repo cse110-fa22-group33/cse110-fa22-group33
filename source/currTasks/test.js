@@ -92,18 +92,17 @@ console.log(overlap);*/
 /*
 //Dean's test (Weird bug, when set the ddl after current time, the web page will crash)
 
-console.log('good');
 Task.removeAllTasks();
 
 let recurPadding = new Task('recurPadding', Task.getUniqueUID(), 1, new Date());
-recurPadding.data.ddl = new Date('November 27 2022 16:00:00'); // November 27th, 4pm-6pm
+recurPadding.data.ddl = new Date('November 29 2022 16:00:00'); // November 27th, 4pm-6pm
 recurPadding.data.duration = 2;
 recurPadding.setToPadding();
 recurPadding.addToLocalStorage();
 console.log('hppd');
 
 const first = new Task('first', Task.getUniqueUID(), 2, new Date());
-first.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+first.data.ddl = new Date('November 29, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
 first.data.duration = 1;
 first.data.priority = 5;
 first.addToLocalStorage();
@@ -116,7 +115,7 @@ sleeping2.setToPadding();
 sleeping2.addToLocalStorage();
 
 const second = new Task('second', Task.getUniqueUID(), 4, new Date());
-second.data.ddl = new Date('November 23, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+second.data.ddl = new Date('November 30, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
 second.data.duration = 1;
 second.data.priority = 4;
 second.addToLocalStorage();
