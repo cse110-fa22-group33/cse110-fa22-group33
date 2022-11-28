@@ -14,11 +14,11 @@ window.addEventListener('load', (event) => {
         let morning;
         let noon;
         let evening;
-        let ans = prompt("Wellcome to Monkeys Calender! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
+        let ans = prompt("Welcome to Code Monkeyz Smart Scheduler! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
         if (isInt(ans)) {
             morning = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of 9am");
             morning = 9;
         }
         localStorage.setItem('morning', JSON.stringify(morning));
@@ -26,16 +26,16 @@ window.addEventListener('load', (event) => {
         if (isInt(ans)) {
             noon = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of noon");
             noon = 12;
         }
         localStorage.setItem('noon', JSON.stringify(noon));
 
-        ans = prompt("When do you go to bad (input a number out of 24 hour): ", "22");
+        ans = prompt("When do you go to bed (input a number out of 24 hour): ", "22");
         if (isInt(ans)) {
             evening = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of 10pm");
             evening = 22;
         }
         localStorage.setItem('evening', JSON.stringify(evening));
