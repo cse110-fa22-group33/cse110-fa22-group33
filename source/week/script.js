@@ -58,8 +58,9 @@ function render() {
 }
 
 /**
- * Reads tasks from local storage and returns an array of 
- * all of the tasks found (as Task objects). If nothing
+ * Sets header data and calculates start and end dates of week. 
+ * Calls a helper methof that reads tasks from local storage and 
+ * returns an array of all of the tasks found (as Task objects). If nothing
  * is found in localStorage for tasks, an empty array is returned.
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
@@ -268,6 +269,13 @@ export function getHeaderAndTasksFromStorage() {
 
 }
 
+/**
+ * Helper method for getHeaderAndTasksFromStorage.
+ * Reads tasks from local storage and returns an array of 
+ * all of the tasks found (as Task objects). If nothing
+ * is found in localStorage for tasks, an empty array is returned.
+ * @returns {Array<Object>} An array of tasks found in localStorage
+ */
 function setTasksForDay(startTasks) {
     let tasks = [];
     // loop over entire current week
@@ -290,11 +298,11 @@ function setTasksForDay(startTasks) {
                 currCell.innerHTML = task.data.task_name;
 
                 if(task.data.category == "school") {
-                    currCell.style.backgroundColor="green";
+                    currCell.style.backgroundColor="#228B22";
                 }
 
                 if(task.data.category == "personal") {
-                    currCell.style.backgroundColor="blue";
+                    currCell.style.backgroundColor="#blue";
                 }
 
                 if(task.data.category == "other") {
@@ -302,7 +310,7 @@ function setTasksForDay(startTasks) {
                 }
 
                 if(task.data.category == "") {
-                    currCell.style.backgroundColor="purple";
+                    currCell.style.backgroundColor="#872657";
                 }
 
 
