@@ -79,15 +79,7 @@ export function getHeaderAndTasksFromStorage() {
     let weekDayOne = new Date();
     let weekDayTwo = new Date();
     let month = date.getMonth();
-    let month1 = date.getMonth();
-    let month2 = date.getMonth();
     let year = date.getFullYear();
-    let increMon = 0;
-    let backMon = 0;
-    // let scheduleName; where to pull this variable from??
-
-    // set schedule name
-    // document.getElementById('scheduleName').innerHTML = scheduleName;
 
     // declare start date and task array
     let startTasks;
@@ -119,54 +111,13 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
-        
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
 
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
+        
     }
 
     // if today is monday
@@ -185,54 +136,13 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
-        
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
 
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
+       
     }
 
     // if today is tuesday
@@ -250,52 +160,10 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
         
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
-
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
     }
@@ -316,52 +184,10 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
         
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
-
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
     }
@@ -382,52 +208,10 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
         
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
-
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
     }
@@ -448,52 +232,10 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
         
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
-
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
     }
@@ -514,58 +256,86 @@ export function getHeaderAndTasksFromStorage() {
         // set header to correct week days
         document.getElementById('weekDays').innerHTML = weekDayOne.getDate() + " - " + weekDayTwo.getDate();
 
-
-
         // set beginning of week
         startTasks = weekDayOne;
         
-        // loop over entire current week
-        for (let i = 0; i < 7; i++) {
-            // pull all tasks for current day
-            tasks = Task.getTasksFromDate(startTasks);
-
-            if(tasks.length != 0) {
-                for (let task of tasks) {
-                    // pull correct date and time from task element
-                    let currDay = task.data.start_date.getDay();
-                    let currTime = task.data.start_date.getHours();
-
-                    let currDayTime = "" + currDay  + currTime;
-
-                    // grab corresponding html cell
-                    let currCell = document.getElementById(currDayTime);
-
-                    // set innerHTML to reflect correct task data
-                    currCell.innerHTML = task.data.task_name;
-                    currCell.style.backgroundColor="pink";
-
-                    // set calendar to reflect task duration
-                    let curDuration = task.data.duration;
-                    if (curDuration > 1) {
-                        for (let i = 0; i < curDuration - 1; i++) {
-                            currTime++;
-                            currDayTime++;
-                            if (currTime == 24) {
-                                currTime = 0;
-                                currDay++;
-                                currDayTime = "" + currDay + currTime;
-                            }
-                            currCell = document.getElementById(currDayTime);
-                            currCell.innerHTML = task.data.task_name;
-                            currCell.style.backgroundColor="pink";
-                        }
-                    }  
-                }
-            }
-
-            startTasks.setDate(startTasks.getDate() + 1);
-        }
+        tasks =  setTasksForDay(startTasks);
 
         return tasks;
     }
 
     return tasks;
 
+}
+
+function setTasksForDay(startTasks) {
+    let tasks = [];
+    // loop over entire current week
+    for (let i = 0; i < 7; i++) {
+        // pull all tasks for current day
+        tasks = Task.getTasksFromDate(startTasks);
+
+        if(tasks.length != 0) {
+            for (let task of tasks) {
+                // pull correct date and time from task element
+                let currDay = task.data.start_date.getDay();
+                let currTime = task.data.start_date.getHours();
+
+                let currDayTime = "" + currDay  + currTime;
+
+                // grab corresponding html cell
+                let currCell = document.getElementById(currDayTime);
+
+                // set innerHTML to reflect correct task data
+                currCell.innerHTML = task.data.task_name;
+
+                if(task.data.category == "school") {
+                    currCell.style.backgroundColor="green";
+                }
+
+                if(task.data.category == "personal") {
+                    currCell.style.backgroundColor="blue";
+                }
+
+                if(task.data.category == "other") {
+                    currCell.style.backgroundColor="pink";
+                }
+
+                if(task.data.category == "") {
+                    currCell.style.backgroundColor="purple";
+                }
+
+
+                if(task.data.padding) {
+                    currCell.style.backgroundColor="#A9A9A9";
+                }
+
+                if(task.data.recurrent) {
+                    currCell.style.backgroundColor="#A9A9A9";
+                }
+
+                // set calendar to reflect task duration
+                let curDuration = task.data.duration;
+                if (curDuration > 1) {
+                    for (let i = 0; i < curDuration - 1; i++) {
+                        currTime++;
+                        currDayTime++;
+                        if (currTime == 24) {
+                            currTime = 0;
+                            currDay++;
+                            currDayTime = "" + currDay + currTime;
+                        }
+                        currCell = document.getElementById(currDayTime);
+                        currCell.style.backgroundColor="pink";
+                    }
+                }  
+            }
+        }
+
+        startTasks.setDate(startTasks.getDate() + 1);
+    }
+
+    return tasks;
 }
 
 /**
