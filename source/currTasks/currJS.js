@@ -407,7 +407,11 @@ function initFormHandler() {
             //   continue;
             // }
             taskObject[key] = val;
-            new_task_obj.data[key] = val;
+            if (key=='ddl') {
+                new_task_obj.data[key] = new Date(val);
+            } else {
+                new_task_obj.data[key] = val;
+            }
         }
 
         // Create a new <my-task> element
