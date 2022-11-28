@@ -335,7 +335,31 @@ function setTasksForDay(startTasks) {
                             currDayTime = "" + currDay + currTime;
                         }
                         currCell = document.getElementById(currDayTime);
-                        currCell.style.backgroundColor="pink";
+                        if(task.data.category == "school") {
+                            currCell.style.backgroundColor="#228B22";
+                        }
+        
+                        if(task.data.category == "personal") {
+                            currCell.style.backgroundColor="#blue";
+                        }
+        
+                        if(task.data.category == "other") {
+                            currCell.style.backgroundColor="pink";
+                        }
+        
+                        if(task.data.category == "") {
+                            currCell.style.backgroundColor="#D462FF";
+                        }
+        
+        
+                        if(task.data.padding) {
+                            currCell.style.backgroundColor="#A9A9A9";
+                        }
+        
+                        if(task.data.recurrent) {
+                            currCell.innerHTML = "";
+                            currCell.style.backgroundColor="#A9A9A9";
+                        }
                     }
                 }  
             }
