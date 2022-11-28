@@ -119,7 +119,7 @@ export class Task {
    * @param preferHour - the prefered hours that split the first task by
    */
   static splitTask(task, preferHour = 2) {
-    let hour_left = task.data.duration;
+    let hour_left = Number.parseInt(task.data.duration);
     if (preferHour >= hour_left) {return};
     console.log('Tasks splitted!');
     let new_tasks = [];
@@ -576,10 +576,8 @@ export class Task {
       return false;
     }
 
-    console.log(1111);
-
     // Increment until a valid time slot is found
-    while (isOccupied(occupied, result, task.data.duration)) {
+    while (isOccupied(occupied, result, Number.parseInt(task.data.duration))) {
       result.setHours(result.getHours() + 1);
     }
     return result;
@@ -636,10 +634,10 @@ export class Task {
           new_date.setHours(task.data.ddl.getHours());
           new_date.setMinutes(task.data.ddl.getMinutes());
           new_date.setSeconds(task.data.ddl.getSeconds());
-          occupied.push([new_date, task.data.duration]);
+          occupied.push([new_date, Number.parseInt(task.data.duration)]);
         }
       } else {
-        occupied.push([new Date(task.data.ddl), task.data.duration]);
+        occupied.push([new Date(task.data.ddl), Number.parseInt(task.data.duration)]);
       }
     }
     // processing tasks that needs scheduling
@@ -668,7 +666,7 @@ export class Task {
         task.data.start_date = Task.firstAvailable(occupied, task);
         //check the deadline
         if (task.data.start_date > task.data.ddl) {alert('Schedule CanNOT be generated!')};
-        occupied.push([new Date(task.data.start_date), task.data.duration]);
+        occupied.push([new Date(task.data.start_date), Number.parseInt(task.data.duration)]);
         Task.removeFromLocalStorage(task.data.uid);
         task.addToLocalStorage();
       }
