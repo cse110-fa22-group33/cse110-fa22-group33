@@ -128,7 +128,7 @@ export class Task {
       new_task.data = {...task.data};
       new_task.data.duration = preferHour;
       new_tasks.push(new_task);
-      preferHour = hour_left-preferHour;
+      hour_left = hour_left-preferHour;
     }
     let new_task = new Task();
     new_task.data = {...task.data};
@@ -644,7 +644,7 @@ export class Task {
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
     for (let task of task_need_schedule) {
       if (!task.data.padding){
-        Task.splitTask(task,task.data.mintime);
+        Task.splitTask(task,Number.parseInt(task.data.mintime));
       }
     }
     task_need_schedule = Task.getTasksAfterDDL(new Date());
