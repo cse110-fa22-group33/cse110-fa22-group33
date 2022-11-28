@@ -118,9 +118,10 @@ export class Task {
    * @param task - task object input
    * @param preferHour - the prefered hours that split the first task by
    */
-  static splitTask(task, preferHour = 1) {
+  static splitTask(task, preferHour = 2) {
     let hour_left = task.data.duration;
     if (preferHour >= hour_left) {return};
+    console.log('Tasks splitted!');
     let new_tasks = [];
     while (preferHour < hour_left) {
       let new_task = new Task();
@@ -567,13 +568,15 @@ export class Task {
     let isOccupied = function (opid, time, duration) {
       for (let time_block of opid) {
         let storage = new Date(time_block[0]).setHours(time_block[0].getHours() + time_block[1]);
-        let storage2 = new Date(time).setHours(time.getHours() + duration);
+        let storage2 = new Date(time).setHours(time.getHours() + Number.parseInt(duration));
         if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)) {
           return true;
         }
       }
       return false;
     }
+
+    console.log(1111);
 
     // Increment until a valid time slot is found
     while (isOccupied(occupied, result, task.data.duration)) {
@@ -643,12 +646,10 @@ export class Task {
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
     for (let task of task_need_schedule) {
       if (!task.data.padding){
-        console.log('Tasks splitted!');
-        //Task.splitTask(task,task.data.mintime);
+        Task.splitTask(task,task.data.mintime);
       }
     }
     task_need_schedule = Task.getTasksAfterDDL(new Date());
-
     // where scheduling happens
     task_need_schedule.sort(function(a,b) {
       let one_day = 86400000;
@@ -657,7 +658,6 @@ export class Task {
       }
       return Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
     });
-    //console.log(task_need_schedule);
     for (let task of task_need_schedule) {
       if (task.data.padding) {
         task.data.start_date = task.data.ddl;

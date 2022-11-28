@@ -411,7 +411,6 @@ function initFormHandler() {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours()+8);
                 new_task_obj.data[key] = ddl;
-                console.log(new_task_obj.data[key]);
             } else {
                 new_task_obj.data[key] = val;
             }
@@ -435,7 +434,6 @@ function initFormHandler() {
         new_task_obj.data['uid'] = uid;
         new_task_obj.data['task_uid'] = uid;
         new_task_obj.data['category'] = [taskObject['category']];
-        console.log(new_task_obj);
         new_task_obj.addToLocalStorage();
         Task.schedule();
     })
