@@ -172,8 +172,8 @@ export function getHeaderAndTasksFromStorage() {
     // if today is monday
     if(day == 1) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 1).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 5).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 1));
+        weekDayTwo = new Date(addTimeToDate(date, 5));
 
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
@@ -237,8 +237,8 @@ export function getHeaderAndTasksFromStorage() {
 
     // if today is tuesday
     if(day == 2) {
-        weekDayOne.setDate(subtractTimeFromDate(date, 2).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 4).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 2));
+        weekDayTwo = new Date(addTimeToDate(date, 4));
 
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
@@ -303,8 +303,8 @@ export function getHeaderAndTasksFromStorage() {
     // if today is wednesday
     if(day == 3) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 3).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 3).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 3));
+        weekDayTwo = new Date(addTimeToDate(date, 3));
         
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
@@ -369,8 +369,8 @@ export function getHeaderAndTasksFromStorage() {
     // if today is thursday
     if(day == 4) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 4).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 2).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 4));
+        weekDayTwo = new Date(addTimeToDate(date, 2));
        
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
@@ -435,8 +435,8 @@ export function getHeaderAndTasksFromStorage() {
     // if today is friday
     if(day == 5) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 5).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 1).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 5));
+        weekDayTwo = new Date(addTimeToDate(date, 1));
         
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
@@ -501,8 +501,8 @@ export function getHeaderAndTasksFromStorage() {
     // if today is saturday
     if(day == 6) {
         // set week start and end dates in header
-        weekDayOne.setDate(subtractTimeFromDate(date, 6).getDate());
-        weekDayTwo.setDate(addTimeToDate(date, 0).getDate());
+        weekDayOne = new Date(subtractTimeFromDate(date, 6));
+        weekDayTwo = new Date(addTimeToDate(date, 0));
         
         // set header to correct month and year
         document.getElementById('monthYear').innerHTML = currentMonth(month) + " " + year;
