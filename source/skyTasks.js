@@ -27,7 +27,7 @@ export class Task {
    * @returns task object
    */
   constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = new Date(),
-    ddl = new Date(), decription = null, mintime = 1, maxtime = 3, notes = null,
+    ddl = new Date(), decription = null, mintime = 2, maxtime = 3, notes = null,
     recurrent = false, padding = false, difficulty = 3, priority = 3) {
     this.data = {
       task_name: task_name, //a string, the name of the task, not required
@@ -643,7 +643,8 @@ export class Task {
     let task_need_schedule = Task.getTasksAfterDDL(new Date());
     for (let task of task_need_schedule) {
       if (!task.data.padding){
-        Task.splitTask(task,task.data.mintime);
+        console.log('Tasks splitted!');
+        //Task.splitTask(task,task.data.mintime);
       }
     }
     task_need_schedule = Task.getTasksAfterDDL(new Date());
@@ -666,7 +667,7 @@ export class Task {
         //get the first available date that can fit the task
         task.data.start_date = Task.firstAvailable(occupied, task);
         //check the deadline
-        if (task.data.start_date > task.data.ddl) {console.log('Schedule CanNOT be generated!')};
+        if (task.data.start_date > task.data.ddl) {alert('Schedule CanNOT be generated!')};
         occupied.push([new Date(task.data.start_date), task.data.duration]);
         Task.removeFromLocalStorage(task.data.uid);
         task.addToLocalStorage();

@@ -1,24 +1,90 @@
 import { Task } from './../skyTasks.js';
 
-window.addEventListener('load',(event)=>{
-  console.log("load");        // LOG
-  // Get tasks from local storage
-  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  // Query user name
-  //const nameInput = document.querySelector('#user-name');
-  // Query new task
-  const taskInput = document.querySelector('#new-task');
-  //const username = localStorage.getItem('user-name') || '';
-  const collapse = document.querySelector('.advance');
+window.addEventListener('load', (event) => {
+    console.log("load");        // LOG
 
-  // Toggle with displaying form
-  const formbtn = document.querySelector('.toggle-form');
-  formbtn.addEventListener('click',function(){
-    this.classList.toggle("active");
-    let newform = document.querySelector('#new-task');
-    if (formbtn.innerText === "Add new task"){
-      formbtn.innerText = "Schedule Time Slot";
-      newform.innerHTML = `<form id="new-task">
+ // /*
+    // ask for recuring padding info from user
+    if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
+        let isInt = function (value) {
+            return !isNaN(value) &&
+                parseInt(Number(value)) == value &&
+                !isNaN(parseInt(value, 10));
+        }
+        let morning;
+        let noon;
+        let evening;
+        let ans = prompt("Wellcome to Monkeys Calender! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
+        if (isInt(ans)) {
+            morning = parseInt(ans);
+        } else {
+            alert("Invalid input, using default");
+            morning = 9;
+        }
+        localStorage.setItem('morning', JSON.stringify(morning));
+        ans = prompt("When do you go to lunch (input a number out of 24 hour): ", "12");
+        if (isInt(ans)) {
+            noon = parseInt(ans);
+        } else {
+            alert("Invalid input, using default");
+            noon = 12;
+        }
+        localStorage.setItem('noon', JSON.stringify(noon));
+
+        ans = prompt("When do you go to bad (input a number out of 24 hour): ", "22");
+        if (isInt(ans)) {
+            evening = parseInt(ans);
+        } else {
+            alert("Invalid input, using default");
+            evening = 22;
+        }
+        localStorage.setItem('evening', JSON.stringify(evening));
+
+        let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        let recursiveDate = new Date('December 17, 1995 00:00:00');
+        resursivePadding.data.ddl = recursiveDate;
+        resursivePadding.data.duration = morning;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+
+        resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        recursiveDate = new Date('December 17, 1995 00:00:00');
+        recursiveDate.setHours(noon);
+        resursivePadding.data.ddl = recursiveDate;
+        resursivePadding.data.duration = 1;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+
+        resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        recursiveDate = new Date('December 17, 1995 00:00:00');
+        recursiveDate.setHours(evening);
+        resursivePadding.data.ddl = recursiveDate;
+        let recursiveDuration = 24-evening;
+        resursivePadding.data.duration = recursiveDuration;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+        Task.schedule();
+    }
+// */
+
+
+    // Get tasks from local storage
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    // Query user name
+    //const nameInput = document.querySelector('#user-name');
+    // Query new task
+    const taskInput = document.querySelector('#new-task');
+    //const username = localStorage.getItem('user-name') || '';
+    const collapse = document.querySelector('.advance');
+
+    // Toggle with displaying form
+    const formbtn = document.querySelector('.toggle-form');
+    formbtn.addEventListener('click', function () {
+        this.classList.toggle("active");
+        let newform = document.querySelector('#new-task');
+        if (formbtn.innerText === "Add new task") {
+            formbtn.innerText = "Schedule Time Slot";
+            newform.innerHTML = `<form id="new-task">
       <div id="task-content">
           <h4>Task Name:
               <input type="text" name="task_name" id="content" 
@@ -86,10 +152,10 @@ window.addEventListener('load',(event)=>{
 
       <input type="submit" class="submit" value="ADD TASK">
   </form>`;
-    }
-    else{
-      formbtn.innerText = "Add new task";
-      newform.innerHTML = `<form id="new-task">
+        }
+        else {
+            formbtn.innerText = "Add new task";
+            newform.innerHTML = `<form id="new-task">
       <div id="task-content">
           <!-- Title Input -->
           <h4>Task Name:
@@ -210,39 +276,39 @@ window.addEventListener('load',(event)=>{
 
       <input type="submit" class="submit" value="ADD TASK">
   </form>`;
-      
-    }
-  });
-  // Collapsible
-  collapse.addEventListener('click',function(){
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-  });
 
-  // Track name changes
-  nameInput.value = username;
-  nameInput.addEventListener('change',(event)=>{
-      console.log("change");        // LOG
-      localStorage.setItem('user-name', event.target.value);
-  });
-})  
+        }
+    });
+    // Collapsible
+    collapse.addEventListener('click', function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+
+    // Track name changes
+    nameInput.value = username;
+    nameInput.addEventListener('change', (event) => {
+        console.log("change");        // LOG
+        localStorage.setItem('user-name', event.target.value);
+    });
+})
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
-// Get the tasks from localStorage
-let tasks = getTasksFromStorage();
-// Add each task to the <main> element
-addTasksToDocument(tasks);
-// Add the event listeners to the form elements
-initFormHandler();
+    // Get the tasks from localStorage
+    let tasks = getTasksFromStorage();
+    // Add each task to the <main> element
+    addTasksToDocument(tasks);
+    // Add the event listeners to the form elements
+    initFormHandler();
 }
 
 /**
@@ -253,11 +319,11 @@ initFormHandler();
 * @returns {Array<Object>} An array of tasks found in localStorage
 */
 function getTasksFromStorage() {
-  console.log("getTasksFromStorage");        // LOG
-  let r = localStorage.getItem('tasks');
-  if (!r)
-    return [];
-  return JSON.parse(r);
+    console.log("getTasksFromStorage");        // LOG
+    let r = localStorage.getItem('tasks');
+    if (!r)
+        return [];
+    return JSON.parse(r);
 }
 
 /**
@@ -268,17 +334,17 @@ function getTasksFromStorage() {
 * @param {Array<Object>} tasks An array of recipes
 */
 function addTasksToDocument(tasks) {
-  console.log("addTasksToDocument");        // LOG
-  // Loop through each of the tasks in the passed in array,
-  // create a <my-task> element for each one, and populate
-  // each <my-task> with that task data using element.data = ...
-  // Append each element to <main>
-  let list = document.querySelector('#list');
-  for(let t = 0; t < tasks.length; t++){
-    let task = document.createElement('my-task');
-    task.data = tasks[t];
-    list.appendChild(task);
-  }
+    console.log("addTasksToDocument");        // LOG
+    // Loop through each of the tasks in the passed in array,
+    // create a <my-task> element for each one, and populate
+    // each <my-task> with that task data using element.data = ...
+    // Append each element to <main>
+    let list = document.querySelector('#list');
+    for (let t = 0; t < tasks.length; t++) {
+        let task = document.createElement('my-task');
+        task.data = tasks[t];
+        list.appendChild(task);
+    }
 }
 
 /**
@@ -287,17 +353,17 @@ function addTasksToDocument(tasks) {
 * @param {Array<Object>} tasks An array of tasks
 */
 function saveTasksToStorage(tasks) {
-  console.log("saveTasksToStorage");        // LOG
-  let str_tasks = JSON.stringify(tasks);
-  localStorage.setItem('tasks',str_tasks);
+    console.log("saveTasksToStorage");        // LOG
+    let str_tasks = JSON.stringify(tasks);
+    localStorage.setItem('tasks', str_tasks);
 }
 
-function assignDateAndTime(){
-  // Check if anything in storage
+function assignDateAndTime() {
+    // Check if anything in storage
     // if nothing in storage (first task inputted)
     // set date to "tomorrow" and time to midnight
     const today = new Date()
-    let assignedDate =  new Date()
+    let assignedDate = new Date()
     assignedDate.setDate(today.getDate() + 1)
 
     // else if something in storage (at least one task already exists)
@@ -312,8 +378,8 @@ function assignDateAndTime(){
 // mytask.addToLocalStorage();
 
 
-function generateUID(){
-  const task_uid = taskName +"_"+assignedDate+"_"+assignedTime;
+function generateUID() {
+    const task_uid = taskName + "_" + assignedDate + "_" + assignedTime;
 }
 
 /**
@@ -321,58 +387,58 @@ function generateUID(){
 * <button>.
 */
 function initFormHandler() {
-let list = document.querySelector('#list');
-// get reference
+    let list = document.querySelector('#list');
+    // get reference
 
-// Get a reference to the <form> element
-let form = document.querySelector('form');
-// Add an event listener for the 'submit' event, which fires when the
-// submit button is clicked
-form.addEventListener('submit',(event)=>{
-  event.preventDefault();
-  // Create a new FormData object from the <form> element reference above
-  let fd = new FormData(form);
-  // Create an empty taskObject, and extract the keys and corresponding
-  // values from the FormData object and insert them into taskObject
-  let taskObject = {};
-  let new_task_obj = new Task();
-  for(const [key,val] of fd){
-    // if(!val){
-    //   continue;
-    // }
-    taskObject[key] = val;
-    new_task_obj.data[key] = val;
-  }
+    // Get a reference to the <form> element
+    let form = document.querySelector('form');
+    // Add an event listener for the 'submit' event, which fires when the
+    // submit button is clicked
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        // Create a new FormData object from the <form> element reference above
+        let fd = new FormData(form);
+        // Create an empty taskObject, and extract the keys and corresponding
+        // values from the FormData object and insert them into taskObject
+        let taskObject = {};
+        let new_task_obj = new Task();
+        for (const [key, val] of fd) {
+            // if(!val){
+            //   continue;
+            // }
+            taskObject[key] = val;
+            new_task_obj.data[key] = val;
+        }
 
-  // Create a new <my-task> element
-  let new_task = document.createElement('my-task');
-  // Add the taskObject data to <my-task> using element.data
-  new_task.data = taskObject;
-  // Append this new <my-task> to <new_task>
-  list.appendChild(new_task);
-  // Get the recipes array from localStorage, add this new recipe to it, and
-  // then save the recipes array back to localStorage
-  let tasks = getTasksFromStorage();
-  tasks.push(taskObject);
-  saveTasksToStorage(tasks);
+        // Create a new <my-task> element
+        let new_task = document.createElement('my-task');
+        // Add the taskObject data to <my-task> using element.data
+        new_task.data = taskObject;
+        // Append this new <my-task> to <new_task>
+        list.appendChild(new_task);
+        // Get the recipes array from localStorage, add this new recipe to it, and
+        // then save the recipes array back to localStorage
+        let tasks = getTasksFromStorage();
+        tasks.push(taskObject);
+        saveTasksToStorage(tasks);
 
-  //create task object
-  
-  let uid = Task.getUniqueUID();
-  new_task_obj.data['uid'] = uid;
-  new_task_obj.data['task_uid'] = uid;
-  new_task_obj.data['category'] = [taskObject['category']];
-  console.log(new_task_obj);
-  new_task_obj.addToLocalStorage();
-})
+        //create task object
 
-// Get a reference to the "Clear Local Storage" button
-let clear_stg = document.querySelector('.danger');
-// Add a click event listener to clear local storage button
-clear_stg.addEventListener('click',(event)=>{
-  // Clear the local storage
-  localStorage.clear();
-  // Delete the contents of <main>
-  list.innerHTML = '';
-})
+        let uid = Task.getUniqueUID();
+        new_task_obj.data['uid'] = uid;
+        new_task_obj.data['task_uid'] = uid;
+        new_task_obj.data['category'] = [taskObject['category']];
+        console.log(new_task_obj);
+        new_task_obj.addToLocalStorage();
+    })
+
+    // Get a reference to the "Clear Local Storage" button
+    let clear_stg = document.querySelector('.danger');
+    // Add a click event listener to clear local storage button
+    clear_stg.addEventListener('click', (event) => {
+        // Clear the local storage
+        localStorage.clear();
+        // Delete the contents of <main>
+        list.innerHTML = '';
+    })
 }
