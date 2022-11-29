@@ -201,6 +201,63 @@
             </form>
             
             <br>
+
+            <!-- Insert Padding Preferences Input -->
+            <h3><u>Set Your Schedule Preferences</u></h3>
+            <table>
+                <tr>
+                    <td>
+                        <h4>Wake Up Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you wake up (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
+                    </td>
+                </tr>
+            </table> 
+
+            <table>
+                <tr>
+                    <td>
+                        <h4>Lunch Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you go to lunch (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
+                    </td>
+                </tr>
+            </table> 
+
+            <table>
+                <tr>
+                    <td>
+                        <h4>Sleeping Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you go to bed (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
+                    </td>
+                </tr>
+            </table> 
+
+
+
+
             <button type="button" class="danger">Clear Your Schedule</button>
             <!-- Calendar Button
             <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
