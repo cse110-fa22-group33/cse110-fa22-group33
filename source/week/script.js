@@ -353,7 +353,9 @@ function setTasksForDay(startTasks) {
                             currDay++;
                             currDayTime = "" + currDay + currTime;
                         }
+
                         currCell = document.getElementById(currDayTime);
+
                         if(task.data.category == "school") { // ! recurrent
                             currCell.style.backgroundColor="#51a051d8";
                         }
@@ -368,6 +370,10 @@ function setTasksForDay(startTasks) {
         
                         if(task.data.category == "") {
                             currCell.style.backgroundColor="#c38bce91";
+                        }
+
+                        if(!(task.data.padding) & !(task.data.recurrent)) {
+                            currCell.innerHTML = task.data.task_name;
                         }
         
                         // add 
