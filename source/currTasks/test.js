@@ -119,4 +119,10 @@ second.data.ddl = new Date('November 30, 2022 23:59:00');  // Deadline: November
 second.data.duration = 1;
 second.data.priority = 4;
 second.addToLocalStorage();
+
+const third = new Task('second', Task.getUniqueUID(), 4, new Date());
+second.data.ddl = new Date('November 30, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+second.data.duration = 1;
+second.data.priority = 4;
+second.addToLocalStorage();
 */
