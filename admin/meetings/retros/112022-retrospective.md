@@ -13,7 +13,7 @@
 - Yangchen
 
 ### Links
-[Retrium] (https://app.retrium.com/team-room/6b031ea6-ff68-4a96-b626-9fa3e626bfe6/retro)
+[Retrium](https://app.retrium.com/team-room/6b031ea6-ff68-4a96-b626-9fa3e626bfe6/retro)
 
 ### What Went Well
 * Great communication
