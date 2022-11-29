@@ -274,14 +274,32 @@ export function getHeaderAndTasksFromStorage() {
  * Reads tasks from local storage and returns an array of 
  * all of the tasks found (as Task objects). If nothing
  * is found in localStorage for tasks, an empty array is returned.
+ * @parameter startTasks
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
 function setTasksForDay(startTasks) {
     let tasks = [];
+    let paddingTasks = [];
     // loop over entire current week
     for (let i = 0; i < 7; i++) {
         // pull all tasks for current day
         tasks = Task.getTasksFromDate(startTasks);
+        paddingTasks = Task.getAllPaddings();
+
+        if(paddingTasks.length != 0) {
+            for(let task of paddingTasks) {
+                // pull correct date and time from task element
+                let currDay = task.data.start_date.getDay();
+                let currTime = task.data.start_date.getHours();
+
+                let currDayTime = "" + currDay  + currTime;
+
+                // grab corresponding html cell
+                let currCell = document.getElementById(currDayTime);
+
+                currCell.style.backgroundColor="#A9A9A9";
+            }
+        }
 
         if(tasks.length != 0) {
             for (let task of tasks) {
@@ -315,6 +333,7 @@ function setTasksForDay(startTasks) {
 
 
                 if(task.data.padding) {
+                    currCell.innerHTML = "";
                     currCell.style.backgroundColor="#A9A9A9";
                 }
 
@@ -335,7 +354,7 @@ function setTasksForDay(startTasks) {
                             currDayTime = "" + currDay + currTime;
                         }
                         currCell = document.getElementById(currDayTime);
-                        if(task.data.category == "school") {
+                        if(task.data.category == "school") { // ! recurrent
                             currCell.style.backgroundColor="#51a051d8";
                         }
         
@@ -351,8 +370,13 @@ function setTasksForDay(startTasks) {
                             currCell.style.backgroundColor="#c38bce91";
                         }
         
-        
+                        // add 
+                        // check if padding is recurrent
+                        // use get all paddings, 
+                        // iterate over returned array and set html color if marked as recurrent
+                        // add task names back
                         if(task.data.padding) {
+                            // should be dark gray with name;
                             currCell.style.backgroundColor="#A9A9A9";
                         }
         
