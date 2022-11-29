@@ -47,15 +47,12 @@ class Task extends HTMLElement{
              <taskName>${data.task_name}</taskName> (${data.ddl})
          </summary>
          <p>Category: ${data.category}</p>
-         <p>Priority: ${data.priority}</p>
          <p>Duration: ${data.duration} hours</p>
-         <p>Difficulty: ${data.difficulty}/5</p>
          <p>Description: ${data.description}</p>
+         <p>Priority: ${data.priority}</p>
+         <p>Difficulty: ${data.difficulty}/5</p>
          <p>DDL Time: ${data.taskddltime}</p>
-         <p>Specified DateTime: ${data.datetime}</p>
-         <p>Min Work Time: ${data.mintime}</p>
-         <p>Max Work Time: ${data.maxtime}</p>
-         <p>Extra Notes: ${data.notes}</p>
+         <p>Preferred Work Length: ${data.mintime}</p>
          </details>
          `;
         

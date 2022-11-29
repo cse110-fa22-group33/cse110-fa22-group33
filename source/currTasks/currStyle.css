@@ -1,5 +1,7 @@
 /* Color Customization */
 :root {
+	--white: rgb(255, 255, 255);
+	--black: rgb(0, 0, 0);
 	--school: #40793a;
 	--personal: #1662d4;
 	--other: #9c109a;
@@ -107,6 +109,41 @@ input[type="radio"], input[type="checkbox"] {
     padding-right: 20rem;
 	position: absolute;
 	right: 0rem;
+}
+
+.list .task-item {
+	display: flex;
+	align-items: center;
+	background-color: var(--light);
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	margin-bottom: 0.5rem;
+}
+
+.task-item label {
+	display: block;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+.task-item .task-content {
+	flex: 1 1 0%;
+}
+
+.task-item .task-content input {
+	color: var(--dark);
+	font-size: 0.8rem;
+	border: none;
+	outline: none;
+	appearance: none;
+	background: none;
+	cursor: initial;
+}
+
+.task-item.done .task-content input {
+	text-decoration: line-through;
+	color: var(--grey);
 }
 
 .bubble {
@@ -273,3 +310,114 @@ This is the css of help tip (hover/click for more)
     left:0;
 }
 
+/*
+Testing New Modal Stuff
+
+@mixin easeOut {
+	transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+  
+  
+body {
+	background: #38c5b9;
+	font-family: 'Montserrat';
+	font-weight: 300;
+	line-height: 1.5;
+}
+  
+a {
+	text-decoration: none;
+	color: inherit;
+}
+  
+.buttons-ctn {
+	will-change: transform;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -140px;
+	margin-top: -30px;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+}
+  
+.button {
+	will-change: transform;
+	position: relative;
+	float: left;
+	display: inline-block;
+	padding: 20px;
+	width: 140px;
+	text-align: center;
+	line-height: normal;
+	@include easeOut;
+}
+
+.button .left {
+	background: var(--black);
+	color: var(--white);
+}
+
+.button .right {
+	background: darken(white, 8);
+	  color: var(--black);
+}
+
+.button .active{
+	cursor: default;
+}
+
+.button .active.span{
+	opacity: 0;
+}
+  
+.button__content {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 60px 20px;
+	text-align: center;
+	width: 600px;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 10;
+	color: white;
+}
+
+.button_content .left{
+	color: var(--white);
+}
+
+.button_content .left .a{
+	color: var(--black);
+	background: var(--white);
+}
+
+.button_content .right{
+	color: var(--black);
+}
+
+.button_content .right .a{
+	color: var(--white);
+	  background: var(--black);
+}
+
+.button_content .active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.button_content .a{
+	display: inline-block;
+	padding: 10px 20px;
+}
+
+.button_content .h2{
+	font-size: 36px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: 300;
+}
+*/
