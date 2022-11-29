@@ -9,6 +9,7 @@ We looked into the subsequent suggested features for our pipeline, and here is w
 - code quality via human review (ex. Pull Requests)
 - unit tests via automation (ex. Jest, Tape, Ava, Cypress, Mocha/Chai, etc.)*
 - documentation generation via automation (ex. JSDocs)
+- building/deployment (ex. Electron.js)
 
 
 ## Pipeline so far:
@@ -17,6 +18,9 @@ We looked into the subsequent suggested features for our pipeline, and here is w
 3. The repo is connected to the Codeclimate quality checker which checks for the code's maintainability and test coverage
 4. After these automatic phase are run, the pipeline requires two human reviews and approvals for the code to be pushed to main, ideally by people who did not work on the feature that is being reviewed
 5. If code is approved, merge the branch with main, else if changes are needed continue to commit code to the same branch under the same pull request
+6. When code is merged into main, the build script will be run which will automatically produce electron builds for windows, macOS, and linux
+
+As for step 6, we decided it will only be run when a pull request is approved and successfully merged so that time isn't wasted making builds that aren't fully working.
 
 The above pipeline is run when the devs make a pull request to merge their code to `main`. The pipeline is run again when pushes are made just in case they need to update their feature.
 
