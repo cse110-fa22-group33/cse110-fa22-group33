@@ -87,12 +87,6 @@ export function getHeaderAndTasksFromStorage() {
     startTasks = new Date();
     let tasks = [];
 
-    // set padding
-    /*if(task.data.padding) {
-        pull day/time
-        set corresponding cells to dark grey
-    }*/
-
     // DESIGN DECISION: Hardcode start and end of week using current date and getTasksFromDate.
     // That way, week start and end are always correct, start on Sunday and end on Saturday.
 
@@ -279,27 +273,13 @@ export function getHeaderAndTasksFromStorage() {
  */
 function setTasksForDay(startTasks) {
     let tasks = [];
-    let paddingTasks = [];
+    let paddingTasks = Task.getAllPaddings();
+
     // loop over entire current week
     for (let i = 0; i < 7; i++) {
+        
         // pull all tasks for current day
         tasks = Task.getTasksFromDate(startTasks);
-        paddingTasks = Task.getAllPaddings();
-
-        if(paddingTasks.length != 0) {
-            for(let task of paddingTasks) {
-                // pull correct date and time from task element
-                let currDay = task.data.start_date.getDay();
-                let currTime = task.data.start_date.getHours();
-
-                let currDayTime = "" + currDay  + currTime;
-
-                // grab corresponding html cell
-                let currCell = document.getElementById(currDayTime);
-
-                currCell.style.backgroundColor="#A9A9A9";
-            }
-        }
 
         if(tasks.length != 0) {
             for (let task of tasks) {
@@ -331,15 +311,9 @@ function setTasksForDay(startTasks) {
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
-
-                if(task.data.padding) {
-                    currCell.innerHTML = "";
-                    currCell.style.backgroundColor="#A9A9A9";
-                }
-
                 if(task.data.recurrent) {
                     currCell.innerHTML = "";
-                    currCell.style.backgroundColor="#A9A9A9";
+                    currCell.style.backgroundColor="";
                 }
 
                 // set calendar to reflect task duration
@@ -375,23 +349,48 @@ function setTasksForDay(startTasks) {
                         if(!(task.data.padding) & !(task.data.recurrent)) {
                             currCell.innerHTML = task.data.task_name;
                         }
-        
-                        // add 
-                        // check if padding is recurrent
-                        // use get all paddings, 
-                        // iterate over returned array and set html color if marked as recurrent
-                        // add task names back
-                        if(task.data.padding) {
-                            // should be dark gray with name;
-                            currCell.style.backgroundColor="#A9A9A9";
-                        }
-        
-                        if(task.data.recurrent) {
-                            currCell.innerHTML = "";
-                            currCell.style.backgroundColor="#A9A9A9";
-                        }
                     }
                 }  
+            }
+        }
+
+        for(let task of paddingTasks) {
+            console.log(task);
+            // pull correct date and time from task element
+            let currDay = startTasks.getDay();
+            let currTime = task.data.ddl.getHours();
+    
+            let currDayTime = "" + currDay  + currTime;
+    
+            // grab corresponding html cell
+            let currCell = document.getElementById(currDayTime);
+    
+            currCell.style.backgroundColor="#A9A9A9";
+
+            let curDuration = task.data.duration;
+            if ((curDuration > 1) & (i == 0)) {
+                for (let i = 0; i < curDuration - 1; i++) {
+                    currTime++;
+                    currDayTime++;
+                    if (currTime == 24) {
+                        currTime = 0;
+                    }
+                    currDayTime = "" + currDay + currTime;
+                    currCell = document.getElementById(currDayTime);
+                    currCell.style.backgroundColor="#A9A9A9";
+                }
+            }
+            if ((curDuration > 1) & (i != 0)) {
+                for (let i = 0; i < curDuration - 1; i++) {
+                    currTime++;
+                    currDayTime++;
+                    if (currTime == 24) {
+                        currTime = 0;
+                        currDayTime = "" + currDay + currTime;
+                    }
+                    currCell = document.getElementById(currDayTime);
+                    currCell.style.backgroundColor="#A9A9A9";
+                }
             }
         }
 
