@@ -223,3 +223,7 @@ function render(){
   }
 
 }
+
+export const testExport = {
+  render
+};
