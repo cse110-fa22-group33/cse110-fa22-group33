@@ -1,89 +1,84 @@
 import { Task } from './../skyTasks.js';
-
 /*
+
 Task.removeAllTasks();
 
-let compare = function(a,b) {
-  return Task.compareDDL(a,b) || Task.compareSoftDDL(a,b) || Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
-}
-
 let mytask9 = new Task('9 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask9.data.ddl = new Date('November 25, 2022 09:00:00');
+mytask9.data.ddl = new Date('November 28, 2022 09:00:00');
 mytask9.addToLocalStorage();
 
 let mytask10 = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask10.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask10.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask10.addToLocalStorage();
 
 let mytask = new Task('11 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 11:00:00');
+mytask.data.ddl = new Date('November 28, 2022 11:00:00');
 mytask.addToLocalStorage();
 
 console.log(Task.compareDDL(mytask,mytask9));
 
 
 mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('12 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 12:00:00');
+mytask.data.ddl = new Date('November 28, 2022 12:00:00');
 mytask.addToLocalStorage();
 
 mytask = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.addToLocalStorage();
 
 mytask = new Task('10 4', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 4;
 mytask.addToLocalStorage();
 
 
 mytask = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 3;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.data.difficulty = 5;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5 1', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.data.difficulty = 1;
 mytask.addToLocalStorage();
 
 mytask = new Task('10 5 2', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
+mytask.data.ddl = new Date('November 28, 2022 10:00:00');
 mytask.data.priority = 5;
 mytask.data.difficulty = 2;
 mytask.addToLocalStorage();
-
 
 
 
@@ -93,7 +88,7 @@ resursivePadding.data.duration = 9;
 resursivePadding.setToRecursivePadding();
 resursivePadding.addToLocalStorage();
 Task.schedule();
-*/
+ */
 
 /*
 
@@ -223,3 +218,7 @@ function render(){
   }
 
 }
+
+export const testExport = {
+  render
+};
