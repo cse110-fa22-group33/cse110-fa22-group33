@@ -1,0 +1,60 @@
+name: Build
+
+on:
+  pull_request:
+    types:
+      - closed
+      
+  workflow_dispatch:
+            
+jobs:
+  build_linux:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: npm install and make
+        run: |
+          npm install
+          npm run make
+        working-directory: ./source
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Linux Build
+          path: source/out
+          
+  build_windows:
+    if: github.event.pull_request.merged == true
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: npm install and make
+        run: |
+          npm install
+          npm run make
+        working-directory: ./source
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Windows Build
+          path: source/out
+          
+  build_macos:
+    if: github.event.pull_request.merged == true
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: npm install and make
+        run: |
+          npm install
+          npm run make
+        working-directory: ./source
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: MacOS Build
+          path: source/out

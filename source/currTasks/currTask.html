@@ -55,6 +55,28 @@
         <!-- Create New Task -->
         <div class="create-new-task">
             <h2 class="title" >ADD NEW TASK</h2>
+
+
+            <!-- Testing New Modal Stuff 
+            <div class="buttons-ctn">
+                <a href="" class="button button--left"><span>Left</span></a>
+                <a href="" class="button button--right"><span>Right</span></a>
+            </div>
+
+            <div class="button__content button__content--left">
+                <h2>You chose left!</h2>
+                <a href="">Signup for nothing here</a>
+            </div>
+            
+            <div class="button__content button__content--right">
+                <h2>You chose right!</h2>
+                <a href="">Signup for nothing here</a>
+            </div>
+            -->
+
+
+           <!-- Delete 80-201 -->
+
             <button title = "Click me to schedule your own time slot." class="toggle-form">Add new task</button>
             
             <form id="new-task">
@@ -179,6 +201,63 @@
             </form>
             
             <br>
+
+            <!-- Insert Padding Preferences Input -->
+            <h3><u>Set Your Schedule Preferences</u></h3>
+            <table>
+                <tr>
+                    <td>
+                        <h4>Wake Up Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you wake up (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
+                    </td>
+                </tr>
+            </table> 
+
+            <table>
+                <tr>
+                    <td>
+                        <h4>Lunch Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you go to lunch (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
+                    </td>
+                </tr>
+            </table> 
+
+            <table>
+                <tr>
+                    <td>
+                        <h4>Sleeping Time: 
+                        </h4>
+                    </td>
+                    <td>
+                        <div class="help-tip">
+                            <p>When do you go to bed (input a number out of 24 hours)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
+                    </td>
+                </tr>
+            </table> 
+
+
+
+
             <button type="button" class="danger">Clear Your Schedule</button>
             <!-- Calendar Button
             <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
@@ -186,8 +265,37 @@
 
         <div class="task-list">
             <h2 class="title">TASK LIST</h2>
-            
-            <div id="list">
+            <div class="list" id="list">
+                <!--
+                <div class = "task-item">
+                    <label>
+                        <input type = "checkbox"/>
+                        <span class = "bubble school"></span>
+                    </label>
+                    <div class = "task-content">
+                        <input type = "text" value = "Finish Lab9" />
+                    </div>
+                </div>
+
+                <div class = "task-item">
+                    <label>
+                        <input type = "checkbox"/>
+                        <span class = "bubble personal"></span>
+                    </label>
+                    <div class = "task-content">
+                        <input type = "text" value = "Get groceries" />
+                    </div>
+                </div>
+
+                <div class = "task-item">
+                    <label>
+                        <input type = "checkbox"/>
+                        <span class = "bubble other"></span>
+                    </label>
+                    <div class = "task-content">
+                        <input type = "text" value = "Apply for internships" />
+                    </div>
+                </div>-->
             </div>
         </div>
     </main>

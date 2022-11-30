@@ -14,11 +14,11 @@ window.addEventListener('load', (event) => {
         let morning;
         let noon;
         let evening;
-        let ans = prompt("Wellcome to Monkeys Calender! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
+        let ans = prompt("Welcome to Code Monkeyz Smart Scheduler! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
         if (isInt(ans)) {
             morning = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of 9am");
             morning = 9;
         }
         localStorage.setItem('morning', JSON.stringify(morning));
@@ -26,16 +26,16 @@ window.addEventListener('load', (event) => {
         if (isInt(ans)) {
             noon = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of noon");
             noon = 12;
         }
         localStorage.setItem('noon', JSON.stringify(noon));
 
-        ans = prompt("When do you go to bad (input a number out of 24 hour): ", "22");
+        ans = prompt("When do you go to bed (input a number out of 24 hour): ", "22");
         if (isInt(ans)) {
             evening = parseInt(ans);
         } else {
-            alert("Invalid input, using default");
+            alert("Invalid input, using default of 10pm");
             evening = 22;
         }
         localStorage.setItem('evening', JSON.stringify(evening));
@@ -63,20 +63,13 @@ window.addEventListener('load', (event) => {
         resursivePadding.data.duration = recursiveDuration;
         resursivePadding.setToRecursivePadding();
         resursivePadding.addToLocalStorage();
+
         Task.schedule();
     }
 // */
 
-
     // Get tasks from local storage
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    // Query user name
-    //const nameInput = document.querySelector('#user-name');
-    // Query new task
-    const taskInput = document.querySelector('#new-task');
-    //const username = localStorage.getItem('user-name') || '';
-    const collapse = document.querySelector('.advance');
-
     // Toggle with displaying form
     const formbtn = document.querySelector('.toggle-form');
     formbtn.addEventListener('click', function () {
@@ -278,23 +271,7 @@ window.addEventListener('load', (event) => {
   </form>`;
 
         }
-    });
-    // Collapsible
-    collapse.addEventListener('click', function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-            content.style.display = "none";
-        } else {
-            content.style.display = "block";
-        }
-    });
 
-    // Track name changes
-    nameInput.value = username;
-    nameInput.addEventListener('change', (event) => {
-        console.log("change");        // LOG
-        localStorage.setItem('user-name', event.target.value);
     });
 })
 
@@ -372,12 +349,6 @@ function assignDateAndTime() {
     // else set assignedDate to the next day and time to midnight
 }
 
-// new Task('task name', 999, 2000, new Date(),['eating','studying','working']).addToLocalStorage();
-
-// let mytask = new Task('task name', 1000, 2000, new Date());
-// mytask.addToLocalStorage();
-
-
 function generateUID() {
     const task_uid = taskName + "_" + assignedDate + "_" + assignedTime;
 }
@@ -429,7 +400,6 @@ function initFormHandler() {
         saveTasksToStorage(tasks);
 
         //create task object
-
         let uid = Task.getUniqueUID();
         new_task_obj.data['uid'] = uid;
         new_task_obj.data['task_uid'] = uid;
@@ -448,3 +418,92 @@ function initFormHandler() {
         list.innerHTML = '';
     })
 }
+
+/*
+Testing New Modal Stuff
+
+var button 			= $('.button');
+var content 		= $('.button__content');
+var win 				= $(window);
+
+var expand = function() {
+  if (button.hasClass('button--active')) {
+    return false;
+  } else {
+    var W 					= win.width();
+    var xc 					= W / 2;
+
+    var that 				= $(this);
+    var thatWidth 	= that.innerWidth() / 2;
+    var thatOffset 	= that.offset();
+    var thatIndex		= that.index();
+    var other;
+
+    if (!that.next().is('.button')) {
+      other = that.prev();
+    } else {
+      other = that.next();
+    }
+
+    var otherWidth		= other.innerWidth() / 2;
+    var otherOffset		= other.offset();
+
+    // content box stuff
+    var thatContent = $('.button__content').eq(thatIndex);
+    var thatContentW = thatContent.innerWidth();
+    var thatContentH = thatContent.innerHeight();
+
+    // transform values for button
+    var thatTransX 	= xc - thatOffset.left - thatWidth;
+    var otherTransX	= xc - otherOffset.left - otherWidth;
+    var thatScaleX	= thatContentW / that.innerWidth();
+    var thatScaleY	= thatContentH / that.innerHeight();
+
+    that.css({
+      'z-index': '2',
+      'transform': 'translateX(' + thatTransX + 'px)'
+    });
+
+    other.css({
+      'z-index': '0',
+      'opacity': '0',
+      'transition-delay': '0.05s',
+      'transform': 'translateX(' + otherTransX + 'px)'
+    });
+
+    that.on('transitionend webkitTransitionEnd', function() {
+      that.css({
+        'transform': 'translateX(' + thatTransX + 'px) scale(' + thatScaleX +',' + thatScaleY + ')',
+      });
+
+      that.addClass('button--active');
+      thatContent.addClass('button__content--active');
+      thatContent.css('transition', 'all 1s 0.1s cubic-bezier(0.23, 1, 0.32, 1)');
+      that.off('transitionend webkitTransitionEnd');
+    });
+
+    return false;
+  }
+};
+
+var hide = function(e) {
+  var target= $(e.target);
+  if (target.is(content)) {
+    return;
+  } else {
+    button.removeAttr('style').removeClass('button--active');
+    content.removeClass('button__content--active').css('transition', 'all 0.2s 0 cubic-bezier(0.23, 1, 0.32, 1)');
+  }
+};
+
+var bindActions = function() {
+  button.on('click', expand);
+  win.on('click', hide);
+};
+
+var init = function() {
+  bindActions();
+};
+
+init();
+*/
