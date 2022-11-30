@@ -269,6 +269,29 @@ export class Task {
     }
   }
 
+
+
+  /**
+   * getAllRecuringPaddings Method
+   * 
+   * Get all Recuring paddings in local storage
+   * @returns array of all tasks
+   */
+   static getAllRecuringPaddings() {
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('padding_tasks'))
+      let tasks = [];
+      for (let uid of tasks_uid) {
+        let myTask = Task.getTaskFromUID(uid);
+        if (myTask.data.recurrent) {tasks.push(myTask)};
+      };
+      return tasks;
+    } catch (e) {
+      return [];
+    }
+  }
+
+
   /**
    * getTaskFromTaskUID Method
    * 
