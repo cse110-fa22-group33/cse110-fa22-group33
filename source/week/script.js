@@ -13,7 +13,7 @@ function init() {
     getHeaderAndTasksFromStorage();
 }
 
-function render() {
+export function render() {
     /* array that represents the day of the weeks in index number 
    0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
    const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
