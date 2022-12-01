@@ -230,9 +230,10 @@ button,.submit{
 input[type="submit"]:hover{
 	background-color: rgba(0, 45, 128, 0.767);
 }
-.create-new-task button[class="danger"] {
+.danger {
 	text-align: center;
 	display: block;
+	width: 15rem;
 	font-size: 1rem;
 	color: #FFF;
 	font-weight: 500;
@@ -309,115 +310,98 @@ This is the css of help tip (hover/click for more)
     top:-40px;
     left:0;
 }
-
-/*
-Testing New Modal Stuff
-
-@mixin easeOut {
-	transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-  
-  
-body {
-	background: #38c5b9;
-	font-family: 'Montserrat';
-	font-weight: 300;
-	line-height: 1.5;
-}
-  
-a {
-	text-decoration: none;
-	color: inherit;
-}
-  
-.buttons-ctn {
-	will-change: transform;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: -140px;
-	margin-top: -30px;
-	transform-style: preserve-3d;
-	backface-visibility: hidden;
-}
-  
-.button {
-	will-change: transform;
-	position: relative;
-	float: left;
-	display: inline-block;
-	padding: 20px;
-	width: 140px;
-	text-align: center;
-	line-height: normal;
-	@include easeOut;
-}
-
-.button .left {
-	background: var(--black);
-	color: var(--white);
-}
-
-.button .right {
-	background: darken(white, 8);
-	  color: var(--black);
-}
-
-.button .active{
-	cursor: default;
-}
-
-.button .active.span{
+.modal-window {
+	position: fixed;
+	background-color: rgba(255, 255, 255, 0.25);/* color of the page when the modal is open */
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	visibility: hidden;
 	opacity: 0;
-}
-  
-.button__content {
-	display: block;
+	pointer-events: none;
+	transition: all 0.3s;
+  }
+  .modal-window:target {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+  }
+  .modal-window > div {
+	width: 400px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 60px 20px;
+	padding: 2em;
+	background: rgb(168, 163, 163);
+  }
+  .modal-window header {
+	font-weight: bold;
+  }
+  .modal-window h1 {
+	font-size: 150%;
+	margin: 0 0 15px;
+  }
+  ​
+  .modal-close {
+	color: rgb(34, 28, 28);
+	line-height: 50px;
+	font-size: 80%;
+	position: absolute;
+	right: 0;
 	text-align: center;
-	width: 600px;
-	visibility: hidden;
-	opacity: 0;
-	z-index: 10;
-	color: white;
-}
-
-.button_content .left{
-	color: var(--white);
-}
-
-.button_content .left .a{
-	color: var(--black);
-	background: var(--white);
-}
-
-.button_content .right{
-	color: var(--black);
-}
-
-.button_content .right .a{
-	color: var(--white);
-	  background: var(--black);
-}
-
-.button_content .active{
-	opacity: 1;
-	visibility: visible;
-}
-
-.button_content .a{
-	display: inline-block;
-	padding: 10px 20px;
-}
-
-.button_content .h2{
-	font-size: 36px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-weight: 300;
-}
-*/
+	top: 0;
+	width: 70px;
+	text-decoration: none;
+  }
+  .modal-close:hover {
+	color: black;
+  }
+  ​
+  ​
+  ​
+  body {
+	font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-weight: 600;
+	color: black;
+  }
+  ​
+  a {
+	color: inherit;
+	text-decoration: none;
+  }
+  ​
+  .container {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh; */
+	height: 8vh;
+  }
+  ​
+  .modal-window > div {
+	border-radius: 1rem;
+  }
+  ​
+  .modal-window div:not(:last-of-type) {
+	margin-bottom: 15px;
+  }
+  ​
+  small {
+	color: lightgray;
+  }
+  ​
+  .btn {
+	background-color: rgb(42, 161, 92);
+	padding: 1em 1.5em;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	border: solid black;
+	width: 200px;
+	text-align: center;
+  }
+  .btn i {
+	padding-right: 0.3em;
+  }
