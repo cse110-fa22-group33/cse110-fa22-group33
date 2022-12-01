@@ -126,3 +126,28 @@ second.data.duration = 1;
 second.data.priority = 4;
 second.addToLocalStorage();
 */
+
+/*
+//new tests for sorting the tesks
+const first = new Task('first', Task.getUniqueUID(), 2, new Date());
+first.data.ddl = new Date('December 3, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+first.data.duration = 1;
+first.data.priority = 5;
+first.data.difficulty = 3;
+first.addToLocalStorage();
+
+
+const second = new Task('second', Task.getUniqueUID(), 4, new Date());
+second.data.ddl = new Date('December 3, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+second.data.duration = 1;
+second.data.priority = 4;
+second.data.difficulty = 3;
+second.addToLocalStorage();
+
+const third = new Task('third', Task.getUniqueUID(), 5, new Date());
+third.data.ddl = new Date('December 3, 2022 23:59:00');  // Deadline: November 23nd, 11:59pm 
+third.data.duration = 1;
+third.data.priority = 4;
+third.data.difficulty = 5;
+third.addToLocalStorage();
+*/

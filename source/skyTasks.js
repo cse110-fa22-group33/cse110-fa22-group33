@@ -503,7 +503,7 @@ export class Task {
    * @returns Difference in difficulty between a and b
    */
   static compareDifficulty(a, b) {
-    return (a.data.difficulty - b.data.difficulty);
+    return a.data.difficulty - b.data.difficulty;
   }
 
   /**
@@ -515,7 +515,7 @@ export class Task {
    * @returns Difference in priority between a and b
    */
   static comparePriority(a, b) {
-    return (a.data.priority - b.data.priority);
+    return a.data.priority - b.data.priority;
   }
 
   /**
@@ -678,9 +678,16 @@ export class Task {
     task_need_schedule.sort(function(a,b) {
       let one_day = 86400000;
       if ((a.data.ddl-new Date())<(one_day*3) || (b.data.ddl-new Date())<(one_day*3)){
-        return Task.compareDDL(a,b);
+        if(Task.compareDDL(a,b) != 0){
+          return Task.compareDDL(a,b);
+        }    
       }
-      return Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
+      if (Task.comparePriority(b,a) == 0){
+        return Task.compareDifficulty(b,a);
+      }
+      else {
+        return Task.comparePriority(b,a);
+      }
     });
     for (let task of task_need_schedule) {
       if (task.data.padding) {
