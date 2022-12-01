@@ -359,15 +359,6 @@ This is the css of help tip (hover/click for more)
   .modal-close:hover {
 	color: black;
   }
-  ​
-  ​
-  ​
-  body {
-	font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	font-weight: 600;
-	color: black;
-  }
-  ​
   a {
 	color: inherit;
 	text-decoration: none;
