@@ -68,8 +68,7 @@ window.addEventListener('load', (event) => {
     }
 // */
 
-    // Get tasks from local storage
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    
     // Toggle with displaying form
     const formbtn = document.querySelector('.toggle-form');
     formbtn.addEventListener('click', function () {
@@ -280,28 +279,12 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
-    // Get the tasks from localStorage
-    let tasks = getTasksFromStorage();
-    // Add each task to the <main> element
+
+    let tasks = Task.getAllTasksFlat();
     addTasksToDocument(tasks);
-    // Add the event listeners to the form elements
     initFormHandler();
 }
 
-/**
-* Reads 'tasks' from localStorage and returns an array of
-* all of the tasks found (parsed, not in string form). If
-* nothing is found in localStorage for 'tasks', an empty array
-* is returned.
-* @returns {Array<Object>} An array of tasks found in localStorage
-*/
-function getTasksFromStorage() {
-    console.log("getTasksFromStorage");        // LOG
-    let r = localStorage.getItem('tasks');
-    if (!r)
-        return [];
-    return JSON.parse(r);
-}
 
 /**
 * Takes in an array of tasks and for each task creates a
@@ -316,42 +299,72 @@ function addTasksToDocument(tasks) {
     // create a <my-task> element for each one, and populate
     // each <my-task> with that task data using element.data = ...
     // Append each element to <main>
+
+    /* shadow element implementation
     let list = document.querySelector('#list');
     for (let t = 0; t < tasks.length; t++) {
         let task = document.createElement('my-task');
         task.data = tasks[t];
         list.appendChild(task);
     }
+    */
+
+    // task object implementation
+    let list = document.querySelector('#list');
+    for (let t = 0; t < tasks.length; t++){
+        let task = document.createElement('article');
+        let task_data = tasks[t].data;
+        task.innerHTML = `
+         <details>
+         <summary>
+             <taskName>${task_data.task_name}</taskName> (${task_data.ddl})
+         </summary>
+         <p>Category: ${task_data.category}</p>
+         <p>Duration: ${task_data.duration} hours</p>
+         <p>Description: ${task_data.description}</p>
+         <p>Priority: ${task_data.priority}</p>
+         <p>Difficulty: ${task_data.difficulty}/5</p>
+         <p>DDL Time: ${task_data.taskddltime}</p>
+         <p>Preferred Work Length: ${task_data.mintime}</p>
+         </details>
+         `;
+        list.appendChild(task);
+    }
 }
 
-/**
-* Takes in an array of tasks, converts it to a string, and then
-* saves that string to 'tasks' in localStorage
-* @param {Array<Object>} tasks An array of tasks
-*/
-function saveTasksToStorage(tasks) {
-    console.log("saveTasksToStorage");        // LOG
-    let str_tasks = JSON.stringify(tasks);
-    localStorage.setItem('tasks', str_tasks);
-}
+// /**
+// * Takes in an array of tasks, converts it to a string, and then
+// * saves that string to 'tasks' in localStorage
+// * @param {Array<Object>} tasks An array of tasks
+// */
+// function saveTasksToStorage(tasks) {
+//     /*
+//     console.log("saveTasksToStorage");        // LOG
+//     let str_tasks = JSON.stringify(tasks);
+//     localStorage.setItem('tasks', str_tasks);
+//     */
 
-function assignDateAndTime() {
-    // Check if anything in storage
-    // if nothing in storage (first task inputted)
-    // set date to "tomorrow" and time to midnight
-    const today = new Date()
-    let assignedDate = new Date()
-    assignedDate.setDate(today.getDate() + 1)
+//     // task object implementation
+//     for(let t = 0; t < tasks.length; t++){
+//         tasks[t].addToLocalStorage();
+//     }
+// }
 
-    // else if something in storage (at least one task already exists)
-    // if possible to fit new task duration directly after previous task
-    // then do so
-    // else set assignedDate to the next day and time to midnight
-}
+// function assignDateAndTime() {
+//     // Check if anything in storage
+//     // if nothing in storage (first task inputted)
+//     // set date to "tomorrow" and time to midnight
+//     const today = new Date()
+//     let assignedDate = new Date()
+//     assignedDate.setDate(today.getDate() + 1)
 
-function generateUID() {
-    const task_uid = taskName + "_" + assignedDate + "_" + assignedTime;
-}
+//     // else if something in storage (at least one task already exists)
+//     // if possible to fit new task duration directly after previous task
+//     // then do so
+//     // else set assignedDate to the next day and time to midnight
+// }
+
+
 
 /**
 * Adds the necesarry event handlers to <form> and the clear storage
@@ -386,18 +399,6 @@ function initFormHandler() {
                 new_task_obj.data[key] = val;
             }
         }
-
-        // Create a new <my-task> element
-        let new_task = document.createElement('my-task');
-        // Add the taskObject data to <my-task> using element.data
-        new_task.data = taskObject;
-        // Append this new <my-task> to <new_task>
-        list.appendChild(new_task);
-        // Get the recipes array from localStorage, add this new recipe to it, and
-        // then save the recipes array back to localStorage
-        let tasks = getTasksFromStorage();
-        tasks.push(taskObject);
-        saveTasksToStorage(tasks);
 
         //create task object
         let uid = Task.getUniqueUID();
