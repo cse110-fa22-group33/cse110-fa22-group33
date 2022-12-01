@@ -202,11 +202,19 @@ function render(){
         for (let task of task_list){
           if (task.data.padding) {continue};
           task_num+=1;
-          if (task_num>3) {break;};
+          if (task_num>3) {
+            let curr_event = document.createElement('div');
+            curr_event.classList.add('event');
+            curr_event.innerText = '...';
+            oneday.appendChild(curr_event);
+            break;
+          };
           let curr_event = document.createElement('div');
           curr_event.classList.add('event');
           curr_event.innerText = task.data.task_name;
-          if (task.data.category.includes("important")) {curr_event.style.background = "#dd7825";};
+          if (task.data.category.includes("school")) {curr_event.style.background = 'rgba(53, 130, 25, 0.75)';};
+          if (task.data.category.includes("personal")) {curr_event.style.background = 'rgba(20, 111, 157, 0.931)';};
+          if (task.data.category.includes("other")) {curr_event.style.background = 'rgba(146, 19, 137, 0.931)';};
           oneday.appendChild(curr_event);
         }
       }
