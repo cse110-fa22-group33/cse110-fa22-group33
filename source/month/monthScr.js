@@ -95,6 +95,10 @@ function render(){
       
       let curr_day = new Date(year, month, i-paddings);
       let task_list = Task.getTasksFromDate(curr_day);
+
+      let truncate = function(str, n=14){
+        return (str.length > n) ? str.slice(0, n-1) + ' ...' : str;
+      };      
       if (task_list.length!=0) {
         let task_num=0;
         for (let task of task_list){
@@ -102,18 +106,21 @@ function render(){
           task_num+=1;
 
           // check if the number of tasks on that day is larger than 3, add a '...' showing user more tasks are comming
-          if (task_num>3) {
+          if (task_num>2 && task_list.length>3) {
             let curr_event = document.createElement('div');
             curr_event.classList.add('event');
-            curr_event.innerText = '......';
+            curr_event.style.background = 'rgba(154, 196, 205, 1)';
+            curr_event.innerText = 'More Tasks ......';
             oneday.appendChild(curr_event);
             break;
           };
 
+          if (task_num>3) {break};
+
           // for each task create a new event element
           let curr_event = document.createElement('div');
           curr_event.classList.add('event');
-          curr_event.innerText = task.data.task_name;
+          curr_event.innerText = truncate(task.data.task_name);
 
           // check the category of the task and color the block accordingly
           if (task.data.category.includes("school")) {curr_event.style.background = 'rgba(53, 130, 25, 0.75)';};
