@@ -102,7 +102,7 @@ function render(){
       if (task_list.length!=0) {
         let task_num=0;
         for (let task of task_list){
-          if (task.data.padding) {continue};
+          if (task.data.padding && task.data.recurrent) {continue};
           task_num+=1;
 
           // check if the number of tasks on that day is larger than 3, add a '...' showing user more tasks are comming
