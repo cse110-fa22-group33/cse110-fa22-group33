@@ -42,27 +42,38 @@ describe('Task Class Tests', () => {
 
   //how bruh?!
   test('Test splitTask()', () =>{
+    testTask.addToLocalStorage();
     
     //test preferHour greater than Duration
     testTask.data.duration = 3;
     let prefer = 4;
-    Task.splitTask(testTask, prefer);
+    console.log("it is" + Task.splitTask(testTask, prefer));
     //expect(result).toBe(testTask);
 
-    testTask = new Task('Test Task', 1000);
+    //testTask = new Task('Test Task', 1000);
 
     //test preferHour 2, duration 7
-    /*
+    
     testTask.data.duration = 7;
     prefer = 2;
-    Task.splitTask(testTask, prefer);
-    */
+    console.log("now is" + Task.splitTask(testTask, prefer));
+    
   })
 
   test('Test getUniqueUID()', () =>{
+    //used localStorage, need to fix
+    testTask.addToLocalStorage();
+    console.log(testTask.data.uid);
+    let newUID = Task.getUniqueUID();
+    console.log(newUID);
+
   })
 
   test('Test getUniqueTaskUID()', () =>{
+    //same concept as above test
+    let currTaskUID = testTask.data.uid;
+    let newTaskUID = Task.getUniqueUID();
+    //console.log(newUID);
   })
 
   test('Test getAllTasks()', () =>{
@@ -159,22 +170,51 @@ describe('Task Class Tests', () => {
 
   //This is easy, use same test for ones below!
   test('Test compareDifficulty()', () =>{
+    testTask.data.difficulty = 5;
+    let otherTask = new Task('Other Task');
+    otherTask.data.difficulty = 3;
+    expect(Task.compareDifficulty(testTask, otherTask)).toBe(2);
     
   })
 
   test('Test comparePriority()', () =>{
+    testTask.data.priority = 5;
+    let otherTask = new Task('Other Task');
+    otherTask.data.priority = 1
+    expect(Task.comparePriority(testTask, otherTask)).toBe(4);
   })
 
   test('Test compareDDL()', () =>{
+    testTask.data.ddl = new Date("2022-12-25")
+    let otherTask = new Task('Other Task');
+    otherTask.data.ddl = new Date("2023-01-25");
+    expect(Task.compareDDL(testTask, otherTask)).toBeLessThan(0);
   })
 
   test('Test compareSoftDDL()', () =>{
+    testTask.data.softddl = new Date("2023-01-01");
+    let otherTask = new Task('Other Task');
+    otherTask.data.softddl = new Date("2022-12-05");
+    expect(Task.compareSoftDDL(testTask, otherTask)).toBeGreaterThan(0);
   })
 
   test('Test compareStartDate()', () =>{
+    testTask.data.start_date = new Date();
+    let otherTask = new Task('Other Task');
+    otherTask.data.start_date = new Date("2022-12-04");
+    expect(Task.compareStartDate(testTask, otherTask)).toBeLessThan(0);
   })
 
+  //whats difference between compareStartDate and compareTimeInterval?
+  //we should delete this method, it is not being used!
   test('Test compareTimeInterval()', () =>{
+    /*
+    testTask.data.start_date = new Date();
+    console.log(testTask[0]);
+    let otherTask = new Task('Other Task');
+    otherTask.data.start_date = new Date("2022-12-04");
+    //expect(Task.compareTimeInterval(testTask, otherTask)).toBe(2);
+    */
   })
 
   test('Test firstAvailable()', () =>{
