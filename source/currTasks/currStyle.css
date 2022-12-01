@@ -302,7 +302,7 @@ This is the css of help tip (hover/click for more)
     top:-12px;
 }
 
-.help-tip p:after{ /* Prevents the tooltip from being hidden */
+.help-tip p:after{ /* Prevents the tooltip from being hidden hey*/
     width:100%;
     height:40px;
     content:'';
