@@ -271,7 +271,7 @@ export function getHeaderAndTasksFromStorage() {
  * @parameter startTasks
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
-function setTasksForDay(startTasks) {
+export function setTasksForDay(startTasks) {
     let tasks = [];
     let paddingTasks = Task.getAllPaddings();
 
@@ -407,7 +407,7 @@ function setTasksForDay(startTasks) {
  * @parameter intDays number of days to be subtracted
  * @returns Date object
  */
-function subtractTimeFromDate(objDate, intDays) {
+export function subtractTimeFromDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
@@ -422,7 +422,7 @@ function subtractTimeFromDate(objDate, intDays) {
  * @parameter intDays number of days to be added
  * @returns Date object
  */
-function addTimeToDate(objDate, intDays) {
+export function addTimeToDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
@@ -436,7 +436,7 @@ function addTimeToDate(objDate, intDays) {
  * @parameter month current month number
  * @returns month current month name
  */
-function currentMonth(month) {
+export function currentMonth(month) {
     // set current month
     if (month == 0) {
         month = "January";

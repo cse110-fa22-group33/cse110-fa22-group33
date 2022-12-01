@@ -27,7 +27,8 @@ describe('Weekly Calendar Functionality Tests', () => {
     f.render();
   });
 
-  test('getHeaderAndTasksFromStorage()', () =>{
+  // STILL NEED TO TEST getHeader and getTasks.... just end2end?
+ /* test('getHeaderAndTasksFromStorage()', () =>{
     // jest.spyOn(f, 'getHeaderAndTasksFromStorage');
     // Check if date is today
     // console.log(f.getHeaderAndTasksFromStorage());
@@ -37,7 +38,26 @@ describe('Weekly Calendar Functionality Tests', () => {
     let currDayTime = "" + currDay  + currTime;
     let currCell = document.getElementById(currDayTime);
 
-   expect(f.getHeaderAndTasksFromStorage()).toEqual([testTask]);*/
+    f.render();
+    expect(f.setTasksForDay(new Date())).toEqual([testTask]);
+  });*/
+
+  test('subtractTimeFromDate()', () => {
+    const testDate = new Date("2022-11-29");
+    const outputDate = new Date("2022-11-25");
+
+    expect(f.subtractTimeFromDate(testDate, 4)).toEqual(outputDate);
   });
 
+  test('addTimeToDate()', () => {
+    const testDate = new Date("2022-11-25");
+    const outputDate = new Date("2022-11-29");
+
+    expect(f.addTimeToDate(testDate, 4)).toEqual(outputDate);
+  });
+
+  test('currentMonth()', () => {
+    const testMonth = "January";
+    expect(f.currentMonth(0)).toEqual(testMonth);
+  });
 })
