@@ -123,6 +123,8 @@ export class Task {
     if (preferHour >= hour_left) {return};
     console.log('Tasks splitted!');
     let new_tasks = [];
+    // this while loop will check if the remaining hour is still larger than preferd hour
+    // if that is true, we split the task further
     while (preferHour < hour_left) {
       let new_task = new Task();
       new_task.data = {...task.data};
@@ -135,6 +137,7 @@ export class Task {
     new_task.data.duration = hour_left;
     new_tasks.push(new_task);
 
+    // replace the old single big long task with the new list of splited tasks
     Task.removeFromLocalStorage(task.data.uid);
     for (let task of new_tasks) {
       task.data.uid = Task.getUniqueUID();
@@ -268,6 +271,29 @@ export class Task {
       return [];
     }
   }
+
+
+
+  /**
+   * getAllRecuringPaddings Method
+   * 
+   * Get all Recuring paddings in local storage
+   * @returns array of all tasks
+   */
+   static getAllRecuringPaddings() {
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('padding_tasks'))
+      let tasks = [];
+      for (let uid of tasks_uid) {
+        let myTask = Task.getTaskFromUID(uid);
+        if (myTask.data.recurrent) {tasks.push(myTask)};
+      };
+      return tasks;
+    } catch (e) {
+      return [];
+    }
+  }
+
 
   /**
    * getTaskFromTaskUID Method
@@ -673,10 +699,15 @@ export class Task {
     }
   }
 
-  // add current task to local strage
+  /**
+   * addToLocalStorage Method
+   * 
+   * add the current task obajct to local strage
+   */
   addToLocalStorage() {
     localStorage.setItem(this.data.uid, this.toJson());
 
+    // handle the dictionary that catalog the tasks using its start date
     let date = this.data.start_date;
     let month = date.getMonth() + 1; //months from 1-12
     let day = date.getDate();
@@ -694,6 +725,7 @@ export class Task {
     all_tasks_uid[year][month][day] = day_tasks_uid;
     localStorage.setItem('task_date', JSON.stringify(all_tasks_uid));
 
+    // handle the dictionary that catalog the tasks using its deadline
     date = this.data.ddl;
     month = date.getMonth() + 1; //months from 1-12
     day = date.getDate();
@@ -711,6 +743,7 @@ export class Task {
     all_tasks_uid[year][month][day] = day_tasks_uid;
     localStorage.setItem('ddl_date', JSON.stringify(all_tasks_uid));
 
+    // handle the dictionary that catalog all large task_uid
     all_tasks_uid = JSON.parse(localStorage.getItem('large_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let large_tasks_uid = all_tasks_uid[this.data.task_uid] = all_tasks_uid[this.data.task_uid] || [];
@@ -722,6 +755,7 @@ export class Task {
     all_tasks_uid[this.data.task_uid] = large_tasks_uid;
     localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
 
+    // handle the dictionary that catalog based on tasks difficulty
     all_tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_difficulty = all_tasks_uid[this.data.difficulty] = all_tasks_uid[this.data.difficulty] || [];
@@ -733,6 +767,7 @@ export class Task {
     all_tasks_uid[this.data.difficulty] = task_difficulty;
     localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
 
+    // handle the dictionary that catalog based on tasks priority
     all_tasks_uid = JSON.parse(localStorage.getItem('task_priority'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_priority = all_tasks_uid[this.data.priority] = all_tasks_uid[this.data.priority] || [];
@@ -744,6 +779,7 @@ export class Task {
     all_tasks_uid[this.data.priority] = task_priority;
     localStorage.setItem('task_priority', JSON.stringify(all_tasks_uid));
 
+    // handle the dictionary that catalog based on tasks category
     for (let category of this.data.category) {
       all_tasks_uid = JSON.parse(localStorage.getItem('task_category'));
       all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
@@ -757,6 +793,7 @@ export class Task {
       localStorage.setItem('task_category', JSON.stringify(all_tasks_uid));
     };
 
+    // handle the dictionary that catalog based on small uid
     all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
     dup = false;
@@ -766,6 +803,7 @@ export class Task {
     if (!dup) { all_tasks_uid.push(this.data.uid) };
     localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
 
+    // generate and store lastest deadline
     let last_ddl = JSON.parse(localStorage.getItem('last_ddl'));
     last_ddl = last_ddl = last_ddl || new Date(-8640000000000000);
     last_ddl = new Date(last_ddl);
@@ -773,6 +811,7 @@ export class Task {
       localStorage.setItem('last_ddl', JSON.stringify(this.data.ddl));
     };
 
+    // generate and store all padding tasks
     let padding_uid = JSON.parse(localStorage.getItem('padding_tasks'));
     padding_uid = padding_uid = padding_uid || [];
     if (this.data.padding) {
@@ -793,6 +832,7 @@ export class Task {
    */
   static removeFromLocalStorage(uid) {
 
+    // define a helper function that 
     let removeFromArray = function (arr, value) {
       let index = arr.indexOf(value);
       if (index > -1) {
@@ -804,6 +844,7 @@ export class Task {
     let task = Task.getTaskFromUID(uid);
     localStorage.removeItem(uid);
 
+    // remove the task using the dictionary catalog that is based on its start date
     let date = task.data.start_date;
     let month = date.getMonth() + 1; //months from 1-12
     let day = date.getDate();
@@ -823,6 +864,7 @@ export class Task {
     all_tasks_uid[year][month][day] = day_tasks_uid;
     localStorage.setItem('task_date', JSON.stringify(all_tasks_uid));
 
+    // remove the task using the dictionary catalog that is based on its deadline
     date = task.data.ddl;
     month = date.getMonth() + 1; //months from 1-12
     day = date.getDate();
@@ -842,6 +884,7 @@ export class Task {
     all_tasks_uid[year][month][day] = day_tasks_uid;
     localStorage.setItem('ddl_date', JSON.stringify(all_tasks_uid));
 
+    // remove the task in the task_uid dictionary catalog
     all_tasks_uid = JSON.parse(localStorage.getItem('large_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let large_tasks_uid = all_tasks_uid[task.data.task_uid] = all_tasks_uid[task.data.task_uid] || [];
@@ -858,7 +901,8 @@ export class Task {
       all_tasks_uid[task.data.task_uid] = large_tasks_uid;
     }
     localStorage.setItem('large_tasks', JSON.stringify(all_tasks_uid));
-
+    
+    // remove the task in the task difficulty dictionary catalog
     all_tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_difficulty = all_tasks_uid[task.data.difficulty] = all_tasks_uid[task.data.difficulty] || [];
@@ -876,6 +920,7 @@ export class Task {
     }
     localStorage.setItem('task_difficulty', JSON.stringify(all_tasks_uid));
 
+    // remove the task in the task priority dictionary catalog
     all_tasks_uid = JSON.parse(localStorage.getItem('task_priority'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_priority = all_tasks_uid[task.data.priority] = all_tasks_uid[task.data.priority] || [];
@@ -893,6 +938,7 @@ export class Task {
     }
     localStorage.setItem('task_priority', JSON.stringify(all_tasks_uid));
 
+    // remove the task in the task category dictionary catalog
     for (let category of task.data.category) {
       all_tasks_uid = JSON.parse(localStorage.getItem('task_category'));
       all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
@@ -912,6 +958,7 @@ export class Task {
       localStorage.setItem('task_category', JSON.stringify(all_tasks_uid));
     };
 
+    // remove the task in the all task dictionary catalog
     all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
     dup = false;
@@ -923,6 +970,7 @@ export class Task {
     };
     localStorage.setItem('all_tasks', JSON.stringify(all_tasks_uid));
 
+    // remove the task in the all padding dictionary catalog
     let padding_uid = JSON.parse(localStorage.getItem('padding_tasks'));
     padding_uid = padding_uid = padding_uid || [];
     if (task.data.padding) {
