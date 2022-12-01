@@ -315,38 +315,25 @@ function addTasksToDocument(tasks) {
         let task = document.createElement('article');
         let task_data = tasks[t].data;
         task.innerHTML = `
-         <details>
-         <summary>
-             <taskName>${task_data.task_name}</taskName> (${task_data.ddl})
-         </summary>
-         <p>Category: ${task_data.category}</p>
-         <p>Duration: ${task_data.duration} hours</p>
-         <p>Description: ${task_data.description}</p>
-         <p>Priority: ${task_data.priority}</p>
-         <p>Difficulty: ${task_data.difficulty}/5</p>
-         <p>DDL Time: ${task_data.taskddltime}</p>
-         <p>Preferred Work Length: ${task_data.mintime}</p>
-         </details>
 
          <div class="container">
-    <a class="btn" href="#open-modal${t}">${task_data.task_name}</a>
-    </div>
-    
-    <div id="open-modal${t}" class="modal-window">
-       <div>
-           <a href="#" title="Close" class="modal-close">Close</a>
-           <h1>${task_data.task_name}</h1>
-           <p>Category: ${task_data.category}</p>
-           <p>Duration: ${task_data.duration} hours</p>
-           <p>Description: ${task_data.description}</p>
-           <p>Priority: ${task_data.priority}</p>
-           <p>Difficulty: ${task_data.difficulty}/5</p>
-           <p>DDL Time: ${task_data.taskddltime}</p>
-           <p>Preferred Work Length: ${task_data.mintime}</p>
-           <div>Details of task 1 </div>
-           <br>
-       </div>
-    </div>
+            <a class="btn" href="#open-mod${t}">${task_data.task_name}</a>
+        </div>
+        <div id="open-mod${t}" class="modal-wind">
+        <div>
+            <a href="#" title="Close" class="modal-cl">Close</a>
+            <h1>${task_data.task_name}</h1>
+            <p>Category: ${task_data.category}</p>
+            <p>Duration: ${task_data.duration} hours</p>
+            <p>Description: ${task_data.description}</p>
+            <p>Priority: ${task_data.priority}</p>
+            <p>Difficulty: ${task_data.difficulty}/5</p>
+            <p>DDL Time: ${task_data.taskddltime}</p>
+            <p>Preferred Work Length: ${task_data.mintime}</p>
+            <div>Details of task 1 </div>
+            <br>
+        </div>
+        </div>
          `;
         list.appendChild(task);
     }
