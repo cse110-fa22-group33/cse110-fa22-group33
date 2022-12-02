@@ -2,6 +2,7 @@ import { Task } from './../skyTasks.js';
 
 let currentMonth = 0;
 
+
 /**
  * Change the current month Method
  * 
@@ -81,6 +82,7 @@ function render() {
   for (let i = 1; i <= paddings + daysonemonth; i++) {
     let oneday = document.createElement('div');
     oneday.classList.add('day');
+    let valueweseed = [];
 
     if (i > paddings) {
       oneday.onclick = function () {
@@ -105,6 +107,7 @@ function render() {
         for (let task of task_list) {
           if (task.data.padding && task.data.recurrent) { continue };
           task_num += 1;
+          
 
           // check if the number of tasks on that day is larger than 3, add a '...' showing user more tasks are comming
           if (task_num > 2 && task_list.length > 3) {
@@ -119,15 +122,19 @@ function render() {
           if (task_num > 3) { break };
 
           // for each task create a new event element
-          let curr_event = document.createElement('div');
-          curr_event.classList.add('event');
-          curr_event.innerText = truncate(task.data.task_name);
+          if(valueweseed.indexOf(truncate(task.data.task_name)) == -1){
+            valueweseed.push(truncate(task.data.task_name));
+            let curr_event = document.createElement('div');
+            curr_event.classList.add('event');
+            curr_event.innerText = truncate(task.data.task_name);
+            if (task.data.category.includes("school")) { curr_event.style.background = 'rgba(53, 130, 25, 0.75)'; };
+            if (task.data.category.includes("personal")) { curr_event.style.background = 'rgba(20, 111, 157, 0.931)'; };
+            if (task.data.category.includes("other")) { curr_event.style.background = 'rgba(146, 19, 137, 0.931)'; };
+            oneday.appendChild(curr_event);
+          }
 
           // check the category of the task and color the block accordingly
-          if (task.data.category.includes("school")) { curr_event.style.background = 'rgba(53, 130, 25, 0.75)'; };
-          if (task.data.category.includes("personal")) { curr_event.style.background = 'rgba(20, 111, 157, 0.931)'; };
-          if (task.data.category.includes("other")) { curr_event.style.background = 'rgba(146, 19, 137, 0.931)'; };
-          oneday.appendChild(curr_event);
+ 
         }
       }
     }
