@@ -355,6 +355,7 @@ export function setTasksForDay(startTasks) {
         }
 
         for(let task of paddingTasks) {
+            if(task.data.recurrent){
             console.log(task);
             // pull correct date and time from task element
             let currDay = startTasks.getDay();
@@ -392,6 +393,7 @@ export function setTasksForDay(startTasks) {
                     currCell.style.backgroundColor="#A9A9A9";
                 }
             }
+        }
         }
 
         startTasks.setDate(startTasks.getDate() + 1);
