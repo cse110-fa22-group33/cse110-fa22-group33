@@ -2,11 +2,11 @@ import { Task } from './../skyTasks.js';
 
 let currentMonth = 0;
 
-  /**
-   * Change the current month Method
-   * 
-   * Go to the next month or back to the last month
-   */
+/**
+ * Change the current month Method
+ * 
+ * Go to the next month or back to the last month
+ */
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
@@ -14,19 +14,19 @@ window.addEventListener('DOMContentLoaded', () => {
     currentMonth--;
     render();
   });
-  
+
   document.getElementById('next').addEventListener('click', () => {
     currentMonth++;
     render();
   });
 });
 
- /**
-   * Task Constructor Method
-   * 
-   * Creates Monthly Calendar to be used across CMonthly Schedule 
-   */
-function render(){
+/**
+  * Task Constructor Method
+  * 
+  * Creates Monthly Calendar to be used across CMonthly Schedule 
+  */
+function render() {
 
   const dt = new Date();
 
@@ -40,16 +40,16 @@ function render(){
 
   let firstDay = new Date(year, month, 1);
   let daysonemonth = new Date(year, month + 1, 0).getDate();
-  
-  let FirstdayString = firstDay.toLocaleDateString('en-us',{
+
+  let FirstdayString = firstDay.toLocaleDateString('en-us', {
     weekday: 'long',
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
   });
-  let Month_string =dt.toLocaleDateString('en-us', {month: 'long'});
+  let Month_string = dt.toLocaleDateString('en-us', { month: 'long' });
   let paddings;
-  switch(FirstdayString.split(',')[0]){
+  switch (FirstdayString.split(',')[0]) {
     case 'Sunday':
       paddings = 0;
       break;
@@ -78,52 +78,60 @@ function render(){
   let month_title = document.getElementById('monthTitle');
   month_title.textContent = `${Month_string} ${year}`
 
-  for(let i = 1; i <= paddings + daysonemonth; i++) {
+  for (let i = 1; i <= paddings + daysonemonth; i++) {
     let oneday = document.createElement('div');
     oneday.classList.add('day');
 
     if (i > paddings) {
-      oneday.onclick=function(){
-        let setToday = new Date(year, month, i-paddings);
+      oneday.onclick = function () {
+        let setToday = new Date(year, month, i - paddings);
         localStorage.setItem('newToday', setToday);
-        location.href="../week/weekly.html";
+        location.href = "../week/weekly.html";
       }
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';
       }
       oneday.innerText = i - paddings;
-      
-      let curr_day = new Date(year, month, i-paddings);
+
+      let curr_day = new Date(year, month, i - paddings);
       let task_list = Task.getTasksFromDate(curr_day);
-      if (task_list.length!=0) {
-        let task_num=0;
-        for (let task of task_list){
-          if (task.data.padding) {continue};
-          task_num+=1;
+
+      let truncate = function (str, n = 14) {
+        return (str.length > n) ? str.slice(0, n - 1) + ' ...' : str;
+      };
+
+      if (task_list.length != 0) {
+        let task_num = 0;
+        for (let task of task_list) {
+          if (task.data.padding && task.data.recurrent) { continue };
+          task_num += 1;
 
           // check if the number of tasks on that day is larger than 3, add a '...' showing user more tasks are comming
-          if (task_num>3) {
+          if (task_num > 2 && task_list.length > 3) {
             let curr_event = document.createElement('div');
             curr_event.classList.add('event');
-            curr_event.innerText = '......';
+            curr_event.style.background = 'rgba(154, 196, 205, 1)';
+            curr_event.innerText = 'More Tasks ......';
             oneday.appendChild(curr_event);
             break;
           };
 
+          if (task_num > 3) { break };
+
           // for each task create a new event element
           let curr_event = document.createElement('div');
           curr_event.classList.add('event');
-          curr_event.innerText = task.data.task_name;
+          curr_event.innerText = truncate(task.data.task_name);
 
           // check the category of the task and color the block accordingly
-          if (task.data.category.includes("school")) {curr_event.style.background = 'rgba(53, 130, 25, 0.75)';};
-          if (task.data.category.includes("personal")) {curr_event.style.background = 'rgba(20, 111, 157, 0.931)';};
-          if (task.data.category.includes("other")) {curr_event.style.background = 'rgba(146, 19, 137, 0.931)';};
+          if (task.data.category.includes("school")) { curr_event.style.background = 'rgba(53, 130, 25, 0.75)'; };
+          if (task.data.category.includes("personal")) { curr_event.style.background = 'rgba(20, 111, 157, 0.931)'; };
+          if (task.data.category.includes("other")) { curr_event.style.background = 'rgba(146, 19, 137, 0.931)'; };
           oneday.appendChild(curr_event);
         }
       }
     }
-     else {
+    else {
       oneday.classList.add('padding');
     }
     calendar.appendChild(oneday);
