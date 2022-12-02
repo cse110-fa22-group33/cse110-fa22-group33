@@ -17,13 +17,13 @@
   pointer-events: auto;
 }
 .modal-wind > div {
-  width: 400px;
+  width: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2em;
-  background: rgb(168, 163, 163);
+  padding: 1.5em;
+  background: rgb(178, 196, 209);
 }
 .modal-wind header {
   font-weight: bold;
@@ -34,30 +34,46 @@
 }
 
 .modal-cl {
-  color: rgb(34, 28, 28);
+  border-radius: 20px;
+  color:#b62020;
   line-height: 50px;
   font-size: 80%;
   position: absolute;
   right: 0;
   text-align: center;
   top: 0;
-  width: 70px;
+  width: 50px;
   text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px;
 }
 .modal-cl:hover {
-  color: black;
+  color: rgb(63, 128, 90);
 }
 a {
   color: inherit;
   text-decoration: none;
 }
 
-.container {
+.containerTasks {
   display: grid;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   /* height: 100vh; */
   height: 8vh;
+}
+.containerTasks:hover{
+  /* background-color: rgba(105, 126, 116, 0.397); need to fix this!!!! */
+  border-radius: 8px;
+  /* width: 300px; */
+}
+/* //this makes the boxes dont collapse one over the other when page gets smaller  */
+.grid-item {
+  /* background-color: rgb(214, 219, 228);
+  border: 0.01px solid rgba(0, 0, 0, 0.877); */
+ text-align: center;
+ height: 70px;
+
 }
 /* radius of the pop up window */
 .modal-wind > div {
@@ -73,14 +89,41 @@ small {
 }
 
 .btn {
-  background-color: rgb(42, 161, 92);
+  background-color: rgba(195, 139, 206, 0.569);
   padding: 1em 1.5em;
   border-radius: 0.5rem;
   text-decoration: none;
-  border: solid green;
+  border: solid rgba(66, 64, 64, 0.479);
   width: 200px;
   text-align: center;
+  height: 28px;
 }
 .btn i {
   padding-right: 0.3em;
 }
+
+  /* ill add gray oka */
+  .titl{
+    /* font-size: 30px; */
+    color: rgb(255, 255, 255);
+    background-color: rgb(83, 106, 136);
+    border-radius: 10px;
+    padding:15px;
+  }
+  .det{
+    /* padding-top: 12px;
+    padding-left: 7px; */
+    padding:10px;
+    color:black;
+  }
+  .deadline{
+    /* padding-top: 5px; */
+    padding-left: 10px; 
+  }
+  .effect{
+    color:rgb(28, 0, 128);
+    font-weight: bold;
+    /* text-decoration: underline; */
+    font-family: 'Mulish', sans-serif;
+  
+  }

@@ -314,26 +314,39 @@ function addTasksToDocument(tasks) {
     for (let t = 0; t < tasks.length; t++){
         let task = document.createElement('article');
         let task_data = tasks[t].data;
+        let color = 'gray';
+        if(task_data.category == "" || task_data.category == 'other' ){
+            color='#c38bce91';
+        }
+        if(task_data.category == 'personal'){
+            color = '#496ebe81';
+        }
+        if(task_data.category == 'school'){
+            color = '#51a051d8';
+        }
+        if(task_data.description == null || task_data.description == "" ){
+            task_data.description = "N/A";
+        }
         task.innerHTML = `
-
-         <div class="container">
-            <a class="btn" href="#open-mod${t}">${task_data.task_name}</a>
-        </div>
-        <div id="open-mod${t}" class="modal-wind">
-        <div>
-            <a href="#" title="Close" class="modal-cl">Close</a>
-            <h1>${task_data.task_name}</h1>
-            <p>Category: ${task_data.category}</p>
-            <p>Duration: ${task_data.duration} hours</p>
-            <p>Description: ${task_data.description}</p>
-            <p>Priority: ${task_data.priority}</p>
-            <p>Difficulty: ${task_data.difficulty}/5</p>
-            <p>DDL Time: ${task_data.taskddltime}</p>
-            <p>Preferred Work Length: ${task_data.mintime}</p>
-            <div>Details of task 1 </div>
-            <br>
-        </div>
-        </div>
+        <div class="grid-item">
+        <div class="containerTasks">
+           <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
+       </div>
+       </div>
+       <div id="open-task${t}" class="modal-wind">
+       <div>
+           <a href="#" title="Close" class="modal-cl">x</a>
+           <br>
+           <h1 class="titl" >${task_data.task_name}</h1>
+           <p class="det"><span class="effect">Duration: </span>${task_data.duration} hours</p>
+           <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
+   
+           <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
+           <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
+           <p class="deadline"> ${task_data.ddl}</p>
+           <br>
+       </div>
+       </div>
          `;
         list.appendChild(task);
     }
@@ -414,6 +427,9 @@ function initFormHandler() {
         new_task_obj.data['category'] = [taskObject['category']];
         new_task_obj.addToLocalStorage();
         Task.schedule();
+        location.href = '#';
+       // refresh page to display task
+        window.location.reload();
     })
 
     // Get a reference to the "Clear Local Storage" button

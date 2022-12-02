@@ -29,6 +29,7 @@ body {
 	text-align: center;
 	border-radius: 18px;
 	color: white;
+	margin-bottom: 20px;
 }
 .hello {
     margin: 1rem;
@@ -79,11 +80,12 @@ h4 {
 	background-color:rgba(138, 15, 132, 0.507);
 }
 
-.create-new-task {
+/* .create-new-task {
     float: left;
 	padding-left: 25rem;
-	position: absolute;
-}
+	position: absolute; */
+	/* padding: auto;
+} */
 
 .create-new-task .options {
 	display: grid;
@@ -369,6 +371,7 @@ This is the css of help tip (hover/click for more)
 	justify-content: center;
 	align-items: center;
 	/* height: 100vh; */
+	margin-left: 300px;
 	height: 8vh;
   }
   ​
@@ -396,3 +399,67 @@ This is the css of help tip (hover/click for more)
   .btn i {
 	padding-right: 0.3em;
   }
+
+#leftbox {
+	float:left; 
+	/* background:rgba(255, 0, 0, 0.493); */
+	width:50%;
+	height:280px;
+	justify-content: center;
+}
+
+#rightbox{
+	float:right;
+	/* background:rgb(65, 65, 153); */
+	width:50%;
+	height:280px;
+}
+.box1{
+    background-color: rgb(127, 153, 192);
+    width: 240px;
+    padding: 30px;
+	border-radius: 20px;
+	justify-content: center;
+	margin:auto;
+}
+.box2{
+    width: 240px;
+
+	border-radius: 20px;
+	justify-content: center;
+	margin:auto; /* center the buttons */
+	padding: 20px;
+	/* background-color: #3a3a6f; */
+	/* padding-left: 25px; */
+}
+.btn2{
+	/* background-color: rgba(153, 193, 226, 0.788);; */
+	background-color: rgba(153, 193, 226, 0.788);;
+	width: 220px;
+	height: 50px;
+	padding-top: 26px;
+	text-align: center;
+	border-radius: 18px;
+	color: white;
+	justify-content: center;
+}
+.btn2x{	
+	background-color: rgba(153, 193, 226, 0.788);;
+	width: 220px;
+	height: 50px;
+	padding: 22px;
+	text-align: center;
+	border-radius: 18px;
+	color: white;
+	justify-content: center;
+}
+.btn3x{	
+	background-color: rgba(153, 193, 226, 0.788);;
+	width: 220px;
+	height: 50px;
+	padding: 26px;
+	text-align: center;
+	border-radius: 18px;
+	color: white;
+	justify-content: center;
+}

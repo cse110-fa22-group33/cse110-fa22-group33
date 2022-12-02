@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Merriweather&family=Mulish&family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet"> 
     <title>Add Task Page</title>
 
     <!-- Task Custom Element -->
@@ -50,11 +50,16 @@
         <br>
         <!-- User Name 
         <div class="hello">
-            Hello <input type="text" id="user-name" placeholder="User Name"> -->
+            Hello <input type="text" id="user-name" placeholder="User Name">
             
-        </div>
+        </div> -->
+            <!-- Move user prefernece to the TOP -->
+                    <!-- Insert Padding Preferences Input -->
+        <div id="leftbox">
+
         <!-- Create New Task -->
-        <div class="create-new-task">
+        <!-- i deleted from this div below :class="create-new-task"  -->
+        <div id="middlebox" class="create-new-task" >
             
 
 <!-- first container -->
@@ -63,7 +68,9 @@
 <!-- first container -->
 <!-- first container -->
             <div class="container">
-                <a class="title btn2" href="#open-modal">Add Task to Be Scheduled</a>
+                <div class="box2">
+                    <div ><a class="btn2x"href="#open-modal">Add Task to Be Scheduled</a></div>
+                </div>
             </div>
       ​
             <div id="open-modal" class="modal-window">
@@ -203,7 +210,9 @@
 
 
             <div class="container">
-              <a class="btn2 title" href="#open-modal2">Save Your Own Time Slot</a>
+                <div class="box2">
+                    <div ><a class="btn3x" href="#open-modal2">Save Your Own Time Slot</a></div>
+                </div>
             </div>
           
             <div id="open-modal2" class="modal-window">
@@ -280,74 +289,78 @@
                   <br>
               </div>
             </div>
+
+            <br>
+            <div class="box1">
+                <h3 ><u>Set Your Schedule Preferences</u></h3>
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Wake Up Time: 
+                            </h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you wake up (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
+                        </td>
+                    </tr>
+                </table> 
+    
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Lunch Time: 
+                            </h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you go to lunch (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
+                        </td>
+                    </tr>
+                </table> 
+    
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Sleeping Time: 
+                            </h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you go to bed (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
+                        </td>
+                    </tr>
+                </table> 
+                <button type="button" class="danger">Clear Your Schedule</button>
+            </div>
+            <!-- </div> here was the end of left box-->
+
+        </div>
       ​
-              </div>
+              
             
             
             <br>
 
-            <!-- Insert Padding Preferences Input -->
-            <h3><u>Set Your Schedule Preferences</u></h3>
-            <table>
-                <tr>
-                    <td>
-                        <h4>Wake Up Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you wake up (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
-                    </td>
-                </tr>
-            </table> 
-
-            <table>
-                <tr>
-                    <td>
-                        <h4>Lunch Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you go to lunch (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
-                    </td>
-                </tr>
-            </table> 
-
-            <table>
-                <tr>
-                    <td>
-                        <h4>Sleeping Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you go to bed (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
-                    </td>
-                </tr>
-            </table> 
-
-
-
-
-            <button type="button" class="danger">Clear Your Schedule</button>
             <!-- Calendar Button
             <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
         </div>
+        
 
-        <div class="task-list">
+        <!-- I DELETEED FROM HERE class="task-list" -->
+        <div id="rightbox" >
             <h2 class="title">TASK LIST</h2>
             <div class="list" id="list">
                 <!--
