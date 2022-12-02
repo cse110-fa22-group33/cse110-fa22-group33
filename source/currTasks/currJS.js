@@ -143,7 +143,7 @@ function initFormHandler() {
     // submit button is clicked
     form.addEventListener('submit', (event) => {
 
-        console.log('form1 submitted');
+        alert('form1 submitted');
         //event.preventDefault();
         // Create a new FormData object from the <form> element reference above
         let fd = new FormData(form);
@@ -175,9 +175,8 @@ function initFormHandler() {
     });
 
     let form2 = document.querySelector('#new-padding');
-    console.log(form2);
     form2.addEventListener('submit', (event) => {
-        console.log('form2 submitted');
+        alert('form2 submitted');
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
@@ -185,7 +184,15 @@ function initFormHandler() {
             //   continue;
             // }
             
-            new_padding_obj.data[key] = val;
+            if (key=='ddl') {
+                let ddl = new Date(val);
+                ddl.setHours(ddl.getHours());
+                new_padding_obj.data[key] = ddl;
+            } else {
+                new_padding_obj.data[key] = val;
+            }
+            
+            
             
         }
 
@@ -193,8 +200,9 @@ function initFormHandler() {
         new_padding_obj.data['uid'] = Task.getUniqueUID();
         new_padding_obj.data['task_uid'] = Task.getUniqueTaskUID();
         new_padding_obj.setToPadding();
+        new_padding_obj.data.recurrent = false;
         new_padding_obj.addToLocalStorage();
-        console.log(new_padding_obj.data);
+
         Task.schedule();
         location.href = '#';
        // refresh page to display task
