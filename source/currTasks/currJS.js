@@ -65,7 +65,7 @@ window.addEventListener('load', (event) => {
 
         Task.schedule();
     }
-})
+});
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
@@ -137,22 +137,23 @@ function addTasksToDocument(tasks) {
 function initFormHandler() {
     let list = document.querySelector('#list');
     // Get a reference to the <form> element
-    let form = document.querySelector('form');
+    let form = document.querySelector('#new-task');
+
     // Add an event listener for the 'submit' event, which fires when the
     // submit button is clicked
     form.addEventListener('submit', (event) => {
-        event.preventDefault();
+
+        console.log('form1 submitted');
+        //event.preventDefault();
         // Create a new FormData object from the <form> element reference above
         let fd = new FormData(form);
         // Create an empty taskObject, and extract the keys and corresponding
         // values from the FormData object and insert them into taskObject
-        let taskObject = {};
         let new_task_obj = new Task();
         for (const [key, val] of fd) {
             // if(!val){
             //   continue;
             // }
-            taskObject[key] = val;
             if (key=='ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours()+8);
@@ -166,8 +167,34 @@ function initFormHandler() {
         let uid = Task.getUniqueUID();
         new_task_obj.data['uid'] = uid;
         new_task_obj.data['task_uid'] = uid;
-        new_task_obj.data['category'] = [taskObject['category']];
         new_task_obj.addToLocalStorage();
+        Task.schedule();
+        location.href = '#';
+       // refresh page to display task
+        window.location.reload();
+    });
+
+    let form2 = document.querySelector('#new-padding');
+    console.log(form2);
+    form2.addEventListener('submit', (event) => {
+        console.log('form2 submitted');
+        let fd = new FormData(form2);
+        let new_padding_obj = new Task();
+        for (const [key, val] of fd) {
+            // if(!val){
+            //   continue;
+            // }
+            
+            new_padding_obj.data[key] = val;
+            
+        }
+
+        //create task object
+        new_padding_obj.data['uid'] = Task.getUniqueUID();
+        new_padding_obj.data['task_uid'] = Task.getUniqueTaskUID();
+        new_padding_obj.setToPadding();
+        new_padding_obj.addToLocalStorage();
+        console.log(new_padding_obj.data);
         Task.schedule();
         location.href = '#';
        // refresh page to display task
@@ -182,5 +209,5 @@ function initFormHandler() {
         localStorage.clear();
         // Delete the contents of <main>
         list.innerHTML = '';
-    })
+    });
 }

@@ -72,7 +72,7 @@
                     <div ><a class="btn2x"href="#open-modal">Add Task to Be Scheduled</a></div>
                 </div>
             </div>
-      ​
+      
             <div id="open-modal" class="modal-window">
               <div>
                 <a href="#" title="Close" class="modal-close">Close</a>
@@ -96,18 +96,18 @@
                         </table>
                         <div class="options">
                             <label>
-                                <input type="radio" name="category" id="category1" value="school" /> 
+                                <input type="radio" name="category" class="category1" value="school" /> 
                                 <span class="bubble school"></span>
                                 <div>School</div>
                             </label>
                             <label>
-                                <input type="radio" name="category" id="category2" value="personal" />
+                                <input type="radio" name="category" class="category2" value="personal" />
                                 <span class="bubble personal"></span>
                                 <div>Personal</div>
                             </label>
     
                             <label>
-                                <input type="radio" name="category" id="category3" value="other" />
+                                <input type="radio" name="category" class="category3" value="other" />
                                 <span class="bubble other"></span>
                                 <div>Other</div>
                             </label>
@@ -127,7 +127,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
+                                    <h4><input type="number" name="duration" class="duration" min="0" max="20" step = "1" 
                                         placeholder = "e.g. 1" required> hours</h4>
                                 </td>
                             </tr>
@@ -135,7 +135,7 @@
     
                         <!-- Description Input -->
                         <h4>Description:</h4>
-                        <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                        <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                         <br>
     
                         <!-- Priority Input -->
@@ -150,7 +150,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
+                                    <input type="range" name="priority" class="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p class="priorityValue">3</p>
                                 </td>
                             </tr>
                         </table>
@@ -167,7 +167,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
+                                    <input type="range" name="difficulty" class="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p class="diffValue">3</p>
                                 </td>
                                 
                             </tr>
@@ -186,13 +186,13 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "1" placeholder = "1" required>
+                                    <input type="number" name="mintime" class="min-work-time" min="0" max="10" step = "1" placeholder = "1" required>
                                 </td>
                             </tr>
                         </table>    
     
                         <!-- Deadline Input -->
-                        <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
+                        <h4>Deadline: <input type="date" name="ddl" class="taskddl" required></h4>
                     </div>
     
                     <input type="submit" class="submit" value="ADD TASK">
@@ -218,10 +218,10 @@
             <div id="open-modal2" class="modal-window">
               <div>
                   <a href="#" title="Close" class="modal-close">Close</a>
-                    <form id="new-task">
+                    <form id="new-padding">
                         <div id="task-content">
                             <h4>Task Name:
-                                <input type="text" name="task_name" id="content" 
+                                <input type="text" name="task_name" class="content" 
                                     placeholder="e.g. Get groceries" required/>
                             </h4>
                             
@@ -236,18 +236,18 @@
                             </table>
                             <div class="options">
                                 <label>
-                                    <input type="radio" name="category" id="category1" value="school" /> 
+                                    <input type="radio" name="category" class="category1" value="school" /> 
                                     <span class="bubble school"></span>
                                     <div>School</div>
                                 </label>
                                 <label>
-                                    <input type="radio" name="category" id="category2" value="personal" />
+                                    <input type="radio" name="category" class="category2" value="personal" />
                                     <span class="bubble personal"></span>
                                     <div>Personal</div>
                                 </label>
                 
                                 <label>
-                                    <input type="radio" name="category" id="category3" value="other" />
+                                    <input type="radio" name="category" class="category3" value="other" />
                                     <span class="bubble other"></span>
                                     <div>Other</div>
                                 </label>
@@ -267,29 +267,33 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
+                                        <h4><input type="number" name="duration" class="duration" min="0" max="20" step = "1" 
                                             placeholder = "e.g. 1" required> hours</h4>
                                     </td>
                                 </tr>
                             </table>                    
                 
                             <h4>Description:</h4>
-                            <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                            <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                             <br>
                 
                             <h4>Schedule Slot in Calendar:</h4>
-                            <input type="datetime-local" name="datetime" id="datetime">
+                            <input type="datetime-local" name="ddl" class="ddl">
                             <br>
                 
-                            </div>
+                            
                         </div>
                 
-                        <input type="submit" class="submit" value="ADD TASK">
+                        <input type="submit" class="submit" value="ADD PADDING">
                     </form>
                   <br>
               </div>
             </div>
 
+      
+              </div>
+            
+            
             <br>
             <div class="box1">
                 <h3 ><u>Set Your Schedule Preferences</u></h3>

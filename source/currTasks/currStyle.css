@@ -49,17 +49,17 @@ h4 {
 	color:rgba(20, 9, 119, 0.788);
 	padding:8px;
 }
-#taskPriority, #duration, #difficulty{
+.taskPriority, .duration, .difficulty{
 	font-size: 12px;
 	font-family: 'Quicksand', sans-serif;
 	width: 42px;
 }
-#taskddl, #task-ddl-time, #datetime,#min-work-time, 
-#max-work-time, #extranotes, #content{
+.taskddl, .task-ddl-time, .datetime,.min-work-time, 
+.max-work-time, .extranotes, .content{
 	font-size: 13px;
 	font-family: 'Quicksand', sans-serif;
 }
-#taskdescription,#user-name, 
+.taskdescription,.user-name, 
 .advance, .danger{
 	font-family: 'Quicksand', sans-serif;
 }
