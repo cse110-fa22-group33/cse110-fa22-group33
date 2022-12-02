@@ -219,3 +219,7 @@ function initFormHandler() {
         list.innerHTML = '';
     });
 }
+
+export const testExport = {
+    render
+};
