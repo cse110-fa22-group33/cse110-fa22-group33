@@ -283,6 +283,7 @@ export function setTasksForDay(startTasks) {
 
         if(tasks.length != 0) {
             for (let task of tasks) {
+                if(!task.data.recurrent) {
                 // pull correct date and time from task element
                 let currDay = task.data.start_date.getDay();
                 let currTime = task.data.start_date.getHours();
@@ -304,10 +305,12 @@ export function setTasksForDay(startTasks) {
                 }
 
                 if(task.data.category == "other") {
+                    console.log(task);
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
                 if(task.data.category == "") {
+                    console.log(task);
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
@@ -339,10 +342,12 @@ export function setTasksForDay(startTasks) {
                         }
         
                         if(task.data.category == "other") {
+                            console.log("recurring task:" + task);
                             currCell.style.backgroundColor="#c38bce91";
                         }
         
                         if(task.data.category == "") {
+                            console.log("recurring task:" + task);
                             currCell.style.backgroundColor="#c38bce91";
                         }
 
@@ -350,13 +355,13 @@ export function setTasksForDay(startTasks) {
                             currCell.innerHTML = task.data.task_name;
                         }
                     }
-                }  
+                } 
+            } 
             }
         }
 
         for(let task of paddingTasks) {
             if(task.data.recurrent){
-            console.log(task);
             // pull correct date and time from task element
             let currDay = startTasks.getDay();
             let currTime = task.data.ddl.getHours();
