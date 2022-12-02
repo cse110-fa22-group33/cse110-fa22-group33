@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
-    let tasks = Task.getAllTasksFlat();
+    let tasks = Task.getAllLargeTasks();
     addTasksToDocument(tasks);
     initFormHandler();
 }
@@ -83,15 +83,19 @@ function init() {
 * new <my-task> element, adds the task data to that card
 * using element.data = {...}, and then appends that new task
 * to <main>
-* @param {Array<Object>} tasks An array of recipes
+* @param {Array<Object>} tasks [[task1,task2,...],[duration1,duation2,...]]
 */
 function addTasksToDocument(tasks) {
     console.log("addTasksToDocument");        // LOG
     // task object implementation
     let list = document.querySelector('#list');
-    for (let t = 0; t < tasks.length; t++){
+    let task_lst = tasks[0];
+    let duration_lst = tasks[1];
+    for (let t = 0; t < task_lst.length; t++){
+        let new_task = task_lst[t];
+        let new_task_duration = duration_lst[t];
         let task = document.createElement('article');
-        let task_data = tasks[t].data;
+        let task_data = new_task.data;
         let color = 'gray';
         if(task_data.category == "" || task_data.category == 'other' ){
             color='#c38bce91';
@@ -116,7 +120,7 @@ function addTasksToDocument(tasks) {
            <a href="#" title="Close" class="modal-cl">x</a>
            <br>
            <h1 class="titl" >${task_data.task_name}</h1>
-           <p class="det"><span class="effect">Duration: </span>${task_data.duration} hours</p>
+           <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
            <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
 
            <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
@@ -143,17 +147,15 @@ function initFormHandler() {
     // submit button is clicked
     form.addEventListener('submit', (event) => {
 
-        console.log('form1 submitted');
-        //event.preventDefault();
+        
+        event.preventDefault();
+        alert('form1 submitted');
         // Create a new FormData object from the <form> element reference above
         let fd = new FormData(form);
         // Create an empty taskObject, and extract the keys and corresponding
         // values from the FormData object and insert them into taskObject
         let new_task_obj = new Task();
         for (const [key, val] of fd) {
-            // if(!val){
-            //   continue;
-            // }
             if (key=='ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours()+8);
@@ -175,9 +177,8 @@ function initFormHandler() {
     });
 
     let form2 = document.querySelector('#new-padding');
-    console.log(form2);
     form2.addEventListener('submit', (event) => {
-        console.log('form2 submitted');
+        alert('form2 submitted');
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
@@ -185,7 +186,15 @@ function initFormHandler() {
             //   continue;
             // }
             
-            new_padding_obj.data[key] = val;
+            if (key=='ddl') {
+                let ddl = new Date(val);
+                ddl.setHours(ddl.getHours());
+                new_padding_obj.data[key] = ddl;
+            } else {
+                new_padding_obj.data[key] = val;
+            }
+            
+            
             
         }
 
@@ -193,8 +202,9 @@ function initFormHandler() {
         new_padding_obj.data['uid'] = Task.getUniqueUID();
         new_padding_obj.data['task_uid'] = Task.getUniqueTaskUID();
         new_padding_obj.setToPadding();
+        new_padding_obj.data.recurrent = false;
         new_padding_obj.addToLocalStorage();
-        console.log(new_padding_obj.data);
+
         Task.schedule();
         location.href = '#';
        // refresh page to display task
