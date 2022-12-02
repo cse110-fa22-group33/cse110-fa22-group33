@@ -355,6 +355,37 @@ export class Task {
     }
   }
 
+
+
+  /**
+   * getAllLargeTasks Method
+   * 
+   * Get tasks in local storage of the given priority
+   * @returns [array of tasks, array of duration]
+   */
+   static getAllLargeTasks() {
+    try {
+      let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
+      let total_duration = [];
+      let total_tasks = [];
+      for (let [_,small_tasks_uid] of Object.entries(large_tasks)){
+        let each_duration = 0;
+        let first_task = Task.getTaskFromUID(small_tasks_uid[0]);
+        if (first_task.data.recurrent && first_task.data.padding) {continue};
+        total_tasks.push(first_task);
+        for (let uid of small_tasks_uid) {
+          each_duration = each_duration + Task.getTaskFromUID(uid).data.duration;
+        };
+        total_duration.push(Number.parseInt(each_duration));
+      }
+      return [total_tasks,total_duration];
+    } catch (e) {
+      return [];
+    }
+  }
+
+
+
   /**
    * getTasksFromCategory Method
    * 
@@ -577,7 +608,7 @@ export class Task {
    * 
    * Takes occupied array and task object and finds earliest time slot
    * to allocate the task
-   * @param occupied_in - array with unsorted intervals  
+   * @param occupied_in - array with uned intervals  
    * @param task - task object to be assigned
    * @returns date object for first available time to assign the task
    */
