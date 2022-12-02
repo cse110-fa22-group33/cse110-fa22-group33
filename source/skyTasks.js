@@ -406,6 +406,19 @@ export class Task {
     }
   }
 
+  static getTasksFromName(name) {
+    try {
+      let tasks_uid = JSON.parse(localStorage.getItem('task_name'))[name]
+      let tasks = [];
+      for (let uid of tasks_uid) {
+        tasks.push(Task.getTaskFromUID(uid));
+      };
+      return tasks;
+    } catch (e) {
+      return [];
+    }
+  }
+
   /**
    * getTaskFromUID Method
    * 
@@ -860,6 +873,18 @@ export class Task {
       if (!dup) { padding_uid.push(this.data.uid) };
       localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
     };
+
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_name'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let name = all_tasks_uid[this.data.task_name] = all_tasks_uid[this.data.task_name] || [];
+    dup = false;
+    for (let uid of name) {
+      if (uid === this.data.uid) { dup = true };
+    };
+    if (!dup) { name.push(this.data.uid) };
+    all_tasks_uid[this.data.task_name] = name;
+    localStorage.setItem('task_name', JSON.stringify(all_tasks_uid));
+
   }
 
   /**
@@ -1045,5 +1070,8 @@ export class Task {
       Task.removeFromLocalStorage(task.data.uid);
     }
   }
+
 }
+
+
 
