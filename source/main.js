@@ -4,6 +4,7 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 1300,
     height: 700,
+    minWidth: 840
   });
   win.loadFile('./currTasks/currTask.html');
 };
