@@ -156,9 +156,6 @@ function initFormHandler() {
         // values from the FormData object and insert them into taskObject
         let new_task_obj = new Task();
         for (const [key, val] of fd) {
-            // if(!val){
-            //   continue;
-            // }
             if (key=='ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours()+8);
