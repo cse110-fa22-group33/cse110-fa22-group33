@@ -360,7 +360,21 @@ export function setTasksForDay(startTasks) {
             }
         }
 
+        let morningPadding = Task.getTasksFromName('morning')[0];
+        // console.log(morningPadding);
+        let eveningPadding = Task.getTasksFromName('evening')[0];
+        // console.log(eveningPadding);
+
+        console.log(morningPadding.data.ddl.getHours());
+        console.log(eveningPadding.data.ddl.getHours());
+
+        /*if (eveningPadding.data.ddl.getHours() < morningPadding.data.ddl.getHours()) {
+            eveningPadding.data.ddl = new Date(subtractTimeFromDate(morningPadding.data.ddl, 1));
+            console.log("new date" + eveningPadding);
+        }*/
+
         for(let task of paddingTasks) {
+            // console.log(task.data.ddl);
             if(task.data.recurrent){
             // pull correct date and time from task element
             let currDay = startTasks.getDay();
@@ -374,7 +388,7 @@ export function setTasksForDay(startTasks) {
             currCell.style.backgroundColor="#A9A9A9";
 
             let curDuration = task.data.duration;
-            if ((curDuration > 1) & (i == 0)) {
+            //if ((curDuration > 1) & (i == 0)) {
                 for (let i = 0; i < curDuration - 1; i++) {
                     currTime++;
                     currDayTime++;
@@ -385,7 +399,7 @@ export function setTasksForDay(startTasks) {
                     currCell = document.getElementById(currDayTime);
                     currCell.style.backgroundColor="#A9A9A9";
                 }
-            }
+            /*}
             if ((curDuration > 1) & (i != 0)) {
                 for (let i = 0; i < curDuration - 1; i++) {
                     currTime++;
@@ -394,10 +408,11 @@ export function setTasksForDay(startTasks) {
                         currTime = 0;
                         currDayTime = "" + currDay + currTime;
                     }
+                    console.log(currDayTime);
                     currCell = document.getElementById(currDayTime);
                     currCell.style.backgroundColor="#A9A9A9";
                 }
-            }
+            }*/
         }
         }
 
