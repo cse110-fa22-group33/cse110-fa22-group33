@@ -1,6 +1,6 @@
 .modal-wind{
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.25);/* color of the page when the modal is open */
+  background-color: #130d0db2;/* color of the page when the modal is open */
   top: 0;
   right: 0;
   bottom: 0;
@@ -97,6 +97,7 @@ small {
   width: 200px;
   text-align: center;
   height: 28px;
+  color:white;
 }
 .btn i {
   padding-right: 0.3em;

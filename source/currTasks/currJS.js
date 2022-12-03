@@ -98,17 +98,20 @@ function addTasksToDocument(tasks) {
         let task_data = new_task.data;
         let color = 'gray';
         if(task_data.category == "" || task_data.category == 'other' ){
-            color='#c38bce91';
+            color="#94308df3";
         }
         if(task_data.category == 'personal'){
-            color = '#496ebe81';
+            // color = '#496ebe81';
+            color="#1d739efa";
         }
         if(task_data.category == 'school'){
-            color = '#51a051d8';
+            // color = '#51a051d8';
+            color="#338017e8";
         }
         if(task_data.description == null || task_data.description == "" ){
             task_data.description = "N/A";
         }
+        
         task.innerHTML = `
         <div class="grid-item">
         <div class="containerTasks">

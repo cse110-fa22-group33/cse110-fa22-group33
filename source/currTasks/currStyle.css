@@ -14,11 +14,9 @@
 	--other-glow: 0px 0px 4px rgba(248, 8, 232, 0.931);
 	--danger-glow: 0px 0px 4px rgba(237, 66, 66, 0.931);
 }
-
 body {
-	background: var(--light);
-	color: var(--dark);
-	background-color: #FFFCFF;
+	background-color: #e4dce4a1;
+	background-image: url('https://assets.codepen.io/1462889/back-page.svg');
     font-family: 'Quicksand', sans-serif;
 }
 .title{
@@ -36,17 +34,14 @@ body {
     padding: 2rem 2rem;
     text-align:center;
 }
-
 h3 {
     color: var(--dark);
     font-size: 1rem;
 	margin-bottom: 1rem;
 	padding: 4px;
 }
-
 h4 {
-	/* color: var(--grey); */
-	color:rgba(20, 9, 119, 0.788);
+	color:#140977c9;
 	padding:8px;
 }
 .taskPriority, .duration, .difficulty{
@@ -64,14 +59,14 @@ h4 {
 	font-family: 'Quicksand', sans-serif;
 }
 .advance{
-	background-color:rgba(12, 131, 125, 0.788);
+	background-color:#0c837dc9;
 	border-radius: 10px;
 }
 .advance:hover{
-	background-color: rgba(12, 131, 125, 0.555);
+	background-color: #0c837d8e;
 }
 .nav{
-	background-color: rgba(153, 19, 146, 0.788);
+	background-color: #991392c9;
 	border-radius: 10px;
 	font-family: 'Quicksand', sans-serif;
 	
@@ -158,17 +153,14 @@ input[type="radio"], input[type="checkbox"] {
 	border: 2px solid var(--school);
 	box-shadow: var(--school-glow);
 }
-
 .bubble.personal {
 	border-color: var(--personal);
 	box-shadow: var(--personal-glow);
 }
-
 .bubble.other {
 	border-color: var(--other);
 	box-shadow: var(--other-glow);
 }
-
 .bubble::after {
 	content: '';
 	opacity: 0;
@@ -177,7 +169,6 @@ input[type="radio"], input[type="checkbox"] {
 	border-radius: 100px;
 	transition: 0.3s ease-in-out;
 }
-
 .bubble.personal::after {
 	background-color: var(--personal);
 	box-shadow: var(--personal-glow);
@@ -206,18 +197,15 @@ button,.submit{
 	text-align: center;
 	font-size: 1rem;
 }
-  
 .active, .submit:hover {
 	background-color: #555;
 }
-  
 .collapsible {
 	padding: 0 18px;
 	display: none;
 	overflow: hidden;
 	background-color: #e9e5e5;
 }
-
 .create-new-task input[type="submit"] {
 	text-align: center;
 	display: block;
@@ -230,7 +218,7 @@ button,.submit{
 	cursor: pointer;
 }
 input[type="submit"]:hover{
-	background-color: rgba(0, 45, 128, 0.767);
+	background-color: #002d80c4;
 }
 .danger {
 	text-align: center;
@@ -248,11 +236,11 @@ input[type="submit"]:hover{
 /*
 This is the css of help tip (hover/click for more)
 */
-
 .help-tip{
     /* position: absolute;
     top: 18px;
-    right: 18px; */
+	right: 18px; */
+	position: relative;
     text-align: center;
     background-color: #BCDBEA;
     border-radius: 50%;
@@ -262,13 +250,11 @@ This is the css of help tip (hover/click for more)
     line-height: 13px;
     cursor: default;
 }
-
 .help-tip:before{
     content:'?';
     font-weight: bold;
     color:#fff;
 }
-
 .help-tip:hover p{
     display:block;
     transform-origin: 100% 0%;
@@ -277,7 +263,6 @@ This is the css of help tip (hover/click for more)
     animation: fadeIn 0.3s ease-in-out;
 
 }
-
 .help-tip p{    /* The tooltip */
     display: none;
     text-align: left;
@@ -292,7 +277,6 @@ This is the css of help tip (hover/click for more)
     font-size: 13px;
     line-height: 1.4;
 }
-
 .help-tip p:before{ /* The pointer of the tooltip */
     position: absolute;
     content: '';
@@ -303,7 +287,6 @@ This is the css of help tip (hover/click for more)
     right:10px;
     top:-12px;
 }
-
 .help-tip p:after{ /* Prevents the tooltip from being hidden hey*/
     width:100%;
     height:40px;
@@ -314,7 +297,7 @@ This is the css of help tip (hover/click for more)
 }
 .modal-window {
 	position: fixed;
-	background-color: rgba(255, 255, 255, 0.25);/* color of the page when the modal is open */
+	background-color: #130d0db2;/* color of the page when the modal is open */
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -324,82 +307,80 @@ This is the css of help tip (hover/click for more)
 	opacity: 0;
 	pointer-events: none;
 	transition: all 0.3s;
-  }
-  .modal-window:target {
+}
+.modal-window:target {
 	visibility: visible;
 	opacity: 1;
 	pointer-events: auto;
-  }
-  .modal-window > div {
+}
+.modal-window > div {
 	width: 400px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 2em;
-	background: rgb(168, 163, 163);
-  }
-  .modal-window header {
+	background: #d1c5dd;
+}
+.modal-window header {
 	font-weight: bold;
-  }
-  .modal-window h1 {
+}
+.modal-window h1 {
 	font-size: 150%;
 	margin: 0 0 15px;
-  }
-  ​
-  .modal-close {
-	color: rgb(34, 28, 28);
+}
+.modal-close {
+	color: #3b3388;
 	line-height: 50px;
 	font-size: 80%;
 	position: absolute;
 	right: 0;
 	text-align: center;
 	top: 0;
-	width: 70px;
+	width: 50px;
 	text-decoration: none;
-  }
-  .modal-close:hover {
+	font-family: 'Fredoka One', cursive;
+	font-size: 30px;
+}
+.modal-close:hover {
 	color: black;
-  }
-  a {
+}
+a {
 	color: inherit;
 	text-decoration: none;
-  }
+}
   ​
-  .container {
+.container {
 	display: grid;
 	justify-content: center;
 	align-items: center;
 	/* height: 100vh; */
 	margin-left: 300px;
 	height: 8vh;
-  }
-  ​
-  .modal-window > div {
+}
+.modal-window > div {
 	border-radius: 1rem;
-  }
+}
   ​
-  .modal-window div:not(:last-of-type) {
+.modal-window div:not(:last-of-type) {
 	margin-bottom: 15px;
-  }
+}
   ​
-  small {
+small {
 	color: lightgray;
-  }
-  ​
-  .btn {
-	background-color: rgb(42, 161, 92);
+}
+.btn {
+	background-color: #2aa15c;
 	padding: 1em 1.5em;
 	border-radius: 0.5rem;
 	text-decoration: none;
 	border: solid black;
 	width: 200px;
 	text-align: center;
-  }
-  .btn i {
+}
+.btn i {
 	padding-right: 0.3em;
-  }
-
+}
 #leftbox {
 	float:left; 
 	/* background:rgba(255, 0, 0, 0.493); */
@@ -415,36 +396,15 @@ This is the css of help tip (hover/click for more)
 	height:280px;
 }
 .box1{
-    background-color: rgb(127, 153, 192);
+    background-color: #7f99c0;
     width: 240px;
     padding: 30px;
 	border-radius: 20px;
 	justify-content: center;
 	margin:auto;
 }
-.box2{
-    width: 240px;
-
-	border-radius: 20px;
-	justify-content: center;
-	margin:auto; /* center the buttons */
-	padding: 20px;
-	/* background-color: #3a3a6f; */
-	/* padding-left: 25px; */
-}
-.btn2{
-	/* background-color: rgba(153, 193, 226, 0.788);; */
-	background-color: rgba(153, 193, 226, 0.788);;
-	width: 220px;
-	height: 50px;
-	padding-top: 26px;
-	text-align: center;
-	border-radius: 18px;
-	color: white;
-	justify-content: center;
-}
-.btn2x{	
-	background-color: rgba(153, 193, 226, 0.788);;
+.btn-add-task{	
+	background-color: #99c1e2c9;;
 	width: 220px;
 	height: 50px;
 	padding: 22px;
@@ -453,8 +413,8 @@ This is the css of help tip (hover/click for more)
 	color: white;
 	justify-content: center;
 }
-.btn3x{	
-	background-color: rgba(153, 193, 226, 0.788);;
+.btn-time-slot{	
+	background-color: #99c1e2c9;;
 	width: 220px;
 	height: 50px;
 	padding: 26px;
@@ -463,3 +423,23 @@ This is the css of help tip (hover/click for more)
 	color: white;
 	justify-content: center;
 }
+#morning, #noon, #evening{
+	width: 40px;
+	height: 20px;
+	font-family: 'Quicksand', sans-serif;
+	border-radius: 1px;
+	border: none;
+	font-size: 14px;
+	text-align: center;
+}
+#modal-root {
+	position: fixed;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.4);
+	left : 0;
+	top: 0;
+	width: 0px;
+	height : 0px;
+	opacity: 0;
+	transition: opacity 0.15s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
+  }

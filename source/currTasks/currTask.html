@@ -30,16 +30,13 @@
             <img src="../week/monk.png" alt="CodeMonkeyz">
                 <ul class="nav-list">
                     <li class="list-item">
-                        <a class="first" href="currTask.html">ADD TASKS</a>
+                        <a class="first" href="currTask.html">MY TASKS</a>
                     </li>
                     <li class="list-item">
-                        <a class="second" href="currTask.html">MY TASKS</a>
+                        <a class="second" href="../month/month.html">MONTHLY</a>
                     </li>
                     <li class="list-item">
-                        <a class="third" href="../month/month.html">MONTHLY</a>
-                    </li>
-                    <li class="list-item">
-                        <a class="forth" href="../week/weekly.html">WEEKLY</a>
+                        <a class="third" href="../week/weekly.html">WEEKLY</a>
                         <script>localStorage.setItem('newToday', new Date());</script>
                     </li>
                 </ul>
@@ -53,13 +50,11 @@
             Hello <input type="text" id="user-name" placeholder="User Name">
             
         </div> -->
-            <!-- Move user prefernece to the TOP -->
-                    <!-- Insert Padding Preferences Input -->
+
         <div id="leftbox">
 
         <!-- Create New Task -->
-        <!-- i deleted from this div below :class="create-new-task"  -->
-        <div id="middlebox" class="create-new-task" >
+        <div class="create-new-task" ><br>
             
 
 <!-- first container -->
@@ -68,14 +63,15 @@
 <!-- first container -->
 <!-- first container -->
             <div class="container">
-                <div class="box2">
-                    <div ><a class="btn2x"href="#open-modal">Add Task to Be Scheduled</a></div>
+                <div style="text-align:center">
+                    <a class="btn-add-task" href="#open-modal">Add Task to Be Scheduled</a>
                 </div>
             </div>
-      
+            <br><br><br>
+            
             <div id="open-modal" class="modal-window">
               <div>
-                <a href="#" title="Close" class="modal-close">Close</a>
+                <a href="#" title="Close" class="modal-close">x</a>
 
                 <form id="new-task">
                     <div id="task-content">
@@ -202,6 +198,7 @@
             </div>
 
 
+
 <!-- second container -->
 <!-- second container -->
 <!-- second container -->
@@ -210,14 +207,15 @@
 
 
             <div class="container">
-                <div class="box2">
-                    <div ><a class="btn3x" href="#open-modal2">Save Your Own Time Slot</a></div>
+                <div style="text-align:center">
+                    <a class="btn-time-slot" href="#open-modal2">Save Your Own Time Slot</a>
                 </div>
             </div>
+            <br>
           
             <div id="open-modal2" class="modal-window">
               <div>
-                  <a href="#" title="Close" class="modal-close">Close</a>
+                  <a href="#" title="Close" class="modal-close">x</a>
                     <form id="new-padding">
                         <div id="task-content">
                             <h4>Task Name:
@@ -251,18 +249,14 @@
                                     <span class="bubble other"></span>
                                     <div>Other</div>
                                 </label>
-                                
                             </div>
                 
                             <table>
                                 <tr>
                                     <td>
-                                        <h4>Duration: 
-                                            
-                                        </h4>
+                                        <h4>Duration: </h4>
                                     </td>
-                                    <td>
-                                        <div class="help-tip">
+                                    <td><div class="help-tip">
                                             <p>Estimate how long the task will take you to complete.</p>
                                         </div>
                                     </td>
@@ -290,18 +284,17 @@
               </div>
             </div>
 
-      
-              </div>
-            
-            
+            </div>  <!-- end div create New Task -->
+
             <br>
-            <div class="box1">
+        <!-- Insert Padding Preferences Input -->
+        <!-- Insert Padding Preferences Input -->
+            <div class="box1" >
                 <h3 ><u>Set Your Schedule Preferences</u></h3>
                 <table>
                     <tr>
                         <td>
-                            <h4>Wake Up Time: 
-                            </h4>
+                            <h4>Wake Up Time: </h4>
                         </td>
                         <td>
                             <div class="help-tip">
@@ -317,8 +310,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h4>Lunch Time: 
-                            </h4>
+                            <h4>Lunch Time:</h4>
                         </td>
                         <td>
                             <div class="help-tip">
@@ -334,8 +326,7 @@
                 <table>
                     <tr>
                         <td>
-                            <h4>Sleeping Time: 
-                            </h4>
+                            <h4>Sleeping Time: </h4>
                         </td>
                         <td>
                             <div class="help-tip">
@@ -349,21 +340,13 @@
                 </table> 
                 <button type="button" class="danger">Clear Your Schedule</button>
             </div>
-            <!-- </div> here was the end of left box-->
 
-        </div>
-      ​
-              
-            
-            
-            <br>
+        </div>      <!-- here is the end of left box -->
+        <br>
 
             <!-- Calendar Button
             <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
-        </div>
-        
 
-        <!-- I DELETEED FROM HERE class="task-list" -->
         <div id="rightbox" >
             <h2 class="title">TASK LIST</h2>
             <div class="list" id="list">
