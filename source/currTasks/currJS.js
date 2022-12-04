@@ -3,6 +3,46 @@ import { Task } from './../skyTasks.js';
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
 
+    // helper function to update the shcedule perferences
+    let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
+
+        localStorage.setItem('morning', JSON.stringify(morning));
+        localStorage.setItem('noon', JSON.stringify(noon));
+        localStorage.setItem('evening', JSON.stringify(evening));
+
+        // delete old padings, if there are any
+        let r_padding = Task.getAllRecuringPaddings();
+        for (let each_padding of r_padding) {
+            Task.removeFromLocalStorage(each_padding.data.uid);
+        }
+
+        let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        let recursiveDate = new Date('December 17, 1995 00:00:00');
+        resursivePadding.data.ddl = recursiveDate;
+        resursivePadding.data.duration = morning;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+
+        resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        recursiveDate = new Date('December 17, 1995 00:00:00');
+        recursiveDate.setHours(noon);
+        resursivePadding.data.ddl = recursiveDate;
+        resursivePadding.data.duration = 1;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+
+        resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
+        recursiveDate = new Date('December 17, 1995 00:00:00');
+        recursiveDate.setHours(evening);
+        resursivePadding.data.ddl = recursiveDate;
+        let recursiveDuration = 24 - evening;
+        resursivePadding.data.duration = recursiveDuration;
+        resursivePadding.setToRecursivePadding();
+        resursivePadding.addToLocalStorage();
+
+        Task.schedule();
+    }
+
     // ask for recuring padding info from user
     if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
         let isInt = function (value) {
@@ -35,36 +75,9 @@ window.addEventListener('load', (event) => {
             alert("Invalid input, using default of 10pm");
             evening = 22;
         }
-        
-        localStorage.setItem('morning', JSON.stringify(morning));
-        localStorage.setItem('noon', JSON.stringify(noon));
-        localStorage.setItem('evening', JSON.stringify(evening));
 
-        let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        let recursiveDate = new Date('December 17, 1995 00:00:00');
-        resursivePadding.data.ddl = recursiveDate;
-        resursivePadding.data.duration = morning;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
+        updateSchedule(morning, noon, evening);
 
-        resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        recursiveDate = new Date('December 17, 1995 00:00:00');
-        recursiveDate.setHours(noon);
-        resursivePadding.data.ddl = recursiveDate;
-        resursivePadding.data.duration = 1;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
-
-        resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        recursiveDate = new Date('December 17, 1995 00:00:00');
-        recursiveDate.setHours(evening);
-        resursivePadding.data.ddl = recursiveDate;
-        let recursiveDuration = 24-evening;
-        resursivePadding.data.duration = recursiveDuration;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
-
-        Task.schedule();
     }
 });
 
@@ -92,40 +105,40 @@ function addTasksToDocument(tasks) {
     let list = document.querySelector('#list');
     let task_lst = tasks[0];
     let duration_lst = tasks[1];
-    if (task_lst ===undefined){
+    if (task_lst === undefined) {
         console.log('No Tasks');
         return;
     }
-    for (let t = 0; t < task_lst.length; t++){
+    for (let t = 0; t < task_lst.length; t++) {
         let new_task = task_lst[t];
         let new_task_duration = duration_lst[t];
         let task = document.createElement('article');
         let task_data = new_task.data;
         let color = 'gray';
         let priorityy = "";
-        if(task_data.category == "" || task_data.category == 'other' ){
-            color="#94308df3";
+        if (task_data.category == "" || task_data.category == 'other') {
+            color = "#94308df3";
         }
-        if(task_data.category == 'personal'){
-            color="#1d739efa";
+        if (task_data.category == 'personal') {
+            color = "#1d739efa";
         }
-        if(task_data.category == 'school'){
-            color="#338017e8";
+        if (task_data.category == 'school') {
+            color = "#338017e8";
         }
-        if(task_data.description == null || task_data.description == "" ){
+        if (task_data.description == null || task_data.description == "") {
             task_data.description = "N/A";
         }
-        if (task_data.priority == 1 || task_data.priority== 2){
-            priorityy  = "Low";
+        if (task_data.priority == 1 || task_data.priority == 2) {
+            priorityy = "Low";
         }
-        if (task_data.priority == 3){
-            priorityy  = "Medium";
+        if (task_data.priority == 3) {
+            priorityy = "Medium";
         }
-        if (task_data.priority == 4 || task_data.priority == 5){
-            priorityy  ="High";
+        if (task_data.priority == 4 || task_data.priority == 5) {
+            priorityy = "High";
         }
         //Two different forms 1 for paddings and one for not padding tasks :
-        if(task_data.padding == false){
+        if (task_data.padding == false) {
             task.innerHTML = `
             <div class="grid-item">
             <div class="containerTasks">
@@ -138,7 +151,7 @@ function addTasksToDocument(tasks) {
                 <br>
                 <h1 class="titl" >${task_data.task_name}</h1>
                 <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
-                <p class="det"><span class="effect">Priority :</span> ${priorityy }</p>
+                <p class="det"><span class="effect">Priority :</span> ${priorityy}</p>
                 <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
                 <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
                 <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
@@ -147,7 +160,7 @@ function addTasksToDocument(tasks) {
             </div>
             </div>
             `;
-        }else{
+        } else {
             task.innerHTML = `
             <div class="grid-item">
             <div class="containerTasks">
@@ -187,7 +200,7 @@ function initFormHandler() {
     // submit button is clicked
     form.addEventListener('submit', (event) => {
 
-        
+
         event.preventDefault();
         alert('form1 submitted');
         // Create a new FormData object from the <form> element reference above
@@ -196,9 +209,9 @@ function initFormHandler() {
         // values from the FormData object and insert them into taskObject
         let new_task_obj = new Task();
         for (const [key, val] of fd) {
-            if (key=='ddl') {
+            if (key == 'ddl') {
                 let ddl = new Date(val);
-                ddl.setHours(ddl.getHours()+8);
+                ddl.setHours(ddl.getHours() + 8);
                 new_task_obj.data[key] = ddl;
             } else {
                 new_task_obj.data[key] = val;
@@ -212,7 +225,7 @@ function initFormHandler() {
         new_task_obj.addToLocalStorage();
         Task.schedule();
         location.href = '#';
-       // refresh page to display task
+        // refresh page to display task
         window.location.reload();
     });
 
@@ -225,17 +238,17 @@ function initFormHandler() {
             // if(!val){
             //   continue;
             // }
-            
-            if (key=='ddl') {
+
+            if (key == 'ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours());
                 new_padding_obj.data[key] = ddl;
             } else {
                 new_padding_obj.data[key] = val;
             }
-            
-            
-            
+
+
+
         }
 
         //create task object
@@ -247,7 +260,7 @@ function initFormHandler() {
 
         Task.schedule();
         location.href = '#';
-       // refresh page to display task
+        // refresh page to display task
         window.location.reload();
     })
 
