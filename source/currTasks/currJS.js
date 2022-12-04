@@ -13,7 +13,7 @@ let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
     for (let each_padding of r_padding) {
         Task.removeFromLocalStorage(each_padding.data.uid);
     }
-
+}
 
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
@@ -43,7 +43,7 @@ window.addEventListener('load', (event) => {
         resursivePadding.addToLocalStorage();
 
         Task.schedule();
-    }
+    });
 
     // ask for recuring padding info from user
     if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
@@ -81,7 +81,7 @@ window.addEventListener('load', (event) => {
         updateSchedule(morning, noon, evening);
 
     }
-});
+
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
@@ -237,10 +237,6 @@ function initFormHandler() {
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
-            // if(!val){
-            //   continue;
-            // }
-
             if (key == 'ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours());
@@ -248,9 +244,6 @@ function initFormHandler() {
             } else {
                 new_padding_obj.data[key] = val;
             }
-
-
-
         }
 
         //create task object
@@ -264,7 +257,7 @@ function initFormHandler() {
         location.href = '#';
         // refresh page to display task
         window.location.reload();
-    })
+    });
 
     // Get a reference to the "Clear Local Storage" button
     let clear_stg = document.querySelector('.danger');
@@ -278,8 +271,14 @@ function initFormHandler() {
 
     // Get a reference to the "update schedule" button
     let update_schedule = document.querySelector('.update_schedule');
+    let preference_form = document.querySelector('.preferences');
     // Add a click event listener to update schedule button
     update_schedule.addEventListener('click', (event) => {
-        updateSchedule();
+        let fd = new FormData(preference_form);
+        let morning = fd.get('morning');
+        let noon = fd.get('noon');
+        let evening = fd.get('evening');
+        alert(noon);
+        updateSchedule(morning,noon,evening);
     });
 }
