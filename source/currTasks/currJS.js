@@ -271,14 +271,21 @@ function initFormHandler() {
 
     // Get a reference to the "update schedule" button
     let update_schedule = document.querySelector('.update_schedule');
-    let preference_form = document.querySelector('.preferences');
+    
     // Add a click event listener to update schedule button
     update_schedule.addEventListener('click', (event) => {
-        let fd = new FormData(preference_form);
-        let morning = fd.get('morning');
-        let noon = fd.get('noon');
-        let evening = fd.get('evening');
-        alert(noon);
+        let morning = 9;
+        let noon = 12;
+        let evening = 22;
+        if (document.querySelector('#morning').value != ""){
+            morning = Number.parseInt(document.querySelector('#morning').value);
+        }
+        if (document.querySelector('#noon').value != ""){
+            noon = Number.parseInt(document.querySelector('#noon').value);
+        }
+        if (document.querySelector('#evening').value != ""){
+            evening = Number.parseInt(document.querySelector('#evening').value);
+        }
         updateSchedule(morning,noon,evening);
     });
 }
