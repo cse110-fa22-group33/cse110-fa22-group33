@@ -65,14 +65,14 @@ body{
     text-align: center;
     padding-top: 10px;
     /* padding-bottom: 20px; */
-    font-size: 40px;
+    font-size: 45px;
 }
 @media (max-width: 700px) {
     #title{
         font-family: 'Quicksand', sans-serif;
         padding-top: 10px;
         /* padding-bottom: 20px; */
-        font-size: 40px;
+        font-size: 45px;
     }    
 }
 footer{

@@ -28,6 +28,7 @@ body {
 	border-radius: 18px;
 	color: white;
 	margin-bottom: 20px;
+	margin: auto;/*center the title task list in the center */
 }
 .hello {
     margin: 1rem;
@@ -44,7 +45,7 @@ h4 {
 	color:#140977c9;
 	padding:8px;
 }
-.taskPriority, .duration, .difficulty{
+.taskPriority, .difficulty{
 	font-size: 12px;
 	font-family: 'Quicksand', sans-serif;
 	width: 42px;
@@ -297,7 +298,7 @@ This is the css of help tip (hover/click for more)
 }
 .modal-window {
 	position: fixed;
-	background-color: #130d0db2;/* color of the page when the modal is open */
+	background-color: #130d0dc2;/* color of the page when the modal is open */
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -314,13 +315,14 @@ This is the css of help tip (hover/click for more)
 	pointer-events: auto;
 }
 .modal-window > div {
-	width: 400px;
+	width: 450px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 2em;
-	background: #d1c5dd;
+	/* background: #d1c5dd; purple color for modal */
+	background-color: #e2dfd1;
 }
 .modal-window header {
 	font-weight: bold;
@@ -387,6 +389,7 @@ small {
 	width:50%;
 	height:280px;
 	justify-content: center;
+	padding-top: 22px; /* TO ALLIGN OPTIONS WITH TAS LIST */
 }
 
 #rightbox{
@@ -395,16 +398,14 @@ small {
 	width:50%;
 	height:280px;
 }
-.box1{
-    background-color: #7f99c0;
-    width: 240px;
-    padding: 30px;
-	border-radius: 20px;
-	justify-content: center;
-	margin:auto;
+@media (max-width:850px){
+	#leftbox{
+		padding-top: 20.5px; 
+		
+	}
 }
 .btn-add-task{	
-	background-color: #99c1e2c9;;
+	background-color: #abb422ea;
 	width: 220px;
 	height: 50px;
 	padding: 22px;
@@ -414,7 +415,7 @@ small {
 	justify-content: center;
 }
 .btn-time-slot{	
-	background-color: #99c1e2c9;;
+	background-color:#abb422ea;
 	width: 220px;
 	height: 50px;
 	padding: 26px;
@@ -422,6 +423,14 @@ small {
 	border-radius: 18px;
 	color: white;
 	justify-content: center;
+}
+.btn-add-task:hover{
+	background-color: #cad80d;
+	color: black;
+}	
+.btn-time-slot:hover{
+	background-color: #cad80d;
+	color: black;
 }
 #morning, #noon, #evening{
 	width: 40px;
@@ -443,3 +452,62 @@ small {
 	opacity: 0;
 	transition: opacity 0.15s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
   }
+/* add uniformity in input boxes: */
+  #content, .content{
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif; 
+	width: 170px;
+	height: 22px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	padding-left: 7px;
+  }
+  .taskdescription{
+	font-size: 14px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 10px;
+	padding-left: 7px;
+	padding-top: 4px;
+
+  }
+  .duration, .min-work-time{
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
+	width: 50px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	padding-left: 7px;
+	height: 22px;
+}
+.taskddl, .ddl{
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 7px;
+	height: 22px;
+}
+.preferences{
+	background-color: #7f99c0;
+    width: 240px;
+    padding: 30px;
+	border-radius: 20px;
+	justify-content: center;
+	margin:auto;
+}
+.preference-title{
+	font-size: 20px;
+	text-align: center;
+	/* color:rgb(189, 247, 228); */
+	color:white;
+	background-color: rgb(17, 60, 126);
+	border-radius: 40px;
+	padding:10px;	
+}
+.task-title{
+	font-size: 45px;
+}
+.welcome{
+	font-size: 20px;
+}
+

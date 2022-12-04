@@ -1,6 +1,6 @@
 .modal-wind{
   position: fixed;
-  background-color: #130d0db2;/* color of the page when the modal is open */
+  background-color: #130d0dc2;/* color of the page when the modal is open */
   top: 0;
   right: 0;
   bottom: 0;
@@ -23,7 +23,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1.5em;
-  background: rgb(178, 196, 209);
+  background: #d1c5dd;
 }
 .modal-wind header {
   font-weight: bold;
@@ -48,7 +48,7 @@
   font-size: 30px;
 }
 .modal-cl:hover {
-  color: rgb(63, 128, 90);
+  color: black;
 }
 a {
   color: inherit;
@@ -67,10 +67,8 @@ a {
   border-radius: 8px;
   /* width: 300px; */
 }
-/* //this makes the boxes dont collapse one over the other when page gets smaller  */
+/* this grid-item makes the boxes dont collapse one over the other when page gets smaller  */
 .grid-item {
-  /* background-color: rgb(214, 219, 228);
-  border: 0.01px solid rgba(0, 0, 0, 0.877); */
  text-align: center;
  height: 70px;
 
@@ -98,6 +96,8 @@ small {
   text-align: center;
   height: 28px;
   color:white;
+  margin: auto;  /* center the buttons from task list  */
+  /* margin-left: 40px;  */
 }
 .btn i {
   padding-right: 0.3em;
@@ -106,8 +106,8 @@ small {
   /* ill add gray oka */
   .titl{
     /* font-size: 30px; */
-    color: rgb(255, 255, 255);
-    background-color: rgb(83, 106, 136);
+    color: #ffffff;
+    background-color: #704867;
     border-radius: 10px;
     padding:15px;
   }
@@ -122,7 +122,7 @@ small {
     padding-left: 10px; 
   }
   .effect{
-    color:rgb(28, 0, 128);
+    color:rgb(102, 0, 128);
     font-weight: bold;
     /* text-decoration: underline; */
     font-family: 'Mulish', sans-serif;

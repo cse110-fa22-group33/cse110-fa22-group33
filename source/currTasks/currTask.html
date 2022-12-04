@@ -50,13 +50,15 @@
             Hello <input type="text" id="user-name" placeholder="User Name">
             
         </div> -->
-
+        <div style="text-align:center"><h1 class="task-title">My Tasks</h1>
+            <p class="welcome">Welcome! here you can add new tasks to your schedule</p>
+        </div>
+        <br>
         <div id="leftbox">
-
+        <h2 class="title">OPTIONS</h2><br>
         <!-- Create New Task -->
         <div class="create-new-task" ><br>
             
-
 <!-- first container -->
 <!-- first container -->
 <!-- first container -->
@@ -68,7 +70,7 @@
                 </div>
             </div>
             <br><br><br>
-            
+
             <div id="open-modal" class="modal-window">
               <div>
                 <a href="#" title="Close" class="modal-close">x</a>
@@ -182,7 +184,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <input type="number" name="mintime" class="min-work-time" min="0" max="10" step = "1" placeholder = "1" required>
+                                    <input type="number" name="mintime" class="min-work-time" min="0" max="10" step = "1" placeholder = "e.g. 1" required>
                                 </td>
                             </tr>
                         </table>    
@@ -204,10 +206,8 @@
 <!-- second container -->
 <!-- second container -->
 <!-- second container -->
-
-
             <div class="container">
-                <div style="text-align:center">
+                <div class="try" style="text-align:center">
                     <a class="btn-time-slot" href="#open-modal2">Save Your Own Time Slot</a>
                 </div>
             </div>
@@ -286,11 +286,11 @@
 
             </div>  <!-- end div create New Task -->
 
-            <br>
+            <br><br><br>
         <!-- Insert Padding Preferences Input -->
         <!-- Insert Padding Preferences Input -->
-            <div class="box1" >
-                <h3 ><u>Set Your Schedule Preferences</u></h3>
+            <div class="preferences" >
+                <h3 class="preference-title">Set Your Schedule Preferences</h3>
                 <table>
                     <tr>
                         <td>
@@ -337,11 +337,11 @@
                             <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
                         </td>
                     </tr>
-                </table> 
+                </table>
                 <button type="button" class="danger">Clear Your Schedule</button>
             </div>
 
-        </div>      <!-- here is the end of left box -->
+        </div> <!-- here is the end of left box -->
         <br>
 
             <!-- Calendar Button
@@ -350,36 +350,6 @@
         <div id="rightbox" >
             <h2 class="title">TASK LIST</h2>
             <div class="list" id="list">
-                <!--
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble school"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Finish Lab9" />
-                    </div>
-                </div>
-
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble personal"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Get groceries" />
-                    </div>
-                </div>
-
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble other"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Apply for internships" />
-                    </div>
-                </div>-->
             </div>
         </div>
     </main>
