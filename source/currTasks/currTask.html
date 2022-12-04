@@ -71,9 +71,9 @@
             </div>
             <br><br><br>
 
-            <div id="open-modal" class="modal-window">
+            <div  id="open-modal" class="modal-window"  onclick="document.getElementById('open-modal').style.display='block'">
               <div>
-                <a href="#" title="Close" class="modal-close">x</a>
+                <a onclick="document.getElementById('open-modal').style.display='none'" href="#" title="Close" class="modal-close">x</a>
 
                 <form id="new-task">
                     <div id="task-content">
@@ -240,9 +240,9 @@
             </div>
             <br>
           
-            <div id="open-modal2" class="modal-window">
+            <div id="open-modal2" class="modal-window" onclick="document.getElementById('open-modal2').style.display='block'">
               <div>
-                  <a href="#" title="Close" class="modal-close">x</a>
+                  <a onclick="document.getElementById('open-modal2').style.display='none'" href="#" title="Close" class="modal-close">x</a>
                     <form id="new-padding">
                         <div id="task-content">
                             <h4>Task Name:
@@ -312,6 +312,24 @@
             </div>
 
             </div>  <!-- end div create New Task -->
+
+            <!-- this works for the two form options alone and ONLY  -->
+            <!-- <script>
+            var modal = document.getElementById('open-modal');
+            var modal2 = document.getElementById('open-modal2');
+            
+            window.onclick = function(event) {
+                if (event.target == modal2) {
+                    modal2.style.display = "modal.close";
+                    location.href ='#';
+                }
+                if (event.target == modal) {
+                    modal.style.display = "modal.close";
+                    location.href ='#';
+                }
+            }
+            </script> -->
+
 
             <br><br><br>
         <!-- Insert Padding Preferences Input -->
