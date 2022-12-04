@@ -13,37 +13,37 @@ let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
     for (let each_padding of r_padding) {
         Task.removeFromLocalStorage(each_padding.data.uid);
     }
+    
+    let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    let recursiveDate = new Date('December 17, 1995 00:00:00');
+    resursivePadding.data.ddl = recursiveDate;
+    resursivePadding.data.duration = morning;
+    resursivePadding.setToRecursivePadding();
+    resursivePadding.addToLocalStorage();
+
+    resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    recursiveDate = new Date('December 17, 1995 00:00:00');
+    recursiveDate.setHours(noon);
+    resursivePadding.data.ddl = recursiveDate;
+    resursivePadding.data.duration = 1;
+    resursivePadding.setToRecursivePadding();
+    resursivePadding.addToLocalStorage();
+
+    resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    recursiveDate = new Date('December 17, 1995 00:00:00');
+    recursiveDate.setHours(evening);
+    resursivePadding.data.ddl = recursiveDate;
+    let recursiveDuration = 24 - evening;
+    resursivePadding.data.duration = recursiveDuration;
+    resursivePadding.setToRecursivePadding();
+    resursivePadding.addToLocalStorage();
+
+    Task.schedule();
 }
+
 
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
-
-        let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        let recursiveDate = new Date('December 17, 1995 00:00:00');
-        resursivePadding.data.ddl = recursiveDate;
-        resursivePadding.data.duration = morning;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
-
-        resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        recursiveDate = new Date('December 17, 1995 00:00:00');
-        recursiveDate.setHours(noon);
-        resursivePadding.data.ddl = recursiveDate;
-        resursivePadding.data.duration = 1;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
-
-        resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
-        recursiveDate = new Date('December 17, 1995 00:00:00');
-        recursiveDate.setHours(evening);
-        resursivePadding.data.ddl = recursiveDate;
-        let recursiveDuration = 24 - evening;
-        resursivePadding.data.duration = recursiveDuration;
-        resursivePadding.setToRecursivePadding();
-        resursivePadding.addToLocalStorage();
-
-        Task.schedule();
-    });
 
     // ask for recuring padding info from user
     if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
@@ -81,7 +81,7 @@ window.addEventListener('load', (event) => {
         updateSchedule(morning, noon, evening);
 
     }
-
+});
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
