@@ -147,9 +147,9 @@ function addTasksToDocument(tasks) {
             <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
             </div>
             </div>
-            <div id="open-task${t}" class="modal-wind">
+            <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
             <div>
-                <a href="#" title="Close" class="modal-cl">x</a>
+                <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                 <br>
                 <h1 class="titl" >${task_data.task_name}</h1>
                 <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
@@ -169,9 +169,9 @@ function addTasksToDocument(tasks) {
                <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
            </div>
            </div>
-           <div id="open-task${t}" class="modal-wind">
+           <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
            <div>
-               <a href="#" title="Close" class="modal-cl">x</a>
+               <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                <br>
                <h1 class="titl" >${task_data.task_name}</h1>
                <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
@@ -187,6 +187,34 @@ function addTasksToDocument(tasks) {
 
         list.appendChild(task);
     }
+    //Handle click on outside modal -> close the popup window:
+    var modal = document.getElementById('open-modal');
+    var modal2 = document.getElementById('open-modal2');
+    var modals = [];
+    for (let t = 0; t < task_lst.length; t++){
+        var name = "open-task";
+        name = name + t;
+        modals[t] = document.getElementById(name);
+    }
+    window.onclick = function(event) {
+        //this two first are for the OPTIONS modals
+        if (event.target == modal2) {
+            modal2.style.display = "modal.close";
+            location.href ='#'; 
+        }
+        if (event.target == modal) {
+            modal.style.display = "modal.close";
+            location.href ='#';
+        }
+        //Modals for all the tasklist 
+        for (let i=0; i < modals.length; i++){
+            if (event.target == modals[i]) {
+                modals[i].style.display = "modal.cl";
+                location.href ='#';
+            }
+        }
+    } 
+
 }
 
 /**

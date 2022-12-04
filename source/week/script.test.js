@@ -1,4 +1,6 @@
-import JSDOMEnvironment from "jest-environment-jsdom";
+/**
+ * @jest-environment jsdom
+ */
 import { Task } from "./../skyTasks";
 
 const fs = require('fs');

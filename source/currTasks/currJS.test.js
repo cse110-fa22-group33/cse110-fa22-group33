@@ -1,4 +1,6 @@
-import JSDOMEnvironment from "jest-environment-jsdom";
+/**
+ * @jest-environment jsdom
+ */
 import { testExport } from "./currJS";
 
 const fs = require('fs');
