@@ -265,10 +265,6 @@ function initFormHandler() {
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
-            // if(!val){
-            //   continue;
-            // }
-
             if (key == 'ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours());
@@ -276,9 +272,6 @@ function initFormHandler() {
             } else {
                 new_padding_obj.data[key] = val;
             }
-
-
-
         }
 
         //create task object
@@ -292,7 +285,7 @@ function initFormHandler() {
         location.href = '#';
         // refresh page to display task
         window.location.reload();
-    })
+    });
 
     // Get a reference to the "Clear Local Storage" button
     let clear_stg = document.querySelector('.danger');
@@ -306,8 +299,21 @@ function initFormHandler() {
 
     // Get a reference to the "update schedule" button
     let update_schedule = document.querySelector('.update_schedule');
+    
     // Add a click event listener to update schedule button
     update_schedule.addEventListener('click', (event) => {
-        updateSchedule();
+        let morning = 9;
+        let noon = 12;
+        let evening = 22;
+        if (document.querySelector('#morning').value != ""){
+            morning = Number.parseInt(document.querySelector('#morning').value);
+        }
+        if (document.querySelector('#noon').value != ""){
+            noon = Number.parseInt(document.querySelector('#noon').value);
+        }
+        if (document.querySelector('#evening').value != ""){
+            evening = Number.parseInt(document.querySelector('#evening').value);
+        }
+        updateSchedule(morning,noon,evening);
     });
 }
