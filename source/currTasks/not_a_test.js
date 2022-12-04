@@ -1,4 +1,4 @@
-import { Task } from './../skyTasks.js';
+import { Task } from '../skyTasks.js';
 
 /*
 // Shasta's Test Case

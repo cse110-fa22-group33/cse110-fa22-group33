@@ -22,6 +22,7 @@
     "make": "electron-forge make"
   },
   "jest": {
+    "preset": "jest-puppeteer",
     "testPathIgnorePatterns": [
       "/out/"
     ],
@@ -29,8 +30,7 @@
     "setupFiles": [
       "jest-localstorage-mock"
     ],
-    "verbose": true,
-    "testEnvironment": "jsdom"
+    "verbose": true
   },
   "babel": {
     "presets": [

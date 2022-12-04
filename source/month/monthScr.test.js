@@ -1,21 +1,20 @@
-import { testExport } from "./monthScr";
-
-const fs = require('fs');
 const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './month.html'), 'utf8');
-
-jest.dontMock('fs');
 
 describe('Monthly Calendar Tests', () => {
-    beforeEach(() => {
-        document.documentElement.innerHTML = html.toString();
-    });
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:5500/source/month/month.html")
+  })
 
-    afterEach(() => {
-        // restore the original func after test
-        jest.resetModules();
-    });
-    test('Check if render function works', () => {
-        testExport.render();
-    })
+  test('Test correct number of day divs', async () => {
+    const numDays = await page.$$('.day');
+    expect(numDays.length).toBe(35);
+  });
+
+  test('Test correct month', async () => {
+    let monthTitle = await page.$('#monthTitle');
+    monthTitle = await monthTitle.getProperty('innerText');
+    expect(await monthTitle.jsonValue()).toEqual('December 2022');
+
+  });
+
 })
