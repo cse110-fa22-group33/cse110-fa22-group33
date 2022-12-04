@@ -20,7 +20,6 @@ window.addEventListener('load', (event) => {
             alert("Invalid input, using default of 9am");
             morning = 9;
         }
-        localStorage.setItem('morning', JSON.stringify(morning));
         ans = prompt("When do you go to lunch (input a number out of 24 hour): ", "12");
         if (isInt(ans)) {
             noon = parseInt(ans);
@@ -28,7 +27,6 @@ window.addEventListener('load', (event) => {
             alert("Invalid input, using default of noon");
             noon = 12;
         }
-        localStorage.setItem('noon', JSON.stringify(noon));
 
         ans = prompt("When do you go to bed (input a number out of 24 hour): ", "22");
         if (isInt(ans)) {
@@ -37,6 +35,9 @@ window.addEventListener('load', (event) => {
             alert("Invalid input, using default of 10pm");
             evening = 22;
         }
+        
+        localStorage.setItem('morning', JSON.stringify(morning));
+        localStorage.setItem('noon', JSON.stringify(noon));
         localStorage.setItem('evening', JSON.stringify(evening));
 
         let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
@@ -91,6 +92,10 @@ function addTasksToDocument(tasks) {
     let list = document.querySelector('#list');
     let task_lst = tasks[0];
     let duration_lst = tasks[1];
+    if (task_lst ===undefined){
+        console.log('No Tasks');
+        return;
+    }
     for (let t = 0; t < task_lst.length; t++){
         let new_task = task_lst[t];
         let new_task_duration = duration_lst[t];
@@ -254,5 +259,12 @@ function initFormHandler() {
         localStorage.clear();
         // Delete the contents of <main>
         list.innerHTML = '';
+    });
+
+    // Get a reference to the "update schedule" button
+    let update_schedule = document.querySelector('.update_schedule');
+    // Add a click event listener to update schedule button
+    update_schedule.addEventListener('click', (event) => {
+
     });
 }
