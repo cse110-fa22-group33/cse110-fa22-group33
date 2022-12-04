@@ -45,6 +45,18 @@ let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
 
+    let morning = localStorage.getItem('morning') || 9;
+    let noon = localStorage.getItem('noon') || 12;
+    let evening = localStorage.getItem('evening') || 22;
+
+    let morning_input = document.querySelector('#morning');
+    let noon_input = document.querySelector('#noon');
+    let evening_input = document.querySelector('#evening');
+
+    morning_input.value = morning;
+    noon_input.value = noon;
+    evening_input.value = evening;
+
     // ask for recuring padding info from user
     if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
         let isInt = function (value) {
