@@ -1,20 +1,22 @@
 import { Task } from './../skyTasks.js';
 
+
+// helper function to update the shcedule perferences
+let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
+
+    localStorage.setItem('morning', JSON.stringify(morning));
+    localStorage.setItem('noon', JSON.stringify(noon));
+    localStorage.setItem('evening', JSON.stringify(evening));
+
+    // delete old padings, if there are any
+    let r_padding = Task.getAllRecuringPaddings();
+    for (let each_padding of r_padding) {
+        Task.removeFromLocalStorage(each_padding.data.uid);
+    }
+
+
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
-
-    // helper function to update the shcedule perferences
-    let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
-
-        localStorage.setItem('morning', JSON.stringify(morning));
-        localStorage.setItem('noon', JSON.stringify(noon));
-        localStorage.setItem('evening', JSON.stringify(evening));
-
-        // delete old padings, if there are any
-        let r_padding = Task.getAllRecuringPaddings();
-        for (let each_padding of r_padding) {
-            Task.removeFromLocalStorage(each_padding.data.uid);
-        }
 
         let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
         let recursiveDate = new Date('December 17, 1995 00:00:00');
@@ -278,6 +280,6 @@ function initFormHandler() {
     let update_schedule = document.querySelector('.update_schedule');
     // Add a click event listener to update schedule button
     update_schedule.addEventListener('click', (event) => {
-
+        updateSchedule();
     });
 }
