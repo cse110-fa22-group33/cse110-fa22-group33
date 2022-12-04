@@ -28,19 +28,20 @@ describe('Weekly Calendar Functionality Tests', () => {
   });
 
   // STILL NEED TO TEST getHeader and getTasks.... just end2end?
- /* test('getHeaderAndTasksFromStorage()', () =>{
+ test('getHeaderAndTasksFromStorage()', () =>{
     // jest.spyOn(f, 'getHeaderAndTasksFromStorage');
     // Check if date is today
     // console.log(f.getHeaderAndTasksFromStorage());
 
-    /*let currDay = testTask.data.ddl.getDay();
-    let currTime = testTask.data.ddl.getHours();
-    let currDayTime = "" + currDay  + currTime;
-    let currCell = document.getElementById(currDayTime);
+    // let currDay = testTask.data.ddl.getDay();
+    // let currTime = testTask.data.ddl.getHours();
+    // let currDayTime = "" + currDay  + currTime;
+    // let currCell = document.getElementById(currDayTime);
 
     f.render();
+    console.log(testTask);
     expect(f.setTasksForDay(new Date())).toEqual([testTask]);
-  });*/
+  });
 
   test('subtractTimeFromDate()', () => {
     const testDate = new Date("2022-11-29");
