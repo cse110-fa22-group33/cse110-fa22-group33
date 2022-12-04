@@ -1046,6 +1046,25 @@ export class Task {
       };
       localStorage.setItem('padding_tasks', JSON.stringify(padding_uid));
     };
+
+    // remove the task in the task name dictionary catalog
+    all_tasks_uid = JSON.parse(localStorage.getItem('task_name'));
+    all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
+    let task_name = all_tasks_uid[task.data.task_name] = all_tasks_uid[task.data.task_name] || [];
+    dup = false;
+    for (let uid of task_name) {
+      if (uid === task.data.uid) { dup = true };
+    };
+    if (dup) {
+      task_name = removeFromArray(task_name, task.data.uid)
+    };
+    if (task_name.length === 0) {
+      delete all_tasks_uid[task.data.task_name];
+    } else {
+      all_tasks_uid[task.data.task_name] = task_name;
+    }
+    localStorage.setItem('task_name', JSON.stringify(all_tasks_uid));
+
   }
 
   /**
