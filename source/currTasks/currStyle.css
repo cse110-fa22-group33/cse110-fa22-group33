@@ -75,7 +75,6 @@ h4 {
 .nav:hover{
 	background-color:rgba(138, 15, 132, 0.507);
 }
-
 /* .create-new-task {
     float: left;
 	padding-left: 25rem;
@@ -510,4 +509,3 @@ small {
 .welcome{
 	font-size: 20px;
 }
-

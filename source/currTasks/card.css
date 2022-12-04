@@ -32,7 +32,6 @@
   font-size: 150%;
   margin: 0 0 15px;
 }
-
 .modal-cl {
   border-radius: 20px;
   color:#b62020;
@@ -126,5 +125,29 @@ small {
     font-weight: bold;
     /* text-decoration: underline; */
     font-family: 'Mulish', sans-serif;
-  
   }
+/* STAR RAITING FOR PRIORITY AND DIFFICULTY */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 1.5em;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+}
+.star-rating :checked ~ label {
+  color: #f09917;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #fc0;
+}
+

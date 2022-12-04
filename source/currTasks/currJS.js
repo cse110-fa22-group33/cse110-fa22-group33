@@ -97,42 +97,74 @@ function addTasksToDocument(tasks) {
         let task = document.createElement('article');
         let task_data = new_task.data;
         let color = 'gray';
+        let priorityy = "";
         if(task_data.category == "" || task_data.category == 'other' ){
             color="#94308df3";
         }
         if(task_data.category == 'personal'){
-            // color = '#496ebe81';
             color="#1d739efa";
         }
         if(task_data.category == 'school'){
-            // color = '#51a051d8';
             color="#338017e8";
         }
         if(task_data.description == null || task_data.description == "" ){
             task_data.description = "N/A";
         }
-        
-        task.innerHTML = `
-        <div class="grid-item">
-        <div class="containerTasks">
-           <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
-       </div>
-       </div>
-       <div id="open-task${t}" class="modal-wind">
-       <div>
-           <a href="#" title="Close" class="modal-cl">x</a>
-           <br>
-           <h1 class="titl" >${task_data.task_name}</h1>
-           <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
-           <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
+        if (task_data.priority == 1 || task_data.priority== 2){
+            priorityy  = "Low";
+        }
+        if (task_data.priority == 3){
+            priorityy  = "Medium";
+        }
+        if (task_data.priority == 4 || task_data.priority == 5){
+            priorityy  ="High";
+        }
+        //Two different forms 1 for paddings and one for not padding tasks :
+        if(task_data.padding == false){
+            task.innerHTML = `
+            <div class="grid-item">
+            <div class="containerTasks">
+            <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
+            </div>
+            </div>
+            <div id="open-task${t}" class="modal-wind">
+            <div>
+                <a href="#" title="Close" class="modal-cl">x</a>
+                <br>
+                <h1 class="titl" >${task_data.task_name}</h1>
+                <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
+                <p class="det"><span class="effect">Priority :</span> ${priorityy }</p>
+                <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
+                <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
+                <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
+                <p class="deadline"> ${task_data.ddl}</p>
+                <br>
+            </div>
+            </div>
+            `;
+        }else{
+            task.innerHTML = `
+            <div class="grid-item">
+            <div class="containerTasks">
+               <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
+           </div>
+           </div>
+           <div id="open-task${t}" class="modal-wind">
+           <div>
+               <a href="#" title="Close" class="modal-cl">x</a>
+               <br>
+               <h1 class="titl" >${task_data.task_name}</h1>
+               <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
+               <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
+               <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
+               <p class="deadline"> ${task_data.ddl}</p>
+               <br>
+           </div>
+           </div>
+             `;
 
-           <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
-           <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
-           <p class="deadline"> ${task_data.ddl}</p>
-           <br>
-       </div>
-       </div>
-         `;
+        }
+
         list.appendChild(task);
     }
 }

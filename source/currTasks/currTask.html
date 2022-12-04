@@ -135,6 +135,7 @@
                         <h4>Description:</h4>
                         <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                         <br>
+                        <br>
     
                         <!-- Priority Input -->
                         <table>
@@ -147,11 +148,24 @@
                                         <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
                                     </div>
                                 </td>
-                                <td>
-                                    <input type="range" name="priority" class="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p class="priorityValue">3</p>
+                                <td style="width:200px">
+                                    <!-- <input type="range" name="priority" class="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p class="priorityValue">3</p> -->
+                                    <div class="star-rating">
+                                        <input name="priority" class="taskPriority" type="radio" id="5-stars" name="rating" value="5" />
+                                        <label for="5-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="4-stars" name="rating" value="4" />
+                                        <label for="4-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="3-stars" name="rating" value="3" />
+                                        <label for="3-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="2-stars" name="rating" value="2" />
+                                        <label for="2-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="1-star" name="rating" value="1" />
+                                        <label for="1-star" class="star">&#9733;</label>
+                                      </div>
                                 </td>
                             </tr>
                         </table>
+                        <br>
     
                         <!-- Difficulty Input -->
                         <table>
@@ -164,12 +178,25 @@
                                         <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
                                     </div>
                                 </td>
-                                <td>
-                                    <input type="range" name="difficulty" class="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p class="diffValue">3</p>
+                                <td style="width:200px">
+                                    <!-- <input type="range" name="difficulty" class="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p class="diffValue">3</p> -->
+                                    <div class="star-rating">
+                                        <input name="difficulty" class="difficulty" type="radio" id="5-star" name="rating" value="5" />
+                                        <label for="5-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="4-star" name="rating" value="4" />
+                                        <label for="4-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="3-star" name="rating" value="3" />
+                                        <label for="3-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="2-star" name="rating" value="2" />
+                                        <label for="2-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="1-sta" name="rating" value="1" />
+                                        <label for="1-sta" class="star">&#9733;</label>
+                                      </div>
                                 </td>
                                 
                             </tr>
                         </table>
+                        <br>
     
                         <!-- Preferred Work Length Input -->
                         <table>
