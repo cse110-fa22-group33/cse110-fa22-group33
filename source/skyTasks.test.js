@@ -257,9 +257,9 @@ describe('Task Class Tests', () => {
     let all_tasks = Task.getAllTasksFlat();
     all_tasks.sort(Task.compareStartDate);
     expect(all_tasks[0].data.task_name).toBe('10 5 5');
-    expect(all_tasks[1].data.task_name).toBe('10 5 3');
-    expect(all_tasks[2].data.task_name).toBe('10 5 1');
-    expect(all_tasks[3].data.task_name).toBe('10 3 3');
+    expect(all_tasks[1].data.task_name).toBe('10 5 1');
+    expect(all_tasks[2].data.task_name).toBe('10 3 3');
+    expect(all_tasks[3].data.task_name).toBe('10 5 3');
 
   })
 
