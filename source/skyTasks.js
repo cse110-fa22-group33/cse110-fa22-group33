@@ -637,8 +637,10 @@ export class Task {
     // Inner function checks if current time slot will fit the task
     let isOccupied = function (opid, time, duration) {
       for (let time_block of opid) {
-        let storage = new Date(time_block[0]).setHours(time_block[0].getHours() + time_block[1]);
-        let storage2 = new Date(time).setHours(time.getHours() + Number.parseInt(duration));
+        let storage = new Date(time_block[0]);
+        storage.setHours(time_block[0].getHours() + time_block[1]);
+        let storage2 = new Date(time);
+        storage2.setHours(time.getHours() + Number.parseInt(duration));
         if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)) {
           return true;
         }
@@ -664,9 +666,17 @@ export class Task {
    * @returns True if the two dates overlap/conflict
    */
   static dateRangeOverlaps(a_start, a_end, b_start, b_end) {
-    if (a_start <= b_start && b_start < a_end) return true; // b starts in a
-    if (a_start < b_end && b_end <= a_end) return true; // b ends in a
-    if (b_start < a_start && a_end < b_end) return true; // a in b
+    if(a_end.getDate() == b_end.getDate() && a_end.getHours() != 0){
+      if ((a_start.getHours() <= b_start.getHours()) && (b_start.getHours() < a_end.getHours())){
+        return true;
+      } // b starts in a
+      if (a_start.getHours() < b_end.getHours() && b_end.getHours() <= a_end.getHours()){
+        return true;
+      } // b ends in a
+      if (b_start.getHours() < a_start.getHours() && a_end.getHours() < b_end.getHours()){
+        return true;
+      }  // a in b
+    }
     return false;
   }
 

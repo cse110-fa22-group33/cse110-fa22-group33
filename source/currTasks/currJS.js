@@ -265,6 +265,7 @@ function initFormHandler() {
         new_task_obj.data['uid'] = uid;
         new_task_obj.data['task_uid'] = uid;
         new_task_obj.addToLocalStorage();
+
         Task.schedule();
         location.href = '#';
         // refresh page to display task
