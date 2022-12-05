@@ -3,7 +3,7 @@ const path = require('path');
 describe('Monthly Calendar Tests', () => {
   let currentDate;
   beforeAll(async () => {
-    await page.goto("http://127.0.0.1:5500/source/month/month.html")
+    await page.goto("http://127.0.0.1:5500/source/month/month.html");
     currentDate = new Date();
   });
 
@@ -24,15 +24,28 @@ describe('Monthly Calendar Tests', () => {
     await backButton.click();
     let monthTitle = await page.$('#monthTitle');
     monthTitle = await monthTitle.getProperty('innerText');
-    expect(await monthTitle.jsonValue()).toEqual('November 2022');
+    expect(await monthTitle.jsonValue()).toEqual(`${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.toLocaleString('default', { year: 'numeric' })}`);
   })
 
   test('Test next button', async () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
+    currentDate.setMonth(currentDate.getMonth() + 1);
     let nextButton = await page.$('#next');
     await nextButton.click();
     let monthTitle = await page.$('#monthTitle');
     monthTitle = await monthTitle.getProperty('innerText');
-    expect(await monthTitle.jsonValue()).toEqual('December 2022');
+    expect(await monthTitle.jsonValue()).toEqual(`${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.toLocaleString('default', { year: 'numeric' })}`);
+  });
+
+  test('Test year rollover', async () => {
+    let nextButton = await page.$('#next');
+    for(let index = currentDate.getMonth(); index < 11; index++){
+      currentDate.setMonth(index + 1);
+      await nextButton.click();
+    }
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    await nextButton.click();
+    let monthTitle = await page.$('#monthTitle');
+    monthTitle = await monthTitle.getProperty('innerText');
+    expect(await monthTitle.jsonValue()).toEqual(`${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.toLocaleString('default', { year: 'numeric' })}`);
   });
 });
