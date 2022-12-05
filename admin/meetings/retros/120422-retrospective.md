@@ -1,3 +1,4 @@
+## Final Project Retrospective (Sprint 4)
 ## December 4, 2022
 
 ### Attendance
@@ -12,14 +13,13 @@
 -	Dean
 
 ### Links
-[Retrium Link](https://app.retrium.com/team-room/6b031ea6-ff68-4a96-b626-9fa3e626bfe6?utm_campaign=team-room-invite&utm_content=link-invite&utm_invitedby=rrn%3Auser%3A9a1fc911-1fbf-4bf8-a997-3b7f6df11ecd&utm_medium=own-referral&utm_source=retrium)
+[Retrium Link](https://app.retrium.com/team-room/6b031ea6-ff68-4a96-b626-9fa3e626bfe6/retro)
 
 ### What Went Well
--	
+-	All modals set up, pages are finally cohesive together
+-	Project looks great in final stages
+-	Strong ending!
 ### What Didn’t Go Well
-- 
-### What Needs to Improve
--	
-
-### Immediate Discussion Decisions
--	
+- Awareness of active progress amongst individual members
+- Need to write overall tests
+- Minor disorganization in final stages
