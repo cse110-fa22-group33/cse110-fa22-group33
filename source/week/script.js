@@ -328,8 +328,10 @@ export function setTasksForDay(startTasks) {
                         if (currTime == 24) {
                             currTime = 0;
                             currDay++;
-                            currDayTime = "" + currDay + currTime;
+                            // currDayTime = "" + currDay + currTime;
                         }
+
+                        currDayTime = "" + currDay + currTime;
 
                         currCell = document.getElementById(currDayTime);
 
@@ -360,13 +362,13 @@ export function setTasksForDay(startTasks) {
             }
         }
 
-        let morningPadding = Task.getTasksFromName('morning')[0];
+        // let morningPadding = Task.getTasksFromName('morning')[0];
         // console.log(morningPadding);
-        let eveningPadding = Task.getTasksFromName('evening')[0];
+        // let eveningPadding = Task.getTasksFromName('evening')[0];
         // console.log(eveningPadding);
 
-        console.log(morningPadding.data.ddl.getHours());
-        console.log(eveningPadding.data.ddl.getHours());
+        // console.log(morningPadding.data.ddl.getHours());
+        // console.log(eveningPadding.data.ddl.getHours());
 
         /*if (eveningPadding.data.ddl.getHours() < morningPadding.data.ddl.getHours()) {
             eveningPadding.data.ddl = new Date(subtractTimeFromDate(morningPadding.data.ddl, 1));
