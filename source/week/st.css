@@ -2,7 +2,6 @@
 body{
     font-family: 'Quicksand', sans-serif;
     background-color: #e4dce4a1;
-    background-image: url('https://assets.codepen.io/1462889/back-page.svg');
 }
 .grid-container {
     display: grid;

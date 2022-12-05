@@ -45,6 +45,18 @@ let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
 
+    let morning = localStorage.getItem('morning') || 9;
+    let noon = localStorage.getItem('noon') || 12;
+    let evening = localStorage.getItem('evening') || 22;
+
+    let morning_input = document.querySelector('#morning');
+    let noon_input = document.querySelector('#noon');
+    let evening_input = document.querySelector('#evening');
+
+    morning_input.value = morning;
+    noon_input.value = noon;
+    evening_input.value = evening;
+
     // ask for recuring padding info from user
     if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
         let isInt = function (value) {
@@ -147,9 +159,9 @@ function addTasksToDocument(tasks) {
             <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
             </div>
             </div>
-            <div id="open-task${t}" class="modal-wind">
+            <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
             <div>
-                <a href="#" title="Close" class="modal-cl">x</a>
+                <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                 <br>
                 <h1 class="titl" >${task_data.task_name}</h1>
                 <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
@@ -169,9 +181,9 @@ function addTasksToDocument(tasks) {
                <a class="btn" style="background-color:${color}" href="#open-task${t}">${task_data.task_name}</a>
            </div>
            </div>
-           <div id="open-task${t}" class="modal-wind">
+           <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
            <div>
-               <a href="#" title="Close" class="modal-cl">x</a>
+               <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                <br>
                <h1 class="titl" >${task_data.task_name}</h1>
                <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
@@ -187,6 +199,34 @@ function addTasksToDocument(tasks) {
 
         list.appendChild(task);
     }
+    //Handle click on outside modal -> close the popup window:
+    var modal = document.getElementById('open-modal');
+    var modal2 = document.getElementById('open-modal2');
+    var modals = [];
+    for (let t = 0; t < task_lst.length; t++){
+        var name = "open-task";
+        name = name + t;
+        modals[t] = document.getElementById(name);
+    }
+    window.onclick = function(event) {
+        //this two first are for the OPTIONS modals
+        if (event.target == modal2) {
+            modal2.style.display = "modal.close";
+            location.href ='#'; 
+        }
+        if (event.target == modal) {
+            modal.style.display = "modal.close";
+            location.href ='#';
+        }
+        //Modals for all the tasklist 
+        for (let i=0; i < modals.length; i++){
+            if (event.target == modals[i]) {
+                modals[i].style.display = "modal.cl";
+                location.href ='#';
+            }
+        }
+    } 
+
 }
 
 /**
@@ -237,10 +277,6 @@ function initFormHandler() {
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
-            // if(!val){
-            //   continue;
-            // }
-
             if (key == 'ddl') {
                 let ddl = new Date(val);
                 ddl.setHours(ddl.getHours());
@@ -248,9 +284,6 @@ function initFormHandler() {
             } else {
                 new_padding_obj.data[key] = val;
             }
-
-
-
         }
 
         //create task object
@@ -264,7 +297,7 @@ function initFormHandler() {
         location.href = '#';
         // refresh page to display task
         window.location.reload();
-    })
+    });
 
     // Get a reference to the "Clear Local Storage" button
     let clear_stg = document.querySelector('.danger');
@@ -278,8 +311,21 @@ function initFormHandler() {
 
     // Get a reference to the "update schedule" button
     let update_schedule = document.querySelector('.update_schedule');
+    
     // Add a click event listener to update schedule button
     update_schedule.addEventListener('click', (event) => {
-        updateSchedule();
+        let morning = 9;
+        let noon = 12;
+        let evening = 22;
+        if (document.querySelector('#morning').value != ""){
+            morning = Number.parseInt(document.querySelector('#morning').value);
+        }
+        if (document.querySelector('#noon').value != ""){
+            noon = Number.parseInt(document.querySelector('#noon').value);
+        }
+        if (document.querySelector('#evening').value != ""){
+            evening = Number.parseInt(document.querySelector('#evening').value);
+        }
+        updateSchedule(morning,noon,evening);
     });
 }
