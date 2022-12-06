@@ -2,8 +2,13 @@ name: Build
 
 on:
   pull_request:
+    branches: [ "main" ]
     types:
       - closed
+    paths-ignore:
+      - 'admin/**'
+      - 'specs/**'
+      - 'README.md'
       
   workflow_dispatch:
             
