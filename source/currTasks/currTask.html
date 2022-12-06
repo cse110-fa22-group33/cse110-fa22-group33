@@ -1,3 +1,12 @@
+<!--
+currTask.html
+*  Description: This file contains all of the HTML code needed for the "Add Task"
+*  and "Current Task" display pages. Organizes the general layout of inputs from
+*  user, incorporates buttons and modal containers. Refer to currJS to see how
+*  the ids and names are correspondingly used.
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +34,8 @@
 </head>
 <body>
     <header>
+        <!-- Navigating Between Pages -->
         <nav class="navbar"> 
-    
             <img src="../week/monk.png" alt="CodeMonkeyz">
                 <ul class="nav-list">
                     <li class="list-item">
@@ -45,25 +54,18 @@
 
     <main class="todo">
         <br>
-        <!-- User Name 
-        <div class="hello">
-            Hello <input type="text" id="user-name" placeholder="User Name">
-            
-        </div> -->
+        <!-- Page Header -->
         <div style="text-align:center"><h1 class="task-title">My Tasks</h1>
             <p class="welcome">Welcome! here you can add new tasks to your schedule</p>
         </div>
         <br>
         <div id="leftbox">
+            <!-- Options Section -->
         <h2 class="title">OPTIONS</h2><br>
         <!-- Create New Task -->
         <div class="create-new-task" ><br>
             
-<!-- first container -->
-<!-- first container -->
-<!-- first container -->
-<!-- first container -->
-<!-- first container -->
+    <!-- FIRST CONTAINER -->
             <div class="container">
                 <div style="text-align:center">
                     <a class="btn-add-task" href="#open-modal">Add Task to Be Scheduled</a>
@@ -71,6 +73,7 @@
             </div>
             <br><br><br>
 
+            <!-- Modal Functionality -->
             <div  id="open-modal" class="modal-window"  onclick="document.getElementById('open-modal').style.display='block'">
               <div>
                 <a onclick="document.getElementById('open-modal').style.display='none'" href="#" title="Close" class="modal-close">x</a>
@@ -226,13 +229,7 @@
               </div>
             </div>
 
-
-
-<!-- second container -->
-<!-- second container -->
-<!-- second container -->
-<!-- second container -->
-<!-- second container -->
+    <!-- SECOND CONTAINER -->
             <div class="container">
                 <div class="try" style="text-align:center">
                     <a class="btn-time-slot" href="#open-modal2">Save Your Own Time Slot</a>
@@ -278,6 +275,7 @@
                                 </label>
                             </div>
                 
+                            <!-- Duration Input -->
                             <table>
                                 <tr>
                                     <td>
@@ -294,17 +292,17 @@
                                 </tr>
                             </table>                    
                 
+                            <!-- Description Input -->
                             <h4>Description:</h4>
                             <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
                             <br>
                 
+                            <!-- Particular Slot Input -->
                             <h4>Schedule Slot in Calendar:</h4>
                             <input type="datetime-local" name="ddl" class="ddl">
                             <br>
-                
-                            
                         </div>
-                
+                        <!-- Submit Button -->
                         <input type="submit" class="submit" value="ADD PADDING">
                     </form>
                   <br>
@@ -314,10 +312,10 @@
             </div>  <!-- end div create New Task -->
 
             <br><br><br>
-        <!-- Insert Padding Preferences Input -->
-        <!-- Insert Padding Preferences Input -->
+            <!-- Insert Padding Preferences Input -->
             <div class="preferences" >
                 <h3 class="preference-title">Set Your Schedule Preferences</h3>
+                <!-- Morning Input -->
                 <table>
                     <tr>
                         <td>
@@ -333,7 +331,9 @@
                         </td>
                     </tr>
                 </table> 
-    
+
+
+                <!-- Noon Input -->
                 <table>
                     <tr>
                         <td>
@@ -350,6 +350,7 @@
                     </tr>
                 </table> 
     
+                <!-- Evening Input -->
                 <table>
                     <tr>
                         <td>
@@ -365,16 +366,18 @@
                         </td>
                     </tr>
                 </table>
+
+                <!-- Confirmation Button -->
                 <button type="button" class="update_schedule">Update Schedule Preferences</button>
+
+                <!-- Clear Button-->
                 <button type="button" class="danger">Clear Your Schedule</button>
             </div>
 
         </div> <!-- here is the end of left box -->
         <br>
 
-            <!-- Calendar Button
-            <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
-
+        <!-- Task Display -->
         <div id="rightbox" >
             <h2 class="title">TASK LIST</h2>
             <div style="padding-top: 15px;" class="list" id="list">

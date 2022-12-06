@@ -1,50 +1,75 @@
+/* 
+*  currJS
+*  Description: This file contains all of the JavaScript code needed to develop
+*  the "Add Task" functionality as well as displaying the list of tasks. Inputs are
+*  taken from the user and stored locally so that other components can access. 
+*  This file includes all event listeners checking for the user's actions on the page
+*  and correspondingly directing them to the correct next page or adapting the
+*  Task objects based on adjustments made by the user.
+*/
+
+// Import skyTasks -> Needed to create Tasks objects used by our application
 import { Task } from './../skyTasks.js';
 
-
-// helper function to update the shcedule perferences
+/**
+ * updateSchedule Helper Method
+ * 
+ * Updates the shcedule perferences calling the 'schedule' method
+ * @param morning - Integer 0-23 representing wake up time
+ * @param noon - Integer 0-23 representing lunch time
+ * @param evening - Integer 0-23 representing sleep time
+ */
 let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
-
+    // Set local storage values
     localStorage.setItem('morning', JSON.stringify(morning));
     localStorage.setItem('noon', JSON.stringify(noon));
     localStorage.setItem('evening', JSON.stringify(evening));
 
-    // delete old padings, if there are any
+    // Delete old paddings, if there are any
     let r_padding = Task.getAllRecuringPaddings();
     for (let each_padding of r_padding) {
         Task.removeFromLocalStorage(each_padding.data.uid);
     }
     
+    // Input new padding task object for wake up time
     let resursivePadding = new Task('morning', Task.getUniqueUID(), Task.getUniqueTaskUID());
     let recursiveDate = new Date('December 17, 1995 00:00:00');
     resursivePadding.data.ddl = recursiveDate;
-    resursivePadding.data.duration = morning;
-    resursivePadding.setToRecursivePadding();
+    resursivePadding.data.duration = morning;       // 12am - morning
+    resursivePadding.setToRecursivePadding();       // Set as recursive padding
     resursivePadding.addToLocalStorage();
 
+    // Input new padding task object for lunch time
     resursivePadding = new Task('noon', Task.getUniqueUID(), Task.getUniqueTaskUID());
     recursiveDate = new Date('December 17, 1995 00:00:00');
     recursiveDate.setHours(noon);
     resursivePadding.data.ddl = recursiveDate;
-    resursivePadding.data.duration = 1;
-    resursivePadding.setToRecursivePadding();
+    resursivePadding.data.duration = 1;             // 1 hour long duration
+    resursivePadding.setToRecursivePadding();       // Set as recursive padding
     resursivePadding.addToLocalStorage();
 
+    // Input new padding task object for sleeping time
     resursivePadding = new Task('evening', Task.getUniqueUID(), Task.getUniqueTaskUID());
     recursiveDate = new Date('December 17, 1995 00:00:00');
     recursiveDate.setHours(evening);
     resursivePadding.data.ddl = recursiveDate;
     let recursiveDuration = 24 - evening;
-    resursivePadding.data.duration = recursiveDuration;
-    resursivePadding.setToRecursivePadding();
+    resursivePadding.data.duration = recursiveDuration;     // evening - midnight
+    resursivePadding.setToRecursivePadding();               // Set as recursive padding
     resursivePadding.addToLocalStorage();
 
+    // Run the scheduling algorithm
     Task.schedule();
 }
 
-
+/**
+ * Load Event Listener
+ * Runs whenever the page loads up
+ */
 window.addEventListener('load', (event) => {
     console.log("load");        // LOG
 
+    // Get recurrent paddings
     let morning = localStorage.getItem('morning') || 9;
     let noon = localStorage.getItem('noon') || 12;
     let evening = localStorage.getItem('evening') || 22;
@@ -53,46 +78,11 @@ window.addEventListener('load', (event) => {
     let noon_input = document.querySelector('#noon');
     let evening_input = document.querySelector('#evening');
 
+    // Update recurrent paddings
     morning_input.value = morning;
     noon_input.value = noon;
     evening_input.value = evening;
 
-    // ask for recuring padding info from user
-    if (localStorage.getItem("morning") === null || localStorage.getItem("noon") === null || localStorage.getItem("evening") === null) {
-        let isInt = function (value) {
-            return !isNaN(value) &&
-                parseInt(Number(value)) == value &&
-                !isNaN(parseInt(value, 10));
-        }
-        let morning;
-        let noon;
-        let evening;
-        let ans = prompt("Welcome to Code Monkeyz Smart Scheduler! Looks like this is your first time visiting the site. When do you wake up (input a number out of 24 hour): ", "9");
-        if (isInt(ans)) {
-            morning = parseInt(ans);
-        } else {
-            alert("Invalid input, using default of 9am");
-            morning = 9;
-        }
-        ans = prompt("When do you go to lunch (input a number out of 24 hour): ", "12");
-        if (isInt(ans)) {
-            noon = parseInt(ans);
-        } else {
-            alert("Invalid input, using default of noon");
-            noon = 12;
-        }
-
-        ans = prompt("When do you go to bed (input a number out of 24 hour): ", "22");
-        if (isInt(ans)) {
-            evening = parseInt(ans);
-        } else {
-            alert("Invalid input, using default of 10pm");
-            evening = 22;
-        }
-
-        updateSchedule(morning, noon, evening);
-
-    }
 });
 
 // Run the init() function when the page has loaded
@@ -100,6 +90,7 @@ window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
 function init() {
+    // getAllLargeTasks so we don't repeat split tasks in display
     let tasks = Task.getAllLargeTasks();
     addTasksToDocument(tasks);
     initFormHandler();
@@ -107,27 +98,34 @@ function init() {
 
 
 /**
-* Takes in an array of tasks and for each task creates a
-* new <my-task> element, adds the task data to that card
-* using element.data = {...}, and then appends that new task
-* to <main>
+* Takes in an array of tasks and for each task creates the display
+* modal for each task. When the user clicks on the modal they are able
+* to see more detailed information about that task.
 * @param {Array<Object>} tasks [[task1,task2,...],[duration1,duation2,...]]
 */
 function addTasksToDocument(tasks) {
     console.log("addTasksToDocument");        // LOG
     // task object implementation
     let list = document.querySelector('#list');
+
+    // Storing input into two variables
     let task_lst = tasks[0];
     let duration_lst = tasks[1];
+
+    // Empty case
     if (task_lst === undefined) {
         console.log('No Tasks');
         return;
     }
+
+    // Loop through the task list
     for (let t = 0; t < task_lst.length; t++) {
         let new_task = task_lst[t];
-        let new_task_duration = duration_lst[t];
+        let new_task_duration = duration_lst[t];            // get duration for corresponding task
         let task = document.createElement('article');
         let task_data = new_task.data;
+
+        // Modal Customization
         let color = 'gray';
         let modalColor ='white;';
         let priorityy = "";
@@ -146,7 +144,8 @@ function addTasksToDocument(tasks) {
         if (task_data.description == null || task_data.description == "") {
             task_data.description = "N/A";
         }
-        //This is optional we cat delete if is too much info in the cards:
+
+        // Converting priority to words to make easier for user
         if (task_data.priority == 1 || task_data.priority == 2) {
             priorityy = "Low";
         }
@@ -156,8 +155,10 @@ function addTasksToDocument(tasks) {
         if (task_data.priority == 4 || task_data.priority == 5) {
             priorityy = "High";
         }
-        //Two different forms 1 for paddings and one for not padding tasks :
+
+        // Two different forms 1 for specific time slot and one for regular task to be scheduled:
         if (task_data.padding == false) {
+            // Regular task to be scheduled
             task.innerHTML = `
             <div class="grid-item">
             <div class="containerTasks">
@@ -176,10 +177,12 @@ function addTasksToDocument(tasks) {
                 <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                 <p class="deadline"> ${task_data.ddl}</p>
                 <br>
+                <button class="btn delete_task">delete task</button>
             </div>
             </div>
             `;
         } else {
+            // Scheduling a particular time slot in calendar
             task.innerHTML = `
             <div class="grid-item">
             <div class="containerTasks">
@@ -196,15 +199,18 @@ function addTasksToDocument(tasks) {
                <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                <p class="deadline"> ${task_data.ddl}</p>
                <br>
+               <button class="btn delete_task">delete task</button>
            </div>
            </div>
              `;
 
         }
 
+        // Add the task to the list
         list.appendChild(task);
     }
-    //Handle click on outside modal -> close the popup window:
+
+    // Handling click on outside modal -> close the popup window
     var modal = document.getElementById('open-modal');
     var modal2 = document.getElementById('open-modal2');
     var modals = [];
@@ -213,8 +219,13 @@ function addTasksToDocument(tasks) {
         name = name + t;
         modals[t] = document.getElementById(name);
     }
+
+    let deleteTask = document.querySelector(".delete_task");
+    deleteTask.addEventListener("click",()=>{
+        alert('y');
+    })
     window.onclick = function(event) {
-        //this two first are for the OPTIONS modals
+        // OPTIONS modals
         if (event.target == modal2) {
             modal2.style.display = "modal.close";
             location.href ='#'; 
@@ -223,7 +234,8 @@ function addTasksToDocument(tasks) {
             modal.style.display = "modal.close";
             location.href ='#';
         }
-        //Modals for all the tasklist 
+
+        // Modals for all of the task list 
         for (let i=0; i < modals.length; i++){
             if (event.target == modals[i]) {
                 modals[i].style.display = "modal.cl";
@@ -246,10 +258,7 @@ function initFormHandler() {
     // Add an event listener for the 'submit' event, which fires when the
     // submit button is clicked
     form.addEventListener('submit', (event) => {
-
-
         event.preventDefault();
-        alert('form1 submitted');
         // Create a new FormData object from the <form> element reference above
         let fd = new FormData(form);
         // Create an empty taskObject, and extract the keys and corresponding
@@ -271,15 +280,18 @@ function initFormHandler() {
         new_task_obj.data['task_uid'] = uid;
         new_task_obj.addToLocalStorage();
 
+        // Run scheduling algorithm
         Task.schedule();
         location.href = '#';
-        // refresh page to display task
+
+        // Refresh page to display task under "Current Tasks"
         window.location.reload();
     });
 
+    // Second form type -> Scheduling particular time slot as padding
+    // Format is same as above for form 1
     let form2 = document.querySelector('#new-padding');
     form2.addEventListener('submit', (event) => {
-        alert('form2 submitted');
         let fd = new FormData(form2);
         let new_padding_obj = new Task();
         for (const [key, val] of fd) {
@@ -299,9 +311,11 @@ function initFormHandler() {
         new_padding_obj.data.recurrent = false;
         new_padding_obj.addToLocalStorage();
 
+        // Run scheduling algorithm
         Task.schedule();
         location.href = '#';
-        // refresh page to display task
+
+        // Refresh page to display task under "Current Tasks"
         window.location.reload();
     });
 
@@ -313,6 +327,11 @@ function initFormHandler() {
         localStorage.clear();
         // Delete the contents of <main>
         list.innerHTML = '';
+
+        alert("Schedule Preferences Reset to 9am Wake Up, 12pm Lunch, 10pm Sleep");
+
+        // Refresh page to after clearing schedule
+        window.location.reload();
     });
 
     // Get a reference to the "update schedule" button
@@ -332,6 +351,8 @@ function initFormHandler() {
         if (document.querySelector('#evening').value != ""){
             evening = Number.parseInt(document.querySelector('#evening').value);
         }
+        // Call custom update method
         updateSchedule(morning,noon,evening);
+        alert("Schedule Preferences Updated");
     });
 }

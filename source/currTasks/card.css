@@ -1,3 +1,11 @@
+/* 
+*  card.css
+*  Description: This file contains all of CSS styling for the modal containers 
+*  used to display the current tasks. The transition to a modal pop-up was all
+*  done with CSS (no JS) with the 'target' label. Includes styling of content
+*  within modal containers.
+*/
+
 .modal-wind{
   position: fixed;
   background-color: #130d0dc2;/* color of the page when the modal is open */

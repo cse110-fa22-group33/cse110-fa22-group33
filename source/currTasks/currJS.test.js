@@ -1,3 +1,8 @@
+/* 
+*  currJS.test
+*  Description: This file contains unit tests implemented for the currJS file.
+*/
+
 /**
  * @jest-environment jsdom
  */
