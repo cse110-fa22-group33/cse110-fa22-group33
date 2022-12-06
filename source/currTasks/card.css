@@ -2,11 +2,10 @@
 *  card.css
 *  Description: This file contains all of CSS styling for the modal containers 
 *  used to display the current tasks. The transition to a modal pop-up was all
-*  done with CSS (no JS) with the 'target' label. Includes styling of elements
-*  within modal containers once opened.
+*  done with CSS (no JS) with the 'target' label. Includes styling of content
+*  within modal containers.
 */
 
-// Default modal display before click
 .modal-wind{
   position: fixed;
   background-color: #130d0dc2;/* color of the page when the modal is open */
@@ -20,15 +19,11 @@
   pointer-events: none;
   transition: all 0.3s;
 }
-
-// Clicking on modal to open
 .modal-wind:target {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }
-
-// Modal container styling
 .modal-wind > div {
   width: 500px;
   position: absolute;
@@ -86,8 +81,6 @@ a {
 small {
   color: lightgray;
 }
-
-// 
 .btn {
   background-color: rgba(195, 139, 206, 0.569);
   padding: 1em 1.5em;
