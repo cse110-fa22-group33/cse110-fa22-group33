@@ -328,7 +328,7 @@ function initFormHandler() {
         // Delete the contents of <main>
         list.innerHTML = '';
 
-        alert("Schedule Preferences Reset to 9am Wake Up, 12pm Lunch, 10pm Sleep");
+        alert("Clearing all tasks. Please re-update your preferences.");
 
         // Refresh page to after clearing schedule
         window.location.reload();
