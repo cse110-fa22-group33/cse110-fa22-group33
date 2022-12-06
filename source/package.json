@@ -13,13 +13,15 @@
     "jest-environment-jsdom": "^29.3.1",
     "jest-localstorage-mock": "^2.4.22",
     "jest-puppeteer": "^6.1.1",
+    "parcel": "^2.8.0",
     "puppeteer": "^19.3.0"
   },
   "scripts": {
     "test": "jest",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "dev": "parcel ./currTasks/currTask.html -p 5500"
   },
   "jest": {
     "preset": "jest-puppeteer",
