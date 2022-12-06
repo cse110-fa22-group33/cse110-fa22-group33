@@ -56,44 +56,32 @@ a {
 
 .containerTasks {
   display: grid;
-  /* justify-content: center;
-  align-items: center; */
-  /* height: 100vh; */
   height: 8vh;
-}
-.containerTasks:hover{
-  /* background-color: rgba(105, 126, 116, 0.397); need to fix this!!!! */
-  border-radius: 8px;
-  /* width: 300px; */
 }
 /* this grid-item makes the boxes dont collapse one over the other when page gets smaller  */
 .grid-item {
  text-align: center;
- height: 70px;
-
+ height: 73px;
 }
 /* radius of the pop up window */
 .modal-wind > div {
   border-radius: 1rem;
 }
-
 .modal-window div:not(:last-of-type) {
   margin-bottom: 15px;
 }
-
 small {
   color: lightgray;
 }
-
 .btn {
   background-color: rgba(195, 139, 206, 0.569);
   padding: 1em 1.5em;
   border-radius: 0.5rem;
   text-decoration: none;
   border: solid rgba(66, 64, 64, 0.479);
-  width: 200px;
+  width: 230px; /*before was 200px*/
   text-align: center;
-  height: 28px;
+  height: 30px;/*before was 28px*/
   color:white;
   margin: auto;  /* center the buttons from task list  */
   /* margin-left: 40px;  */
@@ -101,31 +89,24 @@ small {
 .btn i {
   padding-right: 0.3em;
 }
-
-  /* ill add gray oka */
-  .titl{
-    /* font-size: 30px; */
-    color: #ffffff;
-    background-color: #704867;
-    border-radius: 10px;
-    padding:15px;
-  }
-  .det{
-    /* padding-top: 12px;
-    padding-left: 7px; */
-    padding:10px;
-    color:black;
-  }
-  .deadline{
-    /* padding-top: 5px; */
-    padding-left: 10px; 
-  }
-  .effect{
-    color:rgb(102, 0, 128);
-    font-weight: bold;
-    /* text-decoration: underline; */
-    font-family: 'Mulish', sans-serif;
-  }
+.titl{
+  color: #ffffff;
+  background-color: rgb(83, 84, 92);
+  border-radius: 10px;
+  padding:15px;
+}
+.descript{
+  padding:10px;
+  color:black;
+}
+.deadline{
+  padding-left: 10px; 
+}
+.effect{
+  color:#0e3549fa;
+  font-weight: bold;
+  font-family: 'Mulish', sans-serif;
+}
 /* STAR RAITING FOR PRIORITY AND DIFFICULTY */
 .star-rating {
   display: flex;

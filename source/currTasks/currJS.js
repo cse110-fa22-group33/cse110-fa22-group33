@@ -129,19 +129,24 @@ function addTasksToDocument(tasks) {
         let task = document.createElement('article');
         let task_data = new_task.data;
         let color = 'gray';
+        let modalColor ='white;';
         let priorityy = "";
         if (task_data.category == "" || task_data.category == 'other') {
-            color = "#94308df3";
+            color = "#94308df8";
+            modalColor="#d1c5dd";
         }
         if (task_data.category == 'personal') {
             color = "#1d739efa";
+            modalColor="#a0c4d6fa";
         }
         if (task_data.category == 'school') {
-            color = "#338017e8";
+            color = "#338017f8";
+            modalColor= "#abccab";
         }
         if (task_data.description == null || task_data.description == "") {
             task_data.description = "N/A";
         }
+        //This is optional we cat delete if is too much info in the cards:
         if (task_data.priority == 1 || task_data.priority == 2) {
             priorityy = "Low";
         }
@@ -160,15 +165,15 @@ function addTasksToDocument(tasks) {
             </div>
             </div>
             <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
-            <div>
+            <div style="background-color:${modalColor};">
                 <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                 <br>
-                <h1 class="titl" >${task_data.task_name}</h1>
-                <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
-                <p class="det"><span class="effect">Priority :</span> ${priorityy}</p>
-                <p class="det"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
-                <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
-                <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
+                <h1 style="background-color:${color};" class="titl" >${task_data.task_name}</h1>
+                <p class="descript"><span class="effect">Duration: </span>${new_task_duration} hours</p>
+                <p class="descript"><span class="effect">Priority :</span> ${priorityy}</p>
+                <p class="descript"><span class="effect">Difficulty:</span> ${task_data.difficulty}/5</p>
+                <p class="descript"><span class="effect">Description:</span> ${task_data.description}</p>
+                <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                 <p class="deadline"> ${task_data.ddl}</p>
                 <br>
             </div>
@@ -182,13 +187,13 @@ function addTasksToDocument(tasks) {
            </div>
            </div>
            <div id="open-task${t}" class="modal-wind" onclick="document.getElementById('open-task${t}').style.display='block'">
-           <div>
+           <div style="background-color:${modalColor};" >
                <a onclick="document.getElementById('open-task${t}').style.display='none'" href="#" title="Close" class="modal-cl">x</a>
                <br>
-               <h1 class="titl" >${task_data.task_name}</h1>
-               <p class="det"><span class="effect">Duration: </span>${new_task_duration} hours</p>
-               <p class="det"><span class="effect">Description:</span> ${task_data.description}</p>
-               <p class="det"><span class="effect">Your deadline for this task is:</span>  </p>
+               <h1 style="background-color:${color};" class="titl" >${task_data.task_name}</h1>
+               <p class="descript"><span class="effect">Duration: </span>${new_task_duration} hours</p>
+               <p class="descript"><span class="effect">Description:</span> ${task_data.description}</p>
+               <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                <p class="deadline"> ${task_data.ddl}</p>
                <br>
            </div>
