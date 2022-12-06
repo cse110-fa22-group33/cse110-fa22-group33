@@ -264,19 +264,61 @@ describe('Task Class Tests', () => {
   })
 
   test('Test addToLocalStorage()', () => {
-    //nor is this
+    Task.removeAllTasks();
+    let myTask = new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.addToLocalStorage();
+    let sameTask = Task.getAllTasksFlat()[0];
+
+    expect(myTask.data.task_name).toBe(sameTask.data.task_name);
+    expect(myTask.data.uid).toBe(sameTask.data.uid);
+    expect(myTask.data.task_uid).toBe(sameTask.data.task_uid);
+    expect(myTask.data.ddl.toISOString()).toBe(sameTask.data.ddl.toISOString());
+    expect(myTask.data.difficulty).toBe(sameTask.data.difficulty);
+    expect(myTask.data.priority).toBe(sameTask.data.priority);
+    expect(myTask.data.mintime).toBe(sameTask.data.mintime);
+    expect(myTask.data.padding).toBe(sameTask.data.padding);
+
   })
 
   test('Test removeFromLocalStorage()', () => {
-    //or this
+    Task.removeAllTasks();
+    let myTask = new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.addToLocalStorage();
+    Task.removeFromLocalStorage(myTask.data.uid);
+
+    expect(Task.getAllTasksFlat().length).toBe(0);
+
   })
 
   test('Test removeAllTasks()', () => {
-    //or this
+    Task.removeAllTasks();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    Task.removeAllTasks();
+
+    expect(Task.getAllTasksFlat().length).toBe(0);
+
   })
 
   test('Test removeLargeTask()', () => {
-    //sky u got me fucked up!
+    Task.removeAllTasks();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 111).addToLocalStorage();
+
+    Task.removeLargeTask(110);
+    let taskList = Task.getAllTasksFlat();
+
+    expect(taskList.length).toBe(1);
+    expect(taskList[0].data.task_uid).toBe(111);
+
   })
 
 })
