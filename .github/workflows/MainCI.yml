@@ -32,6 +32,11 @@ jobs:
       - name: Install modules
         run: npm install
         working-directory: ./source
+      - name: Open dev server
+        run: |
+          npm run dev &
+          sleep 5
+        working-directory: ./source
       - name: Run tests
         run: npm test
         working-directory: ./source
@@ -48,6 +53,4 @@ jobs:
       - name: Super-Linter
         uses: github/super-linter/slim@v4.9.7
         env:
-          VALIDATE_HTML: true
-          VALIDATE_CSS: true
           VALIDATE_JAVASCRIPT_ES: true

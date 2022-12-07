@@ -362,3 +362,5 @@ function initFormHandler() {
         alert("Schedule Preferences Updated");
     });
 }
+
+module.exports = {init, addTasksToDocument, initFormHandler};
