@@ -6,6 +6,8 @@ describe('Monthly Calendar Tests', () => {
     await page.goto("http://127.0.0.1:5500/source/week/weekly.html")
   });
 
+  // calculate table specific numbers, rows, cols
+
   /*test('Test month and year header', async () => {
     let monthYear = await page.$('#monthYear');
     monthYear = await monthYear.getProperty('innerText');

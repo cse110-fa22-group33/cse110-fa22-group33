@@ -16,7 +16,7 @@ function init() {
 export function render() {
     /* array that represents the day of the weeks in index number 
    0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
-   const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
+   const dayWeeks = ["a0", "a1", "a2" ,"a3", "a4", "a5", "a6"]; 
    for (let i = 0; i < 24; i++) {
        if(i === 0){ // 12 am is 0 in the 24 hours scale
            let str = `<div id="`+(i)+ `" class="grid-container">
@@ -288,7 +288,7 @@ export function setTasksForDay(startTasks) {
                 let currDay = task.data.start_date.getDay();
                 let currTime = task.data.start_date.getHours();
 
-                let currDayTime = "" + currDay  + currTime;
+                let currDayTime = "a" + currDay  + currTime;
 
                 // grab corresponding html cell
                 let currCell = document.getElementById(currDayTime);
@@ -328,7 +328,7 @@ export function setTasksForDay(startTasks) {
                             currDay++;
                         }
 
-                        currDayTime = "" + currDay + currTime;
+                        currDayTime = "a" + currDay + currTime;
                         currCell = document.getElementById(currDayTime);
 
                         if(task.data.category == "school") {
@@ -376,7 +376,7 @@ export function setTasksForDay(startTasks) {
             let currDay = startTasks.getDay();
             let currTime = task.data.ddl.getHours();
     
-            let currDayTime = "" + currDay  + currTime;
+            let currDayTime = "a" + currDay  + currTime;
     
             // grab corresponding html cell
             let currCell = document.getElementById(currDayTime);
@@ -390,7 +390,7 @@ export function setTasksForDay(startTasks) {
                     if (currTime == 24) {
                         currTime = 0;
                     }
-                    currDayTime = "" + currDay + currTime;
+                    currDayTime = "a" + currDay + currTime;
                     currCell = document.getElementById(currDayTime);
                     currCell.style.backgroundColor="C8C8C8";
                 }
