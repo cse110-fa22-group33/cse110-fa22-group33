@@ -25,12 +25,13 @@ window.addEventListener('DOMContentLoaded', () => {
 /**
   * Task Constructor Method
   * 
-  * Creates Monthly Calendar to be used across CMonthly Schedule 
+  * Creates Monthly Calendar to be used across Monthly Schedule 
   */
 function render() {
-
+  
   const dt = new Date();
-
+  
+  //get the New month 
   if (currentMonth !== 0) {
     let New_month = new Date().getMonth() + currentMonth;
     dt.setMonth(New_month);
@@ -39,8 +40,8 @@ function render() {
   let month = dt.getMonth();
   let year = dt.getFullYear();
 
-  let firstDay = new Date(year, month, 1);
-  let daysonemonth = new Date(year, month + 1, 0).getDate();
+  let firstDay = new Date(year, month, 1);//Set the first day of the current month 
+  let daysonemonth = new Date(year, month + 1, 0).getDate();//number of days 
 
   let FirstdayString = firstDay.toLocaleDateString('en-us', {
     weekday: 'long',
@@ -50,6 +51,7 @@ function render() {
   });
   let Month_string = dt.toLocaleDateString('en-us', { month: 'long' });
   let paddings;
+  //set paddings for the first week
   switch (FirstdayString.split(',')[0]) {
     case 'Sunday':
       paddings = 0;
@@ -76,20 +78,24 @@ function render() {
   let calendar = document.getElementById('calendar');
   calendar.innerHTML = '';
 
+  //set the Month Title 
   let month_title = document.getElementById('monthTitle');
   month_title.textContent = `${Month_string} ${year}`
 
+  //Add each day div to the Monthly Calendar
   for (let i = 1; i <= paddings + daysonemonth; i++) {
     let oneday = document.createElement('div');
     oneday.classList.add('day');
     let valueweseed = [];
 
     if (i > paddings) {
+      //the navigation from Monthly Calendar to Weekly Calendar
       oneday.onclick = function () {
         let setToday = new Date(year, month, i - paddings);
         localStorage.setItem('newToday', setToday);
         location.href = "../week/weekly.html";
       }
+      //Track today 
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';
       }
@@ -122,11 +128,13 @@ function render() {
           if (task_num > 3) { break };
 
           // for each task create a new event element
+          // If the task is not displayed in Calendar, then disply it on the calendar 
           if(valueweseed.indexOf(truncate(task.data.task_name)) == -1){
             valueweseed.push(truncate(task.data.task_name));
             let curr_event = document.createElement('div');
             curr_event.classList.add('event');
             curr_event.innerText = truncate(task.data.task_name);
+            //display the task with different color on Monthly Calendar 
             if (task.data.category.includes("school")) { curr_event.style.background = 'rgba(53, 130, 25, 0.75)'; };
             if (task.data.category.includes("personal")) { curr_event.style.background = 'rgba(20, 111, 157, 0.931)'; };
             if (task.data.category.includes("other")) { curr_event.style.background = 'rgba(146, 19, 137, 0.931)'; };

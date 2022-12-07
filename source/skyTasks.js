@@ -650,8 +650,11 @@ export class Task {
 
     // Increment until a valid time slot is found
     while (isOccupied(occupied, result, Number.parseInt(task.data.duration))) {
+      console.log(occupied);
       result.setHours(result.getHours() + 1);
     }
+    console.log(result);
+    
     return result;
   }
 
@@ -666,16 +669,20 @@ export class Task {
    * @returns True if the two dates overlap/conflict
    */
   static dateRangeOverlaps(a_start, a_end, b_start, b_end) {
-    if(a_end.getDate() == b_end.getDate() && a_end.getHours() != 0){
+    if(a_end.getDate() == b_end.getDate() || a_start.getDate() == b_end.getDate()){
+      if(a_end.getHours() != 0){
       if ((a_start.getHours() <= b_start.getHours()) && (b_start.getHours() < a_end.getHours())){
         return true;
       } // b starts in a
-      if (a_start.getHours() < b_end.getHours() && b_end.getHours() <= a_end.getHours()){
+      }
+      if ((a_start.getHours() < b_end.getHours() && b_end.getHours() <= a_end.getHours()) || (a_start.getDate() < b_end.getDate() && b_end.getHours() <= a_end.getHours())){
         return true;
       } // b ends in a
+      if( a_end.getHours() != 0){
       if (b_start.getHours() < a_start.getHours() && a_end.getHours() < b_end.getHours()){
         return true;
       }  // a in b
+      }
     }
     return false;
   }
