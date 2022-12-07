@@ -155,7 +155,7 @@ function addTasksToDocument(tasks) {
         if (task_data.priority == 4 || task_data.priority == 5) {
             priorityy = "High";
         }
-
+        //let taskClassDelete = 'delete_task' + task_data.task_uid;
         // Two different forms 1 for specific time slot and one for regular task to be scheduled:
         if (task_data.padding == false) {
             // Regular task to be scheduled
@@ -220,10 +220,16 @@ function addTasksToDocument(tasks) {
         modals[t] = document.getElementById(name);
     }
 
-    let deleteTask = document.querySelector(".delete_task");
-    deleteTask.addEventListener("click",()=>{
-        alert('y');
-    })
+    let deleteTask = document.querySelectorAll(".delete_task");
+    for (let t = 0; t < task_lst.length; t++){
+        deleteTask[t].addEventListener("click",()=>{
+            Task.removeLargeTask(task_lst[t].data.task_uid);
+            Task.schedule();
+            location.href = '#';
+            window.location.reload();
+        })
+    }
+    
     window.onclick = function(event) {
         // OPTIONS modals
         if (event.target == modal2) {
