@@ -177,7 +177,7 @@ function addTasksToDocument(tasks) {
                 <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                 <p class="deadline"> ${task_data.ddl}</p>
                 <br>
-                <button class="btn delete_task">delete task</button>
+                <button class="delete_task">delete task</button>
             </div>
             </div>
             `;
@@ -199,7 +199,7 @@ function addTasksToDocument(tasks) {
                <p class="descript"><span class="effect">Your deadline for this task is:</span>  </p>
                <p class="deadline"> ${task_data.ddl}</p>
                <br>
-               <button class="btn delete_task">delete task</button>
+               <button class="delete_task">delete task</button>
            </div>
            </div>
              `;
