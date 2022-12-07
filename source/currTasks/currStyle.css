@@ -392,6 +392,9 @@ small {
 	width: 200px;
 	text-align: center;
 }
+.delete_task{
+	background-color: hsl(6, 72%, 42%);
+}
 .btn i {
 	padding-right: 0.3em;
 }
