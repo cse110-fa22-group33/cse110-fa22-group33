@@ -19,7 +19,7 @@ import { Task } from './../skyTasks.js';
  * @param noon - Integer 0-23 representing lunch time
  * @param evening - Integer 0-23 representing sleep time
  */
-let updateSchedule = function (morning = 9, noon = 12, evening = 22) {
+let updateSchedule = function (morning = 9, noon = 12, evening = 23) {
     // Set local storage values
     localStorage.setItem('morning', JSON.stringify(morning));
     localStorage.setItem('noon', JSON.stringify(noon));
@@ -72,7 +72,7 @@ window.addEventListener('load', (event) => {
     // Get recurrent paddings
     let morning = localStorage.getItem('morning') || 9;
     let noon = localStorage.getItem('noon') || 12;
-    let evening = localStorage.getItem('evening') || 22;
+    let evening = localStorage.getItem('evening') || 23;
 
     let morning_input = document.querySelector('#morning');
     let noon_input = document.querySelector('#noon');
@@ -347,7 +347,7 @@ function initFormHandler() {
     update_schedule.addEventListener('click', (event) => {
         let morning = 9;
         let noon = 12;
-        let evening = 22;
+        let evening = 23;
         if (document.querySelector('#morning').value != ""){
             morning = Number.parseInt(document.querySelector('#morning').value);
         }
