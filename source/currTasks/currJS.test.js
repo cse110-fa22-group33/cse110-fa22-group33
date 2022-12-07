@@ -26,6 +26,10 @@ describe('currJS Tests', () => {
         jest.resetModules();
     });
 
+    test("test init", () => {
+        functions.init();
+    });
+
     test("test addTasksToDocument", () => {
         let task1 = new Task("Task 1", Task.getUniqueUID, Task.getUniqueTaskUID);
         let task2 = new Task("Task 2", Task.getUniqueUID, Task.getUniqueTaskUID);
@@ -45,5 +49,9 @@ describe('currJS Tests', () => {
         }
 
         expect(allSameTasks).toBe(true);
-    })
+    });
+
+    test("test initFormHandler", () => {
+        functions.initFormHandler();
+    });
 })
