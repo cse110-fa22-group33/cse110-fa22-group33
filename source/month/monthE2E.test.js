@@ -3,7 +3,7 @@ const path = require('path');
 describe('Monthly Calendar Tests', () => {
   let currentDate;
   beforeAll(async () => {
-    await page.goto("http://127.0.0.1:5500/source/month/month.html");
+    await page.goto("http://127.0.0.1:5500/up_/month/month.html");
     currentDate = new Date();
   });
 

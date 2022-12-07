@@ -5,7 +5,7 @@ describe('currJS end-to-end tests', () => {
     page.on("dialog", async dialog => {
       await dialog.accept();
     })
-    await page.goto("http://127.0.0.1:5500/source/currTasks/currTask.html");
+    await page.goto("http://127.0.0.1:5500/currTask.html");
   });
 
   test('test modify preferences', async () => {
