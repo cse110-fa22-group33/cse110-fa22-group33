@@ -1,7 +1,7 @@
 /* CSS FOR INDEXT.HTML */
 body{
     font-family: 'Quicksand', sans-serif;
-    background-color: #FFFCFF;
+    background-color: #e4dce4a1;
 }
 .grid-container {
     display: grid;
@@ -10,78 +10,49 @@ body{
     padding-right: 30px;
   }
 .sch:hover{
-    background-color:rgba(32, 57, 167, 0.39);
-}
-.sch-sun:hover{
-    background-color:rgba(211, 148, 90, 0.411);
-    cursor: pointer;
+    background-color:#2039a763;
 }
 .sch-0:hover{
-    background-color:rgba(211, 148, 90, 0.411);
-    cursor: pointer;
-}
-​
-.sch-mon:hover{
-    background-color:rgba(191, 221, 144, 0.678);
+    background-color:#d3945a69;
     cursor: pointer;
 }
 .sch-1:hover{
-    background-color:rgba(191, 221, 144, 0.678);
-    cursor: pointer;
-}
-.sch-tue:hover{
-    background-color:rgba(116, 196, 192, 0.466);
+    background-color:#bfdd90ad;
     cursor: pointer;
 }
 .sch-2:hover{
-    background-color:rgba(116, 196, 192, 0.466);
-    cursor: pointer;
-}
-.sch-wed:hover{
-    background-color:rgba(176, 170, 230, 0.514);
+    background-color:#74c4c077;
     cursor: pointer;
 }
 .sch-3:hover{
-    background-color:rgba(176, 170, 230, 0.514);
-    cursor: pointer;
-}
-.sch-thu:hover{
-    background-color:rgba(211, 160, 207, 0.452);
+    background-color:#b0aae683;
     cursor: pointer;
 }
 .sch-4:hover{
-    background-color:rgba(211, 160, 207, 0.452);
-    cursor: pointer;
-}
-.sch-fri:hover{
-    background-color:rgba(231, 230, 164, 0.603);
+    background-color:#d3a0cf73;
     cursor: pointer;
 }
 .sch-5:hover{
-    background-color:rgba(231, 230, 164, 0.603);
-    cursor: pointer;
-}
-.sch-sat:hover{
-    background-color:rgba(141, 167, 223, 0.534) ;
+    background-color:#e7e6a49a;
     cursor: pointer;
 }
 .sch-6:hover{
-    background-color:rgba(141, 167, 223, 0.534) ;
+    background-color:#8da7df88 ;
     cursor: pointer;
 }
 .grid-item {
-    background-color: rgba(214, 219, 228, 0.37);
-    border: 0.01px solid rgba(0, 0, 0, 0.144);
+    background-color: #d6dbe45e;
+    border: 0.01px solid #00000025;
     text-align: center;
     padding-top: 20px;
     height: 40px;
 }
 .pos{
     font-family: 'Quicksand', sans-serif;
-    background-color: rgba(66, 77, 138, 0.158);    
+    background-color: #424d8a28;    
 }
 .head{
-    background-color: rgb(40, 73, 143)  ; 
+    background-color: #28498f  ; 
     color: white;
     font-family: 'Quicksand', sans-serif; /* fantasy is other font,,, 'Merriweather' comp type: 'Courier New' */
     font-size: 16px;
@@ -93,14 +64,14 @@ body{
     text-align: center;
     padding-top: 10px;
     /* padding-bottom: 20px; */
-    font-size: 40px;
+    font-size: 45px;
 }
 @media (max-width: 700px) {
     #title{
         font-family: 'Quicksand', sans-serif;
-        padding-top: 40px;
+        padding-top: 10px;
         /* padding-bottom: 20px; */
-        font-size: 40px;
+        font-size: 45px;
     }    
 }
 footer{
@@ -118,7 +89,7 @@ h4{
     padding-left: 70px;
 }
 .time{
-    background-color: rgba(77, 109, 179, 0.705)  ; 
+    background-color: #4d6db3b4  ; 
     font-family: 'Quicksand', sans-serif; 
     font-size: 16px;
 }
@@ -133,21 +104,21 @@ h4{
     align-items: left;
     /* border: black solid; */
 }
-.y{
+.month-top{
     font-family: 'Quicksand', sans-serif; 
-    color: rgba(77, 109, 179, 0.705)   ; 
+    color: #4d6db3b4   ; 
     text-align: left;
     /* color:white; */
     font-size: 28px;
     margin-bottom: 6px;
     padding: 0; 
 }
-.x{
+.day-top{
      font-size: 19px;
     padding: 0; margin: 0;
     text-align: center;
     color:white;
-    background-color: rgba(77, 109, 179, 0.705) ;
+    background-color: #4d6db3b4 ;
     border-radius: 20px;
     width: 150px;
     margin-left: 40px; 

@@ -1,119 +1,19 @@
+  /**
+   * Monthly Calendar javascript file 
+   * 
+   * Control the display of MOnths and Days in the Month as well as the display of tasks
+   */
+
 import { Task } from './../skyTasks.js';
-
-/*
-Task.removeAllTasks();
-
-let compare = function(a,b) {
-  return Task.compareDDL(a,b) || Task.compareSoftDDL(a,b) || Task.comparePriority(b,a) || Task.compareDifficulty(b,a);
-}
-
-let mytask9 = new Task('9 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask9.data.ddl = new Date('November 25, 2022 09:00:00');
-mytask9.addToLocalStorage();
-
-let mytask10 = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask10.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask10.addToLocalStorage();
-
-let mytask = new Task('11 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 11:00:00');
-mytask.addToLocalStorage();
-
-console.log(Task.compareDDL(mytask,mytask9));
-
-
-mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('12 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 12:00:00');
-mytask.addToLocalStorage();
-
-mytask = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.addToLocalStorage();
-
-mytask = new Task('10 4', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 4;
-mytask.addToLocalStorage();
-
-
-mytask = new Task('10 3', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 3;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5 5', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.data.difficulty = 5;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5 1', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.data.difficulty = 1;
-mytask.addToLocalStorage();
-
-mytask = new Task('10 5 2', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-mytask.data.ddl = new Date('November 25, 2022 10:00:00');
-mytask.data.priority = 5;
-mytask.data.difficulty = 2;
-mytask.addToLocalStorage();
-
-
-
-
-let resursivePadding = new Task('resursivePadding', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/27/2022'),['important']);
-resursivePadding.data.ddl = new Date('December 17, 1995 00:00:00');
-resursivePadding.data.duration = 9;
-resursivePadding.setToRecursivePadding();
-resursivePadding.addToLocalStorage();
-Task.schedule();
-*/
-
-/*
-
-mytask1 = new Task('normal padding', Task.getUniqueUID(), Task.getUniqueTaskUID(), new Date('11/23/2022'),['important']);
-mytask1.data.ddl = new Date('November 25, 2022 09:00:00');
-mytask1.data.priority = 3;
-mytask1.setToPadding();
-mytask1.addToLocalStorage();
-*/
-
-
-
 
 let currentMonth = 0;
 
-  /**
-   * Change the current month Method
-   * 
-   * Go to the next month or back to the last month
-   */
+
+/**
+ * Change the current month Method
+ * 
+ * Go to the next month or back to the last month
+ */
 window.addEventListener('DOMContentLoaded', () => {
   render();
   document.getElementById('back').addEventListener('click', () => {
@@ -121,22 +21,23 @@ window.addEventListener('DOMContentLoaded', () => {
     currentMonth--;
     render();
   });
-  
+
   document.getElementById('next').addEventListener('click', () => {
     currentMonth++;
     render();
   });
 });
 
- /**
-   * Task Constructor Method
-   * 
-   * Creates Monthly Calendar to be used across CMonthly Schedule 
-   */
-function render(){
+/**
+  * Task Constructor Method
+  * 
+  * Creates Monthly Calendar to be used across Monthly Schedule 
+  */
+export function render() {
 
   const dt = new Date();
-
+  
+  //get the New month 
   if (currentMonth !== 0) {
     let New_month = new Date().getMonth() + currentMonth;
     dt.setMonth(New_month);
@@ -145,18 +46,19 @@ function render(){
   let month = dt.getMonth();
   let year = dt.getFullYear();
 
-  let firstDay = new Date(year, month, 1);
-  let daysonemonth = new Date(year, month + 1, 0).getDate();
-  
-  let FirstdayString = firstDay.toLocaleDateString('en-us',{
+  let firstDay = new Date(year, month, 1);//Set the first day of the current month 
+  let daysonemonth = new Date(year, month + 1, 0).getDate();//number of days 
+
+  let FirstdayString = firstDay.toLocaleDateString('en-us', {
     weekday: 'long',
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
   });
-  let Month_string =dt.toLocaleDateString('en-us', {month: 'long'});
+  let Month_string = dt.toLocaleDateString('en-us', { month: 'long' });
   let paddings;
-  switch(FirstdayString.split(',')[0]){
+  //set paddings for the first week
+  switch (FirstdayString.split(',')[0]) {
     case 'Sunday':
       paddings = 0;
       break;
@@ -182,44 +84,83 @@ function render(){
   let calendar = document.getElementById('calendar');
   calendar.innerHTML = '';
 
+  //set the Month Title 
   let month_title = document.getElementById('monthTitle');
   month_title.textContent = `${Month_string} ${year}`
 
-  for(let i = 1; i <= paddings + daysonemonth; i++) {
+  //Add each day div to the Monthly Calendar
+  for (let i = 1; i <= paddings + daysonemonth; i++) {
     let oneday = document.createElement('div');
     oneday.classList.add('day');
+    let valueweseed = [];
 
     if (i > paddings) {
-      oneday.onclick=function(){
-        let setToday = new Date(year, month, i-paddings);
+      //the navigation from Monthly Calendar to Weekly Calendar
+      oneday.onclick = function () {
+        let setToday = new Date(year, month, i - paddings);
         localStorage.setItem('newToday', setToday);
-        location.href="../week/weekly.html";
+        location.href = "../week/weekly.html";
       }
+      //Track today 
       if (i - paddings === today && currentMonth === 0) {
         oneday.id = 'today';
       }
       oneday.innerText = i - paddings;
-      
-      let curr_day = new Date(year, month, i-paddings);
+
+      let curr_day = new Date(year, month, i - paddings);
       let task_list = Task.getTasksFromDate(curr_day);
-      if (task_list.length!=0) {
-        let task_num=0;
-        for (let task of task_list){
-          if (task.data.padding) {continue};
-          task_num+=1;
-          if (task_num>3) {break;};
-          let curr_event = document.createElement('div');
-          curr_event.classList.add('event');
-          curr_event.innerText = task.data.task_name;
-          if (task.data.category.includes("important")) {curr_event.style.background = "#dd7825";};
-          oneday.appendChild(curr_event);
+
+      let truncate = function (str, n = 14) {
+        return (str.length > n) ? str.slice(0, n - 1) + ' ...' : str;
+      };
+
+      if (task_list.length != 0) {
+        let task_num = 0;
+        for (let task of task_list) {
+          if (task.data.padding && task.data.recurrent) { continue };
+          task_num += 1;
+          
+
+          // check if the number of tasks on that day is larger than 3, add a '...' showing user more tasks are comming
+          if (task_num > 2 && task_list.length > 3) {
+            let curr_event = document.createElement('div');
+            curr_event.classList.add('event');
+            curr_event.style.background = 'rgba(154, 196, 205, 1)';
+            curr_event.innerText = 'More Tasks ......';
+            oneday.appendChild(curr_event);
+            break;
+          };
+
+          if (task_num > 3) { break };
+
+          // for each task create a new event element
+          // If the task is not displayed in Calendar, then disply it on the calendar 
+          if(valueweseed.indexOf(truncate(task.data.task_name)) == -1){
+            valueweseed.push(truncate(task.data.task_name));
+            let curr_event = document.createElement('div');
+            curr_event.classList.add('event');
+            curr_event.innerText = truncate(task.data.task_name);
+            //display the task with different color on Monthly Calendar 
+            if (task.data.category.includes("school")) { curr_event.style.background = 'rgba(53, 130, 25, 0.75)'; };
+            if (task.data.category.includes("personal")) { curr_event.style.background = 'rgba(20, 111, 157, 0.931)'; };
+            if (task.data.category.includes("other")) { curr_event.style.background = 'rgba(146, 19, 137, 0.931)'; };
+            oneday.appendChild(curr_event);
+          }
+
+          // check the category of the task and color the block accordingly
+ 
         }
       }
     }
-     else {
+    else {
       oneday.classList.add('padding');
     }
     calendar.appendChild(oneday);
   }
 
 }
+
+/*
+export const testExport = {
+  render
+};*/

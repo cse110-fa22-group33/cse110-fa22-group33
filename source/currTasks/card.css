@@ -1,0 +1,142 @@
+/* 
+*  card.css
+*  Description: This file contains all of CSS styling for the modal containers 
+*  used to display the current tasks. The transition to a modal pop-up was all
+*  done with CSS (no JS) with the 'target' label. Includes styling of content
+*  within modal containers.
+*/
+
+.modal-wind{
+  position: fixed;
+  background-color: #130d0dc2;/* color of the page when the modal is open */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-wind:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-wind > div {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5em;
+  background: #d1c5dd;
+}
+.modal-wind header {
+  font-weight: bold;
+}
+.modal-wind h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+.modal-cl {
+  border-radius: 20px;
+  color:#b62020;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 50px;
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px;
+}
+.modal-cl:hover {
+  color: black;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.containerTasks {
+  display: grid;
+  height: 8vh;
+}
+/* this grid-item makes the boxes dont collapse one over the other when page gets smaller  */
+.grid-item {
+ text-align: center;
+ height: 73px;
+}
+/* radius of the pop up window */
+.modal-wind > div {
+  border-radius: 1rem;
+}
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+small {
+  color: lightgray;
+}
+.btn {
+  background-color: rgba(195, 139, 206, 0.569);
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  border: solid rgba(66, 64, 64, 0.479);
+  width: 230px; /*before was 200px*/
+  text-align: center;
+  height: 30px;/*before was 28px*/
+  color:white;
+  margin: auto;  /* center the buttons from task list  */
+  /* margin-left: 40px;  */
+}
+.btn i {
+  padding-right: 0.3em;
+}
+.titl{
+  color: #ffffff;
+  background-color: rgb(83, 84, 92);
+  border-radius: 10px;
+  padding:15px;
+}
+.descript{
+  padding:10px;
+  color:black;
+}
+.deadline{
+  padding-left: 10px; 
+}
+.effect{
+  color:#0e3549fa;
+  font-weight: bold;
+  font-family: 'Mulish', sans-serif;
+}
+/* STAR RAITING FOR PRIORITY AND DIFFICULTY */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 1.5em;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+}
+.star-rating :checked ~ label {
+  color: #f09917;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #fc0;
+}
+

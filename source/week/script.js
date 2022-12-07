@@ -13,7 +13,7 @@ function init() {
     getHeaderAndTasksFromStorage();
 }
 
-function render() {
+export function render() {
     /* array that represents the day of the weeks in index number 
    0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
    const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
@@ -86,12 +86,6 @@ export function getHeaderAndTasksFromStorage() {
     let startTasks;
     startTasks = new Date();
     let tasks = [];
-
-    // set padding
-    /*if(task.data.padding) {
-        pull day/time
-        set corresponding cells to dark grey
-    }*/
 
     // DESIGN DECISION: Hardcode start and end of week using current date and getTasksFromDate.
     // That way, week start and end are always correct, start on Sunday and end on Saturday.
@@ -274,35 +268,22 @@ export function getHeaderAndTasksFromStorage() {
  * Reads tasks from local storage and returns an array of 
  * all of the tasks found (as Task objects). If nothing
  * is found in localStorage for tasks, an empty array is returned.
- * @parameter startTasks
+ * @parameter startTasks date object
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
-function setTasksForDay(startTasks) {
+export function setTasksForDay(startTasks) {
     let tasks = [];
-    let paddingTasks = [];
+    let paddingTasks = Task.getAllPaddings();
+
     // loop over entire current week
     for (let i = 0; i < 7; i++) {
+        
         // pull all tasks for current day
         tasks = Task.getTasksFromDate(startTasks);
-        paddingTasks = Task.getAllPaddings();
-
-        if(paddingTasks.length != 0) {
-            for(let task of paddingTasks) {
-                // pull correct date and time from task element
-                let currDay = task.data.start_date.getDay();
-                let currTime = task.data.start_date.getHours();
-
-                let currDayTime = "" + currDay  + currTime;
-
-                // grab corresponding html cell
-                let currCell = document.getElementById(currDayTime);
-
-                currCell.style.backgroundColor="#A9A9A9";
-            }
-        }
 
         if(tasks.length != 0) {
             for (let task of tasks) {
+                if(!task.data.recurrent) {
                 // pull correct date and time from task element
                 let currDay = task.data.start_date.getDay();
                 let currTime = task.data.start_date.getHours();
@@ -331,15 +312,9 @@ function setTasksForDay(startTasks) {
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
-
-                if(task.data.padding) {
-                    currCell.innerHTML = "";
-                    currCell.style.backgroundColor="#A9A9A9";
-                }
-
                 if(task.data.recurrent) {
                     currCell.innerHTML = "";
-                    currCell.style.backgroundColor="#A9A9A9";
+                    currCell.style.backgroundColor="";
                 }
 
                 // set calendar to reflect task duration
@@ -351,12 +326,12 @@ function setTasksForDay(startTasks) {
                         if (currTime == 24) {
                             currTime = 0;
                             currDay++;
-                            currDayTime = "" + currDay + currTime;
                         }
 
+                        currDayTime = "" + currDay + currTime;
                         currCell = document.getElementById(currDayTime);
 
-                        if(task.data.category == "school") { // ! recurrent
+                        if(task.data.category == "school") {
                             currCell.style.backgroundColor="#51a051d8";
                         }
         
@@ -375,23 +350,51 @@ function setTasksForDay(startTasks) {
                         if(!(task.data.padding) & !(task.data.recurrent)) {
                             currCell.innerHTML = task.data.task_name;
                         }
-        
-                        // add 
-                        // check if padding is recurrent
-                        // use get all paddings, 
-                        // iterate over returned array and set html color if marked as recurrent
-                        // add task names back
-                        if(task.data.padding) {
-                            // should be dark gray with name;
-                            currCell.style.backgroundColor="#A9A9A9";
-                        }
-        
-                        if(task.data.recurrent) {
-                            currCell.innerHTML = "";
-                            currCell.style.backgroundColor="#A9A9A9";
-                        }
                     }
-                }  
+                } 
+            } 
+            }
+        }
+
+        // let morningPadding = Task.getTasksFromName('morning')[0];
+        // console.log(morningPadding);
+        // let eveningPadding = Task.getTasksFromName('evening')[0];
+        // console.log(eveningPadding);
+
+        // console.log(morningPadding.data.ddl.getHours());
+        // console.log(eveningPadding.data.ddl.getHours());
+
+        /*if (eveningPadding.data.ddl.getHours() < morningPadding.data.ddl.getHours()) {
+            eveningPadding.data.ddl = new Date(subtractTimeFromDate(morningPadding.data.ddl, 1));
+            console.log("new date" + eveningPadding);
+        }*/
+
+        for(let task of paddingTasks) {
+            if(task.data.recurrent){
+            // pull correct date and time from task element
+            let currDay = startTasks.getDay();
+            let currTime = task.data.ddl.getHours();
+    
+            let currDayTime = "" + currDay  + currTime;
+    
+            // grab corresponding html cell
+            let currCell = document.getElementById(currDayTime);
+    
+            currCell.style.backgroundColor="#c8c8c8";
+            console.log(currCell);
+            console.log(currCell.style.backgroundColor);
+
+            let curDuration = task.data.duration;
+            for (let i = 0; i < curDuration - 1; i++) {
+                    currTime++;
+                    currDayTime++;
+                    if (currTime == 24) {
+                        currTime = 0;
+                    }
+                    currDayTime = "" + currDay + currTime;
+                    currCell = document.getElementById(currDayTime);
+                    currCell.style.backgroundColor="#c8c8c8";
+                }
             }
         }
 
@@ -408,7 +411,7 @@ function setTasksForDay(startTasks) {
  * @parameter intDays number of days to be subtracted
  * @returns Date object
  */
-function subtractTimeFromDate(objDate, intDays) {
+export function subtractTimeFromDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds - addMlSeconds);
@@ -423,7 +426,7 @@ function subtractTimeFromDate(objDate, intDays) {
  * @parameter intDays number of days to be added
  * @returns Date object
  */
-function addTimeToDate(objDate, intDays) {
+export function addTimeToDate(objDate, intDays) {
     var numberOfMlSeconds = objDate.getTime();
     var addMlSeconds = (intDays * 24) * 60 * 60 * 1000;
     var newDateObj = new Date(numberOfMlSeconds + addMlSeconds);
@@ -437,7 +440,7 @@ function addTimeToDate(objDate, intDays) {
  * @parameter month current month number
  * @returns month current month name
  */
-function currentMonth(month) {
+export function currentMonth(month) {
     // set current month
     if (month == 0) {
         month = "January";

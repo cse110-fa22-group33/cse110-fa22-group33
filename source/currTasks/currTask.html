@@ -1,3 +1,11 @@
+<!--
+currTask.html
+*  Description: This file contains all of the HTML code needed for the "Add Task"
+*  and "Current Task" display pages. Organizes the general layout of inputs from
+*  user, incorporates buttons and modal containers. Refer to currJS to see how
+*  the ids and names are correspondingly used.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,39 +14,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Merriweather&family=Mulish&family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet"> 
     <title>Add Task Page</title>
-
-    <!-- Task Custom Element -->
-    <script src="Task.js" type="module"></script>
 
     <!-- Importing CSS -->
     <link rel="stylesheet" href="currStyle.css" />
     <link rel="stylesheet" href="../week/h4.css" />
+    <link rel="stylesheet" href="card.css" />
 
     <!-- Main Stylesheets & Scripts -->
     <script src="currJS.js" type="module"></script>
-
-    <!-- Test for schedule -->
-    <script src="test.js" type="module"></script>
 </head>
 <body>
     <header>
+        <!-- Navigating Between Pages -->
         <nav class="navbar"> 
-    
             <img src="../week/monk.png" alt="CodeMonkeyz">
                 <ul class="nav-list">
                     <li class="list-item">
-                        <a class="first" href="currTask.html">ADD TASKS</a>
+                        <a class="first" href="currTask.html">MY TASKS</a>
                     </li>
                     <li class="list-item">
-                        <a class="second" href="currTask.html">MY TASKS</a>
+                        <a class="second" href="../month/month.html">MONTHLY</a>
                     </li>
                     <li class="list-item">
-                        <a class="third" href="../month/month.html">MONTHLY</a>
-                    </li>
-                    <li class="list-item">
-                        <a class="forth" href="../week/weekly.html">WEEKLY</a>
+                        <a class="third" href="../week/weekly.html">WEEKLY</a>
                         <script>localStorage.setItem('newToday', new Date());</script>
                     </li>
                 </ul>
@@ -47,255 +47,333 @@
 
     <main class="todo">
         <br>
-        <!-- User Name 
-        <div class="hello">
-            Hello <input type="text" id="user-name" placeholder="User Name"> -->
-            
+        <!-- Page Header -->
+        <div style="text-align:center"><h1 class="task-title">My Tasks</h1>
+            <p class="welcome">Welcome! Here you can add new tasks to your schedule</p>
         </div>
+        <br>
+        <div id="leftbox">
+            <!-- Options Section -->
+        <h2 class="title">OPTIONS</h2><br>
         <!-- Create New Task -->
-        <div class="create-new-task">
-            <h2 class="title" >ADD NEW TASK</h2>
-
-
-            <!-- Testing New Modal Stuff 
-            <div class="buttons-ctn">
-                <a href="" class="button button--left"><span>Left</span></a>
-                <a href="" class="button button--right"><span>Right</span></a>
-            </div>
-
-            <div class="button__content button__content--left">
-                <h2>You chose left!</h2>
-                <a href="">Signup for nothing here</a>
-            </div>
+        <div class="create-new-task" ><br>
             
-            <div class="button__content button__content--right">
-                <h2>You chose right!</h2>
-                <a href="">Signup for nothing here</a>
-            </div>
-            -->
-
-
-           <!-- Delete 80-201 -->
-
-            <button title = "Click me to schedule your own time slot." class="toggle-form">Add new task</button>
-            
-            <form id="new-task">
-                <div id="task-content">
-                    <!-- Title Input -->
-                    <h4>Task Name:
-                        <input type="text" name="task_name" id="content" 
-                            placeholder="e.g. Get groceries" required/>
-                    </h4>
-                    
-                    <!-- Category Input -->
-                    <table>
-                        <tr>
-                            <td><h4>Category:</h4></td>
-                            <td><div class="help-tip">
-                                <p>Organize your tasks by selecting the best category.</p>
-                            </div></td>
-                        </tr>
-                    </table>
-                    <div class="options">
-                        <label>
-                            <input type="radio" name="category" id="category1" value="school" /> 
-                            <span class="bubble school"></span>
-                            <div>School</div>
-                        </label>
-                        <label>
-                            <input type="radio" name="category" id="category2" value="personal" />
-                            <span class="bubble personal"></span>
-                            <div>Personal</div>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="category" id="category3" value="other" />
-                            <span class="bubble other"></span>
-                            <div>Other</div>
-                        </label>
-                    </div>
-
-                    <!-- Duration Input -->
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Duration: 
-                                    
-                                </h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Estimate how long the task will take you to complete.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <h4><input type="number" name="duration" id="duration" min="0" max="20" step = "1" 
-                                    placeholder = "e.g. 1" required> hours</h4>
-                            </td>
-                        </tr>
-                    </table>                            
-
-                    <!-- Description Input -->
-                    <h4>Description:</h4>
-                    <textarea type="text" name = "description" id="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
-                    <br>
-
-                    <!-- Priority Input -->
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Priority:</h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="range" name="priority" id="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p id="priorityValue">3</p>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <!-- Difficulty Input -->
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Difficulty: </h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="range" name="difficulty" id="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p id="diffValue">3</p>
-                            </td>
-                            
-                        </tr>
-                    </table>
-
-                    <!-- Preferred Work Length Input -->
-                    <table>
-                        <tr>
-                            <td>
-                                <h4>Preferred Work Length: 
-                                </h4>
-                            </td>
-                            <td>
-                                <div class="help-tip">
-                                    <p>Input how long you would like to work on this task in one sitting.</p>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="number" name="mintime" id="min-work-time" min="0" max="10" step = "1" placeholder = "1">
-                            </td>
-                        </tr>
-                    </table>    
-
-                    <!-- Deadline Input -->
-                    <h4>Deadline: <input type="date" name="ddl" id="taskddl" required></h4>
+    <!-- FIRST CONTAINER -->
+            <div class="container">
+                <div style="text-align:center">
+                    <a class="btn-add-task" href="#open-modal">Add Task to Be Scheduled</a>
                 </div>
+            </div>
+            <br><br><br>
 
-                <input type="submit" class="submit" value="ADD TASK">
-            </form>
-            
+            <!-- Modal Functionality -->
+            <div  id="open-modal" class="modal-window"  onclick="document.getElementById('open-modal').style.display='block'">
+              <div>
+                <a onclick="document.getElementById('open-modal').style.display='none'" href="#" title="Close" class="modal-close">x</a>
+
+                <form id="new-task">
+                    <div id="task-content">
+                        <!-- Title Input -->
+                        <h4>Task Name:
+                            <input type="text" name="task_name" id="content" 
+                                placeholder="e.g. Get groceries" required/>
+                        </h4>
+                        
+                        <!-- Category Input -->
+                        <table>
+                            <tr>
+                                <td><h4>Category:</h4></td>
+                                <td><div class="help-tip">
+                                    <p>Organize your tasks by selecting the best category.</p>
+                                </div></td>
+                            </tr>
+                        </table>
+                        <div class="options">
+                            <label>
+                                <input type="radio" name="category" class="category1" value="school" /> 
+                                <span class="bubble school"></span>
+                                <div>School</div>
+                            </label>
+                            <label>
+                                <input type="radio" name="category" class="category2" value="personal" />
+                                <span class="bubble personal"></span>
+                                <div>Personal</div>
+                            </label>
+    
+                            <label>
+                                <input type="radio" name="category" class="category3" value="other" />
+                                <span class="bubble other"></span>
+                                <div>Other</div>
+                            </label>
+                        </div>
+    
+                        <!-- Duration Input -->
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Duration: 
+                                        
+                                    </h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Estimate how long the task will take you to complete.</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4><input type="number" name="duration" class="duration" min="0" max="20" step = "1" 
+                                        placeholder = "e.g. 1" required> hours</h4>
+                                </td>
+                            </tr>
+                        </table>                            
+    
+                        <!-- Description Input -->
+                        <h4>Description:</h4>
+                        <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                        <br>
+                        <br>
+    
+                        <!-- Priority Input -->
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Priority:</h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Rank the priority of this your with 1 being LOW and 5 being HIGH.</p>
+                                    </div>
+                                </td>
+                                <td style="width:200px">
+                                    <!-- <input type="range" name="priority" class="taskPriority" min="1" max="5" value="3" oninput="priorityValue.innerText = this.value"> <p class="priorityValue">3</p> -->
+                                    <div class="star-rating">
+                                        <input name="priority" class="taskPriority" type="radio" id="5-stars" name="rating" value="5" />
+                                        <label for="5-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="4-stars" name="rating" value="4" />
+                                        <label for="4-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="3-stars" name="rating" value="3" />
+                                        <label for="3-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="2-stars" name="rating" value="2" />
+                                        <label for="2-stars" class="star">&#9733;</label>
+                                        <input name="priority" class="taskPriority" type="radio" id="1-star" name="rating" value="1" />
+                                        <label for="1-star" class="star">&#9733;</label>
+                                      </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+    
+                        <!-- Difficulty Input -->
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Difficulty: </h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Select the difficulty of this task with 1 being LOW and 5 being HIGH.</p>
+                                    </div>
+                                </td>
+                                <td style="width:200px">
+                                    <!-- <input type="range" name="difficulty" class="difficulty" min="1" max="5" value="3" oninput="diffValue.innerText = this.value"> <p class="diffValue">3</p> -->
+                                    <div class="star-rating">
+                                        <input name="difficulty" class="difficulty" type="radio" id="5-star" name="rating" value="5" />
+                                        <label for="5-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="4-star" name="rating" value="4" />
+                                        <label for="4-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="3-star" name="rating" value="3" />
+                                        <label for="3-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="2-star" name="rating" value="2" />
+                                        <label for="2-star" class="star">&#9733;</label>
+                                        <input name="difficulty" class="difficulty"  type="radio" id="1-sta" name="rating" value="1" />
+                                        <label for="1-sta" class="star">&#9733;</label>
+                                      </div>
+                                </td>
+                                
+                            </tr>
+                        </table>
+                        <br>
+    
+                        <!-- Preferred Work Length Input -->
+                        <table>
+                            <tr>
+                                <td>
+                                    <h4>Preferred Work Length: 
+                                    </h4>
+                                </td>
+                                <td>
+                                    <div class="help-tip">
+                                        <p>Input how long you would like to work on this task in one sitting.</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="number" name="mintime" class="min-work-time" min="0" max="10" step = "1" placeholder = "e.g. 1" required>
+                                </td>
+                            </tr>
+                        </table>    
+    
+                        <!-- Deadline Input -->
+                        <h4>Deadline: <input type="date" name="ddl" class="taskddl" required></h4>
+                    </div>
+    
+                    <input type="submit" class="submit" value="ADD TASK">
+                </form>
+                <br>
+              </div>
+            </div>
+
+    <!-- SECOND CONTAINER -->
+            <div class="container">
+                <div class="try" style="text-align:center">
+                    <a class="btn-time-slot" href="#open-modal2">Save Your Own Time Slot</a>
+                </div>
+            </div>
             <br>
+          
+            <div id="open-modal2" class="modal-window" onclick="document.getElementById('open-modal2').style.display='block'">
+              <div>
+                  <a onclick="document.getElementById('open-modal2').style.display='none'" href="#" title="Close" class="modal-close">x</a>
+                    <form id="new-padding">
+                        <div id="task-content">
+                            <h4>Task Name:
+                                <input type="text" name="task_name" class="content" 
+                                    placeholder="e.g. Get groceries" required/>
+                            </h4>
+                            
+                            <!-- Category Bubbles -->
+                            <table>
+                                <tr>
+                                    <td><h4>Category:</h4></td>
+                                    <td><div class="help-tip">
+                                        <p>Organize your tasks by selecting the best category.</p>
+                                    </div></td>
+                                </tr>
+                            </table>
+                            <div class="options">
+                                <label>
+                                    <input type="radio" name="category" class="category1" value="school" /> 
+                                    <span class="bubble school"></span>
+                                    <div>School</div>
+                                </label>
+                                <label>
+                                    <input type="radio" name="category" class="category2" value="personal" />
+                                    <span class="bubble personal"></span>
+                                    <div>Personal</div>
+                                </label>
+                
+                                <label>
+                                    <input type="radio" name="category" class="category3" value="other" />
+                                    <span class="bubble other"></span>
+                                    <div>Other</div>
+                                </label>
+                            </div>
+                
+                            <!-- Duration Input -->
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h4>Duration: </h4>
+                                    </td>
+                                    <td><div class="help-tip">
+                                            <p>Estimate how long the task will take you to complete.</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4><input type="number" name="duration" class="duration" min="0" max="20" step = "1" 
+                                            placeholder = "e.g. 1" required> hours</h4>
+                                    </td>
+                                </tr>
+                            </table>                    
+                
+                            <!-- Description Input -->
+                            <h4>Description:</h4>
+                            <textarea type="text" name = "description" class="taskdescription" rows="5" cols="40" placeholder="e.g. bananas, onions, garlic, cheese"></textarea>
+                            <br>
+                
+                            <!-- Particular Slot Input -->
+                            <h4>Schedule Slot in Calendar:</h4>
+                            <input type="datetime-local" name="ddl" class="ddl">
+                            <br>
+                        </div>
+                        <!-- Submit Button -->
+                        <input type="submit" class="submit" value="ADD PADDING">
+                    </form>
+                  <br>
+              </div>
+            </div>
 
+            </div>  <!-- end div create New Task -->
+
+            <br><br><br>
             <!-- Insert Padding Preferences Input -->
-            <h3><u>Set Your Schedule Preferences</u></h3>
-            <table>
-                <tr>
-                    <td>
-                        <h4>Wake Up Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you wake up (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
-                    </td>
-                </tr>
-            </table> 
-
-            <table>
-                <tr>
-                    <td>
-                        <h4>Lunch Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you go to lunch (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
-                    </td>
-                </tr>
-            </table> 
-
-            <table>
-                <tr>
-                    <td>
-                        <h4>Sleeping Time: 
-                        </h4>
-                    </td>
-                    <td>
-                        <div class="help-tip">
-                            <p>When do you go to bed (input a number out of 24 hours)</p>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
-                    </td>
-                </tr>
-            </table> 
+            <div class="preferences" >
+                <h3 class="preference-title">Set Your Schedule Preferences</h3>
+                <!-- Morning Input -->
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Wake Up Time: </h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you wake up (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="morning" id="morning" min="0" max="23" step = "1" placeholder = "9">
+                        </td>
+                    </tr>
+                </table> 
 
 
+                <!-- Noon Input -->
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Lunch Time:</h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you go to lunch (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="noon" id="noon" min="0" max="23" step = "1" placeholder = "12">
+                        </td>
+                    </tr>
+                </table> 
+    
+                <!-- Evening Input -->
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Sleeping Time: </h4>
+                        </td>
+                        <td>
+                            <div class="help-tip">
+                                <p>When do you go to bed (input a number out of 24 hours)</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" name="evening" id="evening" min="0" max="23" step = "1" placeholder = "22">
+                        </td>
+                    </tr>
+                </table>
 
+                <!-- Confirmation Button -->
+                <button type="button" class="update_schedule">Update Schedule Preferences</button>
 
-            <button type="button" class="danger">Clear Your Schedule</button>
-            <!-- Calendar Button
-            <a href="../month/month.html" style="text-decoration:none;"> <button type="button" class="nav">Calendar </button></a> -->
-        </div>
+                <!-- Clear Button-->
+                <button type="button" class="danger">Clear Your Schedule</button>
+            </div>
 
-        <div class="task-list">
+        </div> <!-- here is the end of left box -->
+        <br>
+
+        <!-- Task Display -->
+        <div id="rightbox" >
             <h2 class="title">TASK LIST</h2>
-            <div class="list" id="list">
-                <!--
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble school"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Finish Lab9" />
-                    </div>
-                </div>
-
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble personal"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Get groceries" />
-                    </div>
-                </div>
-
-                <div class = "task-item">
-                    <label>
-                        <input type = "checkbox"/>
-                        <span class = "bubble other"></span>
-                    </label>
-                    <div class = "task-content">
-                        <input type = "text" value = "Apply for internships" />
-                    </div>
-                </div>-->
+            <div style="padding-top: 15px;" class="list" id="list">
             </div>
         </div>
     </main>

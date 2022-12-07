@@ -4,17 +4,18 @@
     margin:0;
 }
 .navbar{
-    background-color: rgba(211, 211, 211, 0.466);
-    /* background-color: #92a1d169; */
+    /* background-color: rgba(211, 211, 211, 0.466); */
+    background-color: #a089b6a8;
     color:white;
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-size: 18px;
     font-family: 'Quicksand', sans-serif;
+    height:70px;
 }
 .navbar a{
-    color:rgba(94, 93, 93, 0.589);
+    color:rgba(61, 59, 59, 0.877);
     text-decoration: none;
     padding: 45px;
     font-weight: bold;  
@@ -24,16 +25,16 @@
     border-radius: 20px;
 } */
 .first:hover{
-    color:rgba(12, 131, 125, 0.788);
+    color:#0c837dfb;
 }
 .second:hover{
-    color:rgba(153, 19, 146, 0.788);
+    color:#991392c9;
 }
 .third:hover{
-    color:rgba(167, 164, 7, 0.788) ;
+    color:white ;
 }
 .forth:hover{
-    color: rgba(228, 117, 13, 0.788);
+    color: #e4750dc9;
 }
 .nav-list{
     list-style-type: none;
@@ -43,7 +44,7 @@
     padding: 20px 10px;
 }
 .list-item:hover{
-    background-color: rgba(107, 109, 110, 0.116);
+    background-color: rgba(162, 145, 179, 0.521);
     border-radius: 20px;
 }
 
@@ -70,6 +71,7 @@ img {
     } */
     .navbar{
         flex-direction: column;
+        height: auto;
     }
     .navbar a{
         padding:8px;

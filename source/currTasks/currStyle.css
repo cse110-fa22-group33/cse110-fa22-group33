@@ -14,11 +14,9 @@
 	--other-glow: 0px 0px 4px rgba(248, 8, 232, 0.931);
 	--danger-glow: 0px 0px 4px rgba(237, 66, 66, 0.931);
 }
-
 body {
-	background: var(--light);
-	color: var(--dark);
-	background-color: #FFFCFF;
+	background-color: #e4dce4a1;
+	background-image: url('https://assets.codepen.io/1462889/back-page.svg');
     font-family: 'Quicksand', sans-serif;
 }
 .title{
@@ -29,48 +27,47 @@ body {
 	text-align: center;
 	border-radius: 18px;
 	color: white;
+	margin-bottom: 20px;
+	margin: auto;/*center the title task list in the center */
 }
 .hello {
     margin: 1rem;
     padding: 2rem 2rem;
     text-align:center;
 }
-
 h3 {
     color: var(--dark);
     font-size: 1rem;
 	margin-bottom: 1rem;
 	padding: 4px;
 }
-
 h4 {
-	/* color: var(--grey); */
-	color:rgba(20, 9, 119, 0.788);
+	color:#140977c9;
 	padding:8px;
 }
-#taskPriority, #duration, #difficulty{
+.taskPriority, .difficulty{
 	font-size: 12px;
 	font-family: 'Quicksand', sans-serif;
 	width: 42px;
 }
-#taskddl, #task-ddl-time, #datetime,#min-work-time, 
-#max-work-time, #extranotes, #content{
+.taskddl, .task-ddl-time, .datetime,.min-work-time, 
+.max-work-time, .extranotes, .content{
 	font-size: 13px;
 	font-family: 'Quicksand', sans-serif;
 }
-#taskdescription,#user-name, 
+.taskdescription,.user-name, 
 .advance, .danger{
 	font-family: 'Quicksand', sans-serif;
 }
 .advance{
-	background-color:rgba(12, 131, 125, 0.788);
+	background-color:#0c837dc9;
 	border-radius: 10px;
 }
 .advance:hover{
-	background-color: rgba(12, 131, 125, 0.555);
+	background-color: #0c837d8e;
 }
 .nav{
-	background-color: rgba(153, 19, 146, 0.788);
+	background-color: #991392c9;
 	border-radius: 10px;
 	font-family: 'Quicksand', sans-serif;
 	
@@ -78,12 +75,12 @@ h4 {
 .nav:hover{
 	background-color:rgba(138, 15, 132, 0.507);
 }
-
-.create-new-task {
+/* .create-new-task {
     float: left;
 	padding-left: 25rem;
-	position: absolute;
-}
+	position: absolute; */
+	/* padding: auto;
+} */
 
 .create-new-task .options {
 	display: grid;
@@ -156,17 +153,14 @@ input[type="radio"], input[type="checkbox"] {
 	border: 2px solid var(--school);
 	box-shadow: var(--school-glow);
 }
-
 .bubble.personal {
 	border-color: var(--personal);
 	box-shadow: var(--personal-glow);
 }
-
 .bubble.other {
 	border-color: var(--other);
 	box-shadow: var(--other-glow);
 }
-
 .bubble::after {
 	content: '';
 	opacity: 0;
@@ -175,7 +169,6 @@ input[type="radio"], input[type="checkbox"] {
 	border-radius: 100px;
 	transition: 0.3s ease-in-out;
 }
-
 .bubble.personal::after {
 	background-color: var(--personal);
 	box-shadow: var(--personal-glow);
@@ -204,18 +197,15 @@ button,.submit{
 	text-align: center;
 	font-size: 1rem;
 }
-  
 .active, .submit:hover {
 	background-color: #555;
 }
-  
 .collapsible {
 	padding: 0 18px;
 	display: none;
 	overflow: hidden;
 	background-color: #e9e5e5;
 }
-
 .create-new-task input[type="submit"] {
 	text-align: center;
 	display: block;
@@ -228,11 +218,12 @@ button,.submit{
 	cursor: pointer;
 }
 input[type="submit"]:hover{
-	background-color: rgba(0, 45, 128, 0.767);
+	background-color: #002d80c4;
 }
-.create-new-task button[class="danger"] {
+.danger {
 	text-align: center;
 	display: block;
+	width: 15rem;
 	font-size: 1rem;
 	color: #FFF;
 	font-weight: 500;
@@ -242,14 +233,27 @@ input[type="submit"]:hover{
 	cursor: pointer;
 }
 
+.update_schedule {
+	text-align: center;
+	display: block;
+	width: 15rem;
+	font-size: 1rem;
+	color: #FFF;
+	font-weight: 500;
+	background-color: rgb(51, 79, 155);
+	box-shadow: 0px 0px 4px rgba(51, 79, 155);
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
 /*
 This is the css of help tip (hover/click for more)
 */
-
 .help-tip{
     /* position: absolute;
     top: 18px;
-    right: 18px; */
+	right: 18px; */
+	position: relative;
     text-align: center;
     background-color: #BCDBEA;
     border-radius: 50%;
@@ -259,13 +263,11 @@ This is the css of help tip (hover/click for more)
     line-height: 13px;
     cursor: default;
 }
-
 .help-tip:before{
     content:'?';
     font-weight: bold;
     color:#fff;
 }
-
 .help-tip:hover p{
     display:block;
     transform-origin: 100% 0%;
@@ -274,7 +276,6 @@ This is the css of help tip (hover/click for more)
     animation: fadeIn 0.3s ease-in-out;
 
 }
-
 .help-tip p{    /* The tooltip */
     display: none;
     text-align: left;
@@ -289,7 +290,6 @@ This is the css of help tip (hover/click for more)
     font-size: 13px;
     line-height: 1.4;
 }
-
 .help-tip p:before{ /* The pointer of the tooltip */
     position: absolute;
     content: '';
@@ -300,8 +300,7 @@ This is the css of help tip (hover/click for more)
     right:10px;
     top:-12px;
 }
-
-.help-tip p:after{ /* Prevents the tooltip from being hidden */
+.help-tip p:after{ /* Prevents the tooltip from being hidden hey*/
     width:100%;
     height:40px;
     content:'';
@@ -309,115 +308,220 @@ This is the css of help tip (hover/click for more)
     top:-40px;
     left:0;
 }
-
-/*
-Testing New Modal Stuff
-
-@mixin easeOut {
-	transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-  
-  
-body {
-	background: #38c5b9;
-	font-family: 'Montserrat';
-	font-weight: 300;
-	line-height: 1.5;
-}
-  
-a {
-	text-decoration: none;
-	color: inherit;
-}
-  
-.buttons-ctn {
-	will-change: transform;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: -140px;
-	margin-top: -30px;
-	transform-style: preserve-3d;
-	backface-visibility: hidden;
-}
-  
-.button {
-	will-change: transform;
-	position: relative;
-	float: left;
-	display: inline-block;
-	padding: 20px;
-	width: 140px;
-	text-align: center;
-	line-height: normal;
-	@include easeOut;
-}
-
-.button .left {
-	background: var(--black);
-	color: var(--white);
-}
-
-.button .right {
-	background: darken(white, 8);
-	  color: var(--black);
-}
-
-.button .active{
-	cursor: default;
-}
-
-.button .active.span{
+.modal-window {
+	position: fixed;
+	background-color: #130d0dc2;/* color of the page when the modal is open */
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 999;
+	visibility: hidden;
 	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s;
 }
-  
-.button__content {
-	display: block;
+.modal-window:target {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+}
+.modal-window > div {
+	width: 450px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 60px 20px;
+	padding: 2em;
+	/* background: #d1c5dd; purple color for modal */
+	background-color: #e2dfd1;
+}
+.modal-window header {
+	font-weight: bold;
+}
+.modal-window h1 {
+	font-size: 150%;
+	margin: 0 0 15px;
+}
+.modal-close {
+	color: #3b3388;
+	line-height: 50px;
+	font-size: 80%;
+	position: absolute;
+	right: 0;
 	text-align: center;
-	width: 600px;
-	visibility: hidden;
-	opacity: 0;
-	z-index: 10;
+	top: 0;
+	width: 50px;
+	text-decoration: none;
+	font-family: 'Fredoka One', cursive;
+	font-size: 30px;
+}
+.modal-close:hover {
+	color: black;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+  ​
+.container {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh; */
+	margin-left: 300px;
+	height: 8vh;
+}
+.modal-window > div {
+	border-radius: 1rem;
+}
+  ​
+.modal-window div:not(:last-of-type) {
+	margin-bottom: 15px;
+}
+  ​
+small {
+	color: lightgray;
+}
+.btn {
+	background-color: #2aa15c;
+	padding: 1em 1.5em;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	border: solid black;
+	width: 200px;
+	text-align: center;
+}
+.delete_task{
+	background-color: hsl(6, 72%, 42%);
+}
+.btn i {
+	padding-right: 0.3em;
+}
+#leftbox {
+	float:left; 
+	/* background:rgba(255, 0, 0, 0.493); */
+	width:50%;
+	height:280px;
+	justify-content: center;
+	padding-top: 22px; /* TO ALLIGN OPTIONS WITH TAS LIST */
+}
+
+#rightbox{
+	float:right;
+	/* background:rgb(65, 65, 153); */
+	width:50%;
+	height:280px;
+}
+@media (max-width:850px){
+	#leftbox{
+		padding-top: 20.5px; 
+		
+	}
+}
+.btn-add-task{	
+	background-color: #abb422ea;
+	width: 220px;
+	height: 50px;
+	padding: 22px;
+	text-align: center;
+	border-radius: 18px;
 	color: white;
+	justify-content: center;
 }
+.btn-time-slot{	
+	background-color:#abb422ea;
+	width: 220px;
+	height: 50px;
+	padding: 26px;
+	text-align: center;
+	border-radius: 18px;
+	color: white;
+	justify-content: center;
+}
+.btn-add-task:hover{
+	background-color: #cad80d;
+	color: black;
+}	
+.btn-time-slot:hover{
+	background-color: #cad80d;
+	color: black;
+}
+#morning, #noon, #evening{
+	width: 40px;
+	height: 20px;
+	font-family: 'Quicksand', sans-serif;
+	border-radius: 1px;
+	border: none;
+	font-size: 14px;
+	text-align: center;
+}
+#modal-root {
+	position: fixed;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.4);
+	left : 0;
+	top: 0;
+	width: 0px;
+	height : 0px;
+	opacity: 0;
+	transition: opacity 0.15s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
+  }
+/* add uniformity in input boxes: */
+  #content, .content{
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif; 
+	width: 170px;
+	height: 22px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	padding-left: 7px;
+  }
+  .taskdescription{
+	font-size: 14px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 10px;
+	padding-left: 7px;
+	padding-top: 4px;
 
-.button_content .left{
-	color: var(--white);
+  }
+  .duration, .min-work-time{
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
+	width: 50px;
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	padding-left: 7px;
+	height: 22px;
 }
-
-.button_content .left .a{
-	color: var(--black);
-	background: var(--white);
+.taskddl, .ddl{
+	border: 1px solid rgb(61, 12, 117);
+	border-radius: 7px;
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 7px;
+	height: 22px;
 }
-
-.button_content .right{
-	color: var(--black);
+.preferences{
+	background-color: #7f99c0;
+    width: 240px;
+    padding: 30px;
+	border-radius: 20px;
+	justify-content: center;
+	margin:auto;
 }
-
-.button_content .right .a{
-	color: var(--white);
-	  background: var(--black);
+.preference-title{
+	font-size: 20px;
+	text-align: center;
+	/* color:rgb(189, 247, 228); */
+	color:white;
+	background-color: rgb(17, 60, 126);
+	border-radius: 40px;
+	padding:10px;	
 }
-
-.button_content .active{
-	opacity: 1;
-	visibility: visible;
+.task-title{
+	font-size: 45px;
 }
-
-.button_content .a{
-	display: inline-block;
-	padding: 10px 20px;
+.welcome{
+	font-size: 20px;
 }
-
-.button_content .h2{
-	font-size: 36px;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-weight: 300;
-}
-*/
