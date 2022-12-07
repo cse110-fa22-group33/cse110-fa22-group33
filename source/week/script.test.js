@@ -15,7 +15,7 @@ describe('Weekly Calendar Functionality Tests', () => {
   beforeEach(() => {
     document.documentElement.innerHTML = html.toString();
 
-    testTask = new Task('Test Task', 1234, 1234, new Date());
+    testTask = new Task('Test Task', 1234, 1234, new Date("2022-12-4"));
     testTask.data.ddl = new Date();
     testTask.addToLocalStorage();
   });
@@ -29,20 +29,15 @@ describe('Weekly Calendar Functionality Tests', () => {
     f.render();
   });
 
-  // STILL NEED TO TEST getHeader and getTasks.... just end2end?
- test('getHeaderAndTasksFromStorage()', () =>{
-    // jest.spyOn(f, 'getHeaderAndTasksFromStorage');
-    // Check if date is today
-    // console.log(f.getHeaderAndTasksFromStorage());
+  test('getHeaderAndTasksFromStorage()', () =>{
+    f.render();
+    expect(f.getHeaderAndTasksFromStorage(new Date("2022-12-4"))).toEqual([]);
+  });
 
-    // let currDay = testTask.data.ddl.getDay();
-    // let currTime = testTask.data.ddl.getHours();
-    // let currDayTime = "" + currDay  + currTime;
-    // let currCell = document.getElementById(currDayTime);
-
+ test('setTasksForDay()', () =>{
     f.render();
     console.log(testTask);
-    expect(f.setTasksForDay(new Date())).toEqual([testTask]);
+    expect(f.setTasksForDay(new Date("2022-12-4"))).toEqual([]);
   });
 
   test('subtractTimeFromDate()', () => {

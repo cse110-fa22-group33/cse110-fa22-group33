@@ -268,7 +268,7 @@ export function getHeaderAndTasksFromStorage() {
  * Reads tasks from local storage and returns an array of 
  * all of the tasks found (as Task objects). If nothing
  * is found in localStorage for tasks, an empty array is returned.
- * @parameter startTasks
+ * @parameter startTasks date object
  * @returns {Array<Object>} An array of tasks found in localStorage
  */
 export function setTasksForDay(startTasks) {
@@ -305,12 +305,10 @@ export function setTasksForDay(startTasks) {
                 }
 
                 if(task.data.category == "other") {
-                    console.log(task);
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
                 if(task.data.category == "") {
-                    console.log(task);
                     currCell.style.backgroundColor="#c38bce91";
                 }
 
@@ -328,14 +326,12 @@ export function setTasksForDay(startTasks) {
                         if (currTime == 24) {
                             currTime = 0;
                             currDay++;
-                            // currDayTime = "" + currDay + currTime;
                         }
 
                         currDayTime = "" + currDay + currTime;
-
                         currCell = document.getElementById(currDayTime);
 
-                        if(task.data.category == "school") { // ! recurrent
+                        if(task.data.category == "school") {
                             currCell.style.backgroundColor="#51a051d8";
                         }
         
@@ -344,12 +340,10 @@ export function setTasksForDay(startTasks) {
                         }
         
                         if(task.data.category == "other") {
-                            console.log("recurring task:" + task);
                             currCell.style.backgroundColor="#c38bce91";
                         }
         
                         if(task.data.category == "") {
-                            console.log("recurring task:" + task);
                             currCell.style.backgroundColor="#c38bce91";
                         }
 
@@ -387,11 +381,10 @@ export function setTasksForDay(startTasks) {
             // grab corresponding html cell
             let currCell = document.getElementById(currDayTime);
     
-            currCell.style.backgroundColor="#A9A9A9";
+            currCell.style.backgroundColor="C8C8C8";
 
             let curDuration = task.data.duration;
-            //if ((curDuration > 1) & (i == 0)) {
-                for (let i = 0; i < curDuration - 1; i++) {
+            for (let i = 0; i < curDuration - 1; i++) {
                     currTime++;
                     currDayTime++;
                     if (currTime == 24) {
@@ -399,23 +392,9 @@ export function setTasksForDay(startTasks) {
                     }
                     currDayTime = "" + currDay + currTime;
                     currCell = document.getElementById(currDayTime);
-                    currCell.style.backgroundColor="#A9A9A9";
+                    currCell.style.backgroundColor="C8C8C8";
                 }
-            /*}
-            if ((curDuration > 1) & (i != 0)) {
-                for (let i = 0; i < curDuration - 1; i++) {
-                    currTime++;
-                    currDayTime++;
-                    if (currTime == 24) {
-                        currTime = 0;
-                        currDayTime = "" + currDay + currTime;
-                    }
-                    console.log(currDayTime);
-                    currCell = document.getElementById(currDayTime);
-                    currCell.style.backgroundColor="#A9A9A9";
-                }
-            }*/
-        }
+            }
         }
 
         startTasks.setDate(startTasks.getDate() + 1);
