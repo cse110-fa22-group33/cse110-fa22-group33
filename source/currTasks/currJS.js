@@ -11,6 +11,8 @@
 // Import skyTasks -> Needed to create Tasks objects used by our application
 import { Task } from './../skyTasks.js';
 
+module.exports = {addTasksToDocument};
+
 /**
  * updateSchedule Helper Method
  * 
