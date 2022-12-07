@@ -16,7 +16,7 @@ function init() {
 export function render() {
     /* array that represents the day of the weeks in index number 
    0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
-   const dayWeeks = ["a0", "a1", "a2" ,"a3", "a4", "a5", "a6"]; 
+   const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
    for (let i = 0; i < 24; i++) {
        if(i === 0){ // 12 am is 0 in the 24 hours scale
            let str = `<div id="`+(i)+ `" class="grid-container">
@@ -288,7 +288,7 @@ export function setTasksForDay(startTasks) {
                 let currDay = task.data.start_date.getDay();
                 let currTime = task.data.start_date.getHours();
 
-                let currDayTime = "a" + currDay  + currTime;
+                let currDayTime = "" + currDay  + currTime;
 
                 // grab corresponding html cell
                 let currCell = document.getElementById(currDayTime);
@@ -328,7 +328,7 @@ export function setTasksForDay(startTasks) {
                             currDay++;
                         }
 
-                        currDayTime = "a" + currDay + currTime;
+                        currDayTime = "" + currDay + currTime;
                         currCell = document.getElementById(currDayTime);
 
                         if(task.data.category == "school") {
@@ -370,18 +370,19 @@ export function setTasksForDay(startTasks) {
         }*/
 
         for(let task of paddingTasks) {
-            // console.log(task.data.ddl);
             if(task.data.recurrent){
             // pull correct date and time from task element
             let currDay = startTasks.getDay();
             let currTime = task.data.ddl.getHours();
     
-            let currDayTime = "a" + currDay  + currTime;
+            let currDayTime = "" + currDay  + currTime;
     
             // grab corresponding html cell
             let currCell = document.getElementById(currDayTime);
     
-            currCell.style.backgroundColor="C8C8C8";
+            currCell.style.backgroundColor="#c8c8c8";
+            console.log(currCell);
+            console.log(currCell.style.backgroundColor);
 
             let curDuration = task.data.duration;
             for (let i = 0; i < curDuration - 1; i++) {
@@ -390,9 +391,9 @@ export function setTasksForDay(startTasks) {
                     if (currTime == 24) {
                         currTime = 0;
                     }
-                    currDayTime = "a" + currDay + currTime;
+                    currDayTime = "" + currDay + currTime;
                     currCell = document.getElementById(currDayTime);
-                    currCell.style.backgroundColor="C8C8C8";
+                    currCell.style.backgroundColor="#c8c8c8";
                 }
             }
         }
