@@ -156,22 +156,75 @@ describe('Task Class Tests', () => {
   })
 
   test('Test getTasksFromDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksFromDate(new Date('November 28, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
     
   })
 
   test('Test getTasksFromDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksFromDDL(new Date('November 28, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksBetweenDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTaskBetweenDate(new Date('November 27, 2023 10:00:00'),new Date('November 29, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksBetweenDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTaskBetweenDDL(new Date('November 27, 2023 10:00:00'),new Date('November 29, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksAfterDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksAfterDate(new Date('November 27, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksAfterDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksAfterDDL(new Date('November 27, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   //This is easy, use same test for ones below!
@@ -208,7 +261,7 @@ describe('Task Class Tests', () => {
     testTask.data.start_date = new Date();
     let otherTask = new Task('Other Task');
     otherTask.data.start_date = new Date("2022-12-04");
-    expect(Task.compareStartDate(testTask, otherTask)).toBeLessThan(0);
+    expect(Task.compareStartDate(testTask, otherTask)).toBeGreaterThan(0);
   })
 
   //whats difference between compareStartDate and compareTimeInterval?
@@ -221,10 +274,6 @@ describe('Task Class Tests', () => {
     otherTask.data.start_date = new Date("2022-12-04");
     //expect(Task.compareTimeInterval(testTask, otherTask)).toBe(2);
     */
-  })
-
-  test('Test firstAvailable()', () => {
-    //LMAo!
   })
 
   test('Test dateRangeOverlaps()', () => {
@@ -257,26 +306,68 @@ describe('Task Class Tests', () => {
     let all_tasks = Task.getAllTasksFlat();
     all_tasks.sort(Task.compareStartDate);
     expect(all_tasks[0].data.task_name).toBe('10 5 5');
-    expect(all_tasks[1].data.task_name).toBe('10 5 3');
-    expect(all_tasks[2].data.task_name).toBe('10 5 1');
-    expect(all_tasks[3].data.task_name).toBe('10 3 3');
+    expect(all_tasks[1].data.task_name).toBe('10 5 1');
+    expect(all_tasks[2].data.task_name).toBe('10 3 3');
+    expect(all_tasks[3].data.task_name).toBe('10 5 3');
 
   })
 
   test('Test addToLocalStorage()', () => {
-    //nor is this
+    Task.removeAllTasks();
+    let myTask = new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.addToLocalStorage();
+    let sameTask = Task.getAllTasksFlat()[0];
+
+    expect(myTask.data.task_name).toBe(sameTask.data.task_name);
+    expect(myTask.data.uid).toBe(sameTask.data.uid);
+    expect(myTask.data.task_uid).toBe(sameTask.data.task_uid);
+    expect(myTask.data.ddl.toISOString()).toBe(sameTask.data.ddl.toISOString());
+    expect(myTask.data.difficulty).toBe(sameTask.data.difficulty);
+    expect(myTask.data.priority).toBe(sameTask.data.priority);
+    expect(myTask.data.mintime).toBe(sameTask.data.mintime);
+    expect(myTask.data.padding).toBe(sameTask.data.padding);
+
   })
 
   test('Test removeFromLocalStorage()', () => {
-    //or this
+    Task.removeAllTasks();
+    let myTask = new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.addToLocalStorage();
+    Task.removeFromLocalStorage(myTask.data.uid);
+
+    expect(Task.getAllTasksFlat().length).toBe(0);
+
   })
 
   test('Test removeAllTasks()', () => {
-    //or this
+    Task.removeAllTasks();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID()).addToLocalStorage();
+    Task.removeAllTasks();
+
+    expect(Task.getAllTasksFlat().length).toBe(0);
+
   })
 
   test('Test removeLargeTask()', () => {
-    //sky u got me fucked up!
+    Task.removeAllTasks();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 110).addToLocalStorage();
+    new Task('task1', Task.getUniqueUID(), 111).addToLocalStorage();
+
+    Task.removeLargeTask(110);
+    let taskList = Task.getAllTasksFlat();
+
+    expect(taskList.length).toBe(1);
+    expect(taskList[0].data.task_uid).toBe(111);
+
   })
 
 })
