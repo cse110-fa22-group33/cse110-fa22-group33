@@ -363,4 +363,8 @@ function initFormHandler() {
     });
 }
 
-module.exports = {init, addTasksToDocument, initFormHandler};
+try {
+    module.exports = {init, addTasksToDocument, initFormHandler};
+} catch {
+
+}
