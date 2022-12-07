@@ -156,22 +156,75 @@ describe('Task Class Tests', () => {
   })
 
   test('Test getTasksFromDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksFromDate(new Date('November 28, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
     
   })
 
   test('Test getTasksFromDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksFromDDL(new Date('November 28, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksBetweenDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTaskBetweenDate(new Date('November 27, 2023 10:00:00'),new Date('November 29, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksBetweenDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTaskBetweenDDL(new Date('November 27, 2023 10:00:00'),new Date('November 29, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksAfterDate()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksAfterDate(new Date('November 27, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   test('Test getTasksAfterDDL()', () => {
+    Task.removeAllTasks();
+    let myTask = new Task('task', Task.getUniqueUID(), Task.getUniqueTaskUID());
+    myTask.data.ddl = new Date('November 28, 2023 10:00:00');
+    myTask.data.start_date = new Date('November 28, 2023 10:00:00');
+    myTask.addToLocalStorage();
+    
+    let retrivedTask = Task.getTasksAfterDDL(new Date('November 27, 2023 10:00:00'));
+    expect(myTask.data.task_name).toBe(retrivedTask[0].data.task_name);
+    
   })
 
   //This is easy, use same test for ones below!
@@ -208,7 +261,7 @@ describe('Task Class Tests', () => {
     testTask.data.start_date = new Date();
     let otherTask = new Task('Other Task');
     otherTask.data.start_date = new Date("2022-12-04");
-    expect(Task.compareStartDate(testTask, otherTask)).toBeLessThan(0);
+    expect(Task.compareStartDate(testTask, otherTask)).toBeGreaterThan(0);
   })
 
   //whats difference between compareStartDate and compareTimeInterval?
@@ -221,10 +274,6 @@ describe('Task Class Tests', () => {
     otherTask.data.start_date = new Date("2022-12-04");
     //expect(Task.compareTimeInterval(testTask, otherTask)).toBe(2);
     */
-  })
-
-  test('Test firstAvailable()', () => {
-    //LMAo!
   })
 
   test('Test dateRangeOverlaps()', () => {
