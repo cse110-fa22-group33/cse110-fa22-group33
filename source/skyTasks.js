@@ -325,6 +325,7 @@ export class Task {
   static getTasksFromDifficulty(difficulty) {
     try {
       let tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'))[difficulty]
+      //console.log(tasks_uid);
       let tasks = [];
       for (let uid of tasks_uid) {
         tasks.push(Task.getTaskFromUID(uid));
@@ -650,10 +651,10 @@ export class Task {
 
     // Increment until a valid time slot is found
     while (isOccupied(occupied, result, Number.parseInt(task.data.duration))) {
-      console.log(occupied);
+      //console.log(occupied);
       result.setHours(result.getHours() + 1);
     }
-    console.log(result);
+    //console.log(result);
     
     return result;
   }

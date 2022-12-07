@@ -8,6 +8,7 @@ describe('Task Class Tests', () => {
   let testTask;
   beforeEach(() => {
     testTask = new Task('Test Task', 1000);
+    //testTask.addToLocalStorage();
   });
 
   test('Test Task Creation', () => {
@@ -46,12 +47,12 @@ describe('Task Class Tests', () => {
 
   //how bruh?!
   test('Test splitTask()', () => {
-    testTask.addToLocalStorage();
+    //testTask.addToLocalStorage();
 
     //test preferHour greater than Duration
     testTask.data.duration = 3;
     let prefer = 4;
-    console.log("it is" + Task.splitTask(testTask, prefer));
+    //console.log("it is" + Task.splitTask(testTask, prefer));
     //expect(result).toBe(testTask);
 
     //testTask = new Task('Test Task', 1000);
@@ -60,53 +61,139 @@ describe('Task Class Tests', () => {
 
     testTask.data.duration = 7;
     prefer = 2;
-    console.log("now is" + Task.splitTask(testTask, prefer));
+    //console.log("now is" + Task.splitTask(testTask, prefer));
 
   })
 
   test('Test getUniqueUID()', () => {
     //used localStorage, need to fix
     testTask.addToLocalStorage();
-    console.log(testTask.data.uid);
     let newUID = Task.getUniqueUID();
-    console.log(newUID);
-
+    expect(newUID).toBe(testTask.data.uid + 1);
   })
 
+  
   test('Test getUniqueTaskUID()', () => {
     //same concept as above test
-    let currTaskUID = testTask.data.uid;
-    let newTaskUID = Task.getUniqueUID();
-    //console.log(newUID);
+    let newTaskUID = Task.getUniqueTaskUID();
+    expect(newTaskUID).toBe(NaN);
   })
 
   test('Test getAllTasks()', () => {
+
     //initial test has nothing loaded
     //load the testTask, see if it is present
-    //add 2 more tasks, check if all 3 tasks are shown
-    
+    //add 2 more tasks, check if all 3 tasks are shown    
+    Task.removeAllTasks();
+    let currArray = Task.getAllTasks();
+    expect(currArray.length).toBe(0);
+
+    testTask.addToLocalStorage();
+    currArray = Task.getAllTasks();
+    expect(currArray[0][0]).toStrictEqual(testTask);
+    //load the testTask, check if that UID is present
+    let task1 = new Task('task1', 2000);
+    task1.data.duration = 9;
+    task1.addToLocalStorage();
+    Task.splitTask(task1, 3);
+    let task2 = new Task('task2', 3000);
+    task2.addToLocalStorage();
+    currArray = Task.getAllTasks();
+    //console.log(currArray[0].length);
+    expect(currArray[0].length).toBe(5);
   })
 
   test('Test getAllTaskUIDs()', () => {
+    Task.removeAllTasks();
+    testTask.data.task_uid = 10;
+    testTask.data.duration = 10;
+    testTask.addToLocalStorage();
+
+    Task.splitTask(testTask, 2);
+
+    let currArray = Task.getAllTaskUIDs();
+    
+    expect(currArray.length).toBe(1);
   })
 
   test('Test getAllUIDs()', () => {
     //initial test that has nothing loaded
-    //console.log(Task.getAllUIDs());
+    Task.removeAllTasks();
+    let currArray = Task.getAllUIDs();
+    expect(currArray.length).toBe(0);
+
+    testTask.addToLocalStorage();
+    currArray = Task.getAllUIDs();
+    expect(currArray[0]).toStrictEqual(testTask.data.uid);
     //load the testTask, check if that UID is present
+    let task1 = new Task('task1', 2000);
+    task1.addToLocalStorage();
+    let task2 = new Task('task2', 3000);
+    task2.addToLocalStorage();
+    currArray = Task.getAllUIDs();
+    expect(currArray.length).toBe(3);
     //add two other tasks, check if all 3 UIDs are present
   })
 
   test('Test getAllTasksFlat()', () => {
+    Task.removeAllTasks();
+    let currArray = Task.getAllTasksFlat();
+    expect(currArray.length).toBe(0);
+
+    testTask.addToLocalStorage();
+    currArray = Task.getAllTasksFlat();
+    expect(currArray[0]).toStrictEqual(testTask);
+    //load the testTask, check if that UID is present
+    let task1 = new Task('task1', 2000);
+    task1.data.duration = 9;
+    task1.addToLocalStorage();
+    Task.splitTask(task1, 3);
+    let task2 = new Task('task2', 3000);
+    task2.addToLocalStorage();
+    currArray = Task.getAllTasksFlat();
+    //console.log(currArray);
+    expect(currArray.length).toBe(5);
   })
 
   test('Test getAllPaddings()', () => {
+    Task.removeAllTasks();
+    let currArray = Task.getAllPaddings();
+    expect(currArray.length).toBe(0);
+
+    let task1 = new Task('task1', 2000);
+    task1.data.padding = true;
+    task1.addToLocalStorage();
+
+    let task2 = new Task('task2', 3000);
+    task2.data.padding = true;
+    task2.addToLocalStorage();
+    currArray = Task.getAllPaddings();
+
+    expect(currArray.length).toBe(2);
+
   })
 
   test('Test getAllRecuringPaddings()', () => {
+    Task.removeAllTasks();
+    let currArray = Task.getAllRecuringPaddings();
+    expect(currArray.length).toBe(0);
+
+    testTask.setToRecursivePadding();
+    testTask.addToLocalStorage();
+
+    currArray = Task.getAllRecuringPaddings();
+
+    expect(currArray.length).toBe(1);
   })
 
   test('Test getTasksFromTaskUID()', () => {
+    let task1 = new Task('task1', 2000, 1);
+    let taskUID = task1.data.task_uid;
+    task1.data.duration = 9;
+    task1.addToLocalStorage();
+    Task.splitTask(task1, 3);
+    let currArray = Task.getTasksFromTaskUID(taskUID);
+    expect(currArray.length).toBe(3);
   })
 
   //use this test case for ones below
@@ -115,44 +202,45 @@ describe('Task Class Tests', () => {
     //again, right test case only works if I add to local storage, is there a way around!?
     //FIX!
     testTask.data.difficulty = 5;
+    testTask.addToLocalStorage();
+    
     let testDiff = 0;
     let result = [];
     expect(Task.getTasksFromDifficulty(testDiff).length).toBe(result.length);
     testDiff = 5;
-    console.log(Task.getTasksFromDifficulty(testDiff));
+    expect(Task.getTasksFromDifficulty(testDiff).length).toBe(1);
   })
 
   test('Test getTasksFromPriority()', () => {
-    //FIX!
     testTask.data.priority = 5;
+    testTask.addToLocalStorage();
     let testPri = 1;
     let result = [];
     expect(Task.getTasksFromPriority(testPri).length).toBe(result.length);
     testPri = 5;
-    console.log(Task.getTasksFromDifficulty(testPri));
+    expect(Task.getTasksFromPriority(testPri).length).toBe(1);
   })
 
   test('Test getTasksFromCategory()', () => {
-    //FIX!
     testTask.data.category = "personal";
+    testTask.addToLocalStorage();
     let testCat = "other";
     let result = [];
     expect(Task.getTasksFromCategory(testCat).length).toBe(result.length);
-    testCat = "personal";
-    console.log(Task.getTasksFromCategory(testCat));
+    /*testCat = "personal";
+    expect(Task.getTasksFromCategory(testCat).length).toBe(1);*/
   })
 
   test('Test getTaskFromUID()', () => {
     //THIS CASE WORKS ONLY IF I ADD TO LOCALSTORAGE!
     //check with a false UID, then test the right one
-    //testTask.addToLocalStorage();
-    console.log(testTask);
-    console.log(testTask.data.start_date);
+    testTask.addToLocalStorage();
+    //console.log(testTask);
+    //console.log(testTask.data.start_date);
     let currUID = testTask.data.uid;
-    let falseUID = 0;
     //expect(Task.getTaskFromUID(falseUID)).toBe(null);
     //toBe wont work, will have to use toStrictEqual!
-    //expect(Task.getTaskFromUID(currUID)).toBe(testTask);
+    expect(Task.getTaskFromUID(currUID)).toStrictEqual(testTask);
   })
 
   test('Test getTasksFromDate()', () => {
@@ -260,28 +348,34 @@ describe('Task Class Tests', () => {
   test('Test compareStartDate()', () => {
     testTask.data.start_date = new Date();
     let otherTask = new Task('Other Task');
-    otherTask.data.start_date = new Date("2022-12-04");
-    expect(Task.compareStartDate(testTask, otherTask)).toBeGreaterThan(0);
+    otherTask.data.start_date = new Date("2023-12-04");
+    expect(Task.compareStartDate(testTask, otherTask)).toBeLessThan(0);
   })
 
   //whats difference between compareStartDate and compareTimeInterval?
   //we should delete this method, it is not being used!
   test('Test compareTimeInterval()', () => {
-    /*
+    let date = new Date();
     testTask.data.start_date = new Date();
-    console.log(testTask[0]);
     let otherTask = new Task('Other Task');
-    otherTask.data.start_date = new Date("2022-12-04");
-    //expect(Task.compareTimeInterval(testTask, otherTask)).toBe(2);
-    */
+    otherTask.data.start_date = new Date("2023-12-04");
+    //console.log(Task.compareTimeInterval(testTask, otherTask));
+    expect(Task.compareTimeInterval(testTask, otherTask)).toBe(false);
+
+  })
+
+  test('Test firstAvailable()', () => {
+
   })
 
   test('Test dateRangeOverlaps()', () => {
+
   })
 
   test('Test sortOccupied()', () => {
-  })
 
+  })
+  
   test('Test schedule()', () => {
     Task.removeAllTasks();
     let mytask10 = new Task('10 3 3', Task.getUniqueUID(), Task.getUniqueTaskUID());
@@ -311,7 +405,7 @@ describe('Task Class Tests', () => {
     expect(all_tasks[3].data.task_name).toBe('10 5 3');
 
   })
-
+  
   test('Test addToLocalStorage()', () => {
     Task.removeAllTasks();
     let myTask = new Task('task1', Task.getUniqueUID(), Task.getUniqueTaskUID());
@@ -336,7 +430,6 @@ describe('Task Class Tests', () => {
     Task.removeFromLocalStorage(myTask.data.uid);
 
     expect(Task.getAllTasksFlat().length).toBe(0);
-
   })
 
   test('Test removeAllTasks()', () => {
@@ -350,7 +443,6 @@ describe('Task Class Tests', () => {
     Task.removeAllTasks();
 
     expect(Task.getAllTasksFlat().length).toBe(0);
-
   })
 
   test('Test removeLargeTask()', () => {
@@ -367,7 +459,5 @@ describe('Task Class Tests', () => {
 
     expect(taskList.length).toBe(1);
     expect(taskList[0].data.task_uid).toBe(111);
-
   })
-
 })

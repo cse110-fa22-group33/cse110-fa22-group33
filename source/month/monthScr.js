@@ -33,8 +33,8 @@ window.addEventListener('DOMContentLoaded', () => {
   * 
   * Creates Monthly Calendar to be used across Monthly Schedule 
   */
-function render() {
-  
+export function render() {
+
   const dt = new Date();
   
   //get the New month 
@@ -160,6 +160,7 @@ function render() {
 
 }
 
+/*
 export const testExport = {
   render
-};
+};*/
