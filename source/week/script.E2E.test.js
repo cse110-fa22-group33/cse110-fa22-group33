@@ -1,18 +1,14 @@
-const path = require('path');
 
 describe('Monthly Calendar Tests', () => {
   let currentDate;
   beforeAll(async () => {
     await page.goto("http://127.0.0.1:5500/source/week/weekly.html")
+    currentDate = new Date();
   });
 
-<<<<<<< HEAD
   // calculate table specific numbers, rows, cols
 
-  /*test('Test month and year header', async () => {
-=======
   test('Test month and year header', async () => {
->>>>>>> 5c03fe6116a36f38ba8b74ebd37c6edf58f505c3
     let monthYear = await page.$('#monthYear');
     monthYear = await monthYear.getProperty('innerText');
     expect(await monthYear.jsonValue()).toEqual(`${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.toLocaleString('default', { year: 'numeric' })}`);
@@ -34,4 +30,10 @@ describe('Monthly Calendar Tests', () => {
     const numRows = await page.$$('.grid-container');
     expect(numRows.length).toBe(25);
   });
+
+  test('Test columns', async () => {
+    let numColumns = await page.$('#repetition>div');
+    numColumns = await numColumns.$$('div');
+    expect(numColumns.length).toBe(8);
+  })
 });
