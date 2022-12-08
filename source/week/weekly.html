@@ -1,3 +1,11 @@
+<!--
+weekly.html
+*  Description: This file contains all of the HTML code needed for the 
+*  Weekly Calendar. Displays the 7 days of a week and time slots by hour. 
+*  Represented by different "cells". Refer to script.js to see how the 
+*  repetitions of cells is handle and the functionality of the weekly 
+*  calendar.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +24,7 @@
 
 </head>
 <body>
+    <!-- HEADER: Navigating Between Pages -->
     <header>
         <nav class="navbar"> 
     
@@ -52,6 +61,8 @@
         <div class="grid-item head" style="background-color:rgba(167, 164, 7, 0.788);">FRI</div>
         <div class="grid-item head">SAT</div>  
       </div>
+      
+      <!-- handle div repetitions using JS -->
       <div id="repetition"> </div>
       <br><br>
  
