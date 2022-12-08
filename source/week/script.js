@@ -1,4 +1,10 @@
-// weekly-calendar.js
+/**
+* weeklyJS
+* Description: This file contains all JavaScript code needed to implement
+* the weekly calendar functionlity. This includes displaying the weekly 
+* calendar header info, the corresponding tasks for that week, and 
+* the corresponding recurring and specific padding for that week.
+*/
 import { Task } from './../skyTasks.js';
 
 // Run the init() function when the page has loaded

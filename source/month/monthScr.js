@@ -1,7 +1,8 @@
   /**
    * Monthly Calendar javascript file 
-   * 
-   * Control the display of MOnths and Days in the Month as well as the display of tasks
+   * Description: This file contains all of the JavaScript code needed to implement
+   * the monthly calendar functionality. This includes the monthly calendar header as
+   * well as the navigation between months and the correct task display.
    */
 
 import { Task } from './../skyTasks.js';
