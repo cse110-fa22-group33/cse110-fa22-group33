@@ -373,11 +373,12 @@ describe('Task Class Tests', () => {
   })
 
   test('Test firstAvailable()', () => {
-
+    // this is not testible because it depends on the current time that this is runed.
   })
 
   test('Test dateRangeOverlaps()', () => {
-
+    expect(Task.dateRangeOverlaps(new Date('November 28, 2023 10:00:00'),new Date('November 28, 2023 11:00:00'),new Date('November 28, 2023 9:00:00'),new Date('November 28, 2023 11:00:00'))).toBeTruthy();
+    expect(Task.dateRangeOverlaps(new Date('November 28, 2023 10:00:00'),new Date('November 28, 2023 11:00:00'),new Date('November 28, 2023 9:00:00'),new Date('November 28, 2023 10:00:00'))).toBeFalsy();
   })
 
   test('Test sortOccupied()', () => {
