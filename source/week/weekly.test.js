@@ -1,12 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-import { Task } from "./../skyTasks";
+import { Task } from "../skyTasks";
 
 const fs = require('fs');
 const path = require('path');
 const html = fs.readFileSync(path.resolve(__dirname, './weekly.html'), 'utf8');
-const f = require('./script');
+const f = require('./weekly');
 
 
 
@@ -36,7 +36,6 @@ describe('Weekly Calendar Functionality Tests', () => {
 
  test('setTasksForDay()', () =>{
     f.render();
-    console.log(testTask);
     expect(f.setTasksForDay(new Date("2022-12-4"))).toEqual([]);
   });
 

@@ -5,7 +5,7 @@
 * calendar header info, the corresponding tasks for that week, and 
 * the corresponding recurring and specific padding for that week.
 */
-import { Task } from './../skyTasks.js';
+import { Task } from '../skyTasks.js';
 
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
