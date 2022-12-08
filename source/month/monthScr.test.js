@@ -1,7 +1,4 @@
-<!--
-monthScr.test.js
-*  Description: This file contains tests for MonthScr
--->
+
 
 /**
  * @jest-environment jsdom
