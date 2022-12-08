@@ -1,4 +1,10 @@
-// weekly-calendar.js
+/**
+* weeklyJS
+* Description: This file contains all JavaScript code needed to implement
+* the weekly calendar functionlity. This includes displaying the weekly 
+* calendar header info, the corresponding tasks for that week, and 
+* the corresponding recurring and specific padding for that week.
+*/
 import { Task } from './../skyTasks.js';
 
 // Run the init() function when the page has loaded
@@ -13,45 +19,72 @@ function init() {
     getHeaderAndTasksFromStorage();
 }
 
+/**
+ * Iterates over cells of HTML table to correctly display weekly calendar table
+ * as we well as corrrect heading for the days of the week and time of day.
+ */
 export function render() {
-    /* array that represents the day of the weeks in index number 
-   0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday */
+
+    // array that represents the day of the weeks in index number 
+   // 0: sunday, 1: monday, 2:tuesday, 3: wednesday, 4: thursday, 5: friday, 6:saturday
    const dayWeeks = ["0", "1", "2" ,"3", "4", "5", "6"]; 
+   
    for (let i = 0; i < 24; i++) {
-       if(i === 0){ // 12 am is 0 in the 24 hours scale
+
+        // creates cell for 12 am in the 24 hours scale
+       if(i === 0){  
            let str = `<div id="`+(i)+ `" class="grid-container">
            <div class="grid-item pos">`+ 12 +`am</div>` 
+
+           // iterate over everyday of the week 
            for (let j=0; j < dayWeeks.length; j++){
                str += `<div id= "`+ dayWeeks[j] + i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
            }
            str += `</div>`; 
+
+           // set html cell to correct id
            document.getElementById("repetition").innerHTML += str;
        }
-       else if (i === 12){ //this one gets 12pm  
+       // creates cell for 12pm in the 24 hours scale
+       else if (i === 12){ 
            let str = `<div class="grid-container">
            <div class="grid-item pos">`+ i +`pm</div>`
+
+           // iterate over everyday of the week 
            for (let j=0; j < dayWeeks.length; j++){
                str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
            }
            str += `</div>`; 
+
+           // set html cell to correct id
            document.getElementById("repetition").innerHTML += str;
        }
-       else if (i >= 12) { //this one makes 1pm to 11pm
+       // creates cells for 1pm to 11pm
+       else if (i >= 12) {
            let str = `<div class="grid-container">
            <div class="grid-item pos">`+ (i - 12) +`pm</div>`
+
+           // iterate over everyday of the week 
            for (let j=0; j < dayWeeks.length; j++){
                str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
            }
            str += `</div>`; 
+
+           // set html cell to correct id
            document.getElementById("repetition").innerHTML += str;
        } 
+       // creates cells for 1am to 11am
        else {
            let str = `<div class="grid-container">
-           <div class="grid-item pos">`+ i +`am</div>` 
+           <div class="grid-item pos">`+ i +`am</div>`
+           
+           // iterate over everyday of the week 
            for (let j=0; j < dayWeeks.length; j++){
                str += `<div id= "`+ dayWeeks[j]+ i + `" class="grid-item sch-`+ dayWeeks[j] +`"></div>`;
            }
            str += `</div>`; 
+
+           // set html cell to correct id
            document.getElementById("repetition").innerHTML += str;
        }
    }
@@ -296,6 +329,8 @@ export function setTasksForDay(startTasks) {
                 // set innerHTML to reflect correct task data
                 currCell.innerHTML = task.data.task_name;
 
+                // set correct task color
+
                 if(task.data.category == "school") {
                     currCell.style.backgroundColor="#51a051d8";
                 }
@@ -320,16 +355,24 @@ export function setTasksForDay(startTasks) {
                 // set calendar to reflect task duration
                 let curDuration = task.data.duration;
                 if (curDuration > 1) {
+
+                    // iterate over number of hours to be colored given by duration
                     for (let i = 0; i < curDuration - 1; i++) {
+                        // increment current hour
                         currTime++;
                         currDayTime++;
+
+                        // reset to 0 andincrement to next day if 12 am has been reached
                         if (currTime == 24) {
                             currTime = 0;
                             currDay++;
                         }
 
+                        // grab corrresponding html cell
                         currDayTime = "" + currDay + currTime;
                         currCell = document.getElementById(currDayTime);
+
+                        // color html cell accordingly
 
                         if(task.data.category == "school") {
                             currCell.style.backgroundColor="#51a051d8";
@@ -356,19 +399,7 @@ export function setTasksForDay(startTasks) {
             }
         }
 
-        // let morningPadding = Task.getTasksFromName('morning')[0];
-        // console.log(morningPadding);
-        // let eveningPadding = Task.getTasksFromName('evening')[0];
-        // console.log(eveningPadding);
-
-        // console.log(morningPadding.data.ddl.getHours());
-        // console.log(eveningPadding.data.ddl.getHours());
-
-        /*if (eveningPadding.data.ddl.getHours() < morningPadding.data.ddl.getHours()) {
-            eveningPadding.data.ddl = new Date(subtractTimeFromDate(morningPadding.data.ddl, 1));
-            console.log("new date" + eveningPadding);
-        }*/
-
+        // set daily paddings cells to darker grey for calendar
         for(let task of paddingTasks) {
             if(task.data.recurrent){
             // pull correct date and time from task element
@@ -380,24 +411,30 @@ export function setTasksForDay(startTasks) {
             // grab corresponding html cell
             let currCell = document.getElementById(currDayTime);
     
+            // set correct background color
             currCell.style.backgroundColor="#c8c8c8";
-            console.log(currCell);
-            console.log(currCell.style.backgroundColor);
 
+            // set calendar to reflect padding duration
             let curDuration = task.data.duration;
             for (let i = 0; i < curDuration - 1; i++) {
+                    // increment current hour
                     currTime++;
                     currDayTime++;
+
+                    // reset to 0 andincrement to next day if 12 am has been reached
                     if (currTime == 24) {
                         currTime = 0;
                     }
                     currDayTime = "" + currDay + currTime;
                     currCell = document.getElementById(currDayTime);
+
+                    // color html cell accordingly
                     currCell.style.backgroundColor="#c8c8c8";
                 }
             }
         }
 
+        // inrement to next day
         startTasks.setDate(startTasks.getDate() + 1);
     }
 

@@ -1,3 +1,10 @@
+/* 
+*  currStyle.css
+*  Description: This file contains all of CSS styling for the home page of our
+*  application. This includes the "Add Task" and "Task Display" sections
+*  as well as any other interactive elements for the user.
+*/
+
 /* Color Customization */
 :root {
 	--white: rgb(255, 255, 255);

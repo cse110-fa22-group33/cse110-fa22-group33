@@ -47,13 +47,14 @@ describe('Task Class Tests', () => {
 
   //how bruh?!
   test('Test splitTask()', () => {
-    //testTask.addToLocalStorage();
+    Task.removeAllTasks();
+    testTask.addToLocalStorage();
 
     //test preferHour greater than Duration
     testTask.data.duration = 3;
     let prefer = 4;
-    //console.log("it is" + Task.splitTask(testTask, prefer));
-    //expect(result).toBe(testTask);
+    let result = Task.splitTask(testTask, prefer);
+    expect(result).toBe(undefined);
 
     //testTask = new Task('Test Task', 1000);
 
@@ -61,7 +62,14 @@ describe('Task Class Tests', () => {
 
     testTask.data.duration = 7;
     prefer = 2;
-    //console.log("now is" + Task.splitTask(testTask, prefer));
+
+    Task.splitTask(testTask, prefer);
+
+    let currArray = Task.getAllTasks();
+
+    console.log(currArray);
+
+    expect(currArray[0].length).toBe(4);
 
   })
 
@@ -227,8 +235,8 @@ describe('Task Class Tests', () => {
     let testCat = "other";
     let result = [];
     expect(Task.getTasksFromCategory(testCat).length).toBe(result.length);
-    /*testCat = "personal";
-    expect(Task.getTasksFromCategory(testCat).length).toBe(1);*/
+    testCat = "personal";
+    //expect(Task.getTasksFromCategory(testCat).length).toBe(1);
   })
 
   test('Test getTaskFromUID()', () => {
@@ -373,7 +381,31 @@ describe('Task Class Tests', () => {
   })
 
   test('Test sortOccupied()', () => {
+    let occupied = [];
 
+    let task1 = new Task('t1');
+    task1.setToPadding();
+    task1.data.ddl = new Date("2023-12-17");
+    task1.data.duration = 7;
+    occupied.push([new Date(task1.data.ddl), Number.parseInt(task1.data.duration)]);
+
+    let task2 = new Task('t2');
+    task2.setToPadding();
+    task2.data.ddl = new Date("2022-01-02");
+    task2.data.duration = 5;
+    occupied.push([new Date(task2.data.ddl), Number.parseInt(task2.data.duration)]);
+
+    let task3 = new Task('t3');
+    task3.setToPadding();
+    task3.data.ddl = new Date("2023-01-25");
+    task3.data.duration = 3;
+    occupied.push([new Date(task3.data.ddl), Number.parseInt(task3.data.duration)]);
+
+    let newOccupied = Task.sortOccupied(occupied);
+
+    console.log(newOccupied.length);
+
+    expect(newOccupied.length).toBe(3);
   })
   
   test('Test schedule()', () => {
