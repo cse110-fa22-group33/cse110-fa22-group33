@@ -1,7 +1,4 @@
-<!--
-monthE2E.test.js
-*  Description: This file contains the E2E tests for MonthScr.js
--->
+
 const path = require('path');
 
 describe('Monthly Calendar Tests', () => {
