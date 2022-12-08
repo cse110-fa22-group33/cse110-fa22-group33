@@ -2,7 +2,7 @@
 describe('Monthly Calendar Tests', () => {
   let currentDate;
   beforeAll(async () => {
-    await page.goto("http://127.0.0.1:5500/up_/week/weekly.html")
+    await page.goto("http://localhost:5500/up_/week/weekly.html")
     currentDate = new Date();
   });
 
