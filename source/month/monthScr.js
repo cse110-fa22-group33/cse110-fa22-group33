@@ -1,7 +1,7 @@
   /**
    * Monthly Calendar javascript file 
-   * 
-   * Control the display of MOnths and Days in the Month as well as the display of tasks
+   * Description:
+   * Control the display of MOnths and Days in the Monthly Calendar as well as the display of tasks
    */
 
 import { Task } from './../skyTasks.js';
