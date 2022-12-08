@@ -1,10 +1,13 @@
-/* // this is the thig that gets rid of the space ont he top  */
+/* 
+*  h4.css
+*  Description: This file contains all the CSS and styling used for the 
+*  uniform header navigation shown in all the pages of the application
+*/
 *{
     padding:0;
     margin:0;
 }
 .navbar{
-    /* background-color: rgba(211, 211, 211, 0.466); */
     background-color: #a089b6a8;
     color:white;
     display: flex;
@@ -20,10 +23,6 @@
     padding: 45px;
     font-weight: bold;  
 }
-/* .navbar a:hover{
-    color: rgb(20, 20, 131);
-    border-radius: 20px;
-} */
 .first:hover{
     color:#0c837dfb;
 }
@@ -76,11 +75,4 @@ img {
     .navbar a{
         padding:8px;
     }
-    /* .navbar a:hover{
-        background-color: rgba(50, 54, 50, 0.192);
-        color: rgb(20, 20, 131);
-        border-radius: 20px;
-    } */
-
-
 }

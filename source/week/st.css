@@ -1,4 +1,9 @@
-/* CSS FOR INDEXT.HTML */
+/* 
+*  st.css
+*  Description: This file contains all the CSS styling used for the 
+*  weekly calendar page. 
+*/
+
 body{
     font-family: 'Quicksand', sans-serif;
     background-color: #e4dce4a1;

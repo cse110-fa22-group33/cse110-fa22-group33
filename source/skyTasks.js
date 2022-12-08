@@ -1,19 +1,29 @@
+/* 
+*  skyTasks.js
+*  Description: This file serves as the Master Task file which implements
+*  the actual schedule within the calendar. We create Task objects that store
+*  various parameters we use to optimize the schedule and create an intuitive
+*  experience for the user. The file includes all helper methods needed to 
+*  access and manipulate task objects, which correspondingly would influence
+*  the output on the weekly and monthly displays.
+*/
+
 /**
- * inside local storage:
- *      a bunch of classes stored in first level {key=uid, value=Task object}
- *      a large_tasks object {key=task_uid, value=array of uid}
- *      a current_task object that holds a integer: uid
- *      a task_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
- *      a ddl_date object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
- *      a all_tasks array that holds a array of all UIDs
- *      a task_difficulty array that holds a array of all UIDs
- *      a task_category array that holds a array of all UIDs
- *      a task_priority array that holds a array of all UIDs
- *      a last_ddl that stores the latest date of any tasks
- *      a padding_tasks that stores all the paddings
+ * Local Storage Explanation:
+ *      bunch classes stored in first level {key=uid, value=Task object}
+ *      'large_tasks' object {key=task_uid, value=array of uid}
+ *      'current_task' object that holds a integer: uid
+ *      'task_date' object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
+ *      'ddl_date' object that holds {key=year(integer), value={key=month(integer), value={key=day(integer),value=array of uid(integer)}}}
+ *      'all_tasks' array that holds a array of all UIDs
+ *      'task_difficulty' array that holds a array of all UIDs
+ *      'task_category' array that holds a array of all UIDs
+ *      'task_priority' array that holds a array of all UIDs
+ *      'last_ddl' that stores the latest date of any tasks
+ *      'padding_tasks' that stores all the paddings
  *
- * sample usage:
- *      import { Task } from './path/to/task.js'; // put this under script.js to import this class
+ * Sample Task Object Usage:
+ *      import { Task } from './path/to/task.js'; // put under script.js to import this class
  *      let mytask = new Task('task name', 1000);
  *      mytask.addToLocalStorage(); // put a task to local strage
  *      let retrived_task = Task.getTaskFromUID(1000); retrive a task from local strage
@@ -23,7 +33,7 @@ export class Task {
    * Task Constructor Method
    * 
    * Creates task object to be used across Current Tasks, Weekly, and Monthly Schedule display pages
-   * Refer below for detailed description on parameter information
+   * Refer below for detailed description on input parameter information
    * @returns task object
    */
   constructor(task_name = 'New Task', uid = null, task_uid = null, start_date = new Date(), category = [], duration = 1, softddl = new Date(),
@@ -48,11 +58,10 @@ export class Task {
       priority: priority, // a integer from 1-5, 1 is lowest priority and 5 is hardest, not required
     };
     if (padding) {
-      this.data.priority = 6;
+      this.data.priority = 6;   // set padding to priority 6 to store ahead of other tasks
     };
   }
 
-  // return task from a json data file
   /**
    * fromJson Method
    * 
@@ -128,7 +137,7 @@ export class Task {
     while (preferHour < hour_left) {
       let new_task = new Task();
       new_task.data = {...task.data};
-      new_task.data.duration = preferHour;
+      new_task.data.duration = preferHour;    // set the preferred hour
       new_tasks.push(new_task);
       hour_left = hour_left-preferHour;
     }
@@ -228,8 +237,9 @@ export class Task {
    * @returns array of all UIDs
    */
   static getAllUIDs() {
-    // parse for all task uid
+    // Find 'all_tasks' object in local storage
     let large_tasks = JSON.parse(localStorage.getItem('all_tasks'));
+    // parse for uid
     if (large_tasks === undefined || large_tasks === null) { return [] };
     return large_tasks;
   }
@@ -242,6 +252,7 @@ export class Task {
    */
   static getAllTasksFlat() {
     try {
+      // Find 'all_tasks' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('all_tasks'))
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -261,6 +272,7 @@ export class Task {
    */
   static getAllPaddings() {
     try {
+      // Find 'padding_tasks' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('padding_tasks'))
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -282,11 +294,12 @@ export class Task {
    */
    static getAllRecuringPaddings() {
     try {
+      // Find 'padding_tasks' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('padding_tasks'))
       let tasks = [];
       for (let uid of tasks_uid) {
         let myTask = Task.getTaskFromUID(uid);
-        if (myTask.data.recurrent) {tasks.push(myTask)};
+        if (myTask.data.recurrent) {tasks.push(myTask)};  // Only store recurring
       };
       return tasks;
     } catch (e) {
@@ -304,6 +317,7 @@ export class Task {
    */
   static getTasksFromTaskUID(task_uid) {
     try {
+      // Find 'large_tasks' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('large_tasks'))[task_uid]
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -324,8 +338,8 @@ export class Task {
    */
   static getTasksFromDifficulty(difficulty) {
     try {
+      // Find 'task_difficulty' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('task_difficulty'))[difficulty]
-      //console.log(tasks_uid);
       let tasks = [];
       for (let uid of tasks_uid) {
         tasks.push(Task.getTaskFromUID(uid));
@@ -345,6 +359,7 @@ export class Task {
    */
   static getTasksFromPriority(priority) {
     try {
+      // Find 'task_priority' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('task_priority'))[priority]
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -366,20 +381,24 @@ export class Task {
    */
    static getAllLargeTasks() {
     try {
+      // Find 'large_task' objects in local storage
       let large_tasks = JSON.parse(localStorage.getItem('large_tasks'));
       let total_duration = [];
       let total_tasks = [];
       for (let [_,small_tasks_uid] of Object.entries(large_tasks)){
         let each_duration = 0;
         let first_task = Task.getTaskFromUID(small_tasks_uid[0]);
+        // Push into array of tasks
         if (first_task.data.recurrent && first_task.data.padding) {continue};
         total_tasks.push(first_task);
+        
         for (let uid of small_tasks_uid) {
           each_duration = each_duration + Task.getTaskFromUID(uid).data.duration;
         };
+        // Push into array of durations
         total_duration.push(Number.parseInt(each_duration));
       }
-      return [total_tasks,total_duration];
+      return [total_tasks,total_duration];  // Return
     } catch (e) {
       return [];
     }
@@ -396,6 +415,7 @@ export class Task {
    */
   static getTasksFromCategory(category) {
     try {
+      // Find 'task_category' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('task_category'))[category]
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -409,6 +429,7 @@ export class Task {
 
   static getTasksFromName(name) {
     try {
+      // Find 'task_name' object in local storage
       let tasks_uid = JSON.parse(localStorage.getItem('task_name'))[name]
       let tasks = [];
       for (let uid of tasks_uid) {
@@ -439,6 +460,7 @@ export class Task {
    * @returns array of tasks
    */
   static getTasksFromDate(date) {
+    // Find 'task_date' object in local storage
     let all_tasks_uid = JSON.parse(localStorage.getItem('task_date'));
     let month = date.getMonth() + 1; //months from 1-12
     let day = date.getDate();
@@ -464,6 +486,7 @@ export class Task {
    * @returns array of tasks
    */
   static getTasksFromDDL(date) {
+    // Find 'ddl_date' object in local storage
     let all_tasks_uid = JSON.parse(localStorage.getItem('ddl_date'));
     let month = date.getMonth() + 1; //months from 1-12
     let day = date.getDate();
@@ -642,6 +665,7 @@ export class Task {
         storage.setHours(time_block[0].getHours() + time_block[1]);
         let storage2 = new Date(time);
         storage2.setHours(time.getHours() + Number.parseInt(duration));
+        // Check if current slot is occupied
         if (Task.dateRangeOverlaps(time_block[0], storage, time, storage2)) {
           return true;
         }
@@ -717,6 +741,7 @@ export class Task {
         start_loop.setDate(start_loop.getDate() - 1);
         let end_loop = new Date(JSON.parse(localStorage.getItem('last_ddl')));
         end_loop.setDate(end_loop.getDate() + 1);
+        // Loop through paddings
         for (let d = start_loop; d <= end_loop; d.setDate(d.getDate() + 1)) {
           let new_date = new Date(d);
           new_date.setHours(task.data.ddl.getHours());
@@ -739,11 +764,13 @@ export class Task {
     // where scheduling happens
     task_need_schedule.sort(function(a,b) {
       let one_day = 86400000;
+      // Compare deadlines
       if ((a.data.ddl-new Date())<(one_day*3) || (b.data.ddl-new Date())<(one_day*3)){
         if(Task.compareDDL(a,b) != 0){
           return Task.compareDDL(a,b);
         }    
       }
+      // Compare priorities
       if (Task.comparePriority(b,a) == 0){
         return Task.compareDifficulty(b,a);
       }
@@ -754,7 +781,7 @@ export class Task {
     for (let task of task_need_schedule) {
       if (task.data.padding) {
         task.data.start_date = task.data.ddl;
-        Task.removeFromLocalStorage(task.data.uid);
+        Task.removeFromLocalStorage(task.data.uid);     // Clear out padding from local storage
         task.addToLocalStorage();
       } else {
         //get the first available date that can fit the task
@@ -936,6 +963,7 @@ export class Task {
     let month_tasks_uid = year_tasks_uid[month] = year_tasks_uid[month] || {};
     let day_tasks_uid = month_tasks_uid[day] = month_tasks_uid[day] || [];
     let dup = false;
+    // Loop through all uids of day tasks
     for (let uid of day_tasks_uid) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -956,6 +984,7 @@ export class Task {
     month_tasks_uid = year_tasks_uid[month] = year_tasks_uid[month] || {};
     day_tasks_uid = month_tasks_uid[day] = month_tasks_uid[day] || [];
     dup = false;
+    // Loop through all uids of day tasks
     for (let uid of day_tasks_uid) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -970,6 +999,7 @@ export class Task {
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let large_tasks_uid = all_tasks_uid[task.data.task_uid] = all_tasks_uid[task.data.task_uid] || [];
     dup = false;
+    // Loop through all uids of large tasks
     for (let uid of large_tasks_uid) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -988,6 +1018,7 @@ export class Task {
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_difficulty = all_tasks_uid[task.data.difficulty] = all_tasks_uid[task.data.difficulty] || [];
     dup = false;
+    // Loop through all uids by task difficulty
     for (let uid of task_difficulty) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -1006,6 +1037,7 @@ export class Task {
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_priority = all_tasks_uid[task.data.priority] = all_tasks_uid[task.data.priority] || [];
     dup = false;
+    // Loop through all uids by task priority
     for (let uid of task_priority) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -1025,6 +1057,7 @@ export class Task {
       all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
       let task_category = all_tasks_uid[category] = all_tasks_uid[category] || [];
       dup = false;
+      // Loop through all uids by task category
       for (let uid of task_category) {
         if (uid === task.data.uid) { dup = true };
       };
@@ -1043,6 +1076,7 @@ export class Task {
     all_tasks_uid = JSON.parse(localStorage.getItem('all_tasks'));
     all_tasks_uid = all_tasks_uid = all_tasks_uid || [];
     dup = false;
+    // Loop through all of all tasks
     for (let uid of all_tasks_uid) {
       if (uid === task.data.uid) { dup = true };
     };
@@ -1056,6 +1090,7 @@ export class Task {
     padding_uid = padding_uid = padding_uid || [];
     if (task.data.padding) {
       dup = false;
+      // Loop through all uids of padding
       for (let uid of padding_uid) {
         if (uid === task.data.uid) { dup = true };
       };
@@ -1070,6 +1105,7 @@ export class Task {
     all_tasks_uid = all_tasks_uid = all_tasks_uid || {};
     let task_name = all_tasks_uid[task.data.task_name] = all_tasks_uid[task.data.task_name] || [];
     dup = false;
+    // Loop through all uids by task name
     for (let uid of task_name) {
       if (uid === task.data.uid) { dup = true };
     };

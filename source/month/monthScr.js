@@ -111,6 +111,7 @@ export function render() {
       let curr_day = new Date(year, month, i - paddings);
       let task_list = Task.getTasksFromDate(curr_day);
 
+      //used to truncate the task_name
       let truncate = function (str, n = 14) {
         return (str.length > n) ? str.slice(0, n - 1) + ' ...' : str;
       };
@@ -118,6 +119,7 @@ export function render() {
       if (task_list.length != 0) {
         let task_num = 0;
         for (let task of task_list) {
+          //jump the padding
           if (task.data.padding && task.data.recurrent) { continue };
           task_num += 1;
           
@@ -148,7 +150,6 @@ export function render() {
             oneday.appendChild(curr_event);
           }
 
-          // check the category of the task and color the block accordingly
  
         }
       }

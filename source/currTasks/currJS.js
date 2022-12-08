@@ -218,16 +218,23 @@ function addTasksToDocument(tasks) {
         modals[t] = document.getElementById(name);
     }
 
+    // Deleting Task Button within Modal
     let deleteTask = document.querySelectorAll(".delete_task");
     for (let t = 0; t < taskList.length; t++){
         deleteTask[t].addEventListener("click",()=>{
-            Task.removeLargeTask(taskList[t].data.task_uid);
+            // Remove all instances of task if split
+            Task.removeLargeTask(task_lst[t].data.task_uid);
+            // Rerun scheduling algorithm
             Task.schedule();
+
+            // Close modal
             location.href = '#';
+            // Refresh page
             window.location.reload();
         })
     }
     
+    // Handling modal close trigger
     window.onclick = function(event) {
         // OPTIONS modals
         if (event.target == modal2) {
@@ -332,7 +339,7 @@ function initFormHandler() {
         // Delete the contents of <main>
         list.innerHTML = '';
 
-        alert("Clearing all tasks. Please re-update your preferences.");
+        alert("Clearing all tasks. Please re-update your preferences.");        // Alert user of changes
 
         // Refresh page to after clearing schedule
         window.location.reload();
@@ -346,6 +353,7 @@ function initFormHandler() {
         let morning = 9;
         let noon = 12;
         let evening = 23;
+        // Store new value from user input
         if (document.querySelector('#morning').value != ""){
             morning = Number.parseInt(document.querySelector('#morning').value);
         }
@@ -357,7 +365,7 @@ function initFormHandler() {
         }
         // Call custom update method
         updateSchedule(morning,noon,evening);
-        alert("Schedule Preferences Updated");
+        alert("Schedule Preferences Updated");              // Alert user of changes
     });
 }
 
