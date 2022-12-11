@@ -6,4 +6,6 @@
 
 Code Monkeyz - Smart Task Management App
 
-[Download Here](https://github.com/cse110-fa22-group33/cse110-fa22-group33/releases/tag/release)
+### [Download Here](https://github.com/cse110-fa22-group33/cse110-fa22-group33/releases/tag/release)
+
+### [Web Version](https://cse110-fa22-group33.github.io/cse110-fa22-group33/source/currTasks/currTask.html)
